@@ -1,8 +1,9 @@
-package com.example.housemateapp;
+package com.housemate.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
+
+import com.housemate.classes.Task;
 
 public class MainActivity extends AppCompatActivity {
 
