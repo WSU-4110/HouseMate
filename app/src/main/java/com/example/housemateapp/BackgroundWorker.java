@@ -24,13 +24,16 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
     }
     @Override
     protected String doInBackground(String... voids) {
-        String type = voids[2];
+        // Get request type: Login or Register
+        String type = voids[0];
         String login_url = "http://housemateapp1.000webhostapp.com/login.php";
         String register_url = "http://housemateapp1.000webhostapp.com/register.php";
+
+        // Code for login function
         if (type.equals("login")) {
             try {
-                String user_name = voids[0];
-                String password = voids[1];
+                String user_name = voids[1];
+                String password = voids[2];
                 URL url = new URL(login_url);
                 HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
                 httpURLConnection.setRequestMethod("POST");
@@ -66,8 +69,8 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
 
         if (type.equals("register")) {
             try {
-                String username = voids[0];
-                String password = voids[1];
+                String username = voids[1];
+                String password = voids[2];
                 String firstName = voids[3];
                 String lastName = voids[4];
                 String houseId = voids[5];

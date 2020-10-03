@@ -11,17 +11,20 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        onRegister(null);
+        //onRegister(null);
+        //onLogin(null);
     }
 
+    // Function to execute user authentication
     public void onLogin (View view) {
         String username = "sampleUser";
         String password = "samplePass";
         String type = "login";
         BackgroundWorker backgroundWorker = new BackgroundWorker(this);
-        backgroundWorker.execute(username, password, type);
+        backgroundWorker.execute(type, username, password);
     }
 
+    // Execute new user insert to database
     public void onRegister (View view) {
         String username = "newUser1";
         String password = "newPass";
@@ -31,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
         String type = "register";
         String email = "email";
         BackgroundWorker backgroundWorker = new BackgroundWorker(this);
-        backgroundWorker.execute(username, password, type, firstName, lastName, houseId, email);
+        backgroundWorker.execute(type, username, password, firstName, lastName, houseId, email);
 
 
     }
