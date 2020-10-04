@@ -5,6 +5,8 @@ import android.os.Bundle;
 
 import com.housemate.classes.Task;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override

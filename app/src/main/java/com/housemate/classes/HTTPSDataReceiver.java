@@ -3,35 +3,26 @@ package com.housemate.classes;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.OutputStream;
 import java.net.URL;
 import java.util.concurrent.Callable;
 
 import javax.net.ssl.HttpsURLConnection;
 
-public class HTTPSDataSender implements Callable {
+public class HTTPSDataReceiver implements Callable {
     URL url;
-    String data;
 
-    public HTTPSDataSender(URL url, String data) {
+    public HTTPSDataReceiver(URL url) {
         this.url = url;
-        this.data = data;
     }
 
     @Override
-    public String[] call() throws RuntimeException {
+    public String[] call() {
         try {
             HttpsURLConnection connection = (HttpsURLConnection) url.openConnection();
 
-            connection.setDoOutput(true);
-            connection.setRequestMethod("POST");
+            connection.setRequestMethod("GET");
+            connection.setRequestProperty("User-Agent", "Mozilla/5.0");
             connection.setRequestProperty("Content-Type", "application/json; utf-8");
-            connection.setRequestProperty("Accept", "application/json");
-
-            OutputStream outputStream = connection.getOutputStream();
-            byte[] requestData = data.getBytes("utf-8");
-            outputStream.write(requestData, 0, requestData.length);
-            outputStream.close();
 
             if (connection.getResponseCode() != HttpsURLConnection.HTTP_OK) {
                 throw new RuntimeException();
@@ -46,7 +37,7 @@ public class HTTPSDataSender implements Callable {
             return responseLines;
         }
         catch (Exception e) {
-            throw new RuntimeException("Error communicating with server, please try again");
+            throw new RuntimeException("Error communicating with server");
         }
     }
 }
