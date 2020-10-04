@@ -53,12 +53,11 @@ public class Task {
             executor.execute(senderTask);
             String[] responseLines = senderTask.get();
 
-            if (responseLines[0].equals("CONNECT_ERROR"))
+            if (responseLines.length < 1 || responseLines[0].equals("CONNECT_ERROR"))
                 throw new RuntimeException();
             else {
                 id = Integer.parseInt(responseLines[0]);
                 isCompleted = Boolean.parseBoolean(responseLines[1]);
-                System.out.println("done");
             }
         }
         catch (Exception e) {
@@ -74,19 +73,21 @@ public class Task {
             FutureTask<String[]> receiverTask = new FutureTask<>(receiver);
             ExecutorService executor = Executors.newFixedThreadPool(1);
             executor.execute(receiverTask);
+
             String[] responseLines = receiverTask.get();
+            ArrayList<Task> tasks = new ArrayList<>(responseLines.length);
 
-            if (responseLines[0].equals("CONNECT_ERROR"))
-                throw new RuntimeException();
-            else {
-                ObjectMapper objectMapper = new ObjectMapper();
-                ArrayList<Task> tasks = new ArrayList<>(responseLines.length);
+            if (responseLines.length > 0) {
+                if (responseLines[0].equals("CONNECT_ERROR"))
+                    throw new RuntimeException();
+                else {
+                    ObjectMapper objectMapper = new ObjectMapper();
 
-                for (int index = 0; index < responseLines.length; index++)
-                    tasks.add(index, objectMapper.readValue(responseLines[index], Task.class));
-
-                return tasks;
+                    for (int index = 0; index < responseLines.length; index++)
+                        tasks.add(index, objectMapper.readValue(responseLines[index], Task.class));
+                }
             }
+            return tasks;
         }
         catch (Exception e) {
             throw new RuntimeException("Error communicating with server");
