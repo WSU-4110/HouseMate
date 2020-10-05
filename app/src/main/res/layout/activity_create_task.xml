@@ -1,14 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/parent">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/parent">
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="CREATE TASK"
+        android:id="@+id/createTaskBtn"/>
     <TextView
         android:id="@+id/nameTitleTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/createTaskBtn"
         android:text="Task Name:"
         android:textSize="30sp">
 
@@ -40,12 +49,7 @@
         android:layout_below="@+id/pickDateImgBtn"
         android:textSize="15sp"
         android:id="@+id/dateTV"/>
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below = "@id/timeTV"
-        android:text="CREATE TASK"
-        android:id="@+id/createTaskBtn"/>
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -67,9 +71,34 @@
         android:layout_below="@+id/pickTimeImgBtn"
         android:textSize="15sp"
         android:id="@+id/timeTV"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/timeTV"
+        android:textSize="30sp"
+        android:text="Assigned To:"
+        android:id="@+id/assignedToTitleTV"/>
+
+    <ListView
+        android:id="@+id/houseMateLV"
+        android:layout_width="match_parent"
+        android:layout_height="226dp"
+        android:layout_below="@+id/assignedToTitleTV" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/stickyNoteTitleTV"
+        android:textSize="30sp"
+        android:text="Sticky Note: "
+        android:layout_below="@+id/houseMateLV"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/stickyNoteTitleTV"
+        android:maxLines="10"
+        android:id="@+id/stickyNoteET"/>
 
 
 
-
-
-</RelativeLayout>
+    </RelativeLayout>
+</ScrollView>
