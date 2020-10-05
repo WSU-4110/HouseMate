@@ -39,4 +39,3 @@ public class MainActivity extends AppCompatActivity {
     }
 }
 
-//Intel® HAXM installation failed. To install Intel® HAXM follow the instructions found at:
