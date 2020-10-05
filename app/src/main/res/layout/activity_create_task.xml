@@ -1,6 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/parent">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <TextView
+        android:id="@+id/nameTitleTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Task Name:"
+        android:textSize="30sp">
+
+    </TextView>
+
+    <EditText
+        android:id="@+id/taskNameET"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:layout_below="@+id/nameTitleTV" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Due Date: "
+        android:textSize="30sp"
+        android:layout_below="@+id/taskNameET"
+        android:id="@+id/titleDateTV"/>
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/taskNameET"
+        app:srcCompat = "@mipmap/ic_calendar"
+        android:id="@+id/pickDateImgBtn"
+        android:layout_toRightOf="@+id/titleDateTV" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/pickDateImgBtn"
+        android:textSize="15sp"
+        android:id="@+id/dateTV"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below = "@id/timeTV"
+        android:text="CREATE TASK"
+        android:id="@+id/createTaskBtn"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/dateTV"
+        android:id="@+id/timeTitleTV"
+        android:textSize="30sp"
+        android:text="Time: "/>
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/timeTitleTV"
+        android:layout_below="@+id/dateTV"
+        android:id="@+id/pickTimeImgBtn"
+        android:layout_toEndOf="@id/timeTitleTV"
+        app:srcCompat = "@mipmap/ic_time"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/pickTimeImgBtn"
+        android:textSize="15sp"
+        android:id="@+id/timeTV"/>
+
+
+
+
+
+</RelativeLayout>
