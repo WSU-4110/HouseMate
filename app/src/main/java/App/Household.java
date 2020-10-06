@@ -1,18 +1,18 @@
 package App;
 
-import java.util.Scanner;
-
-public class Household
+class Household
 {
-    // Class Variables
+    // Class Member Variables
     private int houseID;
     private String houseName;
+    // private User user;
 
     // Default Constructor
     Household()
     {
         houseID = 0;
         houseName = "";
+        // user = null;
     }
 
     // Parameterized Constructor
@@ -20,6 +20,7 @@ public class Household
     {
         this.houseID = houseID;
         this.houseName = houseName;
+        // this.user = user;
     }
 
     // Getter Methods
@@ -32,6 +33,8 @@ public class Household
     {
         return houseName;
     }
+    
+    //public User getUser() { return user; }
 
     // Setter Methods
     public void setID(int houseID)
@@ -44,9 +47,18 @@ public class Household
         this.houseName = houseName;
     }
 
-    // Associate user w/ household
-    private boolean assocUser()
+    // public void setUser(User user) { this.user = user; }
+
+    // Concept for associating a user with a household
+    /*private boolean assocUser()
     {
-        // ?? Stuff in here ??
-    }
+        // If User class object references THIS, return true;
+        // else return false;
+    }*/
+
+    // Concept for associating a user's task with the household
+    /*public void assocTask()
+    {
+        // If User class object creates a new task, associate it with the household
+    }*/
 }

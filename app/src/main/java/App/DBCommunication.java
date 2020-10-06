@@ -1,28 +1,27 @@
 package App;
 
-import android.os.Build;
-import android.renderscript.ScriptGroup;
-
+import javax.net.ssl.HttpsURLConnection;
+import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.io.BufferedReader;
-import java.io.PrintWriter;
-import java.sql.*;
+import java.net.URL;
+import java.util.concurrent.Callable;
 
-import java.io.IOException;
-import java.net.UnknownHostException;
-
-public class DBCommunication
+class DBCommunication //implements Callable
 {
-    String clientName = "";
-    String hostName = "";
+    URL hostName;
 
-    public DBCommunication()
+    private DBCommunication(URL hostName)
     {
-        clientName = "Kay"
-        hostName = "https://databases-auth.000webhost.com/sql.php?server=1&db=id14979143_appdb&table=Households&pos=0";
+        this.hostName = hostName;
     }
 
+    /*@Override
+    public String[] call()
+    {
+        try
+        {
 
+        }
+    }*/
 }
