@@ -1,4 +1,4 @@
-package App;
+package com.housemate.classes;
 
 import javax.net.ssl.HttpsURLConnection;
 import java.io.BufferedReader;
