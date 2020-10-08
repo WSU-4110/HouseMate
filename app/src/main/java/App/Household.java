@@ -8,7 +8,7 @@ class Household
     // private User user;
 
     // Default Constructor
-    Household()
+    public Household()
     {
         houseID = 0;
         houseName = "";
@@ -16,7 +16,7 @@ class Household
     }
 
     // Parameterized Constructor
-    Household(int houseID, String name)
+    public Household(int houseID, String name)
     {
         this.houseID = houseID;
         this.houseName = houseName;
