@@ -4,7 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
-import com.example.housemateapp.R;
+//import com.example.housemateapp.R;
 import com.housemate.classes.Task;
 import com.housemate.classes.User;
 import com.housemate.classes.Household;

@@ -23,8 +23,9 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/taskRecView"
         android:layout_width="match_parent"
-        android:layout_height="619dp"
+        android:layout_height="618dp"
         android:layout_below="@id/createTaskBtn"
+        android:layout_above="@+id/taskPageBtn"
         android:layout_centerHorizontal="true" />
     <Button
         android:layout_width="wrap_content"

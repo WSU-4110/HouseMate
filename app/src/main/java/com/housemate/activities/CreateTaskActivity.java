@@ -24,7 +24,7 @@ import java.util.Calendar;
 
 public class CreateTaskActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListener {
     EditText taskNameET, stickyNoteET;
-    Button createTaskBtn;
+    Button createTaskBtn, cancelBtn;
     ImageButton pickDateImgBtn, pickTimeImgBtn;
     TextView dateTV, timeTV;
     CheckBox checkbox_housemate;
@@ -47,6 +47,7 @@ public class CreateTaskActivity extends AppCompatActivity implements DatePickerD
         assignedTo = new ArrayList<>();
         housemates = new ArrayList<>();
         stickyNoteET = findViewById(R.id.stickyNoteET);
+        cancelBtn = findViewById(R.id.cancelBtn);
 
 
         housemates.add("jim");
@@ -62,11 +63,21 @@ public class CreateTaskActivity extends AppCompatActivity implements DatePickerD
             @Override
             public void onClick(View v) {
                 String taskName= taskNameET.getText().toString();
-                Intent intent = new Intent(CreateTaskActivity.this, MainActivity.class);
+                Intent intent = new Intent(CreateTaskActivity.this, HomePageActivity.class);
                 intent.putExtra(TASK_NAME_TAG, taskName);
                 startActivity(intent);
             }
         });
+
+        cancelBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // TODO: add dialogue - "are you sure you want to discard this new task"
+                startActivity(new Intent(CreateTaskActivity.this, HomePageActivity.class));
+            }
+        });
+
+
         pickDateImgBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
