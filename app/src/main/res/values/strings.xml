@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">HouseMate App</string>
+    <string-array
+        name="repeatTaskArr">
+        <item>Weekly</item>
+        <item>Monthly</item>
+    </string-array>
 </resources>
