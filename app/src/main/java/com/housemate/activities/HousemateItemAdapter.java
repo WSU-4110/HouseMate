@@ -1,4 +1,4 @@
-package com.example.housemateapp;
+package com.housemate.activities;
 
 import android.content.Context;
 import android.view.LayoutInflater;

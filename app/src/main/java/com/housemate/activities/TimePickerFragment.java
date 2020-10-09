@@ -1,4 +1,4 @@
-package com.example.housemateapp;
+package com.housemate.activities;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;
