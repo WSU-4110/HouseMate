@@ -16,22 +16,40 @@ public class Household
     // Class Member Variables
     private int houseID;
     private String houseName;
-    // private User user;
+    // private User resident;
+    // private Task taskArry[];
 
     // Default Constructor
     public Household()
     {
-        houseID = 0;
+        houseID = -1;
         houseName = "";
-        // user = null;
+        // resident = null;
+        // taskArry = new Task[]
     }
 
     // Parameterized Constructor
-    public Household(int houseID, String name)
+    public Household(int houseID, String houseName)
     {
         this.houseID = houseID;
         this.houseName = houseName;
-        // this.user = user;
+        // this.resident = resident;
+        // if (taskArry.isAssociated(int houseID)
+        //      {
+        //          this.taskArry = taskArry;
+    }
+
+    @JsonCreator
+    Household(
+            @JsonProperty("houseID") int houseID,
+            @JsonProperty("houseName") String houseName
+            //@JsonProperty("resident") Boolean resident;
+            //@JsonProperty("taskArchive") Task taskArry[];
+    ) {
+        this.houseID = houseID;
+        this.houseName = houseName;
+        // this.resident = resident;
+        // this taskArry = taskArry;
     }
 
     // Getter Methods
@@ -45,7 +63,9 @@ public class Household
         return houseName;
     }
     
-    //public User getUser() { return user; }
+    //public User getUser() { return resident; }
+
+    // public Task getTask() { return taskArry }
 
     // Setter Methods
     public void setID(int houseID)
@@ -57,6 +77,25 @@ public class Household
     {
         this.houseName = houseName;
     }
+
+    public Household createNewHomeGroup()
+    {
+
+    }
+
+    /* public void deleteHomeGroup()
+    {
+        if (resident.closeHomeGroup(this.houseID) == 1)
+        {
+            if (houseID != -1 && houseName != "")
+            {
+                houseID = -1;
+                houseName = "";
+                taskArray.clear();
+                resident.removeAll();
+            }
+        }
+    } */
 
     // public void setUser(User user) { this.user = user; }
 
