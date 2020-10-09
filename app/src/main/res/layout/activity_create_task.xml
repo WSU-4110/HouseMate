@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
@@ -19,7 +20,8 @@
             android:text="NEW TASK"
             android:textSize="30sp"
             android:layout_toRightOf="@id/cancelBtn"
-            android:id="@+id/newTaskTitleTV"/>
+            android:id="@+id/newTaskTitleTV"
+            android:paddingHorizontal="40dp"/>
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -27,70 +29,56 @@
             android:layout_toRightOf="@+id/newTaskTitleTV"
             android:id="@+id/createTaskBtn"/>
 
-        <TextView
-            android:id="@+id/nameTitleTV"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/createTaskBtn"
-            android:text="Task Name:"
-            android:textSize="30sp">
 
-        </TextView>
 
         <EditText
             android:id="@+id/taskNameET"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPersonName"
-            android:layout_below="@+id/nameTitleTV" />
+            android:layout_below="@+id/cancelBtn"
+            android:layout_marginTop="30sp"
+            android:textSize="30dp"
+            android:hint="Title"/>
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="325dp"
             android:layout_height="wrap_content"
             android:text="Due Date: "
             android:textSize="30sp"
             android:layout_below="@+id/taskNameET"
-            android:id="@+id/titleDateTV"/>
+            android:id="@+id/dateTV"
+            android:layout_marginTop="30dp"/>
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/taskNameET"
             app:srcCompat = "@mipmap/ic_calendar"
             android:id="@+id/pickDateImgBtn"
-            android:layout_toRightOf="@+id/titleDateTV" />
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/pickDateImgBtn"
-            android:textSize="15sp"
-            android:id="@+id/dateTV"/>
+            android:layout_toRightOf="@+id/dateTV"
+            android:layout_marginTop="30dp"/>
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="325dp"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/dateTV"
-            android:id="@+id/timeTitleTV"
+            android:layout_below="@+id/pickDateImgBtn"
+            android:id="@+id/timeTV"
             android:textSize="30sp"
             android:text="Time: "/>
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/timeTitleTV"
-            android:layout_below="@+id/dateTV"
+            android:layout_toRightOf="@id/timeTV"
+            android:layout_below="@+id/pickDateImgBtn"
             android:id="@+id/pickTimeImgBtn"
-            android:layout_toEndOf="@id/timeTitleTV"
+            android:layout_toEndOf="@id/timeTV"
             app:srcCompat = "@mipmap/ic_time"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/pickTimeImgBtn"
-            android:textSize="15sp"
-            android:id="@+id/timeTV"/>
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="30sp"
             android:text="Repeat:"
-            android:layout_below="@+id/timeTV"
+            android:layout_below="@+id/pickTimeImgBtn"
             android:id="@+id/repeatTitleTV"/>
         <Spinner
             android:id="@+id/repeatTaskSpinner"
@@ -103,12 +91,13 @@
             android:text="Assign"
             android:textSize="30sp"
             android:layout_below="@+id/repeatTaskSpinner"
-            android:id="@+id/assignCheckBox"/>
+            android:id="@+id/assignCheckBox"
+            android:layout_marginTop="30sp"/>
         <ListView
             android:visibility="gone"
             android:id="@+id/houseMateLV"
             android:layout_width="match_parent"
-            android:layout_height="226dp"
+            android:layout_height="match_parent"
             android:layout_below="@+id/assignCheckBox" />
         <TextView
             android:layout_width="match_parent"
@@ -116,13 +105,18 @@
             android:id="@+id/stickyNoteTitleTV"
             android:textSize="30sp"
             android:text="Sticky Note: "
-            android:layout_below="@+id/houseMateLV"/>
+            android:layout_below="@+id/houseMateLV"
+            android:layout_marginTop="30sp"/>
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/stickyNoteTitleTV"
             android:maxLines="10"
-            android:id="@+id/stickyNoteET"/>
+            android:id="@+id/stickyNoteET"
+            android:lines="8"
+            android:gravity="top|left"
+            android:scrollbars="vertical"
+            tools:ignore="RtlHardcoded" />
 
 
 

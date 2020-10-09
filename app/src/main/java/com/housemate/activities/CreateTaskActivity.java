@@ -61,27 +61,15 @@ public class CreateTaskActivity extends AppCompatActivity implements DatePickerD
         housemates.add("pam");
         housemates.add("oscar");
 
-
-        // houseMateLV.setAdapter(new ArrayAdapter<String>(this, R.layout.housemate_listview_detail, housemates ));
         HousemateItemAdapter housemateItemAdapter = new HousemateItemAdapter(this, housemates);
         houseMateLV.setAdapter(housemateItemAdapter);
 
-        ArrayList<String> repeatBy = new ArrayList<>();
-        repeatBy.add("Never");
-        repeatBy.add("Everyday");
-        repeatBy.add("Every Week");
-
-        List<String> repeatTaskArr = new ArrayList<>();
-        repeatTaskArr.add("Daily");
-        repeatTaskArr.add("Monthly");
 
         repeatTaskSpinner = findViewById(R.id.repeatTaskSpinner);
         // Create an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.repeatTaskArr, android.R.layout.simple_spinner_item);
-        // Specify the layout to use when the list of choices appears
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        // Apply the adapter to the spinner
         repeatTaskSpinner.setAdapter(adapter);
         repeatTaskSpinner.setOnItemSelectedListener(this);
 
@@ -127,6 +115,9 @@ public class CreateTaskActivity extends AppCompatActivity implements DatePickerD
                 {
                     houseMateLV.setVisibility(View.VISIBLE);
                 }
+                else{
+                    houseMateLV.setVisibility(View.GONE);
+                }
 
             }
         });
@@ -140,9 +131,10 @@ public class CreateTaskActivity extends AppCompatActivity implements DatePickerD
         c.set(Calendar.YEAR, year);
         c.set(Calendar.MONTH,month);
         c.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-        String currentDateString = DateFormat.getDateInstance(DateFormat.FULL).format(c.getTime());
-        Log.i("date" , currentDateString);
-        dateTV.setText(currentDateString);
+        String selectedDate = DateFormat.getDateInstance(DateFormat.FULL).format(c.getTime());
+        Log.i("date" , selectedDate);
+        String printDate = "Date: " + selectedDate;
+        dateTV.setText(printDate);
     }
 
     @Override
@@ -152,15 +144,16 @@ public class CreateTaskActivity extends AppCompatActivity implements DatePickerD
         c.set(Calendar.HOUR_OF_DAY, hourOfDay);
         c.set(Calendar.MINUTE, minute);
         String selectedTime = DateFormat.getTimeInstance(DateFormat.SHORT).format(c.getTime());
-        Log.i("formatted time", selectedTime);
-        timeTV.setText(selectedTime);
+        Log.i("selected time", selectedTime);
+        String printTime = "Time: " + selectedTime;
+        timeTV.setText(printTime);
 
     }
 
     // assign housemates to task via checklist
     public void onCheckboxClicked(View view) {
-        CheckBox checkbox_housemate1 = view.findViewById(R.id.checkbox_housemate);
-        String name = checkbox_housemate1.getText().toString();
+        CheckBox checkbox_housemate = view.findViewById(R.id.checkbox_housemate);
+        String name = checkbox_housemate.getText().toString();
 
         boolean checked = ((CheckBox) view).isChecked(); // bool rep if checkbox checked or not
         if (checked){
@@ -185,21 +178,18 @@ public class CreateTaskActivity extends AppCompatActivity implements DatePickerD
             print += x;
         }
     }
-    public void onAssignCBClicked(View view){
-        CheckBox assignCheckBox = view.findViewById(R.id.assignCheckBox);
 
-    }
 
-    // for the housemates selected in spinner (drop down menu)
+
+    // for the item (task frequency) selected in spinner (drop down menu)
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         // A item was selected. You can retrieve the selected item using
         // parent.getItemAtPosition(pos)
         String item = parent.getItemAtPosition(position).toString();
         Log.i("selected spinner", item);
-
     }
-    // for no housemates selected in spinner
+    // for no item selected in spinner
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
         // Another interface callback
@@ -216,7 +206,6 @@ public class CreateTaskActivity extends AppCompatActivity implements DatePickerD
     who is the task assigned to ok
     sticky note ok (add checkbox, bullet point feature??)
     repeat task (every day, week, month, etc. ) ok
-    priority level (how are tasks ranked??)
-
+    priority level ok
 */
 
