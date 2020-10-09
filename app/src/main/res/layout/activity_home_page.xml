@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".HomePageActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/taskTitleTV"
+        android:textSize="30sp"
+        android:text="TASKS"
+        android:padding="5sp"/>
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/taskTitleTV"
+        app:srcCompat = "@mipmap/ic_add"
+        android:id="@+id/createTaskBtn"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/taskRecView"
+        android:layout_width="match_parent"
+        android:layout_height="619dp"
+        android:layout_below="@id/createTaskBtn"
+        android:layout_centerHorizontal="true" />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tasks"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/taskPageBtn"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/taskPageBtn"
+        android:layout_alignParentBottom="true"
+        android:text="Log"
+        android:id="@+id/logPageBtn"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Chat"
+        android:layout_toRightOf="@+id/logPageBtn"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/chatPageBtn"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/chatPageBtn"
+        android:layout_alignParentBottom="true"
+        android:text="Settings"
+        android:id="@+id/settingsPageBtn"/>
+
+
+</RelativeLayout>
+
