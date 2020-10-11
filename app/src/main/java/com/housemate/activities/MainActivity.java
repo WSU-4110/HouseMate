@@ -8,7 +8,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import com.housemate.classes.Task;
 import com.housemate.classes.User;
-import com.housemate.classes.Household;
+import com.housemate.classes.Households;
 
 public class MainActivity extends AppCompatActivity {
     private EditText Name;
@@ -28,6 +28,9 @@ public class MainActivity extends AppCompatActivity {
         Login = (Button)findViewById(R.id.Login);
         Register = (Button)findViewById(R.id.Register);
         Info = (TextView)findViewById(R.id.Info);
+
+        Households h1 = new Households("testHouse", 0);
+        h1.createHousehold();
     }
 
     // Function to execute user authentication

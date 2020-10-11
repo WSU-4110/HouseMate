@@ -4,13 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-<<<<<<< HEAD
-    tools:context="com.housemate.activities.MainActivity">
-=======
     android:background="#EE141515"
     android:backgroundTint="#99141515"
     tools:context=".MainActivity">
->>>>>>> dev_Fatima
 
     <EditText
         android:id="@+id/Password"
