@@ -7,37 +7,87 @@ import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.FutureTask;
 
 public class Task {
+    private static final String[] frequencyTypes = { "ONE-TIME", "DAILY", "WEEKLY", "MONTHLY" };
+    private String name;
+    private String description;
+    private int assignedUserIndex;
+    private ArrayList<String> assignableUsers;
+    private String dueDate;
+    private String dueTime;
+    private String frequency;
     private int id;
     private boolean isCompleted;
-    private String description;
-    private String assignedUser;
 
     public Task(
+            String name,
             String description,
-            String assignedUser
+            ArrayList<String> assignableUsers,
+            String dueDate,
+            String dueTime,
+            String frequency
     ) {
+        this.name = name;
         this.description = description;
-        this.assignedUser = assignedUser;
+        assignedUserIndex = 0;
+        this.assignableUsers = assignableUsers;
+        this.dueDate = dueDate;
+        this.dueTime = dueTime;
+
+        boolean frequencyFound = false;
+        for (String frequencyType : frequencyTypes) {
+            if (frequency.equals(frequencyType)) {
+                frequencyFound = true;
+                break;
+            }
+        }
+        if (frequencyFound)
+            this.frequency = frequency;
+        else
+            throw new RuntimeException("Error initializing task: invalid frequency");
     }
 
     @JsonCreator
     Task(
-            @JsonProperty("id") int id,
-            @JsonProperty("isCompleted") boolean isCompleted,
+            @JsonProperty("name") String name,
             @JsonProperty("description") String description,
-            @JsonProperty("assignedUser") String assignedUser
+            @JsonProperty("assignedUserIndex") int assignedUserIndex,
+            @JsonProperty("assignableUsers") ArrayList<String> assignableUsers,
+            @JsonProperty("dueDate") String dueDate,
+            @JsonProperty("dueTime") String dueTime,
+            @JsonProperty("frequency") String frequency,
+            @JsonProperty("id") int id,
+            @JsonProperty("isCompleted") boolean isCompleted
     ) {
+        this(name, description, assignableUsers, dueDate, dueTime, frequency);
+        this.assignedUserIndex = assignedUserIndex;
         this.id = id;
         this.isCompleted = isCompleted;
-        this.description = description;
-        this.assignedUser = assignedUser;
     }
+
+    public String getName() { return name; }
+
+    public String getDescription() { return description; }
+
+    public String getAssignedUser() { return assignableUsers.get(assignedUserIndex); }
+
+    public ArrayList<String> getAssignableUsers() { return assignableUsers; }
+
+    public boolean isCompleted() { return isCompleted; }
+
+    public String getDueDate() { return dueDate; }
+
+    public String getDueTime() { return dueTime; }
+
+    public String getFrequency() { return frequency; }
+
+    public int getId() { return id; }
 
     public void createTask() throws RuntimeException {
         try {
@@ -63,6 +113,49 @@ public class Task {
         catch (Exception e) {
             throw new RuntimeException("Error communicating with server");
         }
+    }
+
+    public Task completeTask() {
+        if (isCompleted)
+            return null;
+
+        try {
+            URL url = new URL("https://housemateapp1.000webhostapp.com/completeTask.php");
+
+            HTTPSDataSender sender = new HTTPSDataSender(url, String.valueOf(id));
+            FutureTask<String[]> senderTask = new FutureTask<>(sender);
+            ExecutorService executor = Executors.newFixedThreadPool(1);
+            executor.execute(senderTask);
+            String[] responseLines = senderTask.get();
+
+            if (responseLines.length < 1 || responseLines[0].equals("CONNECT_ERROR"))
+                throw new RuntimeException();
+        }
+        catch (Exception e) {
+            throw new RuntimeException("Error communicating with server");
+        }
+
+        isCompleted = true;
+        String newDueDate = "";
+
+        switch (frequency) {
+            case "ONE-TIME":
+                return null;
+            case "DAILY":
+                newDueDate = LocalDate.parse(dueDate).plusDays(1).toString();
+                break;
+            case "WEEKLY":
+                newDueDate = LocalDate.parse(dueDate).plusWeeks(1).toString();
+                break;
+            case "MONTHLY":
+                newDueDate = LocalDate.parse(dueDate).plusMonths(1).toString();
+        }
+
+        //If task is recurring, new task with updated due date is created and returned
+        Task task = new Task(name, description, assignableUsers, newDueDate, dueTime, frequency);
+        task.assignedUserIndex = (assignedUserIndex + 1) % assignableUsers.size();
+        task.createTask();
+        return task;
     }
 
     public static ArrayList<Task> loadTasks() {

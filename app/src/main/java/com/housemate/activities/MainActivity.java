@@ -38,7 +38,8 @@ public class MainActivity extends AppCompatActivity {
     }
     private void validate (String userName, String userPassword) {
         if ((userName == "Admin") && (userPassword == "1234")) {
-
+            //NOTE: With string comparisons (and comparisons of any reference types in general) in Java you'll want to use .equals()
+            // rather than == since == compares addresses, which might give unexpected results, and .equals() compares values
         }
     }
     // Execute new user insert to database
