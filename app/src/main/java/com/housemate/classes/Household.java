@@ -9,16 +9,16 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.FutureTask;
 
-public class Households
+public class Household
 {
     // Member variables
-    private String household;
+    private String householdName;
     private int houseID;
 
     // Constructor
-    public Households(String household, int houseID)
+    public Household(String householdName, int houseID)
     {
-        this.household = household;
+        this.householdName = householdName;
         this.houseID =houseID;
     }
 
@@ -30,7 +30,7 @@ public class Households
 
     public void setHousehold(String household)
     {
-        this.household = household;
+        this.householdName = household;
     }
 
     // Getters
@@ -41,7 +41,7 @@ public class Households
 
     public String getHousehold()
     {
-        return household;
+        return householdName;
     }
 
     // Create a new household group
