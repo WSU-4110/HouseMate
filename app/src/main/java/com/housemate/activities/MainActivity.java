@@ -8,7 +8,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import com.housemate.classes.Task;
 import com.housemate.classes.User;
-import com.housemate.classes.Households;
+import com.housemate.classes.Household;
 
 public class MainActivity extends AppCompatActivity {
     private EditText Name;
@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
         Register = (Button)findViewById(R.id.Register);
         Info = (TextView)findViewById(R.id.Info);
 
-        Households h1 = new Households("testHouse", 0);
+        Household h1 = new Household("testHouse", 0);
         h1.createHousehold();
     }
 
