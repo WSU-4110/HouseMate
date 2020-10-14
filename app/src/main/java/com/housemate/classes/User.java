@@ -92,10 +92,53 @@ public class User {
                 throw new RuntimeException();
             else {
                 id = Integer.parseInt(responseLines[0]);
-                houseId = Integer.parseInt(responseLines[1]);
-                firstName = responseLines[2];
-                lastName = responseLines[3];
-                email = responseLines[4];
+                firstName = responseLines[1];
+                lastName = responseLines[2];
+                email = responseLines[3];
+            }
+        }
+        catch (Exception e) {
+            throw new RuntimeException("Error communicating with server");
+        }
+    }
+
+
+    public void joinHousehold(int householdId) throws RuntimeException {
+        try {
+            URL url = new URL("https://housemateapp1.000webhostapp.com/joinHousehold.php");
+            String data = "{\"id\":" + id + ",\"houseId\":" + householdId + "}";
+            HTTPSDataSender sender = new HTTPSDataSender(url, data);
+            FutureTask<String[]> senderTask = new FutureTask<>(sender);
+            ExecutorService executor = Executors.newFixedThreadPool(1);
+            executor.execute(senderTask);
+            String[] responseLines = senderTask.get();
+
+            if (responseLines.length < 1 || responseLines[0].equals("CONNECT_ERROR"))
+                throw new RuntimeException();
+            else {
+                houseId = Integer.parseInt(responseLines[0]);
+            }
+        }
+        catch (Exception e) {
+            throw new RuntimeException("Error communicating with server");
+        }
+    }
+
+    public void leaveHousehold(int householdId) throws RuntimeException {
+        try {
+            URL url = new URL("https://housemateapp1.000webhostapp.com/leaveHousehold.php");
+            String data = "{\"id\":" + id + ",\"houseId\":" + householdId + "}";
+
+            HTTPSDataSender sender = new HTTPSDataSender(url, data);
+            FutureTask<String[]> senderTask = new FutureTask<>(sender);
+            ExecutorService executor = Executors.newFixedThreadPool(1);
+            executor.execute(senderTask);
+            String[] responseLines = senderTask.get();
+
+            if (responseLines.length < 1 || responseLines[0].equals("CONNECT_ERROR"))
+                throw new RuntimeException();
+            else {
+                houseId = Integer.parseInt(responseLines[0]);
             }
         }
         catch (Exception e) {
