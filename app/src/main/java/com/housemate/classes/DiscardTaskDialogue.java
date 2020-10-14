@@ -1,4 +1,4 @@
-package com.housemate.activities;
+package com.housemate.classes;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -11,6 +11,8 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatDialogFragment;
 import androidx.fragment.app.FragmentManager;
+
+import com.housemate.activities.HomePageActivity;
 
 public class DiscardTaskDialogue extends AppCompatDialogFragment {
 

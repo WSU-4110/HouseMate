@@ -2,6 +2,8 @@
     <string name="app_name">HouseMate App</string>
     <string-array
         name="repeatTaskArr">
+        <item>Never</item>
+        <item>Daily</item>
         <item>Weekly</item>
         <item>Monthly</item>
     </string-array>

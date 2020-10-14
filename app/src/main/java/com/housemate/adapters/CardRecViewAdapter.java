@@ -1,8 +1,6 @@
 
-package com.housemate.activities;
+package com.housemate.adapters;
 import android.content.Context;
-import android.transition.TransitionManager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +11,9 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.housemate.activities.R;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;

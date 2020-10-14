@@ -1,4 +1,4 @@
-package com.housemate.activities;
+package com.housemate.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -11,6 +11,8 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.housemate.activities.R;
 
 import java.util.ArrayList;
 import java.util.List;

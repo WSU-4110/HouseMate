@@ -2,6 +2,8 @@ package com.housemate.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
@@ -17,26 +19,35 @@ import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.ListView;
+import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
+import com.housemate.classes.DatePickerFragment;
+import com.housemate.classes.DiscardTaskDialogue;
+import com.housemate.adapters.HousemateRecViewAdapter;
+import com.housemate.classes.TimePickerFragment;
+
 import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.List;
 
+//extends FragmentActivity
+//                          implements NoticeDialogFragment.NoticeDialogListener
 
 public class CreateTaskActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListener, AdapterView.OnItemSelectedListener {
-    EditText taskNameET, stickyNoteET;
+    EditText taskNameET, notesET;
     Button createTaskBtn, cancelBtn;
     ImageButton pickDateImgBtn, pickTimeImgBtn;
     TextView dateTV, timeTV;
-    ArrayList<String> housemates, assignedTo;
-    ListView houseMateLV ;
+    static ArrayList<String> housemates;
+        ArrayList<String> assignedTo;
+    ArrayList<Boolean> isAssigned;
+    RecyclerView housemateRecView ;
     Spinner repeatTaskSpinner;
-
+    String taskName, dueDate, dueTime, repeatTask, priority, taskNotes; // save all var to Task Obj.
+    HousemateRecViewAdapter housemateRecViewAdapter;
 
     public static final String TASK_NAME_TAG = "taskName";
 
@@ -50,34 +61,58 @@ public class CreateTaskActivity extends AppCompatActivity implements DatePickerD
         dateTV = findViewById(R.id.dateTV);
         pickTimeImgBtn = findViewById(R.id.pickTimeImgBtn);
         timeTV = findViewById(R.id.timeTV);
-        houseMateLV = findViewById(R.id.houseMateLV);
+        housemateRecView = findViewById(R.id.housemateRecView);
         assignedTo = new ArrayList<>();
+        isAssigned  = new ArrayList<>();
         housemates = new ArrayList<>();
-        stickyNoteET = findViewById(R.id.stickyNoteET);
+        notesET = findViewById(R.id.notesET);
         cancelBtn = findViewById(R.id.cancelBtn);
+        taskName = "New Task";
+        dueDate = "";
+        dueTime = "";
+        repeatTask = "Never";
+        priority = "None";
+        taskNotes = "";
 
         housemates.add("jim");
         housemates.add("micheal");
         housemates.add("pam");
         housemates.add("oscar");
 
-        HousemateItemAdapter housemateItemAdapter = new HousemateItemAdapter(this, housemates);
-        houseMateLV.setAdapter(housemateItemAdapter);
+//        assignedTo = housemates;
+//
+//        housemateRecViewAdapter = new HousemateRecViewAdapter(this);
+//        housemateRecView.setAdapter(housemateRecViewAdapter);
+//        housemateRecViewAdapter.setHousemateList(housemates);
+//        housemateRecView.setLayoutManager(new LinearLayoutManager(this));
+
 
 
         repeatTaskSpinner = findViewById(R.id.repeatTaskSpinner);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.spinner_item, this.getResources().getStringArray(R.array.repeatTaskArr) );
         // Create an ArrayAdapter using the string array and a default spinner layout
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-                R.array.repeatTaskArr, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        //ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+          //      R.array.repeatTaskArr, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(R.layout.spinner_item);
         repeatTaskSpinner.setAdapter(adapter);
         repeatTaskSpinner.setOnItemSelectedListener(this);
-
 
         createTaskBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String taskName= taskNameET.getText().toString();
+                taskName= taskNameET.getText().toString();
+                taskNotes = notesET.getText().toString();
+                String printAssignTo = assignedTo.toString();
+
+                Log.i("taskName", taskName);
+                Log.i("dueDate", dueDate) ;
+                Log.i("dueTime", dueTime);
+                Log.i("repeatTask", repeatTask);
+                Log.i("priority", priority);
+                Log.i("assigned to", printAssignTo);
+                Log.i("notes" , taskNotes);
+
+
                 Intent intent = new Intent(CreateTaskActivity.this, HomePageActivity.class);
                 intent.putExtra(TASK_NAME_TAG, taskName);
                 startActivity(intent);
@@ -86,8 +121,8 @@ public class CreateTaskActivity extends AppCompatActivity implements DatePickerD
         cancelBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(CreateTaskActivity.this, HomePageActivity.class);
-                startActivity(intent);
+                DiscardTaskDialogue discardTaskDialogue = new DiscardTaskDialogue();
+                discardTaskDialogue.show(getSupportFragmentManager(), "discardTaskDialogue");
             }
         });
         pickDateImgBtn.setOnClickListener(new View.OnClickListener() {
@@ -105,18 +140,27 @@ public class CreateTaskActivity extends AppCompatActivity implements DatePickerD
                 timePicker.show(getSupportFragmentManager(), "time picker");
             }
         });
+
         CheckBox assignCheckBox = ( CheckBox ) findViewById( R.id.assignCheckBox );
         assignCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener()
         {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked)
             {
+                housemateRecViewAdapter = new HousemateRecViewAdapter(CreateTaskActivity.this);
+                housemateRecView.setAdapter(housemateRecViewAdapter);
+                housemateRecViewAdapter.setHousemateList(housemates);
+                housemateRecView.setLayoutManager(new LinearLayoutManager(CreateTaskActivity.this));
+                assignedTo = housemates;
+                Log.i("housemates", housemates.toString());
+                Log.i("isAssigned", isAssigned.toString());
                 if ( isChecked )
                 {
-                    houseMateLV.setVisibility(View.VISIBLE);
+                    housemateRecView.setVisibility(View.VISIBLE);
                 }
                 else{
-                    houseMateLV.setVisibility(View.GONE);
+                    housemateRecView.setVisibility(View.GONE);
+                    assignedTo = housemates;
                 }
 
             }
@@ -131,9 +175,9 @@ public class CreateTaskActivity extends AppCompatActivity implements DatePickerD
         c.set(Calendar.YEAR, year);
         c.set(Calendar.MONTH,month);
         c.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-        String selectedDate = DateFormat.getDateInstance(DateFormat.FULL).format(c.getTime());
-        Log.i("date" , selectedDate);
-        String printDate = "Date: " + selectedDate;
+        dueDate = DateFormat.getDateInstance(DateFormat.FULL).format(c.getTime());
+        Log.i("date" , dueDate);
+        String printDate = "Date: " + dueDate;
         dateTV.setText(printDate);
     }
 
@@ -143,69 +187,73 @@ public class CreateTaskActivity extends AppCompatActivity implements DatePickerD
         Calendar c = Calendar.getInstance();
         c.set(Calendar.HOUR_OF_DAY, hourOfDay);
         c.set(Calendar.MINUTE, minute);
-        String selectedTime = DateFormat.getTimeInstance(DateFormat.SHORT).format(c.getTime());
-        Log.i("selected time", selectedTime);
-        String printTime = "Time: " + selectedTime;
+        dueTime = DateFormat.getTimeInstance(DateFormat.SHORT).format(c.getTime());
+        Log.i("selected time", dueTime);
+        String printTime = "Time: " + dueTime;
         timeTV.setText(printTime);
 
     }
 
-    // assign housemates to task via checklist
-    public void onCheckboxClicked(View view) {
-        CheckBox checkbox_housemate = view.findViewById(R.id.checkbox_housemate);
-        String name = checkbox_housemate.getText().toString();
 
-        boolean checked = ((CheckBox) view).isChecked(); // bool rep if checkbox checked or not
+// assign housemates to task via checklist
+    public void onCheckboxClicked(View view) {
+        CheckBox housemateCheckBox = view.findViewById(R.id.housemateCheckBox);
+        String selectedHousemate = housemateCheckBox.getText().toString();
+
+        boolean checked = housemateCheckBox.isChecked(); // bool rep if checkbox checked or not
         if (checked){
-            assignedTo.add(name);
-            String saveName = assignedTo.get(assignedTo.size()-1);
-            Log.i("assignedTo", saveName);
-            Log.i("who", name);
+            assignedTo.add(selectedHousemate);
+            Log.i("selected", selectedHousemate);
         }
         else{
-            //assignedTo.remove(name);
-            Log.i("checked", "not checked");
-            assignedTo.remove(name);
-            for(String housemate: assignedTo){
-                if(housemate.equals(name)){
-                    assignedTo.remove(housemate);
+            for( int i =0; i<assignedTo.size(); i++){
+                if(assignedTo.get(i).equals(selectedHousemate)){
+                    assignedTo.remove(selectedHousemate);
                 }
             }
-        }
-        Log.i("array size", String.valueOf(assignedTo.size()));
-        String print = "";
-        for(String x: assignedTo){
-            print += x;
+            Log.i("unselected", selectedHousemate);
         }
     }
+
+
 
 
 
     // for the item (task frequency) selected in spinner (drop down menu)
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        // A item was selected. You can retrieve the selected item using
-        // parent.getItemAtPosition(pos)
-        String item = parent.getItemAtPosition(position).toString();
-        Log.i("selected spinner", item);
+        repeatTask = parent.getItemAtPosition(position).toString();
+        Log.i("selected spinner", repeatTask);
     }
     // for no item selected in spinner
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
-        // Another interface callback
         Log.i("selected spinner", "nothing");
     }
+
+
+    public void onRadioButtonClicked(View view) {
+
+        boolean checked = ((RadioButton) view).isChecked();
+
+        switch(view.getId()) {
+            case R.id.lowRadioBtn:
+                if (checked)
+                    priority = "Low";
+                    break;
+            case R.id.medRadioBtn:
+                if (checked)
+                    priority = "Medium";
+                    break;
+            case R.id.highRadioBtn:
+                if (checked)
+                    priority = "High";
+                    break;
+            default:
+                priority = "None";
+        }
+    }
+
 }
 
-
-
-/* task contains:
-    name of task ok
-    due date ok
-    time ok
-    who is the task assigned to ok
-    sticky note ok (add checkbox, bullet point feature??)
-    repeat task (every day, week, month, etc. ) ok
-    priority level ok
-*/
 

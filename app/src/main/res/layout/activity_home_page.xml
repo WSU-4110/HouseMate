@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="15dp"
     tools:context=".HomePageActivity">
 
     <TextView
@@ -25,35 +26,41 @@
         android:layout_width="match_parent"
         android:layout_height="618dp"
         android:layout_below="@id/createTaskBtn"
-        android:layout_above="@+id/taskPageBtn"
+        android:layout_above="@+id/linearLayout"
         android:layout_centerHorizontal="true" />
-    <Button
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Tasks"
+        android:orientation="horizontal"
         android:layout_alignParentBottom="true"
-        android:id="@+id/taskPageBtn"/>
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/taskPageBtn"
-        android:layout_alignParentBottom="true"
-        android:text="Log"
-        android:id="@+id/logPageBtn"/>
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Chat"
-        android:layout_toRightOf="@+id/logPageBtn"
-        android:layout_alignParentBottom="true"
-        android:id="@+id/chatPageBtn"/>
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/chatPageBtn"
-        android:layout_alignParentBottom="true"
-        android:text="Settings"
-        android:id="@+id/settingsPageBtn"/>
+        android:id="@+id/linearLayout">
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".25"
+            android:text="Tasks"
+            android:id="@+id/taskPageBtn" />
+        <Button
+            android:layout_width="0dp"
+            android:layout_weight=".25"
+            android:layout_height="wrap_content"
+            android:text="Log"
+            android:id="@+id/logPageBtn"/>
+        <Button
+            android:layout_width="0dp"
+            android:layout_weight=".25"
+            android:layout_height="wrap_content"
+            android:text="Chat"
+            android:id="@+id/chatPageBtn"/>
+        <Button
+            android:layout_width="0dp"
+            android:layout_weight=".25"
+            android:layout_height="wrap_content"
+            android:text="Settings"
+            android:id="@+id/settingsPageBtn"/>
+
+    </LinearLayout>
+
 
 
 </RelativeLayout>
