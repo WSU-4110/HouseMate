@@ -36,9 +36,12 @@ public class Task {
         this.name = name;
         this.description = description;
         assignedUserIndex = 0;
-        this.assignableUsers = assignableUsers;
         this.dueDate = dueDate;
         this.dueTime = dueTime;
+
+        if (assignableUsers.size() == 0)
+            throw new RuntimeException("Error initializing task: need at least 1 assigned user");
+        this.assignableUsers = assignableUsers;
 
         boolean frequencyFound = false;
         for (String frequencyType : frequencyTypes) {
@@ -115,7 +118,7 @@ public class Task {
         }
     }
 
-    public Task completeTask(int householdId) {
+    public Task completeTask(int householdId) { //Temporary solution; change so householdId is returned from the PHP script instead later on rather than being a parameter
         if (isCompleted)
             return null;
 
