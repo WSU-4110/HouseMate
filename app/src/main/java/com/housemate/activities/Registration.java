@@ -22,7 +22,7 @@ public class Registration extends AppCompatActivity {
         setContentView(R.layout.activity_registration3);
         firstName = (EditText)findViewById(R.id.firstName);
         lastName = (EditText)findViewById(R.id.lastName);
-        username = (EditText)findViewById(R.id.editTextTextPersonName7);
+        //username = (EditText)findViewById(R.id.editTextTextPersonName7);
         password = (EditText)findViewById(R.id.enterPass);
         confirmPassword = (EditText)findViewById(R.id.Confirm);
     }
