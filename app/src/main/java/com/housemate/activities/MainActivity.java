@@ -2,6 +2,7 @@ package com.housemate.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -9,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.housemate.classes.Task;
 import com.housemate.classes.User;
@@ -30,7 +32,6 @@ public class MainActivity extends AppCompatActivity {
         Login = (Button)findViewById(R.id.Login);
         Register = (Button)findViewById(R.id.Register);
         Info = (TextView)findViewById(R.id.Info);
-
         Household h1 = new Household("testHouse", 0);
         h1.createHousehold();
     }
@@ -40,8 +41,18 @@ public class MainActivity extends AppCompatActivity {
         String username = Name.getText().toString();
         String password = Password.getText().toString();
         currentUser = new User(username, password);
-        currentUser.login();
+        if (currentUser.login() == 1) {
+            Intent intent = new Intent(this, HomePageActivity.class);
+            startActivity(intent);
+        }
+        else {
+            Context context = getApplicationContext();
+            CharSequence text = "Login Failed!";
+            int duration = Toast.LENGTH_SHORT;
 
+            Toast toast = Toast.makeText(context, text, duration);
+            toast.show();
+        }
     }
     private void validate (String userName, String userPassword) {
         if ((userName == "Admin") && (userPassword == "1234")) {

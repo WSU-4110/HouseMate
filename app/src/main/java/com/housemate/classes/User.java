@@ -74,7 +74,7 @@ public class User {
         }
     }
 
-    public void login() throws RuntimeException {
+    public int login() throws RuntimeException {
         try {
             URL url = new URL("https://housemateapp1.000webhostapp.com/login.php");
 
@@ -95,10 +95,12 @@ public class User {
                 firstName = responseLines[1];
                 lastName = responseLines[2];
                 email = responseLines[3];
+                return 1;
             }
         }
         catch (Exception e) {
-            throw new RuntimeException("Error communicating with server");
+            return 0;
+            //throw new RuntimeException("Error communicating with server");
         }
     }
 

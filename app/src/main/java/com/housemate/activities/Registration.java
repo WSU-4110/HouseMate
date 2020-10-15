@@ -2,6 +2,7 @@ package com.housemate.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -35,8 +36,11 @@ public class Registration extends AppCompatActivity {
         String user = username.getText().toString();
         String pass = password.getText().toString();
         String confirm = confirmPassword.getText().toString();
-        if (pass != confirm) {return;}
+        //if (pass != confirm) {return;}
         MainActivity.currentUser = new User(user, pass, "email", first, last, -1, -1);
         MainActivity.currentUser.register();
+
+        Intent intent = new Intent(this, HomePageActivity.class);
+        startActivity(intent);
     }
 }
