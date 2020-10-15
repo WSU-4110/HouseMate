@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -50,7 +51,12 @@ public class Registration extends AppCompatActivity {
         MainActivity.currentUser = new User(user, pass, "email", first, last, -1, -1);
         MainActivity.currentUser.register();
 
-        Intent intent = new Intent(this, HomePageActivity.class);
+        Intent intent = new Intent(this, JoinCreateHousehold.class);
+        startActivity(intent);
+    }
+
+    public void onBack(View view) {
+        Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
 }

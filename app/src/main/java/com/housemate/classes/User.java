@@ -15,7 +15,7 @@ public class User {
 
     // Class constructor
     public User (String username, String password) {
-        this(username, password, null, null, null, 0, 0);
+        this(username, password, null, null, null, 0, -1);
     }
 
     public  User (String username, String password, String email, String firstName, String lastName, int id, int houseId) {

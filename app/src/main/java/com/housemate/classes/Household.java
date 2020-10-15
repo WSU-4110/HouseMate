@@ -16,10 +16,13 @@ public class Household
     private int houseID;
 
     // Constructor
+    public Household(String householdName) {
+        this(householdName, -1);
+    }
     public Household(String householdName, int houseID)
     {
         this.householdName = householdName;
-        this.houseID =houseID;
+        this.houseID = houseID;
     }
 
     // Setters

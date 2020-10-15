@@ -8,6 +8,14 @@
     tools:context=".HomePageActivity">
 
     <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/createTaskBtn"
+        android:layout_marginStart="32dp"
+        android:text="TextView" />
+
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/taskTitleTV"

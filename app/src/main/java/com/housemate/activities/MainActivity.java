@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
     private Button Register;
     private TextView Info;
     public static User currentUser;
+    public static Household currentHousehold;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,8 +33,6 @@ public class MainActivity extends AppCompatActivity {
         Login = (Button)findViewById(R.id.Login);
         Register = (Button)findViewById(R.id.Register);
         Info = (TextView)findViewById(R.id.Info);
-        Household h1 = new Household("testHouse", 0);
-        h1.createHousehold();
     }
 
     // Function to execute user authentication
@@ -42,8 +41,14 @@ public class MainActivity extends AppCompatActivity {
         String password = Password.getText().toString();
         currentUser = new User(username, password);
         if (currentUser.login() == 1) {
-            Intent intent = new Intent(this, HomePageActivity.class);
-            startActivity(intent);
+            if (currentUser.getHouseId() == -1) {
+                Intent intent = new Intent(this, JoinCreateHousehold.class);
+                startActivity(intent);
+            }
+            else {
+                Intent intent = new Intent(this, HomePageActivity.class);
+                startActivity(intent);
+            }
         }
         else {
             Context context = getApplicationContext();
