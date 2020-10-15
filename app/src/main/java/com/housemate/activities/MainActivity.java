@@ -33,22 +33,26 @@ public class MainActivity extends AppCompatActivity {
         Login = (Button)findViewById(R.id.Login);
         Register = (Button)findViewById(R.id.Register);
         Info = (TextView)findViewById(R.id.Info);
+        currentHousehold = new Household();
+        currentUser = new User();
     }
 
     // Function to execute user authentication
     public void onLogin (View view) {
         String username = Name.getText().toString();
         String password = Password.getText().toString();
-        currentUser = new User(username, password);
+        currentUser.setUser_name(username);
+        currentUser.setUser_pass(password);
         if (currentUser.login() == 1) {
+            Intent intent;
             if (currentUser.getHouseId() == -1) {
-                Intent intent = new Intent(this, JoinCreateHousehold.class);
-                startActivity(intent);
+                intent = new Intent(this, JoinCreateHousehold.class);
             }
             else {
-                Intent intent = new Intent(this, HomePageActivity.class);
-                startActivity(intent);
+                currentHousehold.setHousehold(currentUser.getHouseId());
+                intent = new Intent(this, HomePageActivity.class);
             }
+            startActivity(intent);
         }
         else {
             Context context = getApplicationContext();

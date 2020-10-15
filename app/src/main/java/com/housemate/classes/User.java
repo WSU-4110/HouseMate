@@ -14,8 +14,12 @@ import java.util.concurrent.FutureTask;
 public class User {
 
     // Class constructor
+    public User () {
+        this(null, null, null, null, null, -1, -1);
+    }
+
     public User (String username, String password) {
-        this(username, password, null, null, null, 0, -1);
+        this(username, password, null, null, null, -1, -1);
     }
 
     public  User (String username, String password, String email, String firstName, String lastName, int id, int houseId) {
@@ -95,6 +99,7 @@ public class User {
                 firstName = responseLines[1];
                 lastName = responseLines[2];
                 email = responseLines[3];
+                houseId = Integer.parseInt(responseLines[4]);
                 return 1;
             }
         }

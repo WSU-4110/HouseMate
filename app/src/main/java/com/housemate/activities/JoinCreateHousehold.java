@@ -15,13 +15,13 @@ public class JoinCreateHousehold extends AppCompatActivity {
         setContentView(R.layout.activity_join_create_household);
     }
 
-    public void joinHouseholdGroup(View view) {
-        Intent intent = new Intent(this, JoinHousehold.class);
+    public void onCreateHousehold(View view) {
+        Intent intent = new Intent(this, CreateHousehold.class);
         startActivity(intent);
     }
 
-    public void onCreateHousehold(View view) {
-        Intent intent = new Intent(this, CreateHousehold.class);
+    public void onJoinHousehold(View view) {
+        Intent intent = new Intent(this, JoinHousehold.class);
         startActivity(intent);
     }
 }

@@ -33,6 +33,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/guideline2"
         app:layout_constraintTop_toTopOf="parent"
-        android:onClick="joinHouseholdGroup"/>
+        android:onClick="onJoinHousehold"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

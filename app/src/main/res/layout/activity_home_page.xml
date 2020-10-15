@@ -8,11 +8,11 @@
     tools:context=".HomePageActivity">
 
     <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
+        android:id="@+id/display_user"
+        android:layout_width="170dp"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/createTaskBtn"
         android:layout_marginStart="32dp"
+        android:layout_toRightOf="@+id/createTaskBtn"
         android:text="TextView" />
 
     <TextView

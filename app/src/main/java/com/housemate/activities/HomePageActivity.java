@@ -1,6 +1,7 @@
 package com.housemate.activities;
 
 
+import androidx.annotation.MainThread;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -9,6 +10,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 import com.housemate.adapters.TaskRecViewAdapter;
 import com.housemate.adapters.CardRecViewAdapter;
@@ -25,11 +27,17 @@ public class HomePageActivity extends AppCompatActivity {
     private List <List<String>> taskList;
     private List<String> lowPriority, medPriority, highPriority;
     private ImageButton createTaskBtn;
+    private TextView displayUser;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
 
+        displayUser = (TextView)findViewById(R.id.display_user);
+        displayUser.setText(
+                "User:\n" + MainActivity.currentUser.getFirstName() + " " + MainActivity.currentUser.getLastName() + "\n" +
+                "Household:\n" + MainActivity.currentHousehold.getHouseholdName()
+                );
 
         taskList = new ArrayList<>();
         lowPriority = new ArrayList<>();

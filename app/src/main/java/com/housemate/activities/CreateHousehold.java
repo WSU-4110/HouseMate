@@ -22,7 +22,7 @@ public class CreateHousehold extends AppCompatActivity {
 
     public void createHouseholdGroup(View view) {
         String name = houseName.getText().toString();
-        MainActivity.currentHousehold = new Household(name);
+        MainActivity.currentHousehold.setHouseholdName(name);
         MainActivity.currentHousehold.createHousehold();
         if (MainActivity.currentHousehold.getHouseID() != -1) {
             MainActivity.currentUser.joinHousehold(MainActivity.currentHousehold.getHouseID());
