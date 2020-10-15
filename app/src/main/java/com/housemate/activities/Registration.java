@@ -2,10 +2,12 @@ package com.housemate.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.housemate.classes.User;
 
@@ -36,7 +38,15 @@ public class Registration extends AppCompatActivity {
         String user = username.getText().toString();
         String pass = password.getText().toString();
         String confirm = confirmPassword.getText().toString();
-        //if (pass != confirm) {return;}
+        if (!pass.equals(confirm)) {
+            Context context = getApplicationContext();
+            CharSequence text = "Registration failed!";
+            int duration = Toast.LENGTH_SHORT;
+
+            Toast toast = Toast.makeText(context, text, duration);
+            toast.show();
+            return;
+        }
         MainActivity.currentUser = new User(user, pass, "email", first, last, -1, -1);
         MainActivity.currentUser.register();
 
