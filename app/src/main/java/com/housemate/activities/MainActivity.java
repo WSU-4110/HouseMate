@@ -1,6 +1,8 @@
 package com.housemate.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
@@ -49,8 +51,8 @@ public class MainActivity extends AppCompatActivity {
     }
     // Execute new user insert to database
     public void onRegister (View view) {
-        currentUser = new User("username", "password", "email", "firstname", "lastname", 1, 1);
-        currentUser.register();
+        Intent intent = new Intent(this, Registration.class);
+        startActivity(intent);
     }
 
 }
