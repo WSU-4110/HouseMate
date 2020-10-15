@@ -47,7 +47,8 @@
             android:layout_height="wrap_content"
             android:layout_weight=".25"
             android:text="Tasks"
-            android:id="@+id/taskPageBtn" />
+            android:id="@+id/taskPageBtn"
+            android:onClick="onViewTasks"/>
         <Button
             android:layout_width="0dp"
             android:layout_weight=".25"

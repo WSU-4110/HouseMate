@@ -100,5 +100,10 @@ public class HomePageActivity extends AppCompatActivity {
 
 
     }
+
+    public void onViewTasks(View view) {
+        Intent intent = new Intent(this, ViewTaskById.class);
+        startActivity(intent);
+    }
 }
 
