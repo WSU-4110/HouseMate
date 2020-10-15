@@ -5,6 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.housemate.activities.MainActivity">
+    android:background="#EE141515"
+    android:backgroundTint="#99141515"
+    tools:context=".MainActivity">
 
     <EditText
         android:id="@+id/Username"
@@ -121,5 +124,6 @@
         app:layout_constraintBottom_toTopOf="@+id/Login"
         app:layout_constraintEnd_toEndOf="@+id/Password" />
 
-
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+
