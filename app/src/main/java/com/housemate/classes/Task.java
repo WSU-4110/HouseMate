@@ -1,10 +1,13 @@
 package com.housemate.classes;
 
+import android.content.res.Resources;
+
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.housemate.activities.R;
 
 import java.net.URL;
 import java.time.LocalDate;
@@ -177,13 +180,17 @@ public class Task {
                 ObjectMapper objectMapper = new ObjectMapper();
                 return objectMapper.readValue(responseLines[0], Task.class);
             }
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             throw new RuntimeException("Error communicating with server");
         }
     }
 
-    public static ArrayList<Task> loadTasks() {
+    public String toString () {
+        return String.format("%s\n%s\nAssigned to %s\nDue %s at %s",
+                name, description, getAssignedUser(), dueDate, dueTime);
+    }
+
+    public static ArrayList<Task> loadTasks () {
         try {
             URL url = new URL("https://housemateapp1.000webhostapp.com/loadTasks.php");
 
@@ -203,14 +210,12 @@ public class Task {
 
                     for (int index = 0; index < responseLines.length; index++)
                         tasks.add(index, objectMapper.readValue(responseLines[index], Task.class));
-                }
+                    }
             }
             return tasks;
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             throw new RuntimeException("Error communicating with server");
         }
-
     }
 }
 
