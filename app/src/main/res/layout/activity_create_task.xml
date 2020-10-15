@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/parent"
+        android:padding="15dp">
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="cancel"
+            android:id="@+id/cancelBtn"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="NEW TASK"
+            android:textSize="30sp"
+            android:layout_toRightOf="@id/cancelBtn"
+            android:id="@+id/newTaskTitleTV"
+            android:paddingHorizontal="30dp"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="CREATE"
+            android:layout_toRightOf="@+id/newTaskTitleTV"
+            android:id="@+id/createTaskBtn"/>
+
+
+
+        <EditText
+            android:id="@+id/taskNameET"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:layout_below="@+id/cancelBtn"
+            android:layout_marginTop="30sp"
+            android:textSize="30dp"
+            android:hint="Title"/>
+        <TextView
+            android:layout_width="325dp"
+            android:layout_height="wrap_content"
+            android:text="Due Date: "
+            android:textSize="30sp"
+            android:layout_below="@+id/taskNameET"
+            android:id="@+id/dateTV"
+            android:layout_marginTop="30dp"/>
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/taskNameET"
+            app:srcCompat = "@mipmap/ic_calendar"
+            android:id="@+id/pickDateImgBtn"
+            android:layout_toRightOf="@+id/dateTV"
+            android:layout_marginTop="30dp"/>
+
+        <TextView
+            android:layout_width="325dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/pickDateImgBtn"
+            android:id="@+id/timeTV"
+            android:textSize="30sp"
+            android:text="Time: "/>
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/timeTV"
+            android:layout_below="@+id/pickDateImgBtn"
+            android:id="@+id/pickTimeImgBtn"
+            android:layout_toEndOf="@id/timeTV"
+            app:srcCompat = "@mipmap/ic_time"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/repeatTaskLinearLayout"
+            android:layout_below="@+id/pickTimeImgBtn"
+            android:layout_marginTop="30dp"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="30sp"
+                android:text="Repeat: "
+                android:id="@+id/repeatTitleTV"/>
+            <Spinner
+                android:id="@+id/repeatTaskSpinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/repeatTaskLinearLayout"
+            android:text = "Priority: "
+            android:textSize="30dp"
+            android:layout_marginTop="30dp"
+            android:id="@+id/priorityTitleTV"/>
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@+id/priorityTitleTV"
+            android:layout_below="@id/repeatTaskLinearLayout"
+            android:layout_marginTop="40dp"
+            android:orientation="horizontal">
+            <RadioButton android:id="@+id/lowRadioBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Low"
+                android:onClick="onRadioButtonClicked"
+                android:textSize = "20sp"/>
+            <RadioButton android:id="@+id/medRadioBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Medium"
+                android:onClick="onRadioButtonClicked"
+                android:textSize = "20sp"/>
+            <RadioButton android:id="@+id/highRadioBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="High"
+                android:onClick="onRadioButtonClicked"
+                android:textSize = "20sp"/>
+        </RadioGroup>
+        <CheckBox
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Assign"
+            android:textSize="30sp"
+            android:layout_below="@+id/priorityTitleTV"
+            android:id="@+id/assignCheckBox"
+            android:layout_marginTop="30sp"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/housemateRecView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/assignCheckBox"
+            android:visibility="gone" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/notesTitleTV"
+            android:textSize="30sp"
+            android:text="Notes: "
+            android:layout_below="@+id/housemateRecView"
+            android:layout_marginTop="30sp"/>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/notesTitleTV"
+            android:maxLines="10"
+            android:id="@+id/notesET"
+            android:lines="8"
+            android:gravity="top|left"
+            android:scrollbars="vertical"
+            tools:ignore="RtlHardcoded" />
+
+
+
+    </RelativeLayout>
+</ScrollView>
+

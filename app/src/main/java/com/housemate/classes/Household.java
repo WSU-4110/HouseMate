@@ -1,9 +1,8 @@
 package com.housemate.classes;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.net.URL;
 import java.util.concurrent.ExecutorService;
@@ -12,63 +11,62 @@ import java.util.concurrent.FutureTask;
 
 public class Household
 {
-    // Class Member Variables
+    // Member variables
+    private String householdName;
     private int houseID;
-    private String houseName;
-    // private User user;
 
-    // Default Constructor
-    public Household()
+    // Constructor
+    public Household(String householdName, int houseID)
     {
-        houseID = 0;
-        houseName = "";
-        // user = null;
+        this.householdName = householdName;
+        this.houseID =houseID;
     }
 
-    // Parameterized Constructor
-    public Household(int houseID, String name)
+    // Setters
+    public void setHouseID(int houseID)
     {
         this.houseID = houseID;
-        this.houseName = houseName;
-        // this.user = user;
     }
 
-    // Getter Methods
-    public int getID()
+    public void setHousehold(String household)
+    {
+        this.householdName = household;
+    }
+
+    // Getters
+    public int getHouseID()
     {
         return houseID;
     }
 
-    public String getName()
+    public String getHousehold()
     {
-        return houseName;
-    }
-    
-    //public User getUser() { return user; }
-
-    // Setter Methods
-    public void setID(int houseID)
-    {
-        this.houseID = houseID;
+        return householdName;
     }
 
-    public void setName(String name)
-    {
-        this.houseName = houseName;
+    // Create a new household group
+    public void createHousehold() throws RuntimeException {
+        try {
+            URL url = new URL("https://housemateapp1.000webhostapp.com/createNewHousehold.php");
+
+            ObjectMapper objectMapper = new ObjectMapper();
+            objectMapper.setVisibility(PropertyAccessor.FIELD, JsonAutoDetect.Visibility.ANY);
+            String data = objectMapper.writeValueAsString(this);
+
+            HTTPSDataSender sender = new HTTPSDataSender(url, data);
+            FutureTask<String[]> senderTask = new FutureTask<>(sender);
+            ExecutorService executor = Executors.newFixedThreadPool(1);
+            executor.execute(senderTask);
+            String[] responseLines = senderTask.get();
+
+            if (responseLines.length < 1 || responseLines[0].equals("CONNECT_ERROR"))
+                throw new RuntimeException();
+            else {
+                houseID = Integer.parseInt(responseLines[0]);
+            }
+        }
+        catch (Exception e) {
+            throw new RuntimeException("Error communicating with server");
+        }
     }
-
-    // public void setUser(User user) { this.user = user; }
-
-    // Concept for associating a user with a household
-    /*private boolean assocUser()
-    {
-        // If User class object references THIS, return true;
-        // else return false;
-    }*/
-
-    // Concept for associating a user's task with the household
-    /*public void assocTask()
-    {
-        // If User class object creates a new task, associate it with the household
-    }*/
 }
