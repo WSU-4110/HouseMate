@@ -89,13 +89,13 @@ public class Task {
 
     public int getId() { return id; }
 
-    public void createTask() throws RuntimeException {
+    public void createTask(int householdId) throws RuntimeException {
         try {
             URL url = new URL("https://housemateapp1.000webhostapp.com/createTask.php");
 
             ObjectMapper objectMapper = new ObjectMapper();
             objectMapper.setVisibility(PropertyAccessor.FIELD, JsonAutoDetect.Visibility.ANY);
-            String data = objectMapper.writeValueAsString(this);
+            String data = objectMapper.writeValueAsString(this) + "\n" + householdId; //Approach may change later
 
             HTTPSDataSender sender = new HTTPSDataSender(url, data);
             FutureTask<String[]> senderTask = new FutureTask<>(sender);
@@ -115,7 +115,7 @@ public class Task {
         }
     }
 
-    public Task completeTask() {
+    public Task completeTask(int householdId) {
         if (isCompleted)
             return null;
 
@@ -154,8 +154,30 @@ public class Task {
         //If task is recurring, new task with updated due date is created and returned
         Task task = new Task(name, description, assignableUsers, newDueDate, dueTime, frequency);
         task.assignedUserIndex = (assignedUserIndex + 1) % assignableUsers.size();
-        task.createTask();
+        task.createTask(householdId);
         return task;
+    }
+
+    public static Task getTaskById(int taskId) {
+        try {
+            URL url = new URL("https://housemateapp1.000webhostapp.com/getTaskById.php");
+
+            HTTPSDataSender sender = new HTTPSDataSender(url, String.valueOf(taskId));
+            FutureTask<String[]> senderTask = new FutureTask<>(sender);
+            ExecutorService executor = Executors.newFixedThreadPool(1);
+            executor.execute(senderTask);
+            String[] responseLines = senderTask.get();
+
+            if (responseLines.length < 1 || responseLines[0].equals("CONNECT_ERROR"))
+                throw new RuntimeException();
+            else {
+                ObjectMapper objectMapper = new ObjectMapper();
+                return objectMapper.readValue(responseLines[0], Task.class);
+            }
+        }
+        catch (Exception e) {
+            throw new RuntimeException("Error communicating with server");
+        }
     }
 
     public static ArrayList<Task> loadTasks() {

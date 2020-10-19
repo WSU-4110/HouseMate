@@ -27,6 +27,7 @@ import android.widget.TimePicker;
 import com.housemate.classes.DatePickerFragment;
 import com.housemate.classes.DiscardTaskDialogue;
 import com.housemate.adapters.HousemateRecViewAdapter;
+import com.housemate.classes.Task;
 import com.housemate.classes.TimePickerFragment;
 
 import java.text.DateFormat;
@@ -102,8 +103,9 @@ public class CreateTaskActivity extends AppCompatActivity implements DatePickerD
             public void onClick(View v) {
                 taskName= taskNameET.getText().toString();
                 taskNotes = notesET.getText().toString();
-                String printAssignTo = assignedTo.toString();
+                //String printAssignTo = assignedTo.toString();
 
+                /*
                 Log.i("taskName", taskName);
                 Log.i("dueDate", dueDate) ;
                 Log.i("dueTime", dueTime);
@@ -111,8 +113,10 @@ public class CreateTaskActivity extends AppCompatActivity implements DatePickerD
                 Log.i("priority", priority);
                 Log.i("assigned to", printAssignTo);
                 Log.i("notes" , taskNotes);
+                */
 
-
+                Task task = new Task( taskName, taskNotes, housemates, "testDate", "testTime", "ONE-TIME");
+                task.createTask(MainActivity.currentHousehold.getHouseID());
                 Intent intent = new Intent(CreateTaskActivity.this, HomePageActivity.class);
                 intent.putExtra(TASK_NAME_TAG, taskName);
                 startActivity(intent);

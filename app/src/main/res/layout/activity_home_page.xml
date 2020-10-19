@@ -8,6 +8,14 @@
     tools:context=".HomePageActivity">
 
     <TextView
+        android:id="@+id/display_user"
+        android:layout_width="170dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_toRightOf="@+id/createTaskBtn"
+        android:text="TextView" />
+
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/taskTitleTV"
@@ -39,7 +47,8 @@
             android:layout_height="wrap_content"
             android:layout_weight=".25"
             android:text="Tasks"
-            android:id="@+id/taskPageBtn" />
+            android:id="@+id/taskPageBtn"
+            android:onClick="onViewTasks"/>
         <Button
             android:layout_width="0dp"
             android:layout_weight=".25"

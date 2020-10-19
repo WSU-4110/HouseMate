@@ -14,8 +14,12 @@ import java.util.concurrent.FutureTask;
 public class User {
 
     // Class constructor
+    public User () {
+        this(null, null, null, null, null, -1, -1);
+    }
+
     public User (String username, String password) {
-        this(username, password, null, null, null, 0, 0);
+        this(username, password, null, null, null, -1, -1);
     }
 
     public  User (String username, String password, String email, String firstName, String lastName, int id, int houseId) {
@@ -74,7 +78,7 @@ public class User {
         }
     }
 
-    public void login() throws RuntimeException {
+    public int login() throws RuntimeException {
         try {
             URL url = new URL("https://housemateapp1.000webhostapp.com/login.php");
 
@@ -95,10 +99,13 @@ public class User {
                 firstName = responseLines[1];
                 lastName = responseLines[2];
                 email = responseLines[3];
+                houseId = Integer.parseInt(responseLines[4]);
+                return 1;
             }
         }
         catch (Exception e) {
-            throw new RuntimeException("Error communicating with server");
+            return 0;
+            //throw new RuntimeException("Error communicating with server");
         }
     }
 

@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#EE141515"
-    android:backgroundTint="#99141515"
     tools:context=".MainActivity">
-
+    <!--android:background="#EE141515"
+    android:backgroundTint="#99141515"
+    -->
     <EditText
         android:id="@+id/Username"
         android:layout_width="wrap_content"
