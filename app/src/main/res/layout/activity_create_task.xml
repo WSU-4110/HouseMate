@@ -15,14 +15,15 @@
             android:layout_height="wrap_content"
             android:text="cancel"
             android:id="@+id/cancelBtn"/>
+
         <TextView
+            android:id="@+id/newTaskTitleTV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="NEW TASK"
-            android:textSize="30sp"
             android:layout_toRightOf="@id/cancelBtn"
-            android:id="@+id/newTaskTitleTV"
-            android:paddingHorizontal="30dp"/>
+            android:paddingHorizontal="30dp"
+            android:text="NEW TASK"
+            android:textSize="30sp" />
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

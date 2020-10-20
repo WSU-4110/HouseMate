@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import android.widget.Button;
@@ -15,6 +16,8 @@ import android.widget.Toast;
 import com.housemate.classes.Task;
 import com.housemate.classes.User;
 import com.housemate.classes.Household;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     private EditText Name;
@@ -35,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
         Info = (TextView)findViewById(R.id.Info);
         currentHousehold = new Household();
         currentUser = new User();
+
     }
 
     // Function to execute user authentication
