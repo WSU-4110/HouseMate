@@ -6,7 +6,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import java.lang.reflect.Array;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.FutureTask;
@@ -15,14 +17,14 @@ public class User {
 
     // Class constructor
     public User () {
-        this(null, null, null, null, null, -1, -1);
+        this(null, null, null, null, null, -1, new ArrayList<Integer>());
     }
 
     public User (String username, String password) {
-        this(username, password, null, null, null, -1, -1);
+        this(username, password, null, null, null, -1, new ArrayList<Integer>());
     }
 
-    public  User (String username, String password, String email, String firstName, String lastName, int id, int houseId) {
+    public  User (String username, String password, String email, String firstName, String lastName, int id, ArrayList<Integer> houseId) {
         this.id = id;
         this.houseId = houseId;
         this.user_name = username;
@@ -36,7 +38,7 @@ public class User {
     @JsonCreator
     User(
             @JsonProperty("id") int id,
-            @JsonProperty("houseID") int houseID,
+            @JsonProperty("houseID") ArrayList<Integer> houseID,
             @JsonProperty("user_name") String user_name,
             @JsonProperty("user_pass") String user_pass,
             @JsonProperty("email") String email,
@@ -99,7 +101,10 @@ public class User {
                 firstName = responseLines[1];
                 lastName = responseLines[2];
                 email = responseLines[3];
-                houseId = Integer.parseInt(responseLines[4]);
+                int numHouses = Integer.parseInt(responseLines[4]);
+                for (int i = 0; i < numHouses; i++) {
+                    houseId.add(Integer.parseInt(responseLines[i + 5]));
+                }
                 return 1;
             }
         }
@@ -123,7 +128,7 @@ public class User {
             if (responseLines.length < 1 || responseLines[0].equals("CONNECT_ERROR"))
                 throw new RuntimeException();
             else {
-                houseId = Integer.parseInt(responseLines[0]);
+                houseId.add(Integer.parseInt(responseLines[0]));
             }
         }
         catch (Exception e) {
@@ -145,7 +150,7 @@ public class User {
             if (responseLines.length < 1 || responseLines[0].equals("CONNECT_ERROR"))
                 throw new RuntimeException();
             else {
-                houseId = Integer.parseInt(responseLines[0]);
+                houseId.remove(householdId);
             }
         }
         catch (Exception e) {
@@ -164,11 +169,11 @@ public class User {
     }
 
 
-    public int getHouseId() {
+    public ArrayList<Integer> getHouseId() {
         return houseId;
     }
 
-    public void setHouseId(int houseId) {
+    public void setHouseId(ArrayList<Integer> houseId) {
         this.houseId = houseId;
     }
 
@@ -219,7 +224,7 @@ public class User {
 
     // Member variables
     private int id;
-    private int houseId;
+    private ArrayList<Integer> houseId;
     private String user_name;
     private String user_pass;
     private String email;
