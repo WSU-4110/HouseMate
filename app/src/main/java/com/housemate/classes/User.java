@@ -158,6 +158,38 @@ public class User {
         }
     }
 
+    public int refreshHouseholds() throws RuntimeException {
+        try {
+            URL url = new URL("https://housemateapp1.000webhostapp.com/refreshHouseholds.php");
+
+            ObjectMapper objectMapper = new ObjectMapper();
+            objectMapper.setVisibility(PropertyAccessor.FIELD, JsonAutoDetect.Visibility.ANY);
+            String data = objectMapper.writeValueAsString(this);
+
+            HTTPSDataSender sender = new HTTPSDataSender(url, data);
+            FutureTask<String[]> senderTask = new FutureTask<>(sender);
+            ExecutorService executor = Executors.newFixedThreadPool(1);
+            executor.execute(senderTask);
+            String[] responseLines = senderTask.get();
+
+            if (responseLines.length < 1 || responseLines[0].equals("CONNECT_ERROR"))
+                throw new RuntimeException();
+            else {
+                int numHouses = Integer.parseInt(responseLines[0]);
+                houseId.clear();
+                houseId.trimToSize();
+                for (int i = 0; i < numHouses; i++) {
+                    houseId.add(Integer.parseInt(responseLines[i + 1]));
+                }
+                return 1;
+            }
+        }
+        catch (Exception e) {
+            return 0;
+            //throw new RuntimeException("Error communicating with server");
+        }
+    }
+
 
     // Getter and Setter functions
     public int getId() {

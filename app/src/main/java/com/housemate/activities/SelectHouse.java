@@ -46,6 +46,7 @@ public class SelectHouse extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_house);
 
+        MainActivity.currentUser.refreshHouseholds();
         ArrayList<Integer> houseList =  MainActivity.currentUser.getHouseId();
         numHouses = houseList.size();
 
