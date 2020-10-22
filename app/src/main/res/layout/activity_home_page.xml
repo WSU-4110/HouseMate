@@ -13,7 +13,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_toRightOf="@+id/createTaskBtn"
-        android:text="TextView" />
+        android:text="TextView"
+        android:clickable="true"
+        android:onClick="onSwitchHousehold"/>
 
     <TextView
         android:layout_width="wrap_content"

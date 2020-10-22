@@ -81,8 +81,6 @@ public class Household
         try {
             URL url = new URL("https://housemateapp1.000webhostapp.com/setHousehold.php");
 
-            ObjectMapper objectMapper = new ObjectMapper();
-            objectMapper.setVisibility(PropertyAccessor.FIELD, JsonAutoDetect.Visibility.ANY);
             String data = "{\"houseId\":" + id + "}";
 
             HTTPSDataSender sender = new HTTPSDataSender(url, data);
@@ -96,6 +94,30 @@ public class Household
             else {
                 houseID = Integer.parseInt(responseLines[0]);
                 householdName = responseLines[1];
+            }
+        }
+        catch (Exception e) {
+            throw new RuntimeException("Error communicating with server");
+        }
+    }
+
+    public static String getHouseholdInfo(int id) throws RuntimeException {
+        try {
+            URL url = new URL("https://housemateapp1.000webhostapp.com/getHouseholdInfo.php");
+
+            String data = "{\"houseId\":" + id + "}";
+
+            HTTPSDataSender sender = new HTTPSDataSender(url, data);
+            FutureTask<String[]> senderTask = new FutureTask<>(sender);
+            ExecutorService executor = Executors.newFixedThreadPool(1);
+            executor.execute(senderTask);
+            String[] responseLines = senderTask.get();
+
+            if (responseLines.length < 1 || responseLines[0].equals("CONNECT_ERROR"))
+                throw new RuntimeException();
+            else {
+                String name = responseLines[0];
+                return name;
             }
         }
         catch (Exception e) {
