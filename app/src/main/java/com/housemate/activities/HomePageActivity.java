@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -28,6 +29,7 @@ public class HomePageActivity extends AppCompatActivity {
     private List<String> lowPriority, medPriority, highPriority;
     private ImageButton createTaskBtn;
     private TextView displayUser;
+    private Button chatBtn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -99,10 +101,21 @@ public class HomePageActivity extends AppCompatActivity {
 
 
 
+
     }
 
     public void onViewTasks(View view) {
         Intent intent = new Intent(this, ViewTaskById.class);
+        startActivity(intent);
+    }
+
+    public void onChatBtnClicked(View view) {
+        Intent intent = new Intent(this, CurrentHousehold.class);
+        startActivity(intent);
+    }
+
+    public void onLogBtnClicked(View view) {
+        Intent intent = new Intent(this, EditProfile.class);
         startActivity(intent);
     }
 }

@@ -1,5 +1,7 @@
 package com.housemate.classes;
 
+import android.util.Log;
+
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -151,6 +153,39 @@ public class User {
         catch (Exception e) {
             throw new RuntimeException("Error communicating with server");
         }
+    }
+
+    public void updateFirstNameInDB(String editedFirstName) throws  RuntimeException{
+        try{
+            URL url = new URL("https://housemateapp1.000webhostapp.com/updateFirstName.php");
+
+            String data = "{\"id\":" + id + ",\"editedFirstName\":" + editedFirstName + "}";
+
+            HTTPSDataSender sender = new HTTPSDataSender(url, data);
+            FutureTask<String[]> senderTask = new FutureTask<>(sender);
+            ExecutorService executor = Executors.newFixedThreadPool(1);
+            executor.execute(senderTask);
+            String[] responseLines = senderTask.get();
+
+            Log.i("data: " , data);
+
+            if (responseLines.length < 1 || responseLines[0].equals("CONNECT_ERROR"))
+                throw new RuntimeException();
+            else {
+                if(responseLines[0]!=null){
+                    firstName = responseLines[0];
+                }
+                else{
+                    firstName = "default name";
+                }
+
+            }
+
+        }
+        catch (Exception e){
+            throw new RuntimeException("Error communicating with server");
+        }
+
     }
 
 
