@@ -207,7 +207,21 @@ public class Task {
         catch (Exception e) {
             throw new RuntimeException("Error communicating with server");
         }
+    }
 
+    public int delete() {
+        try {
+            String script = "deleteTask.php";
+            String data = String.valueOf(id);
+            String[] responseLines = HTTPSDataSender.initiateTransaction(script, data);
+
+            if (responseLines[0] == "1") {return 1;}
+
+            else {return 0;}
+        }
+        catch (Exception e) {
+            throw new RuntimeException("Error communicating with server");
+        }
     }
 }
 

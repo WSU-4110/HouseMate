@@ -78,7 +78,6 @@ public class User {
         try {
             String script = "login.php";
             String data = HTTPSDataSender.mapToJson(this);
-
             String[] responseLines = HTTPSDataSender.initiateTransaction(script,data);
 
             if (responseLines.length < 1 || responseLines[0].equals("CONNECT_ERROR"))
@@ -106,7 +105,6 @@ public class User {
         try {
             String script = "joinHousehold.php";
             String data = "{\"id\":" + id + ",\"houseId\":" + householdId + "}";
-
             String[] responseLines = HTTPSDataSender.initiateTransaction(script, data);
 
             if (responseLines.length < 1 || responseLines[0].equals("CONNECT_ERROR"))
@@ -124,7 +122,6 @@ public class User {
         try {
             String script = "leaveHousehold.php";
             String data = "{\"id\":" + id + ",\"houseId\":" + householdId + "}";
-
             String[] responseLines = HTTPSDataSender.initiateTransaction(script,data);
 
             if (responseLines.length < 1 || responseLines[0].equals("CONNECT_ERROR"))
@@ -142,7 +139,6 @@ public class User {
         try {
             String script = "refreshHouseholds.php";
             String data = HTTPSDataSender.mapToJson(this);
-
             String[] responseLines = HTTPSDataSender.initiateTransaction(script,data);
 
             if (responseLines.length < 1 || responseLines[0].equals("CONNECT_ERROR"))
