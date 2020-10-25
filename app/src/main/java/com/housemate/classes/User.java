@@ -159,26 +159,18 @@ public class User {
         try{
             URL url = new URL("https://housemateapp1.000webhostapp.com/updateFirstName.php");
 
-            String data = "{\"id\":" + id + ",\"editedFirstName\":" + editedFirstName + "}";
-
+            String data = "{\"id\":" +id + ",\"editedFirstName\":\""+editedFirstName + "\"}";
             HTTPSDataSender sender = new HTTPSDataSender(url, data);
             FutureTask<String[]> senderTask = new FutureTask<>(sender);
             ExecutorService executor = Executors.newFixedThreadPool(1);
             executor.execute(senderTask);
             String[] responseLines = senderTask.get();
 
-            Log.i("data: " , data);
 
             if (responseLines.length < 1 || responseLines[0].equals("CONNECT_ERROR"))
                 throw new RuntimeException();
             else {
-                if(responseLines[0]!=null){
                     firstName = responseLines[0];
-                }
-                else{
-                    firstName = "default name";
-                }
-
             }
 
         }
@@ -186,6 +178,72 @@ public class User {
             throw new RuntimeException("Error communicating with server");
         }
 
+    }
+    public void updateLastNameInDB(String editedLastName) throws  RuntimeException{
+        try{
+            URL url = new URL("https://housemateapp1.000webhostapp.com/updateLastName.php");
+
+            String data = "{\"id\":" +id + ",\"editedLastName\":\""+editedLastName + "\"}";
+            HTTPSDataSender sender = new HTTPSDataSender(url, data);
+            FutureTask<String[]> senderTask = new FutureTask<>(sender);
+            ExecutorService executor = Executors.newFixedThreadPool(1);
+            executor.execute(senderTask);
+            String[] responseLines = senderTask.get();
+
+
+            if (responseLines.length < 1 || responseLines[0].equals("CONNECT_ERROR"))
+                throw new RuntimeException();
+            else {
+                    lastName = responseLines[0];
+            }
+        }
+        catch (Exception e){
+            throw new RuntimeException("Error communicating with server");
+        }
+    }
+
+    public void updateUsernameInDB(String editedUsername) throws  RuntimeException{
+        try{
+            URL url = new URL("https://housemateapp1.000webhostapp.com/updateUsername.php");
+
+            String data = "{\"id\":" +id + ",\"editedUsername\":\""+ editedUsername + "\"}";
+            HTTPSDataSender sender = new HTTPSDataSender(url, data);
+            FutureTask<String[]> senderTask = new FutureTask<>(sender);
+            ExecutorService executor = Executors.newFixedThreadPool(1);
+            executor.execute(senderTask);
+            String[] responseLines = senderTask.get();
+
+            if (responseLines.length < 1 || responseLines[0].equals("CONNECT_ERROR"))
+                throw new RuntimeException();
+            else {
+                    user_name = responseLines[0];
+            }
+        }
+        catch (Exception e){
+            throw new RuntimeException("Error communicating with server");
+        }
+    }
+
+    public void updateEmailInDB(String editedEmail) throws  RuntimeException{
+        try{
+            URL url = new URL("https://housemateapp1.000webhostapp.com/updateEmail.php");
+
+            String data = "{\"id\":" +id + ",\"editedEmail\":\""+ editedEmail + "\"}";
+            HTTPSDataSender sender = new HTTPSDataSender(url, data);
+            FutureTask<String[]> senderTask = new FutureTask<>(sender);
+            ExecutorService executor = Executors.newFixedThreadPool(1);
+            executor.execute(senderTask);
+            String[] responseLines = senderTask.get();
+
+            if (responseLines.length < 1 || responseLines[0].equals("CONNECT_ERROR"))
+                throw new RuntimeException();
+            else {
+                    email = responseLines[0];
+            }
+        }
+        catch (Exception e){
+            throw new RuntimeException("Error communicating with server");
+        }
     }
 
 

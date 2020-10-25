@@ -7,12 +7,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
 
 public class EditProfile extends AppCompatActivity {
 
     Button backBtn, saveBtn;
     EditText fnameET, lnameET, usernameET, emailET;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,8 +30,6 @@ public class EditProfile extends AppCompatActivity {
         fillUserData();
     }
 
-
-
     public void fillUserData(){
         fnameET.setText(MainActivity.currentUser.getFirstName());
         lnameET.setText(MainActivity.currentUser.getLastName());
@@ -45,11 +44,32 @@ public class EditProfile extends AppCompatActivity {
     }
 
     public void onSave(View view) {
-        // update user info, save to DB
-        String editedFirstName = fnameET.getText().toString();
-       // MainActivity.currentUser.setFirstName(editedFirstName);
-        MainActivity.currentUser.updateFirstNameInDB(editedFirstName);
 
+        String editedFirstName = fnameET.getText().toString();
+        String editedLastName = lnameET.getText().toString();
+        String editedUserName = usernameET.getText().toString();
+        String editedEmail = emailET.getText().toString();
+
+        if(editedFirstName.isEmpty() || editedLastName.isEmpty() || editedUserName.isEmpty() || editedEmail.isEmpty()){
+            Toast toast = Toast.makeText(EditProfile.this, "Please fill out all the fields", Toast.LENGTH_SHORT);
+            toast.show();
+        }
+        else{
+            // update user data in database only if data was modified in edit text view
+
+            if(!editedFirstName.equals(MainActivity.currentUser.getFirstName())){
+                MainActivity.currentUser.updateFirstNameInDB(editedFirstName);
+            }
+            if(!editedLastName.equals(MainActivity.currentUser.getLastName())){
+                MainActivity.currentUser.updateLastNameInDB(editedLastName);
+            }
+            if(!editedUserName.equals(MainActivity.currentUser.getUser_name())){
+                MainActivity.currentUser.updateUsernameInDB(editedUserName);
+            }
+            if(!editedEmail.equals(MainActivity.currentUser.getEmail())) {
+                MainActivity.currentUser.updateEmailInDB(editedEmail);
+            }
+        }
     }
 
 }
