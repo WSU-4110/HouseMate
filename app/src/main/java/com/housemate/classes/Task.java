@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.net.URL;
@@ -88,6 +89,8 @@ public class Task {
     public String getFrequency() { return frequency; }
 
     public int getId() { return id; }
+
+    public void setName(String name) {this.name = name;}
 
     public void createTask(int householdId) throws RuntimeException {
         try {
@@ -218,6 +221,20 @@ public class Task {
             if (responseLines[0] == "1") {return 1;}
 
             else {return 0;}
+        }
+        catch (Exception e) {
+            throw new RuntimeException("Error communicating with server");
+        }
+    }
+
+    public void update() throws RuntimeException{
+        try {
+            String script = "updateTask.php";
+            String data = HTTPSDataSender.mapToJson(this);
+            String[] responseLines = HTTPSDataSender.initiateTransaction(script,data);
+
+            if (responseLines.length < 1 || responseLines[0].equals("CONNECT_ERROR"))
+                throw new RuntimeException();
         }
         catch (Exception e) {
             throw new RuntimeException("Error communicating with server");
