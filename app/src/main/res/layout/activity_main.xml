@@ -4,9 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#EE141515"
-    android:backgroundTint="#99141515"
+    android:background="@drawable/gradient_background"
     tools:context=".MainActivity">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic__hmlogo"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="25dp"/>
 
     <EditText
         android:id="@+id/Password"
@@ -55,7 +61,7 @@
         android:layout_marginLeft="106dp"
         android:layout_marginTop="208dp"
         android:text="Sign In"
-        android:textColor="#3F51B5"
+        android:textColor="@color/colorPrimary"
         android:textSize="25dp"
         android:textStyle="bold" />
 
@@ -72,7 +78,7 @@
         android:layout_marginBottom="324dp"
         android:ems="10"
         android:text="Login"
-        android:textColor="#3F51B5" />
+        android:textColor="#3F51B5"/>
 
     <Button
         android:id="@+id/Register"
@@ -91,3 +97,4 @@
 
 </RelativeLayout>
 
+<!-- android:backgroundTint="#99141515" -->
