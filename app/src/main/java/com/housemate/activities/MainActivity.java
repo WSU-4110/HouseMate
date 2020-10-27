@@ -15,6 +15,8 @@ import android.widget.Toast;
 import com.housemate.classes.User;
 import com.housemate.classes.Household;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity {
     private EditText Name;
     private EditText Password;
@@ -44,14 +46,19 @@ public class MainActivity extends AppCompatActivity {
         currentUser.setUser_pass(password);
         if (currentUser.login() == 1) {
             Intent intent;
-            if (currentUser.getHouseId() == -1) {
+            ArrayList<Integer> houseId = currentUser.getHouseId();
+            if (houseId.size() == 0) {
                 intent = new Intent(this, JoinCreateHousehold.class);
             }
-            else {
-                currentHousehold.setHousehold(currentUser.getHouseId());
+            else if (houseId.size() == 1) {
+                currentHousehold.setHousehold(houseId.get(0));
                 intent = new Intent(this, HomePageActivity.class);
             }
+            else {
+                intent = new Intent(this, SelectHouse.class);
+            }
             startActivity(intent);
+
         }
         else {
             Context context = getApplicationContext();

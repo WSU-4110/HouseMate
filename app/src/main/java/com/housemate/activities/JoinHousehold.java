@@ -21,8 +21,8 @@ public class JoinHousehold extends AppCompatActivity {
     public void joinHouseholdGroup(View view) {
         int id = Integer.parseInt(houseId.getText().toString());
         MainActivity.currentUser.joinHousehold(id);
-        if (MainActivity.currentUser.getHouseId() != -1) {
-            MainActivity.currentHousehold.setHousehold(MainActivity.currentUser.getHouseId());
+        if (MainActivity.currentUser.getHouseId().contains(id)) {
+            MainActivity.currentHousehold.setHousehold(id);
             Intent intent = new Intent(this, HomePageActivity.class);
             startActivity(intent);
         }
