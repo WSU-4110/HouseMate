@@ -12,8 +12,8 @@
         android:layout_width="170dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_toRightOf="@+id/createTaskBtn"
-        android:text="TextView"
+        android:layout_toEndOf="@+id/createTaskBtn"
+        android:text=""
         android:clickable="true"
         android:onClick="onSwitchHousehold"/>
 
@@ -32,25 +32,20 @@
         android:id="@+id/createTaskBtn"/>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/taskRecView"
+        android:id="@+id/task_recycler_view"
         android:layout_width="match_parent"
-        android:layout_height="618dp"
+        android:layout_height="match_parent"
+        android:scrollbars="vertical"
         android:layout_below="@id/createTaskBtn"
         android:layout_above="@+id/linearLayout"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"/>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_alignParentBottom="true"
         android:id="@+id/linearLayout">
-        <Button
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight=".25"
-            android:text="Tasks"
-            android:id="@+id/taskPageBtn"
-            android:onClick="onViewTasks"/>
         <Button
             android:layout_width="0dp"
             android:layout_weight=".25"

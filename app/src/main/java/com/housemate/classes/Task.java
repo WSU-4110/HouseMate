@@ -1,5 +1,7 @@
 package com.housemate.classes;
 
+import androidx.annotation.NonNull;
+
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -37,9 +39,12 @@ public class Task {
         this.name = name;
         this.description = description;
         assignedUserIndex = 0;
-        this.assignableUsers = assignableUsers;
         this.dueDate = dueDate;
         this.dueTime = dueTime;
+
+        if (assignableUsers.size() == 0)
+            throw new RuntimeException("Error initializing task: need at least 1 assigned user");
+        this.assignableUsers = assignableUsers;
 
         boolean frequencyFound = false;
         for (String frequencyType : frequencyTypes) {
@@ -98,7 +103,7 @@ public class Task {
 
             ObjectMapper objectMapper = new ObjectMapper();
             objectMapper.setVisibility(PropertyAccessor.FIELD, JsonAutoDetect.Visibility.ANY);
-            String data = objectMapper.writeValueAsString(this) + "\n" + householdId; //Approach may change later
+            String data = objectMapper.writeValueAsString(this) + "\n" + householdId;
 
             HTTPSDataSender sender = new HTTPSDataSender(url, data);
             FutureTask<String[]> senderTask = new FutureTask<>(sender);
@@ -118,7 +123,7 @@ public class Task {
         }
     }
 
-    public Task completeTask(int householdId) {
+    public Task completeTask(int householdId) { //Temporary solution; change so householdId is returned from the PHP script instead later on rather than being a parameter
         if (isCompleted)
             return null;
 
@@ -177,22 +182,27 @@ public class Task {
                 ObjectMapper objectMapper = new ObjectMapper();
                 return objectMapper.readValue(responseLines[0], Task.class);
             }
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             throw new RuntimeException("Error communicating with server");
         }
     }
 
-    public static ArrayList<Task> loadTasks() {
+    @Override @NonNull
+    public String toString () {
+        return String.format("%s\n%s\nAssigned to %s\nDue %s at %s",
+                name, description, getAssignedUser(), dueDate, dueTime);
+    }
+
+    public static ArrayList<Task> loadTasks (int householdId) {
         try {
             URL url = new URL("https://housemateapp1.000webhostapp.com/loadTasks.php");
 
-            HTTPSDataReceiver receiver = new HTTPSDataReceiver(url);
-            FutureTask<String[]> receiverTask = new FutureTask<>(receiver);
+            HTTPSDataSender sender = new HTTPSDataSender(url, String.valueOf(householdId));
+            FutureTask<String[]> senderTask = new FutureTask<>(sender);
             ExecutorService executor = Executors.newFixedThreadPool(1);
-            executor.execute(receiverTask);
+            executor.execute(senderTask);
+            String[] responseLines = senderTask.get();
 
-            String[] responseLines = receiverTask.get();
             ArrayList<Task> tasks = new ArrayList<>(responseLines.length);
 
             if (responseLines.length > 0) {
@@ -203,11 +213,10 @@ public class Task {
 
                     for (int index = 0; index < responseLines.length; index++)
                         tasks.add(index, objectMapper.readValue(responseLines[index], Task.class));
-                }
+                    }
             }
             return tasks;
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             throw new RuntimeException("Error communicating with server");
         }
     }

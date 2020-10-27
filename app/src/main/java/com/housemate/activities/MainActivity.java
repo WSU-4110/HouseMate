@@ -12,7 +12,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.housemate.classes.Task;
 import com.housemate.classes.User;
 import com.housemate.classes.Household;
 
@@ -71,9 +70,8 @@ public class MainActivity extends AppCompatActivity {
         }
     }
     private void validate (String userName, String userPassword) {
-        if ((userName == "Admin") && (userPassword == "1234")) {
-            //NOTE: With string comparisons (and comparisons of any reference types in general) in Java you'll want to use .equals()
-            // rather than == since == compares addresses, which might give unexpected results, and .equals() compares values
+        if ((userName.equals("Admin")) && (userPassword.equals("1234"))) {
+
         }
     }
     // Execute new user insert to database
@@ -81,5 +79,4 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, Registration.class);
         startActivity(intent);
     }
-
 }

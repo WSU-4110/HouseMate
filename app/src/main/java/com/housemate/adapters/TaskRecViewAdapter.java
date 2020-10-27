@@ -55,7 +55,8 @@ public class TaskRecViewAdapter extends RecyclerView.Adapter<TaskRecViewAdapter.
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            taskRecView = itemView.findViewById(R.id.taskRecView);
+            //Line commented out because this resource doesn't exist in a layout right now
+            //taskRecView = itemView.findViewById(R.id.taskRecView);
             checkBox = itemView.findViewById(R.id.checkbox);
             dueDateTV = itemView.findViewById(R.id.dueDateTV);
         }
