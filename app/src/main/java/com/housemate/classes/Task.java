@@ -1,13 +1,12 @@
 package com.housemate.classes;
 
-import android.content.res.Resources;
+import androidx.annotation.NonNull;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.housemate.activities.R;
 
 import java.net.URL;
 import java.time.LocalDate;
@@ -101,7 +100,7 @@ public class Task {
 
             ObjectMapper objectMapper = new ObjectMapper();
             objectMapper.setVisibility(PropertyAccessor.FIELD, JsonAutoDetect.Visibility.ANY);
-            String data = objectMapper.writeValueAsString(this) + "\n" + householdId; //Approach may change later
+            String data = objectMapper.writeValueAsString(this) + "\n" + householdId;
 
             HTTPSDataSender sender = new HTTPSDataSender(url, data);
             FutureTask<String[]> senderTask = new FutureTask<>(sender);
@@ -185,21 +184,22 @@ public class Task {
         }
     }
 
+    @Override @NonNull
     public String toString () {
         return String.format("%s\n%s\nAssigned to %s\nDue %s at %s",
                 name, description, getAssignedUser(), dueDate, dueTime);
     }
 
-    public static ArrayList<Task> loadTasks () {
+    public static ArrayList<Task> loadTasks (int householdId) {
         try {
             URL url = new URL("https://housemateapp1.000webhostapp.com/loadTasks.php");
 
-            HTTPSDataReceiver receiver = new HTTPSDataReceiver(url);
-            FutureTask<String[]> receiverTask = new FutureTask<>(receiver);
+            HTTPSDataSender sender = new HTTPSDataSender(url, String.valueOf(householdId));
+            FutureTask<String[]> senderTask = new FutureTask<>(sender);
             ExecutorService executor = Executors.newFixedThreadPool(1);
-            executor.execute(receiverTask);
+            executor.execute(senderTask);
+            String[] responseLines = senderTask.get();
 
-            String[] responseLines = receiverTask.get();
             ArrayList<Task> tasks = new ArrayList<>(responseLines.length);
 
             if (responseLines.length > 0) {
