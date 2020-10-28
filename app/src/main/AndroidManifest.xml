@@ -12,7 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ViewTaskById"></activity>
+
+        <activity android:name=".SelectHouse"></activity>
+        <activity android:name=".ViewTaskById" />
         <activity android:name=".JoinHousehold" />
         <activity android:name=".CreateHousehold" />
         <activity android:name=".JoinCreateHousehold" />

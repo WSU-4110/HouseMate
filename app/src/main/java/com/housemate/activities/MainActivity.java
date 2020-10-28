@@ -12,9 +12,10 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.housemate.classes.Task;
 import com.housemate.classes.User;
 import com.housemate.classes.Household;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     private EditText Name;
@@ -45,14 +46,19 @@ public class MainActivity extends AppCompatActivity {
         currentUser.setUser_pass(password);
         if (currentUser.login() == 1) {
             Intent intent;
-            if (currentUser.getHouseId() == -1) {
+            ArrayList<Integer> houseId = currentUser.getHouseId();
+            if (houseId.size() == 0) {
                 intent = new Intent(this, JoinCreateHousehold.class);
             }
-            else {
-                currentHousehold.setHousehold(currentUser.getHouseId());
+            else if (houseId.size() == 1) {
+                currentHousehold.setHousehold(houseId.get(0));
                 intent = new Intent(this, HomePageActivity.class);
             }
+            else {
+                intent = new Intent(this, SelectHouse.class);
+            }
             startActivity(intent);
+
         }
         else {
             Context context = getApplicationContext();
@@ -64,9 +70,8 @@ public class MainActivity extends AppCompatActivity {
         }
     }
     private void validate (String userName, String userPassword) {
-        if ((userName == "Admin") && (userPassword == "1234")) {
-            //NOTE: With string comparisons (and comparisons of any reference types in general) in Java you'll want to use .equals()
-            // rather than == since == compares addresses, which might give unexpected results, and .equals() compares values
+        if ((userName.equals("Admin")) && (userPassword.equals("1234"))) {
+
         }
     }
     // Execute new user insert to database
@@ -74,5 +79,4 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, Registration.class);
         startActivity(intent);
     }
-
 }
