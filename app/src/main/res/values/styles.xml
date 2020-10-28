@@ -6,7 +6,7 @@
         <item name="colorPrimaryDark">@color/red_600</item>
         <item name="colorAccent">@color/purple_500</item>
 
-        <item name="colorPrimaryVariant"></item>
+        <!-- <item name="colorPrimaryVariant"></item>
         <item name="colorSecondaryVariant"></item>
         <item name="colorSurface"></item>
         <item name="colorOnPrimary"></item>
@@ -14,7 +14,7 @@
         <item name="colorOnBackground"></item>
         <item name="colorOnError"></item>
         <item name="colorOnSurface"></item>
-        <item name="scrimBackground"></item>
+        <item name="scrimBackground"></item> -->
 
         <item name="textAppearanceHeadline1">@style/TextAppearance.MaterialComponents.Headline1</item>
         <item name="textAppearanceHeadline2">@style/TextAppearance.MaterialComponents.Headline2</item>
