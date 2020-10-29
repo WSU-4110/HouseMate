@@ -60,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
                 intent = new Intent(this, SelectHouse.class);
             }
             startActivity(intent);
+            finish();
 
         }
         else {
@@ -81,4 +82,5 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, Registration.class);
         startActivity(intent);
     }
+
 }

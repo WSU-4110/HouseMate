@@ -51,6 +51,7 @@ public class Registration extends AppCompatActivity {
             toast.show();
             return;
         }
+
         MainActivity.currentUser.setUser_name(username);
         MainActivity.currentUser.setUser_pass(password);
         MainActivity.currentUser.setEmail(email);
@@ -66,4 +67,9 @@ public class Registration extends AppCompatActivity {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
+
+    boolean isEmailValid(CharSequence email) {
+        return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches();
+    }
+
 }
