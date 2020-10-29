@@ -6,9 +6,12 @@ import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import java.lang.reflect.Array;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.FutureTask;
@@ -17,14 +20,14 @@ public class User {
 
     // Class constructor
     public User () {
-        this(null, null, null, null, null, -1, -1);
+        this(null, null, null, null, null, -1, new ArrayList<Integer>());
     }
 
     public User (String username, String password) {
-        this(username, password, null, null, null, -1, -1);
+        this(username, password, null, null, null, -1, new ArrayList<Integer>());
     }
 
-    public  User (String username, String password, String email, String firstName, String lastName, int id, int houseId) {
+    public  User (String username, String password, String email, String firstName, String lastName, int id, ArrayList<Integer> houseId) {
         this.id = id;
         this.houseId = houseId;
         this.user_name = username;
@@ -38,7 +41,7 @@ public class User {
     @JsonCreator
     User(
             @JsonProperty("id") int id,
-            @JsonProperty("houseID") int houseID,
+            @JsonProperty("houseID") ArrayList<Integer> houseID,
             @JsonProperty("user_name") String user_name,
             @JsonProperty("user_pass") String user_pass,
             @JsonProperty("email") String email,
@@ -55,19 +58,12 @@ public class User {
     }
 
 
+
     public void register() throws RuntimeException {
         try {
-            URL url = new URL("https://housemateapp1.000webhostapp.com/register.php");
-
-            ObjectMapper objectMapper = new ObjectMapper();
-            objectMapper.setVisibility(PropertyAccessor.FIELD, JsonAutoDetect.Visibility.ANY);
-            String data = objectMapper.writeValueAsString(this);
-
-            HTTPSDataSender sender = new HTTPSDataSender(url, data);
-            FutureTask<String[]> senderTask = new FutureTask<>(sender);
-            ExecutorService executor = Executors.newFixedThreadPool(1);
-            executor.execute(senderTask);
-            String[] responseLines = senderTask.get();
+            String script = "register.php";
+            String data = HTTPSDataSender.mapToJson(this);
+            String[] responseLines = HTTPSDataSender.initiateTransaction(script, data);
 
             if (responseLines.length < 1 || responseLines[0].equals("CONNECT_ERROR"))
                 throw new RuntimeException();
@@ -82,17 +78,9 @@ public class User {
 
     public int login() throws RuntimeException {
         try {
-            URL url = new URL("https://housemateapp1.000webhostapp.com/login.php");
-
-            ObjectMapper objectMapper = new ObjectMapper();
-            objectMapper.setVisibility(PropertyAccessor.FIELD, JsonAutoDetect.Visibility.ANY);
-            String data = objectMapper.writeValueAsString(this);
-
-            HTTPSDataSender sender = new HTTPSDataSender(url, data);
-            FutureTask<String[]> senderTask = new FutureTask<>(sender);
-            ExecutorService executor = Executors.newFixedThreadPool(1);
-            executor.execute(senderTask);
-            String[] responseLines = senderTask.get();
+            String script = "login.php";
+            String data = HTTPSDataSender.mapToJson(this);
+            String[] responseLines = HTTPSDataSender.initiateTransaction(script,data);
 
             if (responseLines.length < 1 || responseLines[0].equals("CONNECT_ERROR"))
                 throw new RuntimeException();
@@ -101,7 +89,10 @@ public class User {
                 firstName = responseLines[1];
                 lastName = responseLines[2];
                 email = responseLines[3];
-                houseId = Integer.parseInt(responseLines[4]);
+                int numHouses = Integer.parseInt(responseLines[4]);
+                for (int i = 0; i < numHouses; i++) {
+                    houseId.add(Integer.parseInt(responseLines[i + 5]));
+                }
                 return 1;
             }
         }
@@ -114,18 +105,14 @@ public class User {
 
     public void joinHousehold(int householdId) throws RuntimeException {
         try {
-            URL url = new URL("https://housemateapp1.000webhostapp.com/joinHousehold.php");
+            String script = "joinHousehold.php";
             String data = "{\"id\":" + id + ",\"houseId\":" + householdId + "}";
-            HTTPSDataSender sender = new HTTPSDataSender(url, data);
-            FutureTask<String[]> senderTask = new FutureTask<>(sender);
-            ExecutorService executor = Executors.newFixedThreadPool(1);
-            executor.execute(senderTask);
-            String[] responseLines = senderTask.get();
+            String[] responseLines = HTTPSDataSender.initiateTransaction(script, data);
 
             if (responseLines.length < 1 || responseLines[0].equals("CONNECT_ERROR"))
                 throw new RuntimeException();
             else {
-                houseId = Integer.parseInt(responseLines[0]);
+                houseId.add(Integer.parseInt(responseLines[0]));
             }
         }
         catch (Exception e) {
@@ -135,25 +122,21 @@ public class User {
 
     public void leaveHousehold(int householdId) throws RuntimeException {
         try {
-            URL url = new URL("https://housemateapp1.000webhostapp.com/leaveHousehold.php");
+            String script = "leaveHousehold.php";
             String data = "{\"id\":" + id + ",\"houseId\":" + householdId + "}";
-
-            HTTPSDataSender sender = new HTTPSDataSender(url, data);
-            FutureTask<String[]> senderTask = new FutureTask<>(sender);
-            ExecutorService executor = Executors.newFixedThreadPool(1);
-            executor.execute(senderTask);
-            String[] responseLines = senderTask.get();
+            String[] responseLines = HTTPSDataSender.initiateTransaction(script,data);
 
             if (responseLines.length < 1 || responseLines[0].equals("CONNECT_ERROR"))
                 throw new RuntimeException();
             else {
-                houseId = Integer.parseInt(responseLines[0]);
+                houseId.remove(householdId);
             }
         }
         catch (Exception e) {
             throw new RuntimeException("Error communicating with server");
         }
     }
+
 
     public void updateFirstNameInDB(String editedFirstName) throws  RuntimeException{
         try{
@@ -224,27 +207,55 @@ public class User {
         }
     }
 
-    public void updateEmailInDB(String editedEmail) throws  RuntimeException{
-        try{
+    public void updateEmailInDB(String editedEmail) throws  RuntimeException {
+        try {
             URL url = new URL("https://housemateapp1.000webhostapp.com/updateEmail.php");
 
-            String data = "{\"id\":" +id + ",\"editedEmail\":\""+ editedEmail + "\"}";
+            String data = "{\"id\":" + id + ",\"editedEmail\":\"" + editedEmail + "\"}";
             HTTPSDataSender sender = new HTTPSDataSender(url, data);
             FutureTask<String[]> senderTask = new FutureTask<>(sender);
             ExecutorService executor = Executors.newFixedThreadPool(1);
             executor.execute(senderTask);
             String[] responseLines = senderTask.get();
+            if (responseLines.length < 1 || responseLines[0].equals("CONNECT_ERROR"))
+                throw new RuntimeException();
+            else {
+                email = responseLines[0];
+            }
+        } catch (Exception e) {
+            throw new RuntimeException("Error communicating with server");
+        }
+    }
+
+
+
+    public int refreshHouseholds() throws RuntimeException {
+        try {
+            String script = "refreshHouseholds.php";
+            String data = HTTPSDataSender.mapToJson(this);
+            String[] responseLines = HTTPSDataSender.initiateTransaction(script, data);
+
 
             if (responseLines.length < 1 || responseLines[0].equals("CONNECT_ERROR"))
                 throw new RuntimeException();
             else {
-                    email = responseLines[0];
+                int numHouses = Integer.parseInt(responseLines[0]);
+                houseId.clear();
+                houseId.trimToSize();
+                for (int i = 0; i < numHouses; i++) {
+                    houseId.add(Integer.parseInt(responseLines[i + 1]));
+                }
+                return 1;
+
             }
-        }
-        catch (Exception e){
-            throw new RuntimeException("Error communicating with server");
+
+        } catch (Exception e) {
+            return 0;
+            //throw new RuntimeException("Error communicating with server");
+
         }
     }
+
 
 
     // Getter and Setter functions
@@ -257,11 +268,11 @@ public class User {
     }
 
 
-    public int getHouseId() {
+    public ArrayList<Integer> getHouseId() {
         return houseId;
     }
 
-    public void setHouseId(int houseId) {
+    public void setHouseId(ArrayList<Integer> houseId) {
         this.houseId = houseId;
     }
 
@@ -312,7 +323,7 @@ public class User {
 
     // Member variables
     private int id;
-    private int houseId;
+    private ArrayList<Integer> houseId;
     private String user_name;
     private String user_pass;
     private String email;
