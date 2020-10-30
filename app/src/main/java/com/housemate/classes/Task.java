@@ -8,10 +8,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.housemate.activities.MainActivity;
 
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.FutureTask;
@@ -164,6 +167,17 @@ public class Task {
         task.assignedUserIndex = (assignedUserIndex + 1) % assignableUsers.size();
         task.createTask(householdId);
         return task;
+    }
+
+    public void completeNew (int userId, int houseId) {
+        try {
+            if (this == null || userId == -1 || houseId == -1) {throw new RuntimeException();}
+            String script = "completeTask1.php";
+            String data = "{\"taskId\":" + id + ",\"userId\":" + userId + ",\"houseId\":" + houseId + "}";
+            HTTPSDataSender.initiateTransaction(script, data);
+        } catch (Exception e) {
+            throw new RuntimeException("Error communicating with server");
+        }
     }
 
     public static Task getTaskById(int taskId) {
