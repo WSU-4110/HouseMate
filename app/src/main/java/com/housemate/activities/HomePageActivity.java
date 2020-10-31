@@ -29,11 +29,11 @@ public class HomePageActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
 
-        displayUser = (TextView)findViewById(R.id.display_user);
+        displayUser = findViewById(R.id.display_user);
         displayUser.setText(
                 "User: " + MainActivity.currentUser.getFirstName() + " " + MainActivity.currentUser.getLastName() + "\n" +
-                "Household: " + MainActivity.currentHousehold.getHouseholdName()
-                );
+                        "Household: " + MainActivity.currentHousehold.getHouseholdName()
+        );
 
         taskList = Task.loadTasks(MainActivity.currentHousehold.getHouseID());
         taskRecyclerView = (RecyclerView) findViewById(R.id.task_recycler_view);
@@ -43,7 +43,7 @@ public class HomePageActivity extends AppCompatActivity {
         taskRecyclerView.setAdapter(taskAdapter);
 
         createTaskBtn = findViewById(R.id.createTaskBtn);
-        createTaskBtn.setOnClickListener(v -> startActivity(
+        createTaskBtn.setOnClickListener(button -> startActivity(
                 new Intent(this, CreateTaskActivity.class)));
     }
 

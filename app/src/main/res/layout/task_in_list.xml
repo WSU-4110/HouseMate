@@ -23,10 +23,9 @@
                 android:id="@+id/task_text"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
                 android:text=""
                 android:textSize="16sp"
+                android:padding="6sp"
                 android:lineSpacingMultiplier="0.5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -41,6 +40,28 @@
                 android:lineSpacingMultiplier="0.5"
                 app:layout_constraintStart_toStartOf="@id/task_text"
                 app:layout_constraintBottom_toBottomOf="parent" />
+            <ImageView
+                android:id="@+id/edit_task_view"
+                android:src="@drawable/edit_task"
+                android:contentDescription="edit task"
+                android:layout_width="24sp"
+                android:layout_height="24sp"
+                android:layout_margin="6sp"
+                android:gravity="end"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/delete_task_view"
+                />
+            <ImageView
+                android:id="@+id/delete_task_view"
+                android:src="@drawable/delete_task"
+                android:contentDescription="delete task"
+                android:layout_width="24sp"
+                android:layout_height="24sp"
+                android:layout_margin="6sp"
+                android:gravity="end"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
