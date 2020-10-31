@@ -47,7 +47,6 @@ public class HomePageActivity extends AppCompatActivity {
                 new Intent(this, CreateTaskActivity.class)));
     }
 
-
     public void onSwitchHousehold(View view) {
         Intent intent = new Intent(this, SelectHouse.class);
         startActivity(intent);
