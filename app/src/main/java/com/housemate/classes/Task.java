@@ -11,7 +11,11 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.net.URL;
 import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.FutureTask;
@@ -22,8 +26,8 @@ public class Task {
     private String description;
     private int assignedUserIndex;
     private ArrayList<String> assignableUsers;
-    private String dueDate;
-    private String dueTime;
+    private LocalDate dueDate;
+    private LocalTime dueTime;
     private String frequency;
     private int id;
     private boolean isCompleted;
@@ -32,8 +36,8 @@ public class Task {
             String name,
             String description,
             ArrayList<String> assignableUsers,
-            String dueDate,
-            String dueTime,
+            LocalDate dueDate,
+            LocalTime dueTime,
             String frequency
     ) {
         this.name = name;
@@ -43,7 +47,7 @@ public class Task {
         this.dueTime = dueTime;
 
         if (assignableUsers.size() == 0)
-            throw new RuntimeException("Error initializing task: need at least 1 assigned user");
+            throw new RuntimeException("Error creating task: need at least 1 assigned user");
         this.assignableUsers = assignableUsers;
 
         boolean frequencyFound = false;
@@ -56,7 +60,7 @@ public class Task {
         if (frequencyFound)
             this.frequency = frequency;
         else
-            throw new RuntimeException("Error initializing task: invalid frequency");
+            throw new RuntimeException("Error creating task: invalid frequency");
     }
 
     @JsonCreator
@@ -65,8 +69,8 @@ public class Task {
             @JsonProperty("description") String description,
             @JsonProperty("assignedUserIndex") int assignedUserIndex,
             @JsonProperty("assignableUsers") ArrayList<String> assignableUsers,
-            @JsonProperty("dueDate") String dueDate,
-            @JsonProperty("dueTime") String dueTime,
+            @JsonProperty("dueDate") LocalDate dueDate,
+            @JsonProperty("dueTime") LocalTime dueTime,
             @JsonProperty("frequency") String frequency,
             @JsonProperty("id") int id,
             @JsonProperty("isCompleted") boolean isCompleted
@@ -75,6 +79,12 @@ public class Task {
         this.assignedUserIndex = assignedUserIndex;
         this.id = id;
         this.isCompleted = isCompleted;
+    }
+
+    @Override @NonNull
+    public String toString () {
+        return String.format("%s\n%s\nAssigned to %s\nDue %s at %s",
+                name, description, getAssignedUser(), dueDate, dueTime);
     }
 
     public String getName() { return name; }
@@ -87,9 +97,9 @@ public class Task {
 
     public boolean isCompleted() { return isCompleted; }
 
-    public String getDueDate() { return dueDate; }
+    public LocalDate getDueDate() { return dueDate; }
 
-    public String getDueTime() { return dueTime; }
+    public LocalTime getDueTime() { return dueTime; }
 
     public String getFrequency() { return frequency; }
 
@@ -99,17 +109,9 @@ public class Task {
 
     public void createTask(int householdId) throws RuntimeException {
         try {
-            URL url = new URL("https://housemateapp1.000webhostapp.com/createTask.php");
-
-            ObjectMapper objectMapper = new ObjectMapper();
-            objectMapper.setVisibility(PropertyAccessor.FIELD, JsonAutoDetect.Visibility.ANY);
-            String data = objectMapper.writeValueAsString(this) + "\n" + householdId;
-
-            HTTPSDataSender sender = new HTTPSDataSender(url, data);
-            FutureTask<String[]> senderTask = new FutureTask<>(sender);
-            ExecutorService executor = Executors.newFixedThreadPool(1);
-            executor.execute(senderTask);
-            String[] responseLines = senderTask.get();
+            String script = "createTask.php";
+            String data = HTTPSDataSender.mapToJson(this) + "\n" + householdId;
+            String[] responseLines = HTTPSDataSender.initiateTransaction(script, data);
 
             if (responseLines.length < 1 || responseLines[0].equals("CONNECT_ERROR"))
                 throw new RuntimeException();
@@ -128,13 +130,9 @@ public class Task {
             return null;
 
         try {
-            URL url = new URL("https://housemateapp1.000webhostapp.com/completeTask.php");
-
-            HTTPSDataSender sender = new HTTPSDataSender(url, String.valueOf(id));
-            FutureTask<String[]> senderTask = new FutureTask<>(sender);
-            ExecutorService executor = Executors.newFixedThreadPool(1);
-            executor.execute(senderTask);
-            String[] responseLines = senderTask.get();
+            String script = "completeTask.php";
+            String data = String.valueOf(id);
+            String[] responseLines = HTTPSDataSender.initiateTransaction(script, data);
 
             if (responseLines.length < 1 || responseLines[0].equals("CONNECT_ERROR"))
                 throw new RuntimeException();
@@ -144,19 +142,19 @@ public class Task {
         }
 
         isCompleted = true;
-        String newDueDate = "";
+        LocalDate newDueDate = null;
 
         switch (frequency) {
             case "ONE-TIME":
                 return null;
             case "DAILY":
-                newDueDate = LocalDate.parse(dueDate).plusDays(1).toString();
+                newDueDate = dueDate.plusDays(1);
                 break;
             case "WEEKLY":
-                newDueDate = LocalDate.parse(dueDate).plusWeeks(1).toString();
+                newDueDate = dueDate.plusWeeks(1);
                 break;
             case "MONTHLY":
-                newDueDate = LocalDate.parse(dueDate).plusMonths(1).toString();
+                newDueDate = dueDate.plusMonths(1);
         }
 
         //If task is recurring, new task with updated due date is created and returned
@@ -168,13 +166,9 @@ public class Task {
 
     public static Task getTaskById(int taskId) {
         try {
-            URL url = new URL("https://housemateapp1.000webhostapp.com/getTaskById.php");
-
-            HTTPSDataSender sender = new HTTPSDataSender(url, String.valueOf(taskId));
-            FutureTask<String[]> senderTask = new FutureTask<>(sender);
-            ExecutorService executor = Executors.newFixedThreadPool(1);
-            executor.execute(senderTask);
-            String[] responseLines = senderTask.get();
+            String script = "getTaskById.php";
+            String data = String.valueOf(taskId);
+            String[] responseLines = HTTPSDataSender.initiateTransaction(script, data);
 
             if (responseLines.length < 1 || responseLines[0].equals("CONNECT_ERROR"))
                 throw new RuntimeException();
@@ -182,40 +176,7 @@ public class Task {
                 ObjectMapper objectMapper = new ObjectMapper();
                 return objectMapper.readValue(responseLines[0], Task.class);
             }
-        } catch (Exception e) {
-            throw new RuntimeException("Error communicating with server");
-        }
-    }
 
-    @Override @NonNull
-    public String toString () {
-        return String.format("%s\n%s\nAssigned to %s\nDue %s at %s",
-                name, description, getAssignedUser(), dueDate, dueTime);
-    }
-
-    public static ArrayList<Task> loadTasks (int householdId) {
-        try {
-            URL url = new URL("https://housemateapp1.000webhostapp.com/loadTasks.php");
-
-            HTTPSDataSender sender = new HTTPSDataSender(url, String.valueOf(householdId));
-            FutureTask<String[]> senderTask = new FutureTask<>(sender);
-            ExecutorService executor = Executors.newFixedThreadPool(1);
-            executor.execute(senderTask);
-            String[] responseLines = senderTask.get();
-
-            ArrayList<Task> tasks = new ArrayList<>(responseLines.length);
-
-            if (responseLines.length > 0) {
-                if (responseLines[0].equals("CONNECT_ERROR"))
-                    throw new RuntimeException();
-                else {
-                    ObjectMapper objectMapper = new ObjectMapper();
-
-                    for (int index = 0; index < responseLines.length; index++)
-                        tasks.add(index, objectMapper.readValue(responseLines[index], Task.class));
-                    }
-            }
-            return tasks;
         } catch (Exception e) {
             throw new RuntimeException("Error communicating with server");
         }
@@ -227,7 +188,7 @@ public class Task {
             String data = String.valueOf(id);
             String[] responseLines = HTTPSDataSender.initiateTransaction(script, data);
 
-            if (responseLines[0] == "1") {return 1;}
+            if (responseLines[0].equals("1")) {return 1;}
 
             else {return 0;}
         }
@@ -248,6 +209,40 @@ public class Task {
         catch (Exception e) {
             throw new RuntimeException("Error communicating with server");
         }
+    }
+
+    public static ArrayList<Task> loadTasks (int householdId) {
+        try {
+            String script = "loadTasks.php";
+            String data = String.valueOf(householdId);
+            String[] responseLines = HTTPSDataSender.initiateTransaction(script, data);
+            ArrayList<Task> tasks = new ArrayList<>(responseLines.length);
+
+            if (responseLines.length > 0) {
+                if (responseLines[0].equals("CONNECT_ERROR"))
+                    throw new RuntimeException();
+                else {
+                    ObjectMapper objectMapper = new ObjectMapper();
+                    objectMapper.findAndRegisterModules();
+                    for (int index = 0; index < responseLines.length; index++)
+                        tasks.add(index, objectMapper.readValue(responseLines[index], Task.class));
+                }
+                sortByEarliestDeadline(tasks);
+            }
+            return tasks;
+
+        } catch (Exception e) {
+            throw new RuntimeException("Error communicating with server");
+        }
+    }
+
+    private static void sortByEarliestDeadline(ArrayList<Task> tasks) {
+        Comparator<Task> soonestDeadlineComparator = (task1, task2) -> {
+            String task1DateTime = task1.getDueDate().toString() + task1.getDueTime().toString();
+            String task2DateTime = task2.getDueDate().toString() + task2.getDueTime().toString();
+            return (task1DateTime.compareTo(task2DateTime));
+        };
+        tasks.sort(soonestDeadlineComparator);
     }
 }
 
