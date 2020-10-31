@@ -1,7 +1,6 @@
 package com.housemate.classes;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,12 +11,9 @@ import androidx.annotation.NonNull;
 import androidx.core.text.HtmlCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.housemate.activities.CreateTaskActivity;
 import com.housemate.activities.R;
 
 import java.util.List;
-
-import static androidx.core.content.ContextCompat.startActivity;
 
 public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.TaskListViewHolder> {
     private Context context;
@@ -48,6 +44,7 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.TaskLi
     public TaskListAdapter.TaskListViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(context);
         View view = layoutInflater.inflate(R.layout.task_in_list, parent, false);
+        //view.setOnClickListener(v -> view the task);
         return new TaskListViewHolder(view);
     }
 
@@ -64,10 +61,9 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.TaskLi
         String userText = String.format("<i>%s</i>", task.getAssignedUser());
         holder.assignedUserView.setText(HtmlCompat.fromHtml(userText, 0));
 /*
-        holder.editTaskView.setOnClickListener(view -> context.startActivity(
-                new Intent(context, EditTaskActivity.class)));
-        holder.deleteTaskView.setOnClickListener(view -> context.startActivity(
-                new Intent(context, DeleteTaskActivity.class)));
+        holder.editTaskView.setOnClickListener(view -> edit the task);
+        holder.completeTaskView.setOnClickListener(view -> complete the task);
+        holder.deleteTaskView.setOnClickListener(view -> delete the task);
  */
     }
 
