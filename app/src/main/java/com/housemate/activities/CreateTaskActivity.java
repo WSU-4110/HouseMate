@@ -27,10 +27,14 @@ import android.widget.TimePicker;
 import com.housemate.classes.DatePickerFragment;
 import com.housemate.classes.DiscardTaskDialogue;
 import com.housemate.adapters.HousemateRecViewAdapter;
+import com.housemate.classes.Task;
 import com.housemate.classes.TimePickerFragment;
 
 import java.text.DateFormat;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 
 //extends FragmentActivity
@@ -102,8 +106,9 @@ public class CreateTaskActivity extends AppCompatActivity implements DatePickerD
             public void onClick(View v) {
                 taskName= taskNameET.getText().toString();
                 taskNotes = notesET.getText().toString();
-                String printAssignTo = assignedTo.toString();
+                //String printAssignTo = assignedTo.toString();
 
+                /*
                 Log.i("taskName", taskName);
                 Log.i("dueDate", dueDate) ;
                 Log.i("dueTime", dueTime);
@@ -111,7 +116,13 @@ public class CreateTaskActivity extends AppCompatActivity implements DatePickerD
                 Log.i("priority", priority);
                 Log.i("assigned to", printAssignTo);
                 Log.i("notes" , taskNotes);
+                */
 
+                LocalDate dueDate = LocalDate.of(2020, 4, 12);
+                LocalTime dueTime = LocalTime.of(10, 30);
+                ArrayList<String> users = new ArrayList<>(Arrays.asList("Bob", "Joe", "Phil"));
+                Task task = new Task("Laundry", "Sheets", users, dueDate, dueTime, "WEEKLY");
+                task.createTask(MainActivity.currentHousehold.getHouseID());
 
                 Intent intent = new Intent(CreateTaskActivity.this, HomePageActivity.class);
                 intent.putExtra(TASK_NAME_TAG, taskName);
