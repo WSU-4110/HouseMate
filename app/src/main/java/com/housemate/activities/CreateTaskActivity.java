@@ -50,7 +50,9 @@ public class CreateTaskActivity extends AppCompatActivity implements DatePickerD
     ArrayList<Boolean> isAssigned;
     RecyclerView housemateRecView ;
     Spinner repeatTaskSpinner;
-    String taskName, dueDate, dueTime, repeatTask, priority, taskNotes; // save all var to Task Obj.
+    String taskName, repeatTask, priority, taskNotes; // save all var to Task Obj.
+    LocalDate dueDate;
+    LocalTime dueTime;
     HousemateRecViewAdapter housemateRecViewAdapter;
 
     public static final String TASK_NAME_TAG = "taskName";
@@ -72,8 +74,6 @@ public class CreateTaskActivity extends AppCompatActivity implements DatePickerD
         notesET = findViewById(R.id.notesET);
         cancelBtn = findViewById(R.id.cancelBtn);
         taskName = "New Task";
-        dueDate = "";
-        dueTime = "";
         repeatTask = "Never";
         priority = "None";
         taskNotes = "";
@@ -116,12 +116,8 @@ public class CreateTaskActivity extends AppCompatActivity implements DatePickerD
                 Log.i("priority", priority);
                 Log.i("assigned to", printAssignTo);
                 Log.i("notes" , taskNotes);
-                */
-
-                LocalDate dueDate = LocalDate.of(2020, 4, 12);
-                LocalTime dueTime = LocalTime.of(10, 30);
-                ArrayList<String> users = new ArrayList<>(Arrays.asList("Bob", "Joe", "Phil"));
-                Task task = new Task("Laundry", "Sheets", users, dueDate, dueTime, "WEEKLY");
+                 */
+                Task task = new Task(taskName, taskNotes, assignedTo, dueDate, dueTime, "ONE-TIME");
                 task.createTask(MainActivity.currentHousehold.getHouseID());
 
                 Intent intent = new Intent(CreateTaskActivity.this, HomePageActivity.class);
@@ -186,8 +182,7 @@ public class CreateTaskActivity extends AppCompatActivity implements DatePickerD
         c.set(Calendar.YEAR, year);
         c.set(Calendar.MONTH,month);
         c.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-        dueDate = DateFormat.getDateInstance(DateFormat.FULL).format(c.getTime());
-        Log.i("date" , dueDate);
+        dueDate = LocalDate.of(year, month, dayOfMonth);
         String printDate = "Date: " + dueDate;
         dateTV.setText(printDate);
     }
@@ -198,8 +193,7 @@ public class CreateTaskActivity extends AppCompatActivity implements DatePickerD
         Calendar c = Calendar.getInstance();
         c.set(Calendar.HOUR_OF_DAY, hourOfDay);
         c.set(Calendar.MINUTE, minute);
-        dueTime = DateFormat.getTimeInstance(DateFormat.SHORT).format(c.getTime());
-        Log.i("selected time", dueTime);
+        dueTime = LocalTime.of(hourOfDay, minute);
         String printTime = "Time: " + dueTime;
         timeTV.setText(printTime);
 
