@@ -43,7 +43,7 @@
             <ImageView
                 android:id="@+id/edit_task_view"
                 android:src="@drawable/edit_task"
-                android:contentDescription="edit task"
+                android:contentDescription="@string/edit_task_string"
                 android:layout_width="21sp"
                 android:layout_height="21sp"
                 android:layout_margin="6sp"
@@ -54,7 +54,7 @@
             <ImageView
                 android:id="@+id/complete_task_view"
                 android:src="@drawable/complete_task"
-                android:contentDescription="complete task"
+                android:contentDescription="@string/complete_task_string"
                 android:layout_width="27sp"
                 android:layout_height="27sp"
                 android:layout_margin="3sp"
@@ -65,7 +65,7 @@
             <ImageView
                 android:id="@+id/delete_task_view"
                 android:src="@drawable/delete_task"
-                android:contentDescription="delete task"
+                android:contentDescription="@string/delete_task_string"
                 android:layout_width="21sp"
                 android:layout_height="21sp"
                 android:layout_margin="6sp"

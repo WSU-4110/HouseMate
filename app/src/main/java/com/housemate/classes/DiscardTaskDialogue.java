@@ -20,7 +20,7 @@ public class DiscardTaskDialogue extends AppCompatDialogFragment {
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState){
         AlertDialog.Builder builder= new AlertDialog.Builder(getActivity());
-        builder.setMessage("Are you sure you want to discard ths new task?");
+        builder.setMessage("Are you sure you want to discard the new task?");
         builder .setNegativeButton("Keep Editing", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {

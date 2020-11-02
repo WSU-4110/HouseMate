@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.housemate.activities.R;
 
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.TaskListViewHolder> {
@@ -54,7 +55,8 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.TaskLi
         String taskText = String.format("<h3>%s</h3>" +
                                     "<b><i>%s</i></b>" +
                                     "<p>Due %s at %s</p>\n",
-                                    task.getName(), task.getDescription(), task.getDueDate(), task.getDueTime());
+                                    task.getName(), task.getDescription(), task.getDueDate(),
+                                    task.getDueTime().format(DateTimeFormatter.ofPattern("hh:mm a")));
         holder.taskView.setText(HtmlCompat.fromHtml(taskText, 0));
         holder.taskView.setBackgroundColor((position % 2 == 0) ? 0xFFDDDDDD : 0xFFEEEEEE);
 
