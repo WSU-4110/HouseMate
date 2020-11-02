@@ -1,23 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Default(Mana) theme color palette -->
-    <color name="colorPrimary">#FFFFFF</color>
-    <color name="colorPrimaryDark">#1C1C1C</color>
-    <color name="colorAccent">#715D97</color>
-    <color name="colorAccentB">#4E3093</color>
-
-    <!-- Theme 2(Moscow Mule) color palette -->
-    <color name="colorPrimary2">#FFFFFF</color>
-    <color name="colorPrimaryDark2">#1C1C1C</color>
-    <color name="colorAccent2a">#E4BB3E</color>
-    <color name="colorAccent2b">#ACB82F</color>
-
-    <!-- Theme 3(Ice) color palette -->
-    <color name="colorPrimary3">#FFFFFF</color>
-    <color name="colorPrimaryDark3">#1C1C1C</color>
-    <color name="colorAccent3a">#46DADF</color>
-    <color name="colorAccent3b">#2A6CCF</color>
-
     <!--Color palette-->
 
     <color name="purple_200">#bb86fc</color> <!--Color primary (dark)-->
@@ -30,6 +12,22 @@
 
     <color name="red_200">#cf6679</color> <!--Color error (dark)-->
     <color name="red_600">#b00020</color> <!--Color error (light)-->
+
+    <!-- SPRINT 2 COLOR PALETTE -->
+    <color name="nickel">#6a706e</color> <!--Color primary (alt-dark)-->
+    <color name="aero_blue">#c9eddc</color> <!--Color primary (alt-light)-->
+    <color name="morning_blue">#82968c</color> <!--Color primary variant (alt-dark)-->
+    <color name="green_sheen">#89b6a5</color> <!--Color primary variant (alt-light)-->
+
+    <color name="middle_blue">#7cdaf4</color> <!--Color secondary (alt-dark)-->
+    <color name="cyan_process">#14bdeb</color> <!--Color secondary (alt-light)-->
+
+    <color name="english_violet">#4c3b4d</color> <!--Color secondary-->
+    <color name="chinese_violet">#7e627f</color> <!--Color secondary variant-->
+
+    <color name="terra_cotta">#eb7c63</color> <!--Color error (alt-dark)-->
+    <color name="atomic_tangerine">#ea9462</color> <!--Color error (alt-light)-->
+    <!-- SPRINT 2 COLOR PALETTE -->
 
     <!--Color surface (light), color on error (light), -->
     <!--color on surface (dark), color on surface (dark)-->
