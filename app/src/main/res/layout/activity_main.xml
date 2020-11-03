@@ -4,16 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
     android:background="#EE141515"
-    android:backgroundTint="#99141515"
+    android:backgroundTint="#99141515">
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic__hmlogo"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="25dp"/>
+        android:src="@drawable/ic__hmlogo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/Username"
@@ -65,9 +67,6 @@
         app:layout_constraintHorizontal_bias="0.341"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-        android:textColor="@color/colorPrimary"
-        android:textSize="25dp"
-        android:textStyle="bold" />
 
     <Button
         android:id="@+id/Login"
@@ -85,7 +84,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Password" />
-        android:textColor="#3F51B5"/>
 
     <Button
         android:id="@+id/Register"
@@ -139,4 +137,4 @@
 </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-<!-- android:backgroundTint="#99141515" -->
+    <!-- android:backgroundTint="#99141515" -->
