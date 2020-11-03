@@ -16,7 +16,7 @@ import com.housemate.classes.Household;
 
 import java.util.ArrayList;
 
-//Display information regarding current household: Name, members, etc.
+
 public class CurrentHousehold extends AppCompatActivity {
     TextView housematesTitleTV, householdTitleTV;
     Button backBtn, saveBtn;
@@ -33,13 +33,12 @@ public class CurrentHousehold extends AppCompatActivity {
         backBtn = findViewById(R.id.backBtn);
         saveBtn = findViewById(R.id.saveBtn);
         housemateRecView = findViewById(R.id.housemateRecView);
-
         householdTitleTV.setText(MainActivity.currentHousehold.getHouseholdName());
 
-        printHousemates();
+        showHousemates();
 
     }
-    public void printHousemates(){
+    public void showHousemates(){
         ArrayList<String> housemateList = MainActivity.currentHousehold.getUsers();
 
         currentHouseHoldRVAdapter = new CurrentHouseholdRVAdapter(CurrentHousehold.this);
@@ -49,7 +48,7 @@ public class CurrentHousehold extends AppCompatActivity {
     }
 
     public void onBackBtnClicked(View view) {
-        // go back to settings page?
+        // go back to settings page
     }
 
 

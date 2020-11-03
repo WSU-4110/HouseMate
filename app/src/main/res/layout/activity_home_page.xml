@@ -65,8 +65,7 @@
             android:layout_weight=".25"
             android:layout_height="wrap_content"
             android:text="Settings"
-            android:id="@+id/settingsPageBtn"
-            android:onClick="onSettingsBtnClicked"/>
+            android:id="@+id/settingsPageBtn"/>
 
     </LinearLayout>
 

@@ -16,7 +16,6 @@
         </activity>
 
         <activity android:name=".SelectHouse"></activity>
-        <activity android:name=".CurrentHousehold"></activity>
         <activity android:name=".EditProfile" />
         <activity android:name=".ViewTaskById" />
         <activity android:name=".JoinHousehold" />

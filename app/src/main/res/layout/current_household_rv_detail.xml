@@ -2,9 +2,17 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="wrap_content">
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="30dp"
-        android:id="@+id/housemateTV"/>
+        android:id="@+id/housemateTV"
+        android:layout_toLeftOf="@id/removeFromGroupBtn"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Remove"
+        android:id="@+id/removeFromGroupBtn"
+        android:layout_alignParentEnd="true"/>
 </RelativeLayout>
