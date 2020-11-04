@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 
 public class IncompleteTask extends Task {
+    private ArrayList<String> assignedUsers;
     private LocalDate dueDate;
     private LocalTime dueTime;
 
@@ -23,7 +24,8 @@ public class IncompleteTask extends Task {
             LocalDate dueDate,
             LocalTime dueTime
     ) {
-        super(name, description, assignedUsers);
+        super(name, description);
+        this.assignedUsers = new ArrayList<>(assignedUsers);
         this.dueDate = dueDate;
         this.dueTime = dueTime;
     }
@@ -41,6 +43,10 @@ public class IncompleteTask extends Task {
         setId(id);
     }
 
+    public ArrayList<String> getAssignedUsers() { return new ArrayList<>(assignedUsers); }
+
+    public void setAssignedUsers(ArrayList<String> assignedUsers) { this.assignedUsers = new ArrayList<>(assignedUsers); }
+
     public LocalDate getDueDate() { return dueDate; }
 
     public void setDueDate(LocalDate dueDate) { this.dueDate = dueDate; }
@@ -50,13 +56,13 @@ public class IncompleteTask extends Task {
     public void setDueTime(LocalTime dueTime) { this.dueTime = dueTime; }
 
     @Override @NonNull
-    public String toString () {
+    public String toString() {
         return String.format("<h3>%s</h3>" +
                         "<b><i>%s</i></b>" +
                         "<p>Due %s at %s</p>\n",
                 getName(), getDescription(),
-                getDueDate().format(DateTimeFormatter.ofPattern("MM-dd-yyyy")),
-                getDueTime().format(DateTimeFormatter.ofPattern("hh:mm a")));
+                getDueDate().format(DateTimeFormatter.ofPattern("M-d-yyyy")),
+                getDueTime().format(DateTimeFormatter.ofPattern("h:mm a")));
     }
 
     public void create(int houseId) throws RuntimeException {
@@ -82,7 +88,7 @@ public class IncompleteTask extends Task {
 
         try {
             if (userId == -1 || houseId == -1) {  throw new RuntimeException(); }
-            String script = "completeTask1.php";
+            String script = "completeTask2.php";
             String data = "{\"taskId\":" + getId() + ",\"userId\":" + userId + ",\"houseId\":" + houseId + "}";
             HTTPSDataSender.initiateTransaction(script, data);
         } catch (Exception e) {
@@ -92,7 +98,7 @@ public class IncompleteTask extends Task {
 
     public int delete() {
         try {
-            String script = "deleteTask.php";
+            String script = "deleteTask1.php";
             String data = String.valueOf(getId());
             String[] responseLines = HTTPSDataSender.initiateTransaction(script, data);
 
@@ -106,7 +112,7 @@ public class IncompleteTask extends Task {
 
     public void update() throws RuntimeException{
         try {
-            String script = "updateTask.php";
+            String script = "updateTask1.php";
             String data = HTTPSDataSender.mapToJson(this);
             String[] responseLines = HTTPSDataSender.initiateTransaction(script,data);
 
@@ -136,7 +142,7 @@ public class IncompleteTask extends Task {
                 }
                 sortByEarliestDeadline(tasks);
             }
-            return new ArrayList<>(tasks); //Casted to be an ArrayList of the supertype, Task
+            return new ArrayList<>(tasks);
 
         } catch (Exception e) {
             throw new RuntimeException("Error communicating with server");

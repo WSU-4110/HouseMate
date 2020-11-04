@@ -26,7 +26,6 @@ import java.util.concurrent.FutureTask;
 public abstract class Task {
     private String name;
     private String description;
-    private ArrayList<String> assignedUsers;
     private int id;
 
     // Dynamic assignment code to be implemented later:
@@ -37,14 +36,12 @@ public abstract class Task {
 
     public Task(
             String name,
-            String description,
-            ArrayList<String> assignedUsers
+            String description
             //ArrayList<String> assignableUsers,
             //String frequency
     ) {
         this.name = name;
         this.description = description;
-        this.assignedUsers = new ArrayList<>(assignedUsers);
         id = -1;
 
 /*
@@ -73,10 +70,6 @@ public abstract class Task {
     public String getDescription() { return description; }
 
     public void setDescription(String description) { this.description = description; }
-
-    public ArrayList<String> getAssignedUsers() { return new ArrayList<>(assignedUsers); }
-
-    public void setAssignedUsers(ArrayList<String> assignedUsers) { this.assignedUsers = new ArrayList<>(assignedUsers); }
 
     public int getId() { return id; }
 

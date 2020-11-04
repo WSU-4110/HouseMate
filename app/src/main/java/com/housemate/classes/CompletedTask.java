@@ -22,12 +22,11 @@ public class CompletedTask extends Task {
     CompletedTask(
             @JsonProperty("name") String name,
             @JsonProperty("description") String description,
-            @JsonProperty("assignedUsers") ArrayList<String> assignedUsers,
-            @JsonProperty("dueDate") LocalDate dateCompleted,
-            @JsonProperty("dueTime") LocalTime timeCompleted,
+            @JsonProperty("dateCompleted") LocalDate dateCompleted,
+            @JsonProperty("timeCompleted") LocalTime timeCompleted,
             @JsonProperty("id") int id
     ) {
-        super(name, description, assignedUsers);
+        super(name, description);
         setId(id);
         this.dateCompleted = dateCompleted;
         this.timeCompleted = timeCompleted;
@@ -43,8 +42,8 @@ public class CompletedTask extends Task {
                         "<b><i>%s</i></b>" +
                         "<p>Completed %s at %s</p>\n",
                 getName(), getDescription(),
-                getDateCompleted().format(DateTimeFormatter.ofPattern("MM-dd-yyyy")),
-                getTimeCompleted().format(DateTimeFormatter.ofPattern("hh:mm a")));
+                getDateCompleted().format(DateTimeFormatter.ofPattern("M-d-yyyy")),
+                getTimeCompleted().format(DateTimeFormatter.ofPattern("h:mm a")));
     }
 
     public static ArrayList<Task> loadHouseholdTasks (int houseId) {

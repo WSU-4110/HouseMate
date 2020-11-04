@@ -14,11 +14,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.housemate.activities.R;
 
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 
 public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.TaskListViewHolder> {
-    private Context context;
-    private List<Task> taskList;
+    private final Context context;
+    private final List<Task> taskList;
+    private final boolean completedTasks;
 
     public static class TaskListViewHolder extends RecyclerView.ViewHolder {
         public TextView taskView;
@@ -35,16 +37,18 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.TaskLi
         }
     }
 
-    public TaskListAdapter(Context context, List<Task> taskList) {
+    public TaskListAdapter(Context context, List<Task> taskList, boolean completedTasks) {
         this.context = context;
         this.taskList = taskList;
+        this.completedTasks = completedTasks;
     }
 
     @Override
     @NonNull
     public TaskListAdapter.TaskListViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(context);
-        View view = layoutInflater.inflate(R.layout.task_in_list, parent, false);
+        int layoutId = (completedTasks) ? R.layout.completed_task : R.layout.incomplete_task;
+        View view = layoutInflater.inflate(layoutId, parent, false);
         //view.setOnClickListener(v -> view the task);
         return new TaskListViewHolder(view);
     }
@@ -53,8 +57,13 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.TaskLi
     public void onBindViewHolder(TaskListViewHolder holder, int position) {
         Task task = taskList.get(position);
         holder.taskView.setText(HtmlCompat.fromHtml(task.toString(), 0));
-        String userText = String.format("<i>%s</i>", String.join(", ", task.getAssignedUsers()));
-        holder.assignedUserView.setText(HtmlCompat.fromHtml(userText, 0));
+
+        if (task instanceof IncompleteTask) {
+            String assignedUsersText = String.format("<i>%s</i>",
+                    String.join(", ", ((IncompleteTask) task).getAssignedUsers()));
+            holder.assignedUserView.setText(HtmlCompat.fromHtml(assignedUsersText, 0));
+        }
+
         holder.taskView.setBackgroundColor((position % 2 == 0) ? 0xFFDDDDDD : 0xFFEEEEEE);
 
         /*
