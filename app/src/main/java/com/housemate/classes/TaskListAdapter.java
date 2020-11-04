@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.housemate.activities.R;
 
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.TaskListViewHolder> {
@@ -47,6 +48,7 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.TaskLi
         LayoutInflater layoutInflater = LayoutInflater.from(context);
         int layoutId = (completedTasks) ? R.layout.completed_task : R.layout.incomplete_task;
         View view = layoutInflater.inflate(layoutId, parent, false);
+
         //view.setOnClickListener(v -> view the task);
         return new TaskListViewHolder(view);
     }
