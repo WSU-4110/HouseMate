@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.housemate.classes.IncompleteTask;
 import com.housemate.classes.Task;
 import com.housemate.classes.TaskListAdapter;
 
@@ -35,7 +36,7 @@ public class HomePageActivity extends AppCompatActivity {
                         "Household: " + MainActivity.currentHousehold.getHouseholdName()
         );
 
-        taskList = Task.loadTasks(MainActivity.currentHousehold.getHouseID());
+        taskList = IncompleteTask.loadHouseholdTasks(MainActivity.currentHousehold.getHouseID());
         taskRecyclerView = (RecyclerView) findViewById(R.id.task_recycler_view);
         taskAdapter = new TaskListAdapter(this, taskList);
         taskLayoutManager = new LinearLayoutManager(this);

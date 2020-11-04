@@ -52,21 +52,16 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.TaskLi
     @Override
     public void onBindViewHolder(TaskListViewHolder holder, int position) {
         Task task = taskList.get(position);
-        String taskText = String.format("<h3>%s</h3>" +
-                                    "<b><i>%s</i></b>" +
-                                    "<p>Due %s at %s</p>\n",
-                                    task.getName(), task.getDescription(), task.getDueDate(),
-                                    task.getDueTime().format(DateTimeFormatter.ofPattern("hh:mm a")));
-        holder.taskView.setText(HtmlCompat.fromHtml(taskText, 0));
+        holder.taskView.setText(HtmlCompat.fromHtml(task.toString(), 0));
+        String userText = String.format("<i>%s</i>", String.join(", ", task.getAssignedUsers()));
+        holder.assignedUserView.setText(HtmlCompat.fromHtml(userText, 0));
         holder.taskView.setBackgroundColor((position % 2 == 0) ? 0xFFDDDDDD : 0xFFEEEEEE);
 
-        String userText = String.format("<i>%s</i>", task.getAssignedUser());
-        holder.assignedUserView.setText(HtmlCompat.fromHtml(userText, 0));
-/*
+        /*
         holder.editTaskView.setOnClickListener(view -> edit the task);
         holder.completeTaskView.setOnClickListener(view -> complete the task);
         holder.deleteTaskView.setOnClickListener(view -> delete the task);
- */
+    */
     }
 
     @Override
