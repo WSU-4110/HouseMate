@@ -83,20 +83,17 @@ public class IncompleteTask extends Task {
         }
     }
 
-    public void complete(int userId, int houseId) { //Have date and time formats updated in the script
-        //Check completed tasks table to ensure it's not been completed already; return a boolean from this method
-
+    public void complete(int userId, int houseId) throws RuntimeException {
         try {
             if (userId == -1 || houseId == -1) {  throw new RuntimeException(); }
             String script = "completeTask2.php";
             String data = "{\"taskId\":" + getId() + ",\"userId\":" + userId + ",\"houseId\":" + houseId + "}";
-            HTTPSDataSender.initiateTransaction(script, data);
         } catch (Exception e) {
             throw new RuntimeException("Error communicating with server");
         }
     }
 
-    public int delete() {
+    public int delete() throws RuntimeException {
         try {
             String script = "deleteTask1.php";
             String data = String.valueOf(getId());

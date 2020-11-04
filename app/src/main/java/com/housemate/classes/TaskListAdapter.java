@@ -13,14 +13,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.housemate.activities.R;
 
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.List;
 
 public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.TaskListViewHolder> {
     private final Context context;
     private final List<Task> taskList;
-    private final boolean completedTasks;
+    private final boolean completedTasks; //indicates type of task to be displayed, incomplete or completed
 
     public static class TaskListViewHolder extends RecyclerView.ViewHolder {
         public TextView taskView;
