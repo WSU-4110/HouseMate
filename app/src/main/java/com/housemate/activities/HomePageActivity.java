@@ -1,6 +1,7 @@
 package com.housemate.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatImageButton;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -26,6 +27,7 @@ import java.util.Iterator;
 import java.util.List;
 
 public class HomePageActivity extends AppCompatActivity {
+    private AppCompatImageButton editProfileBtn;
     private ImageButton createTaskBtn;
     private Button chatBtn;
     private TextView displayUser;
@@ -56,7 +58,15 @@ public class HomePageActivity extends AppCompatActivity {
         taskRecyclerView.setLayoutManager(taskLayoutManager);
         taskRecyclerView.setAdapter(taskAdapter);
 
+        editProfileBtn = findViewById(R.id.edit_profile);
         createTaskBtn = findViewById(R.id.createTaskBtn);
+
+        editProfileBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(HomePageActivity.this, EditProfile.class));
+            }
+        });
 
         createTaskBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,7 +74,6 @@ public class HomePageActivity extends AppCompatActivity {
                 startActivity(new Intent(HomePageActivity.this, CreateTaskActivity.class));
             }
         });
-
 
         boolean finish = getIntent().getBooleanExtra("finish", false);
         if (finish) {
