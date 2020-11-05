@@ -124,7 +124,7 @@ public class User {
         try {
             String script = "leaveHousehold.php";
             String data = "{\"id\":" + id + ",\"houseId\":" + householdId + "}";
-            String[] responseLines = HTTPSDataSender.initiateTransaction(script,data);
+            String[] responseLines = HTTPSDataSender.initiateTransaction(script, data);
 
             if (responseLines.length < 1 || responseLines[0].equals("CONNECT_ERROR"))
                 throw new RuntimeException();
@@ -135,6 +135,7 @@ public class User {
         catch (Exception e) {
             throw new RuntimeException("Error communicating with server");
         }
+    }
   
     public void deleteUser() throws RuntimeException{
         try {
@@ -148,6 +149,16 @@ public class User {
             ExecutorService executor = Executors.newFixedThreadPool(1);
             executor.execute(senderTask);
             String[] responseLines = senderTask.get();
+            if (responseLines.length < 1 || responseLines[0].equals("CONNECT_ERROR"))
+                throw new RuntimeException();
+            else {
+                id = Integer.parseInt(responseLines[0]);
+            }
+        }
+        catch (Exception e) {
+            throw new RuntimeException("Error communicating with server");
+        }
+    }
 
 
     public void updateFirstNameInDB(String editedFirstName) throws  RuntimeException{
@@ -239,25 +250,15 @@ public class User {
         }
     }
 
-
-
     public int refreshHouseholds() throws RuntimeException {
         try {
             String script = "refreshHouseholds.php";
             String data = HTTPSDataSender.mapToJson(this);
-            String[] responseLines = HTTPSDataSender.initiateTransaction(script, data);
+            String[] responseLines = HTTPSDataSender.initiateTransaction(script,data);
 
             if (responseLines.length < 1 || responseLines[0].equals("CONNECT_ERROR"))
                 throw new RuntimeException();
             else {
-                id = Integer.parseInt(responseLines[0]);
-            }
-        }
-        catch (Exception e) {
-            throw new RuntimeException("Error communicating with server");
-        }
-    }
-
                 int numHouses = Integer.parseInt(responseLines[0]);
                 houseId.clear();
                 houseId.trimToSize();
