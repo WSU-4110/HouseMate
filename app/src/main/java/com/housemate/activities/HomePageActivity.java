@@ -87,8 +87,8 @@ public class HomePageActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void onChatBtnClicked(View view) {
-        Intent intent = new Intent(this, CurrentHousehold.class);
+    public void gotoMetrics(View view) {
+        Intent intent = new Intent(this, SelectHouse.class);
         startActivity(intent);
     }
 

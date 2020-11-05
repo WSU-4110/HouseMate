@@ -71,9 +71,9 @@
             android:layout_width="0dp"
             android:layout_weight=".25"
             android:layout_height="wrap_content"
-            android:text="Chat"
+            android:text="Metrics"
             android:id="@+id/chatPageBtn"
-            android:onClick="onChatBtnClicked"/>
+            android:onClick="gotoMetrics"/>
         <Button
             android:layout_width="0dp"
             android:layout_weight=".25"
