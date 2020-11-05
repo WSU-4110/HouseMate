@@ -120,7 +120,6 @@
         android:layout_width="86dp"
         android:layout_height="15dp"
         android:layout_marginTop="12dp"
-        android:buttonTint="#3F51B5"
         android:checked="true"
         android:clickable="true"
         android:fadingEdge="none"
