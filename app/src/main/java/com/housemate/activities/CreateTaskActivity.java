@@ -123,9 +123,6 @@ public class CreateTaskActivity extends AppCompatActivity implements DatePickerD
                 LocalDate dueDate = LocalDate.of(2020, 4, 12);
                 LocalTime dueTime = LocalTime.of(10, 30);
                  */
-                ArrayList<String> users = new ArrayList<>(Arrays.asList("Bob", "Joe", "Phil"));
-                String name = "Wash dishes";
-                String description = "Clean counter-tops when done";
                 IncompleteTask task = new IncompleteTask(taskName, taskNotes, assignedTo, dueDate, dueTime);
                 task.create(MainActivity.currentHousehold.getHouseID());
 

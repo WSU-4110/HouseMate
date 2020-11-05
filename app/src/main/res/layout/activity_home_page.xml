@@ -30,19 +30,20 @@
         android:text="TASKS"
         android:padding="5sp"/>
 
-    <ImageButton
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_margin="16dp"
         android:layout_centerHorizontal="true"
         android:layout_above="@id/linearLayout"
-        app:srcCompat = "@mipmap/ic_add"
-        android:id="@+id/createTaskBtn"/>
+        android:src="@drawable/ic_baseline_add_24"
+        android:id="@+id/createTaskBtn"
+        />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/task_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="80dp"
         android:scrollbars="vertical"
         android:layout_below="@id/display_user"
         android:layout_above="@+id/linearLayout"
