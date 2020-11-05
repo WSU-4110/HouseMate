@@ -24,6 +24,14 @@
         android:layout_height="wrap_content"
         android:background="@color/aero_blue"
         android:padding="10dp"
+        android:src="@drawable/ic_baseline_person_24"
+        android:layout_alignTop="@+id/taskTitleTV" />
+
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/aero_blue"
+        android:padding="10dp"
         android:src="@drawable/ic_baseline_house_24"
         android:layout_alignParentRight="true"
         android:layout_alignTop="@+id/taskTitleTV"
