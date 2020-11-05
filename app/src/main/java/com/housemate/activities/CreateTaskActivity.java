@@ -73,6 +73,8 @@ public class CreateTaskActivity extends AppCompatActivity implements DatePickerD
         housemates = new ArrayList<>();
         notesET = findViewById(R.id.notesET);
         cancelBtn = findViewById(R.id.cancelBtn);
+        dueDate = null;
+        dueTime = null;
         taskName = "New Task";
         repeatTask = "Never";
         priority = "None";
@@ -83,7 +85,7 @@ public class CreateTaskActivity extends AppCompatActivity implements DatePickerD
         housemates.add("pam");
         housemates.add("oscar");
 
-//        assignedTo = housemates;
+        assignedTo = housemates;
 //
 //        housemateRecViewAdapter = new HousemateRecViewAdapter(this);
 //        housemateRecView.setAdapter(housemateRecViewAdapter);
