@@ -50,13 +50,11 @@ public class EditProfile extends AppCompatActivity {
         String editedUserName = usernameET.getText().toString();
         String editedEmail = emailET.getText().toString();
 
-        if(editedFirstName.isEmpty() || editedLastName.isEmpty() || editedUserName.isEmpty() || editedEmail.isEmpty()){
-            Toast toast = Toast.makeText(EditProfile.this, "Please fill out all the fields", Toast.LENGTH_SHORT);
-            toast.show();
+        if(editedFirstName.isEmpty() || editedLastName.isEmpty() || editedUserName.isEmpty() || !isEmailValid(editedEmail)){
+            Toast.makeText(EditProfile.this, "Please fill out all the fields & enter valid email.", Toast.LENGTH_SHORT).show();
         }
         else{
             // update user data in database only if data was modified in edit text view
-
             if(!editedFirstName.equals(MainActivity.currentUser.getFirstName())){
                 MainActivity.currentUser.updateFirstNameInDB(editedFirstName);
             }
@@ -71,5 +69,12 @@ public class EditProfile extends AppCompatActivity {
             }
         }
     }
+
+    boolean isEmailValid(CharSequence email) {
+        return  android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches();
+    }
+
+
+
 
 }

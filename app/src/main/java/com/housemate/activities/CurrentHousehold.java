@@ -39,16 +39,20 @@ public class CurrentHousehold extends AppCompatActivity {
 
     }
     public void showHousemates(){
+
         ArrayList<String> housemateList = MainActivity.currentHousehold.getUsers();
+        ArrayList<String> userIdList = MainActivity.currentHousehold.getUserIdList();
 
         currentHouseHoldRVAdapter = new CurrentHouseholdRVAdapter(CurrentHousehold.this);
         housemateRecView.setAdapter(currentHouseHoldRVAdapter);
         currentHouseHoldRVAdapter.setHousemateList(housemateList);
+        currentHouseHoldRVAdapter.setUserIdList(userIdList);
         housemateRecView.setLayoutManager(new LinearLayoutManager(CurrentHousehold.this));
     }
 
     public void onBackBtnClicked(View view) {
         // go back to settings page
+
     }
 
 

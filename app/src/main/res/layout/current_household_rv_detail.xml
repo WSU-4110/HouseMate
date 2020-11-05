@@ -8,11 +8,11 @@
         android:layout_height="wrap_content"
         android:textSize="30dp"
         android:id="@+id/housemateTV"
-        android:layout_toLeftOf="@id/removeFromGroupBtn"/>
+        android:layout_toLeftOf="@id/removeHousemateBtn"/>
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Remove"
-        android:id="@+id/removeFromGroupBtn"
+        android:id="@+id/removeHousemateBtn"
         android:layout_alignParentEnd="true"/>
 </RelativeLayout>
