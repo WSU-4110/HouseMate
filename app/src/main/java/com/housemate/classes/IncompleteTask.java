@@ -83,11 +83,12 @@ public class IncompleteTask extends Task {
         }
     }
 
-    public void complete(int userId, int houseId) throws RuntimeException {
+    public static void complete(int taskId, int userId, int houseId) throws RuntimeException {
         try {
             if (userId == -1 || houseId == -1) {  throw new RuntimeException(); }
             String script = "completeTask2.php";
-            String data = "{\"taskId\":" + getId() + ",\"userId\":" + userId + ",\"houseId\":" + houseId + "}";
+            String data = "{\"taskId\":" + taskId + ",\"userId\":" + userId + ",\"houseId\":" + houseId + "}";
+            HTTPSDataSender.initiateTransaction(script,data);
         } catch (Exception e) {
             throw new RuntimeException("Error communicating with server");
         }

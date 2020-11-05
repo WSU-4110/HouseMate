@@ -28,6 +28,7 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.TaskLi
         public TextView assignedUserView;
         public ImageView editTaskView;
         public ImageView deleteTaskView;
+        public ImageView completeTaskView;
 
         public TaskListViewHolder(@NonNull View view) {
             super(view);
@@ -35,6 +36,7 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.TaskLi
             assignedUserView = view.findViewById(R.id.assigned_user);
             editTaskView = view.findViewById(R.id.edit_task_view);
             deleteTaskView = view.findViewById(R.id.delete_task_view);
+            completeTaskView = view.findViewById(R.id.complete_task_view);
         }
     }
 
@@ -69,8 +71,14 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.TaskLi
 
         /*
         holder.editTaskView.setOnClickListener(view -> edit the task);
-        holder.completeTaskView.setOnClickListener(view -> complete the task);
         */
+        holder.completeTaskView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                IncompleteTask.complete(task.getId(),MainActivity.currentUser.getId(), MainActivity.currentHousehold.getHouseID());
+                notifyDataSetChanged();
+            }
+        });
         holder.deleteTaskView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
