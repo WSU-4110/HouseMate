@@ -76,7 +76,8 @@ public class HomePageActivity extends AppCompatActivity {
         logPageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(HomePageActivity.this, ViewCompletedTasksActivity.class));
+                Intent intent = new Intent(HomePageActivity.this, ViewCompletedTasksActivity.class);
+                startActivity(intent);
             }
         });
     }

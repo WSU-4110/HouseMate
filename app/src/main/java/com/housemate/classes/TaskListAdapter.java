@@ -68,24 +68,26 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.TaskLi
         }
 
         holder.taskView.setBackgroundColor((position % 2 == 0) ? 0xFFDDDDDD : 0xFFEEEEEE);
-
-        /*
+        if (!completedTasks) {
+                    /*
         holder.editTaskView.setOnClickListener(view -> edit the task);
         */
-        holder.completeTaskView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                IncompleteTask.complete(task.getId(),MainActivity.currentUser.getId(), MainActivity.currentHousehold.getHouseID());
-                notifyDataSetChanged();
-            }
-        });
-        holder.deleteTaskView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                IncompleteTask.delete(task.getId());
-                notifyDataSetChanged();
-            }
-        });
+            holder.completeTaskView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    IncompleteTask.complete(task.getId(),MainActivity.currentUser.getId(), MainActivity.currentHousehold.getHouseID());
+                    notifyDataSetChanged();
+                }
+            });
+            holder.deleteTaskView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    IncompleteTask.delete(task.getId());
+                    notifyDataSetChanged();
+                }
+            });
+        }
+
     }
 
     @Override
