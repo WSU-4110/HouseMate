@@ -32,8 +32,8 @@ public class HomePageActivity extends AppCompatActivity {
 
         displayUser = findViewById(R.id.display_user);
         displayUser.setText(
-                "User: " + MainActivity.currentUser.getFirstName() + " " + MainActivity.currentUser.getLastName() + "\n" +
-                        "Household: " + MainActivity.currentHousehold.getHouseholdName()
+                "User: \n" + MainActivity.currentUser.getFirstName() + " " + MainActivity.currentUser.getLastName() + "\n" +
+                        "Household: \n" + MainActivity.currentHousehold.getHouseholdName()
         );
 
         taskList = IncompleteTask.loadHouseholdTasks(MainActivity.currentHousehold.getHouseID());
