@@ -93,10 +93,10 @@ public class IncompleteTask extends Task {
         }
     }
 
-    public int delete() throws RuntimeException {
+    public static int delete(int taskId) throws RuntimeException {
         try {
             String script = "deleteTask1.php";
-            String data = String.valueOf(getId());
+            String data = String.valueOf(taskId);
             String[] responseLines = HTTPSDataSender.initiateTransaction(script, data);
 
             if (responseLines[0].equals("1")) { return 1; }

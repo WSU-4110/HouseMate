@@ -56,8 +56,6 @@ public class CreateTaskActivity extends AppCompatActivity implements DatePickerD
     LocalTime dueTime;
     HousemateRecViewAdapter housemateRecViewAdapter;
 
-    public static final String TASK_NAME_TAG = "taskName";
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -123,16 +121,10 @@ public class CreateTaskActivity extends AppCompatActivity implements DatePickerD
                 LocalDate dueDate = LocalDate.of(2020, 4, 12);
                 LocalTime dueTime = LocalTime.of(10, 30);
                  */
-
-                LocalTime dueTime = LocalTime.of(9, 30);
-                ArrayList<String> users = new ArrayList<>(Arrays.asList("Bob", "Joe", "Phil"));
-                String name = "Wash dishes";
-                String description = "Clean counter-tops when done";
-                IncompleteTask task = new IncompleteTask(name, description, users, dueDate, dueTime);
+                IncompleteTask task = new IncompleteTask(taskName, taskNotes, assignedTo, dueDate, dueTime);
                 task.create(MainActivity.currentHousehold.getHouseID());
 
                 Intent intent = new Intent(CreateTaskActivity.this, HomePageActivity.class);
-                intent.putExtra(TASK_NAME_TAG, taskName);
                 startActivity(intent);
             }
         });
