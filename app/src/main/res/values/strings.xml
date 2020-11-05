@@ -1,5 +1,8 @@
 <resources>
     <string name="app_name">HouseMate App</string>
+    <string name="edit_task_string">edit task</string>
+    <string name="complete_task_string">complete task</string>
+    <string name="delete_task_string">delete task</string>
     <string-array name="repeatTaskArr">
         <item>Never</item>
         <item>Daily</item>

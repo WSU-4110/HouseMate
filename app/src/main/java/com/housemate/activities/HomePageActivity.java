@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.housemate.classes.IncompleteTask;
 import com.housemate.classes.Task;
 import com.housemate.classes.TaskListAdapter;
 
@@ -37,20 +38,21 @@ public class HomePageActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
 
-        displayUser = (TextView)findViewById(R.id.display_user);
+        displayUser = findViewById(R.id.display_user);
         displayUser.setText(
                 "User: " + MainActivity.currentUser.getFirstName() + " " + MainActivity.currentUser.getLastName() + "\n" +
-                "Household: " + MainActivity.currentHousehold.getHouseholdName()
-                );
+                        "Household: " + MainActivity.currentHousehold.getHouseholdName()
+        );
 
-        taskList = Task.loadTasks(MainActivity.currentHousehold.getHouseID());
+        taskList = IncompleteTask.loadHouseholdTasks(MainActivity.currentHousehold.getHouseID());
         taskRecyclerView = (RecyclerView) findViewById(R.id.task_recycler_view);
-        taskAdapter = new TaskListAdapter(this, taskList);
+        taskAdapter = new TaskListAdapter(this, taskList, false);
         taskLayoutManager = new LinearLayoutManager(this);
         taskRecyclerView.setLayoutManager(taskLayoutManager);
         taskRecyclerView.setAdapter(taskAdapter);
 
         createTaskBtn = findViewById(R.id.createTaskBtn);
+
         createTaskBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
