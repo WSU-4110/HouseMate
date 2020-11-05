@@ -129,7 +129,8 @@ public class User {
             else {
                 houseId.remove(householdId);
             }
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
             throw new RuntimeException("Error communicating with server");
         }
     }
