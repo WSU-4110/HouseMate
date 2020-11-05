@@ -10,11 +10,11 @@
         <item name="colorPrimaryVariant">@color/green_sheen</item>
         <item name="colorSecondaryVariant">@color/middle_blue</item>
         <item name="colorSurface">@color/morning_blue</item>
-        <item name="colorOnPrimary">@color/black_800</item>
-        <item name="colorOnSecondary">@color/black_800</item>
+        <item name="colorOnPrimary">@color/white_50</item>
+        <item name="colorOnSecondary">@color/white_50</item>
         <item name="colorOnBackground">@color/morning_blue</item>
         <item name="colorOnError">@color/terra_cotta</item>
-        <item name="colorOnSurface">@color/black_800</item>
+        <item name="colorOnSurface">@color/white_50</item>
         <item name="scrimBackground">@color/aero_blue</item>
 
         <item name="textAppearanceHeadline1">@style/TextAppearance.MaterialComponents.Headline1</item>
