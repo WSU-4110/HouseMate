@@ -89,5 +89,10 @@ public class HomePageActivity extends AppCompatActivity {
       //  super.onBackPressed();
         // do nothing
     }
+
+    public void gotoCurrentHousehold(View view) {
+        Intent intent = new Intent(this, CurrentHousehold.class);
+        startActivity(intent);
+    }
 }
 

@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -51,8 +52,8 @@ public class CurrentHousehold extends AppCompatActivity {
     }
 
     public void onBackBtnClicked(View view) {
-        // go back to settings page
-
+        Intent intent = new Intent(this, HomePageActivity.class);
+        startActivity(intent);
     }
 
 
