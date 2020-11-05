@@ -31,7 +31,10 @@ import com.housemate.classes.Task;
 import com.housemate.classes.TimePickerFragment;
 
 import java.text.DateFormat;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 
 //extends FragmentActivity
@@ -113,8 +116,12 @@ public class CreateTaskActivity extends AppCompatActivity implements DatePickerD
                 Log.i("notes" , taskNotes);
                 */
 
-                Task task = new Task( taskName, taskNotes, housemates, "testDate", "testTime", "ONE-TIME");
+                LocalDate dueDate = LocalDate.of(2020, 4, 12);
+                LocalTime dueTime = LocalTime.of(10, 30);
+                ArrayList<String> users = new ArrayList<>(Arrays.asList("Bob", "Joe", "Phil"));
+                Task task = new Task("Laundry", "Sheets", users, dueDate, dueTime, "WEEKLY");
                 task.createTask(MainActivity.currentHousehold.getHouseID());
+
                 Intent intent = new Intent(CreateTaskActivity.this, HomePageActivity.class);
                 startActivity(intent);
             }

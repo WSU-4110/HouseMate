@@ -73,6 +73,7 @@ public class HTTPSDataSender implements Callable {
 
     public static String mapToJson(Object o) throws JsonProcessingException {
         ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.findAndRegisterModules();
         objectMapper.setVisibility(PropertyAccessor.FIELD, JsonAutoDetect.Visibility.ANY);
         String data = objectMapper.writeValueAsString(o);
         return data;
