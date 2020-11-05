@@ -5,8 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
-    android:background="#68141515"
-    android:backgroundTint="#99141515">
+    android:background="#FFFFFF" >
 
     <ImageView
         android:layout_width="300dp"
@@ -79,11 +78,17 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="12dp"
+<<<<<<< HEAD
         android:background="#000000"
         android:ems="10"
         android:onClick="onLogin"
         android:text="Login"
         android:textColor="#000000"
+=======
+        android:ems="10"
+        android:onClick="onLogin"
+        android:text="Login"
+>>>>>>> 338d91db40258dee10b8ea5ef701189593f6650a
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.862"
@@ -99,6 +104,7 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="12dp"
+<<<<<<< HEAD
         android:background="#000000"
         android:ems="10"
         android:onClick="onRegister"
@@ -107,6 +113,14 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.129"
+=======
+        android:ems="10"
+        android:onClick="onRegister"
+        android:text="Register "
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.145"
+>>>>>>> 338d91db40258dee10b8ea5ef701189593f6650a
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView"
         app:layout_constraintVertical_bias="0.0" />

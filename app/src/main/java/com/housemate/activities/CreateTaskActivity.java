@@ -27,6 +27,7 @@ import android.widget.TimePicker;
 import com.housemate.classes.DatePickerFragment;
 import com.housemate.classes.DiscardTaskDialogue;
 import com.housemate.adapters.HousemateRecViewAdapter;
+import com.housemate.classes.IncompleteTask;
 import com.housemate.classes.Task;
 import com.housemate.classes.TimePickerFragment;
 
@@ -122,9 +123,13 @@ public class CreateTaskActivity extends AppCompatActivity implements DatePickerD
                 LocalDate dueDate = LocalDate.of(2020, 4, 12);
                 LocalTime dueTime = LocalTime.of(10, 30);
                  */
+
+                LocalTime dueTime = LocalTime.of(9, 30);
                 ArrayList<String> users = new ArrayList<>(Arrays.asList("Bob", "Joe", "Phil"));
-                Task task = new Task(taskName, taskNotes, assignedTo, dueDate, dueTime, "WEEKLY");
-                task.createTask(MainActivity.currentHousehold.getHouseID());
+                String name = "Wash dishes";
+                String description = "Clean counter-tops when done";
+                IncompleteTask task = new IncompleteTask(name, description, users, dueDate, dueTime);
+                task.create(MainActivity.currentHousehold.getHouseID());
 
                 Intent intent = new Intent(CreateTaskActivity.this, HomePageActivity.class);
                 intent.putExtra(TASK_NAME_TAG, taskName);
