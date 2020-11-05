@@ -13,14 +13,16 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/newTaskTitleTV"
+            android:layout_alignParentLeft="true"
             android:text="cancel"
             android:id="@+id/cancelBtn"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="NEW TASK"
-            android:textSize="30sp"
-            android:layout_toRightOf="@id/cancelBtn"
+            android:textSize="20sp"
+            android:layout_centerHorizontal="true"
             android:id="@+id/newTaskTitleTV"
             android:paddingHorizontal="30dp"/>
         <Button
@@ -28,6 +30,7 @@
             android:layout_height="wrap_content"
             android:text="CREATE"
             android:layout_toRightOf="@+id/newTaskTitleTV"
+            android:layout_alignParentRight="true"
             android:id="@+id/createTaskBtn"/>
 
 
