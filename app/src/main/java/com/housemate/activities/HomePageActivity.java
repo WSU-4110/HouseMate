@@ -97,7 +97,7 @@ public class HomePageActivity extends AppCompatActivity {
     }
 
     public void gotoMetrics(View view) {
-        Intent intent = new Intent(this, SelectHouse.class);
+        Intent intent = new Intent(this, TaskMetricsActivity.class);
         startActivity(intent);
     }
 
