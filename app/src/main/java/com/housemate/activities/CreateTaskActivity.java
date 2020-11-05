@@ -54,8 +54,6 @@ public class CreateTaskActivity extends AppCompatActivity implements DatePickerD
     String taskName, dueDate, dueTime, repeatTask, priority, taskNotes; // save all var to Task Obj.
     HousemateRecViewAdapter housemateRecViewAdapter;
 
-    public static final String TASK_NAME_TAG = "taskName";
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -128,7 +126,6 @@ public class CreateTaskActivity extends AppCompatActivity implements DatePickerD
                 task.create(MainActivity.currentHousehold.getHouseID());
 
                 Intent intent = new Intent(CreateTaskActivity.this, HomePageActivity.class);
-                intent.putExtra(TASK_NAME_TAG, taskName);
                 startActivity(intent);
             }
         });

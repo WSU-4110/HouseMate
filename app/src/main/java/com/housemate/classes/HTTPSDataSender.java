@@ -78,4 +78,5 @@ public class HTTPSDataSender implements Callable {
         String data = objectMapper.writeValueAsString(o);
         return data;
     }
+
 }
