@@ -28,7 +28,8 @@ import java.util.List;
 public class HomePageActivity extends AppCompatActivity {
     private ImageButton createTaskBtn;
     private Button chatBtn;
-
+    private TextView displayUser;
+    private Button logPageButton;
     private List<Task> taskList;
     private RecyclerView taskRecyclerView;
     private RecyclerView.Adapter taskAdapter;
@@ -71,6 +72,13 @@ public class HomePageActivity extends AppCompatActivity {
             finish();
         }
 
+        logPageButton = findViewById(R.id.logPageBtn);
+        logPageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(HomePageActivity.this, ViewCompletedTasksActivity.class));
+            }
+        });
     }
 
     public void onSwitchHousehold(View view) {
@@ -80,11 +88,6 @@ public class HomePageActivity extends AppCompatActivity {
 
     public void onChatBtnClicked(View view) {
         Intent intent = new Intent(this, CurrentHousehold.class);
-        startActivity(intent);
-    }
-
-    public void onLogBtnClicked(View view) {
-        Intent intent = new Intent(this, EditProfile.class);
         startActivity(intent);
     }
 
