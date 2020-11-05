@@ -1,6 +1,7 @@
 package com.housemate.classes;
 
 import android.content.Context;
+import android.database.DataSetObserver;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -49,7 +50,6 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.TaskLi
         LayoutInflater layoutInflater = LayoutInflater.from(context);
         int layoutId = (completedTasks) ? R.layout.completed_task : R.layout.incomplete_task;
         View view = layoutInflater.inflate(layoutId, parent, false);
-
         //view.setOnClickListener(v -> view the task);
         return new TaskListViewHolder(view);
     }
@@ -75,6 +75,7 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.TaskLi
             @Override
             public void onClick(View v) {
                 IncompleteTask.delete(task.getId());
+                notifyDataSetChanged();
             }
         });
     }
@@ -83,4 +84,5 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.TaskLi
     public int getItemCount() {
         return taskList.size();
     }
+
 }

@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.ActivityManager;
 import android.content.Intent;
+import android.database.DataSetObserver;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -26,7 +27,6 @@ import java.util.List;
 
 public class HomePageActivity extends AppCompatActivity {
     private ImageButton createTaskBtn;
-    private TextView displayUser;
     private Button chatBtn;
 
     private List<Task> taskList;
@@ -38,15 +38,19 @@ public class HomePageActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
 
-        displayUser = findViewById(R.id.display_user);
-        displayUser.setText(
-                "User: \n" + MainActivity.currentUser.getFirstName() + " " + MainActivity.currentUser.getLastName() + "\n" +
-                        "Household: \n" + MainActivity.currentHousehold.getHouseholdName()
-        );
 
         taskList = IncompleteTask.loadHouseholdTasks(MainActivity.currentHousehold.getHouseID());
         taskRecyclerView = (RecyclerView) findViewById(R.id.task_recycler_view);
         taskAdapter = new TaskListAdapter(this, taskList, false);
+        // Really janky way to update. REPLACE LATER
+        taskAdapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver()
+        {
+            @Override
+            public void onChanged() {
+                taskList = IncompleteTask.loadHouseholdTasks(MainActivity.currentHousehold.getHouseID());
+                startActivity(new Intent(HomePageActivity.this, HomePageActivity.class));
+            }
+        });
         taskLayoutManager = new LinearLayoutManager(this);
         taskRecyclerView.setLayoutManager(taskLayoutManager);
         taskRecyclerView.setAdapter(taskAdapter);
