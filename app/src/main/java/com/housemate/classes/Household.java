@@ -1,5 +1,7 @@
 package com.housemate.classes;
 
+import android.util.Log;
+
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -129,7 +131,6 @@ public class Household
         }
     }
 
-
     public ArrayList<String> getUsers() throws RuntimeException {
         try {
             URL url = new URL("https://housemateapp1.000webhostapp.com/getUsers.php");
@@ -156,5 +157,54 @@ public class Household
             throw new RuntimeException("Error communicating with server");
         }
     }
+    public ArrayList<String> getUserIdList() throws RuntimeException {
+        try {
+            URL url = new URL("https://housemateapp1.000webhostapp.com/getUserIdList.php");
+
+            String data = "{\"houseID\":" + houseID + "}";
+
+            HTTPSDataSender sender = new HTTPSDataSender(url, data);
+            FutureTask<String[]> senderTask = new FutureTask<>(sender);
+            ExecutorService executor = Executors.newFixedThreadPool(1);
+            executor.execute(senderTask);
+            String[] responseLines = senderTask.get();
+
+            if (responseLines.length < 1 || responseLines[0].equals("CONNECT_ERROR"))
+                throw new RuntimeException();
+            else {
+                ArrayList<String> userIdList = new ArrayList<String>();
+                for (int i = 0; i < responseLines.length; i++) {
+                    userIdList.add(responseLines[i]);
+                }
+                return userIdList;
+            }
+        }
+        catch (Exception e) {
+            throw new RuntimeException("Error communicating with server");
+        }
+    }
+    public void removeHousemateFromHousehold(int userID) throws RuntimeException {
+        try {
+            URL url = new URL("https://housemateapp1.000webhostapp.com/removeHousemateFromHousehold.php");
+
+            String data = "{\"houseID\":" + houseID + ",\"userID\":" + userID + "}";
+
+            HTTPSDataSender sender = new HTTPSDataSender(url, data);
+            FutureTask<String[]> senderTask = new FutureTask<>(sender);
+            ExecutorService executor = Executors.newFixedThreadPool(1);
+            executor.execute(senderTask);
+            String[] responseLines = senderTask.get();
+
+            if (responseLines.length < 1 || responseLines[0].equals("CONNECT_ERROR"))
+                throw new RuntimeException();
+            else {
+                Log.i("DB response",responseLines[0] ) ;
+            }
+        }
+        catch (Exception e) {
+            throw new RuntimeException("Error communicating with server");
+        }
+    }
+
 
 }

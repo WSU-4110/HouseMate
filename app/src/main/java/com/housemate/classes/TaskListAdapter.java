@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.core.text.HtmlCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.housemate.activities.MainActivity;
 import com.housemate.activities.R;
 
 import java.time.format.DateTimeFormatter;
@@ -69,8 +70,13 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.TaskLi
         /*
         holder.editTaskView.setOnClickListener(view -> edit the task);
         holder.completeTaskView.setOnClickListener(view -> complete the task);
-        holder.deleteTaskView.setOnClickListener(view -> delete the task);
-    */
+        */
+        holder.deleteTaskView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                IncompleteTask.delete(task.getId());
+            }
+        });
     }
 
     @Override
