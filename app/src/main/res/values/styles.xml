@@ -17,6 +17,7 @@
         <item name="colorOnSurface">@color/black_800</item>
         <item name="scrimBackground">@color/aero_blue</item>
 
+        <!-- App text field appearances -->
         <item name="textAppearanceHeadline1">@style/TextAppearance.MaterialComponents.Headline1</item>
         <item name="textAppearanceHeadline2">@style/TextAppearance.MaterialComponents.Headline2</item>
         <item name="textAppearanceHeadline3">@style/TextAppearance.MaterialComponents.Headline3</item>
