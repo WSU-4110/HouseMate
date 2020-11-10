@@ -47,16 +47,12 @@ public class CreateTaskActivity extends AppCompatActivity implements DatePickerD
     ImageButton pickDateImgBtn, pickTimeImgBtn;
     TextView dateTV, timeTV;
     static ArrayList<String> housemates;
-        ArrayList<String> assignedTo;
+    ArrayList<String> assignedTo;
     ArrayList<Boolean> isAssigned;
     RecyclerView housemateRecView ;
     Spinner repeatTaskSpinner;
-    String taskName, repeatTask, priority, taskNotes; // save all var to Task Obj.
-    LocalDate dueDate;
-    LocalTime dueTime;
+    String taskName, dueDate, dueTime, repeatTask, priority, taskNotes; // save all var to Task Obj.
     HousemateRecViewAdapter housemateRecViewAdapter;
-
-    public static final String TASK_NAME_TAG = "taskName";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,8 +71,8 @@ public class CreateTaskActivity extends AppCompatActivity implements DatePickerD
         notesET = findViewById(R.id.notesET);
         cancelBtn = findViewById(R.id.cancelBtn);
         taskName = "New Task";
-        dueDate = LocalDate.of(2020, 4, 12);
-        dueTime = LocalTime.of(10, 30);
+        dueDate = "";
+        dueTime = "";
         repeatTask = "Never";
         priority = "None";
         taskNotes = "";
@@ -86,7 +82,7 @@ public class CreateTaskActivity extends AppCompatActivity implements DatePickerD
         housemates.add("pam");
         housemates.add("oscar");
 
-        assignedTo = housemates;
+//        assignedTo = housemates;
 //
 //        housemateRecViewAdapter = new HousemateRecViewAdapter(this);
 //        housemateRecView.setAdapter(housemateRecViewAdapter);
@@ -99,7 +95,7 @@ public class CreateTaskActivity extends AppCompatActivity implements DatePickerD
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.spinner_item, this.getResources().getStringArray(R.array.repeatTaskArr) );
         // Create an ArrayAdapter using the string array and a default spinner layout
         //ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-          //      R.array.repeatTaskArr, android.R.layout.simple_spinner_item);
+        //      R.array.repeatTaskArr, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(R.layout.spinner_item);
         repeatTaskSpinner.setAdapter(adapter);
         repeatTaskSpinner.setOnItemSelectedListener(this);
@@ -119,11 +115,9 @@ public class CreateTaskActivity extends AppCompatActivity implements DatePickerD
                 Log.i("priority", priority);
                 Log.i("assigned to", printAssignTo);
                 Log.i("notes" , taskNotes);
+                */
 
                 LocalDate dueDate = LocalDate.of(2020, 4, 12);
-                LocalTime dueTime = LocalTime.of(10, 30);
-                 */
-
                 LocalTime dueTime = LocalTime.of(9, 30);
                 ArrayList<String> users = new ArrayList<>(Arrays.asList("Bob", "Joe", "Phil"));
                 String name = "Wash dishes";
@@ -132,7 +126,6 @@ public class CreateTaskActivity extends AppCompatActivity implements DatePickerD
                 task.create(MainActivity.currentHousehold.getHouseID());
 
                 Intent intent = new Intent(CreateTaskActivity.this, HomePageActivity.class);
-                intent.putExtra(TASK_NAME_TAG, taskName);
                 startActivity(intent);
             }
         });
@@ -193,7 +186,8 @@ public class CreateTaskActivity extends AppCompatActivity implements DatePickerD
         c.set(Calendar.YEAR, year);
         c.set(Calendar.MONTH,month);
         c.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-        dueDate = LocalDate.of(year,month,dayOfMonth);
+        dueDate = DateFormat.getDateInstance(DateFormat.FULL).format(c.getTime());
+        Log.i("date" , dueDate);
         String printDate = "Date: " + dueDate;
         dateTV.setText(printDate);
     }
@@ -204,14 +198,15 @@ public class CreateTaskActivity extends AppCompatActivity implements DatePickerD
         Calendar c = Calendar.getInstance();
         c.set(Calendar.HOUR_OF_DAY, hourOfDay);
         c.set(Calendar.MINUTE, minute);
-        dueTime = LocalTime.of(hourOfDay,minute);
+        dueTime = DateFormat.getTimeInstance(DateFormat.SHORT).format(c.getTime());
+        Log.i("selected time", dueTime);
         String printTime = "Time: " + dueTime;
         timeTV.setText(printTime);
 
     }
 
 
-// assign housemates to task via checklist
+    // assign housemates to task via checklist
     public void onCheckboxClicked(View view) {
         CheckBox housemateCheckBox = view.findViewById(R.id.housemateCheckBox);
         String selectedHousemate = housemateCheckBox.getText().toString();
@@ -256,20 +251,19 @@ public class CreateTaskActivity extends AppCompatActivity implements DatePickerD
             case R.id.lowRadioBtn:
                 if (checked)
                     priority = "Low";
-                    break;
+                break;
             case R.id.medRadioBtn:
                 if (checked)
                     priority = "Medium";
-                    break;
+                break;
             case R.id.highRadioBtn:
                 if (checked)
                     priority = "High";
-                    break;
+                break;
             default:
                 priority = "None";
         }
     }
 
 }
-
 

@@ -7,6 +7,7 @@
     tools:context=".MainActivity"
     android:background="#FFFFFF" >
 
+
     <ImageView
         android:layout_width="300dp"
         android:layout_height="300dp"
@@ -70,6 +71,9 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+
+
+
     <Button
         android:id="@+id/Login"
         android:layout_width="wrap_content"
@@ -85,8 +89,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.862"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintTop_toBottomOf="@+id/Password"  />
+
+
 
     <Button
         android:id="@+id/Register"
@@ -111,6 +117,7 @@
         android:layout_width="86dp"
         android:layout_height="15dp"
         android:layout_marginTop="12dp"
+        android:buttonTint="#3F51B5"
         android:checked="true"
         android:clickable="true"
         android:fadingEdge="none"
@@ -134,4 +141,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/checkBox2" />
 
+    <!-- android:backgroundTint="#99141515" -->
 </androidx.constraintlayout.widget.ConstraintLayout>
