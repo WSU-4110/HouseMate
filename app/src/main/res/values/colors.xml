@@ -14,6 +14,7 @@
 
     <color name="terra_cotta">#eb7c63</color> <!--Color error (alt-dark)-->
     <color name="atomic_tangerine">#ea9462</color> <!--Color error (alt-light)-->
+    <color name="error_red">#C53C3C</color> <!--Color error (default)-->
     <!-- SPRINT 2 COLOR PALETTE -->
 
     <!--Color surface (light), color on error (light), -->
