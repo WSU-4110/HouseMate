@@ -137,6 +137,22 @@ public class User {
         }
     }
 
+    public void updateUserData() throws RuntimeException{
+        try {
+            String script = "updateUserData.php";
+            String data = HTTPSDataSender.mapToJson(this);
+            String[] responseLines = HTTPSDataSender.initiateTransaction(script,data);
+
+            if (responseLines.length < 1 || responseLines[0].equals("CONNECT_ERROR"))
+                throw new RuntimeException();
+            else{
+                Log.i("DB success", responseLines[0]);
+            }
+        }
+        catch (Exception e) {
+            throw new RuntimeException("Error communicating with server");
+        }
+    }
 
     public void updateFirstNameInDB(String editedFirstName) throws  RuntimeException{
         try{

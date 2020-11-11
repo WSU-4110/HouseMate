@@ -10,6 +10,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.time.chrono.MinguoChronology;
+
 public class EditProfile extends AppCompatActivity {
 
     Button backBtn, saveBtn;
@@ -54,27 +56,15 @@ public class EditProfile extends AppCompatActivity {
             Toast.makeText(EditProfile.this, "Please fill out all the fields & enter valid email.", Toast.LENGTH_SHORT).show();
         }
         else{
-            // update user data in database only if data was modified in edit text view
-            if(!editedFirstName.equals(MainActivity.currentUser.getFirstName())){
-                MainActivity.currentUser.updateFirstNameInDB(editedFirstName);
-            }
-            if(!editedLastName.equals(MainActivity.currentUser.getLastName())){
-                MainActivity.currentUser.updateLastNameInDB(editedLastName);
-            }
-            if(!editedUserName.equals(MainActivity.currentUser.getUser_name())){
-                MainActivity.currentUser.updateUsernameInDB(editedUserName);
-            }
-            if(!editedEmail.equals(MainActivity.currentUser.getEmail())) {
-                MainActivity.currentUser.updateEmailInDB(editedEmail);
-            }
+            MainActivity.currentUser.setFirstName(editedFirstName);
+            MainActivity.currentUser.setLastName(editedLastName);
+            MainActivity.currentUser.setUser_name(editedUserName);
+            MainActivity.currentUser.setEmail(editedEmail);
+            MainActivity.currentUser.updateUserData();
         }
     }
 
     boolean isEmailValid(CharSequence email) {
         return  android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches();
     }
-
-
-
-
 }

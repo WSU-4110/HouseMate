@@ -14,6 +14,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.housemate.activities.CurrentHousehold;
 import com.housemate.activities.EditProfile;
 import com.housemate.activities.MainActivity;
 import com.housemate.activities.R;
@@ -24,7 +25,7 @@ public class CurrentHouseholdRVAdapter extends RecyclerView.Adapter<CurrentHouse
     ArrayList<String> housemateList = new ArrayList<>();
     ArrayList<String> userIdList = new ArrayList<>();
     private Context mContext ;
-
+    private ItemClickListener mClickListener;
 
     public CurrentHouseholdRVAdapter(Context mContext) {
         this.mContext = mContext;
@@ -48,16 +49,6 @@ public class CurrentHouseholdRVAdapter extends RecyclerView.Adapter<CurrentHouse
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.housemateTV.setText(housemateList.get(position));
-
-        holder.removeHousemateBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String userIdStr = userIdList.get(position);
-                int userId = Integer.parseInt(userIdStr);
-                MainActivity.currentHousehold.removeHousemateFromHousehold(userId);
-            }
-        });
-
     }
 
     @Override
@@ -65,7 +56,7 @@ public class CurrentHouseholdRVAdapter extends RecyclerView.Adapter<CurrentHouse
         return housemateList.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         RelativeLayout housemateRecView;
         TextView housemateTV;
         Button removeHousemateBtn;
@@ -76,9 +67,21 @@ public class CurrentHouseholdRVAdapter extends RecyclerView.Adapter<CurrentHouse
             housemateRecView = itemView.findViewById(R.id.housemateRecView);
             housemateTV = itemView.findViewById(R.id.housemateTV);
             removeHousemateBtn = itemView.findViewById(R.id.removeHousemateBtn);
-
-
+            removeHousemateBtn.setOnClickListener(this);
         }
+
+        @Override
+        public void onClick(View v) {
+            if (mClickListener != null) mClickListener.onItemClick(v, getAdapterPosition());
+        }
+    }
+    public void setClickListener(ItemClickListener itemClickListener) {
+        this.mClickListener = itemClickListener;
+    }
+
+    // CurrentHousehold activity will implement this method to respond to remove button click events
+    public interface ItemClickListener {
+        void onItemClick(View view, int position);
     }
 }
 
