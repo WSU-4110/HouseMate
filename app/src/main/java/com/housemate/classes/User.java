@@ -58,7 +58,6 @@ public class User {
     }
 
 
-
     public void register() throws RuntimeException {
         try {
             String script = "register.php";
@@ -140,7 +139,7 @@ public class User {
     public void updateUserData() throws RuntimeException{
         try {
             String script = "updateUserData.php";
-            String data = HTTPSDataSender.mapToJson(this);
+            String data = "{\"id\":" + id + ",\"firstName\": \"" + firstName + "\",\"lastName\":\"" + lastName + "\",\"email\":\"" + email +"\",\"user_name\":\"" + user_name + "\"}";
             String[] responseLines = HTTPSDataSender.initiateTransaction(script,data);
 
             if (responseLines.length < 1 || responseLines[0].equals("CONNECT_ERROR"))
