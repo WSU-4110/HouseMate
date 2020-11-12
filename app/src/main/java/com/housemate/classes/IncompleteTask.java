@@ -5,6 +5,7 @@ import androidx.annotation.NonNull;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.housemate.interfaces.IncompleteTaskState;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -16,6 +17,7 @@ public class IncompleteTask extends Task {
     private ArrayList<String> assignedUsers;
     private LocalDate dueDate;
     private LocalTime dueTime;
+    private transient IncompleteTaskState state;
 
     public IncompleteTask(
             String name,
@@ -28,6 +30,7 @@ public class IncompleteTask extends Task {
         this.assignedUsers = new ArrayList<>(assignedUsers);
         this.dueDate = dueDate;
         this.dueTime = dueTime;
+        state = new UnstoredTaskState();
     }
 
     @JsonCreator
@@ -40,6 +43,7 @@ public class IncompleteTask extends Task {
             @JsonProperty("id") int id
     ) {
         this(name, description, assignedUsers, dueDate, dueTime);
+        state = new StoredTaskState();
         setId(id);
     }
 
@@ -65,21 +69,15 @@ public class IncompleteTask extends Task {
                 getDueTime().format(DateTimeFormatter.ofPattern("h:mm a")));
     }
 
-    public void create(int houseId) throws RuntimeException {
-        if (getId() == -1) { //Prevents duplicate storage. Id is updated after first storage.
-            try {
-                String script = "createTask1.php";
-                String data = HTTPSDataSender.mapToJson(this) + "\n" + houseId;
-                String[] responseLines = HTTPSDataSender.initiateTransaction(script, data);
-
-                if (responseLines.length < 1 || responseLines[0].equals("CONNECT_ERROR"))
-                    throw new RuntimeException();
-                else
-                    super.setId(Integer.parseInt(responseLines[0]));
-
-            } catch (Exception e) {
-                throw new RuntimeException("Error communicating with server");
-            }
+    public boolean create(int houseId) throws RuntimeException {
+        try {
+            boolean isValidAction = state.create(houseId, this);
+            if (isValidAction)
+                state = new StoredTaskState();
+            return isValidAction;
+        }
+        catch (RuntimeException e) {
+            throw new RuntimeException("Error communicating with server");
         }
     }
 
@@ -154,5 +152,32 @@ public class IncompleteTask extends Task {
             return (task1DateTime.compareTo(task2DateTime));
         };
         tasks.sort(soonestDeadlineComparator);
+    }
+
+    static class UnstoredTaskState implements IncompleteTaskState {
+        @Override
+        public boolean create(int houseId, IncompleteTask task) {
+            if (task.getId() == -1) { //Prevents duplicate storage. Id is updated after first storage.
+                try {
+                    String script = "createTask1.php";
+                    String data = HTTPSDataSender.mapToJson(task) + "\n" + houseId;
+                    String[] responseLines = HTTPSDataSender.initiateTransaction(script, data);
+
+                    if (responseLines.length < 1 || responseLines[0].equals("CONNECT_ERROR"))
+                        throw new RuntimeException();
+                    else
+                        task.setId(Integer.parseInt(responseLines[0]));
+
+                } catch (Exception e) {
+                    throw new RuntimeException("Error communicating with server");
+                }
+            }
+            return true;
+        }
+    }
+
+    static class StoredTaskState implements IncompleteTaskState {
+        @Override
+        public boolean create(int houseId, IncompleteTask task) { return false; }
     }
 }
