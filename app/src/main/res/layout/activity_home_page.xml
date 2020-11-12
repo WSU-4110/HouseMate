@@ -51,13 +51,15 @@
             android:layout_weight=".25"
             android:layout_height="wrap_content"
             android:text="Log"
-            android:id="@+id/logPageBtn"/>
+            android:id="@+id/logPageBtn"
+            android:onClick="onLogBtnClicked"/>
         <Button
             android:layout_width="0dp"
             android:layout_weight=".25"
             android:layout_height="wrap_content"
             android:text="Chat"
-            android:id="@+id/chatPageBtn"/>
+            android:id="@+id/chatPageBtn"
+            android:onClick="onChatBtnClicked"/>
         <Button
             android:layout_width="0dp"
             android:layout_weight=".25"
