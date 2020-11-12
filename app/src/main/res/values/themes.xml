@@ -33,7 +33,7 @@
         <!--text fields.-->
         <item name="android:colorBackground">@color/white_50</item>
         <item name="colorSurface">@color/chinese_violet</item>
-        <item name="colorError">@color/red_600</item>
+        <item name="colorError">@color/error_red</item>
         <!--"On" colors define how text, icons and strokes are colored in relation to the surface-->
         <!--on which they appear.-->
         <item name="colorOnPrimary">@color/black_800</item>
