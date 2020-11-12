@@ -22,10 +22,10 @@
             android:id="@+id/newTaskTitleTV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/cancelBtn"
-            android:paddingHorizontal="30dp"
             android:text="NEW TASK"
-            android:textSize="30sp" />
+            android:textSize="20sp"
+            android:layout_centerHorizontal="true"
+            android:paddingHorizontal="30dp"/>
 
         <Button
             android:layout_width="wrap_content"

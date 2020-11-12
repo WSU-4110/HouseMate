@@ -3,6 +3,8 @@
     <string name="edit_task_string">edit task</string>
     <string name="complete_task_string">complete task</string>
     <string name="delete_task_string">delete task</string>
+    <string name="completed_tasks">COMPLETED TASKS</string>
+    <string name="back_to_home">BACK TO HOME</string>
     <string-array name="repeatTaskArr">
         <item>Never</item>
         <item>Daily</item>

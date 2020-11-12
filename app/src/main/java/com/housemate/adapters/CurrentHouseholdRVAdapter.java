@@ -48,6 +48,10 @@ public class CurrentHouseholdRVAdapter extends RecyclerView.Adapter<CurrentHouse
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.housemateTV.setText(housemateList.get(position));
+        if (Integer.parseInt(userIdList.get(position)) == MainActivity.currentUser.getId())
+        {
+            holder.removeHousemateBtn.setVisibility(View.INVISIBLE);
+        }
 
         holder.removeHousemateBtn.setOnClickListener(new View.OnClickListener() {
             @Override
