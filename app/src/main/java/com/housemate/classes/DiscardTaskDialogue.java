@@ -13,8 +13,9 @@ import androidx.appcompat.app.AppCompatDialogFragment;
 import androidx.fragment.app.FragmentManager;
 
 import com.housemate.activities.HomePageActivity;
+import com.housemate.adapters.CurrentHouseholdRVAdapter;
 
-public class DiscardTaskDialogue extends AppCompatDialogFragment {
+public class DiscardTaskDialogue extends AppCompatDialogFragment  {
 
     @NonNull
     @Override
