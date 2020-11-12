@@ -9,19 +9,23 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.housemate.classes.User;
+
 public class JoinHousehold extends AppCompatActivity {
+    private User user;
     EditText houseId;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_join_household);
         houseId = (EditText)findViewById(R.id.joinHouseholdId);
+        user = User.getInstance();
     }
 
     public void joinHouseholdGroup(View view) {
         int id = Integer.parseInt(houseId.getText().toString());
-        MainActivity.currentUser.joinHousehold(id);
-        if (MainActivity.currentUser.getHouseId().contains(id)) {
+        user.joinHousehold(id);
+        if (user.getHouseId().contains(id)) {
             MainActivity.currentHousehold.setHousehold(id);
             Intent intent = new Intent(this, HomePageActivity.class);
             startActivity(intent);

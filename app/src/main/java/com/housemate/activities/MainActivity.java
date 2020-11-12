@@ -24,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
     private Button Login;
     private Button Register;
     private TextView Info;
+    private User user;
     public static User currentUser;
     public static Household currentHousehold;
     @Override
@@ -36,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
         Register = (Button)findViewById(R.id.Register);
         Info = (TextView)findViewById(R.id.Info);
         currentHousehold = new Household();
-        currentUser = new User();
+        user = User.getInstance();
 
     }
 
@@ -44,11 +45,11 @@ public class MainActivity extends AppCompatActivity {
     public void onLogin (View view) {
         String username = Name.getText().toString();
         String password = Password.getText().toString();
-        currentUser.setUser_name(username);
-        currentUser.setUser_pass(password);
-        if (currentUser.login() == 1) {
+        user.setUser_name(username);
+        user.setUser_pass(password);
+        if (user.login() == 1) {
             Intent intent;
-            ArrayList<Integer> houseId = currentUser.getHouseId();
+            ArrayList<Integer> houseId = user.getHouseId();
             if (houseId.size() == 0) {
                 intent = new Intent(this, JoinCreateHousehold.class);
             }

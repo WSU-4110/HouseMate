@@ -75,7 +75,7 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.TaskLi
             holder.completeTaskView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    IncompleteTask.complete(task.getId(),MainActivity.currentUser.getId(), MainActivity.currentHousehold.getHouseID());
+                    IncompleteTask.complete(task.getId(),User.getInstance().getId(), MainActivity.currentHousehold.getHouseID());
                     notifyDataSetChanged();
                 }
             });

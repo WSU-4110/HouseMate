@@ -11,11 +11,13 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.housemate.classes.Household;
+import com.housemate.classes.User;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class SelectHouse extends AppCompatActivity {
+    private User user;
     private LinearLayout ll;
     private LinearLayout.LayoutParams lp;
     private int numHouses;
@@ -45,9 +47,9 @@ public class SelectHouse extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_house);
-
-        MainActivity.currentUser.refreshHouseholds();
-        ArrayList<Integer> houseList =  MainActivity.currentUser.getHouseId();
+        user = User.getInstance();
+        user.refreshHouseholds();
+        ArrayList<Integer> houseList = user.getHouseId();
         numHouses = houseList.size();
 
         ll = (LinearLayout) findViewById(R.id.selectHouse);

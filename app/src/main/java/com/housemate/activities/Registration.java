@@ -17,6 +17,7 @@ import android.widget.Toast;
 import com.housemate.classes.User;
 
 public class Registration extends AppCompatActivity implements View.OnFocusChangeListener  {
+    private User user;
     EditText firstNameET;
     EditText lastNameET;
     EditText emailET;
@@ -30,6 +31,7 @@ public class Registration extends AppCompatActivity implements View.OnFocusChang
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration3);
+        user = User.getInstance();
         firstNameET = (EditText)findViewById(R.id.firstName);
         lastNameET = (EditText)findViewById(R.id.lastName);
         emailET = (EditText)findViewById(R.id.Email);
@@ -85,12 +87,12 @@ public class Registration extends AppCompatActivity implements View.OnFocusChang
         }
         else {
 
-            MainActivity.currentUser.setUser_name(username);
-            MainActivity.currentUser.setUser_pass(password);
-            MainActivity.currentUser.setEmail(email);
-            MainActivity.currentUser.setFirstName(firstName);
-            MainActivity.currentUser.setLastName(lastName);
-            MainActivity.currentUser.register();
+            user.setUser_name(username);
+            user.setUser_pass(password);
+            user.setEmail(email);
+            user.setFirstName(firstName);
+            user.setLastName(lastName);
+            user.register();
 
 
             Intent intent = new Intent(this, JoinCreateHousehold.class);

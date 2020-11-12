@@ -17,17 +17,10 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.FutureTask;
 
 public class User {
-
-    // Class constructor
-    public User () {
-        this(null, null, null, null, null, -1, new ArrayList<Integer>());
-    }
-
-    public User (String username, String password) {
-        this(username, password, null, null, null, -1, new ArrayList<Integer>());
-    }
-
-    public  User (String username, String password, String email, String firstName, String lastName, int id, ArrayList<Integer> houseId) {
+    //Declare Singleton instance
+    private volatile static User user;
+    //Private constructor
+    private  User (String username, String password, String email, String firstName, String lastName, int id, ArrayList<Integer> houseId) {
         this.id = id;
         this.houseId = houseId;
         this.user_name = username;
@@ -36,6 +29,18 @@ public class User {
         this.firstName = firstName;
         this.lastName = lastName;
 
+    }
+
+    public static User getInstance() {
+        if (user == null) {
+            synchronized (User.class) {
+                if (user == null) {
+                    //Lazy initialization
+                    user = new User(null, null, null, null, null,-1, new ArrayList<Integer>());
+                }
+            }
+        }
+        return user;
     }
 
     @JsonCreator

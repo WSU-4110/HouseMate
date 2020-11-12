@@ -10,8 +10,10 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class EditProfile extends AppCompatActivity {
+import com.housemate.classes.User;
 
+public class EditProfile extends AppCompatActivity {
+    User user;
     Button backBtn, saveBtn;
     EditText fnameET, lnameET, usernameET, emailET;
 
@@ -20,6 +22,7 @@ public class EditProfile extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_profile);
 
+        user = User.getInstance();
         backBtn = findViewById(R.id.backBtn);
         saveBtn = findViewById(R.id.saveBtn);
         fnameET = findViewById(R.id.fnameET);
@@ -31,10 +34,10 @@ public class EditProfile extends AppCompatActivity {
     }
 
     public void fillUserData(){
-        fnameET.setText(MainActivity.currentUser.getFirstName());
-        lnameET.setText(MainActivity.currentUser.getLastName());
-        usernameET.setText(MainActivity.currentUser.getUser_name());
-        emailET.setText(MainActivity.currentUser.getEmail());
+        fnameET.setText(user.getFirstName());
+        lnameET.setText(user.getLastName());
+        usernameET.setText(user.getUser_name());
+        emailET.setText(user.getEmail());
     }
 
     public void backToSettings(View view) {
@@ -55,17 +58,17 @@ public class EditProfile extends AppCompatActivity {
         }
         else{
             // update user data in database only if data was modified in edit text view
-            if(!editedFirstName.equals(MainActivity.currentUser.getFirstName())){
-                MainActivity.currentUser.updateFirstNameInDB(editedFirstName);
+            if(!editedFirstName.equals(user.getFirstName())){
+                user.updateFirstNameInDB(editedFirstName);
             }
-            if(!editedLastName.equals(MainActivity.currentUser.getLastName())){
-                MainActivity.currentUser.updateLastNameInDB(editedLastName);
+            if(!editedLastName.equals(user.getLastName())){
+                user.updateLastNameInDB(editedLastName);
             }
-            if(!editedUserName.equals(MainActivity.currentUser.getUser_name())){
-                MainActivity.currentUser.updateUsernameInDB(editedUserName);
+            if(!editedUserName.equals(user.getUser_name())){
+                user.updateUsernameInDB(editedUserName);
             }
-            if(!editedEmail.equals(MainActivity.currentUser.getEmail())) {
-                MainActivity.currentUser.updateEmailInDB(editedEmail);
+            if(!editedEmail.equals(user.getEmail())) {
+                user.updateEmailInDB(editedEmail);
             }
         }
     }

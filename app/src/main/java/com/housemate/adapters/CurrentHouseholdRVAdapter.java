@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.housemate.activities.EditProfile;
 import com.housemate.activities.MainActivity;
 import com.housemate.activities.R;
+import com.housemate.classes.User;
 
 import java.util.ArrayList;
 
@@ -48,7 +49,7 @@ public class CurrentHouseholdRVAdapter extends RecyclerView.Adapter<CurrentHouse
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.housemateTV.setText(housemateList.get(position));
-        if (Integer.parseInt(userIdList.get(position)) == MainActivity.currentUser.getId())
+        if (Integer.parseInt(userIdList.get(position)) == User.getInstance().getId())
         {
             holder.removeHousemateBtn.setVisibility(View.INVISIBLE);
         }
