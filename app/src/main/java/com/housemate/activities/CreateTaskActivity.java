@@ -266,4 +266,3 @@ public class CreateTaskActivity extends AppCompatActivity implements DatePickerD
     }
 
 }
-
