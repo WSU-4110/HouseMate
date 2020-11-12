@@ -156,7 +156,7 @@ public class Registration extends AppCompatActivity implements View.OnFocusChang
 
         inputTitle += "*";
         inputLabelTV.setText(inputTitle);
-        inputLabelTV.setTextColor(getResources().getColor( R.color.red_600, this.getTheme()));
+        inputLabelTV.setTextColor(getResources().getColor( R.color.error_red, this.getTheme()));
     }
 
     public void setInputLabelToDefaultStyle(TextView inputLabelTV){

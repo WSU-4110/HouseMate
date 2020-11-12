@@ -18,23 +18,26 @@ import java.util.concurrent.FutureTask;
 
 public class Household
 {
+    // Singleton object/instance declaration
+        // 'volatile' ensures that our Household objects are correctly represented between different users
+    private volatile static Household household;
+
     // Member variables
     private String householdName;
     private int houseID;
 
-    // Constructor
-    public Household() {
+    // Constructors(Private Singleton) - Default/String init/ID init
+    private Household() {
         this("",-1);
     }
-    public Household(String householdName) {
+    private Household(String householdName) {
         this(householdName, -1);
     }
-    public Household(String householdName, int houseID)
+    private Household(String householdName, int houseID)
     {
         this.householdName = householdName;
         this.houseID = houseID;
     }
-
 
     // Setters
     public void setHouseID(int houseID)
@@ -56,6 +59,20 @@ public class Household
     public String getHouseholdName()
     {
         return householdName;
+    }
+
+    // Singleton getHouseholdInstance() method definition with synchronized lazy instantiation for app DB and display consistency between testers
+    public static Household getHouseholdInstance()
+    {
+        // Double Checked Locking implementation of Lazy instantiation of singleton object
+        if (household == null)
+        {
+            synchronized (Household.class) {
+                if (household == null)
+                    household = new Household("", -1);
+            }
+        }
+        return household; // Returns lazily instantiated singleton class object
     }
 
     // Create a new household group
@@ -84,7 +101,7 @@ public class Household
         }
     }
 
-    // Create a new household group
+    // Set household group from database
     public void setHousehold(int id) throws RuntimeException {
         try {
             URL url = new URL("https://housemateapp1.000webhostapp.com/setHousehold.php");
@@ -109,6 +126,7 @@ public class Household
         }
     }
 
+    // Retrieve Household information from the database
     public static String getHouseholdInfo(int id) throws RuntimeException {
         try {
             URL url = new URL("https://housemateapp1.000webhostapp.com/getHouseholdInfo.php");
@@ -133,6 +151,7 @@ public class Household
         }
     }
 
+    // Retrieve Users in Household group
     public ArrayList<String> getUsers() throws RuntimeException {
         try {
             URL url = new URL("https://housemateapp1.000webhostapp.com/getUsers.php");
@@ -159,6 +178,8 @@ public class Household
             throw new RuntimeException("Error communicating with server");
         }
     }
+
+    // Retrieve User IDs for Household Group list
     public ArrayList<String> getUserIdList() throws RuntimeException {
         try {
             URL url = new URL("https://housemateapp1.000webhostapp.com/getUserIdList.php");
@@ -185,6 +206,8 @@ public class Household
             throw new RuntimeException("Error communicating with server");
         }
     }
+
+    // Remove a User from the Household Group
     public void removeHousemateFromHousehold(int userID) throws RuntimeException {
         try {
             URL url = new URL("https://housemateapp1.000webhostapp.com/removeHousemateFromHousehold.php");
@@ -208,7 +231,7 @@ public class Household
         }
     }
 
-
+    // Load User task metrics for the Household Group
     public ArrayList<ArrayList<String>> loadMetrics() throws RuntimeException {
         try {
             String script = "loadMetrics.php";

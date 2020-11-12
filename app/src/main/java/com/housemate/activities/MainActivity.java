@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
         Login = (Button)findViewById(R.id.Login);
         Register = (Button)findViewById(R.id.Register);
         Info = (TextView)findViewById(R.id.Info);
-        currentHousehold = new Household();
+        currentHousehold = currentHousehold.getHouseholdInstance();        //currentHousehold.getHouseholdInstance();
         currentUser = new User();
 
     }
