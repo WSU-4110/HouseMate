@@ -17,14 +17,26 @@ import android.widget.Toast;
 import com.housemate.classes.User;
 
 public class Registration extends AppCompatActivity implements View.OnFocusChangeListener  {
-    EditText firstNameET;
-    EditText lastNameET;
-    EditText emailET;
-    EditText usernameET;
-    EditText passwordET;
-    EditText confirmPasswordET;
-    TextView emailTV, firstNameTV, lastNameTV, usernameTV, passwordTV, confirmPasswordTV, passwordErrorTV, emailErrorTV;
-    EditText [] inputFieldsET;
+
+    private static Registration registrationInstance = null;
+
+    private EditText firstNameET;
+    private EditText lastNameET;
+    private EditText emailET;
+    private EditText usernameET;
+    private EditText passwordET;
+    private EditText confirmPasswordET;
+    private TextView emailTV, firstNameTV, lastNameTV, usernameTV, passwordTV, confirmPasswordTV, passwordErrorTV, emailErrorTV;
+    private EditText [] inputFieldsET;
+
+// Implement Singleton design into the Registration Class
+    public static Registration getInstance()
+    {
+     if (registrationInstance == null){
+         registrationInstance = new Registration();
+     }
+     return registrationInstance;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +70,7 @@ public class Registration extends AppCompatActivity implements View.OnFocusChang
 
 
     // Execute new user insert to database
-    public void register (View view) {
+    private void register (View view) {
 
         String firstName = firstNameET.getText().toString();
         String lastName = lastNameET.getText().toString();
