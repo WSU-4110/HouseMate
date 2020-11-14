@@ -276,6 +276,23 @@ public class User {
         }
     }
 
+    //May be migrated to another class later
+    public static int requestPasswordReset(String email) {
+        try {
+            String script = "requestPasswordReset.php";
+            String[] responseLines = HTTPSDataSender.initiateTransaction(script,email);
+            if (responseLines.length < 1 || !responseLines[0].equals("Message has been sent"))
+                throw new RuntimeException();
+            else {return 1;}
+
+        }
+        catch (Exception e) {
+            return 0;
+            //throw new RuntimeException("Error communicating with server");
+
+        }
+
+    }
 
 
     // Getter and Setter functions

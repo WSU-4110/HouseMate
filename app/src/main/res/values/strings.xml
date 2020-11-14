@@ -9,7 +9,9 @@
     <string name="forgot_password">Forgot Password?</string>
     <string name="forgot_password_description">Enter the email address that you used to register.\nYou will receive a link to reset your password.</string>
     <string name="submit">submit</string>
-    <string name="cancel">cancel</string>
+    <string name="password_reset_email_sent">A password reset link has been sent to your email</string>
+    <string name="error">Something went wrong</string>
+
     <string-array name="repeatTaskArr">
         <item>Never</item>
         <item>Daily</item>

@@ -140,7 +140,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.522"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/checkBox2" />
+        app:layout_constraintTop_toBottomOf="@+id/checkBox2"
+        android:onClick="gotoForgotPassword"/>
 
     <!-- android:backgroundTint="#99141515" -->
 </androidx.constraintlayout.widget.ConstraintLayout>
