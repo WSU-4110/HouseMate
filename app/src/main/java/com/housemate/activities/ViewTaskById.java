@@ -22,6 +22,7 @@ public class ViewTaskById extends AppCompatActivity {
     }
 
     public void fetchTask(View view) {
+        /*
         int taskId = Integer.parseInt(taskIdET.getText().toString());
         String taskInfo = "";
         Task temp = Task.getTaskById(taskId);
@@ -33,5 +34,7 @@ public class ViewTaskById extends AppCompatActivity {
                 "Task Description: \n" +
                 taskDescription;
         taskView.setText(taskInfo);
+
+         */
     }
 }

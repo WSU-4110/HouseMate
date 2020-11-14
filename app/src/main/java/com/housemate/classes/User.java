@@ -1,5 +1,7 @@
 package com.housemate.classes;
 
+import android.util.Log;
+
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -122,7 +124,7 @@ public class User {
         try {
             String script = "leaveHousehold.php";
             String data = "{\"id\":" + id + ",\"houseId\":" + householdId + "}";
-            String[] responseLines = HTTPSDataSender.initiateTransaction(script,data);
+            String[] responseLines = HTTPSDataSender.initiateTransaction(script, data);
 
             if (responseLines.length < 1 || responseLines[0].equals("CONNECT_ERROR"))
                 throw new RuntimeException();
@@ -131,6 +133,119 @@ public class User {
             }
         }
         catch (Exception e) {
+            throw new RuntimeException("Error communicating with server");
+        }
+    }
+  
+    public void deleteUser() throws RuntimeException{
+        try {
+            URL url = new URL("https://housemateapp1.000webhostapp.com/deleteAccount.php");
+            ObjectMapper objectMapper = new ObjectMapper();
+            objectMapper.setVisibility(PropertyAccessor.FIELD, JsonAutoDetect.Visibility.ANY);
+            String data = objectMapper.writeValueAsString(this);
+
+            HTTPSDataSender sender = new HTTPSDataSender(url, data);
+            FutureTask<String[]> senderTask = new FutureTask<>(sender);
+            ExecutorService executor = Executors.newFixedThreadPool(1);
+            executor.execute(senderTask);
+            String[] responseLines = senderTask.get();
+            if (responseLines.length < 1 || responseLines[0].equals("CONNECT_ERROR"))
+                throw new RuntimeException();
+            else {
+                id = Integer.parseInt(responseLines[0]);
+            }
+        }
+        catch (Exception e) {
+            throw new RuntimeException("Error communicating with server");
+        }
+    }
+
+
+    public void updateFirstNameInDB(String editedFirstName) throws  RuntimeException{
+        try{
+            URL url = new URL("https://housemateapp1.000webhostapp.com/updateFirstName.php");
+
+            String data = "{\"id\":" +id + ",\"editedFirstName\":\""+editedFirstName + "\"}";
+            HTTPSDataSender sender = new HTTPSDataSender(url, data);
+            FutureTask<String[]> senderTask = new FutureTask<>(sender);
+            ExecutorService executor = Executors.newFixedThreadPool(1);
+            executor.execute(senderTask);
+            String[] responseLines = senderTask.get();
+
+
+            if (responseLines.length < 1 || responseLines[0].equals("CONNECT_ERROR"))
+                throw new RuntimeException();
+            else {
+                    firstName = responseLines[0];
+            }
+
+        }
+        catch (Exception e){
+            throw new RuntimeException("Error communicating with server");
+        }
+
+    }
+    public void updateLastNameInDB(String editedLastName) throws  RuntimeException{
+        try{
+            URL url = new URL("https://housemateapp1.000webhostapp.com/updateLastName.php");
+
+            String data = "{\"id\":" +id + ",\"editedLastName\":\""+editedLastName + "\"}";
+            HTTPSDataSender sender = new HTTPSDataSender(url, data);
+            FutureTask<String[]> senderTask = new FutureTask<>(sender);
+            ExecutorService executor = Executors.newFixedThreadPool(1);
+            executor.execute(senderTask);
+            String[] responseLines = senderTask.get();
+
+
+            if (responseLines.length < 1 || responseLines[0].equals("CONNECT_ERROR"))
+                throw new RuntimeException();
+            else {
+                    lastName = responseLines[0];
+            }
+        }
+        catch (Exception e){
+            throw new RuntimeException("Error communicating with server");
+        }
+    }
+
+    public void updateUsernameInDB(String editedUsername) throws  RuntimeException{
+        try{
+            URL url = new URL("https://housemateapp1.000webhostapp.com/updateUsername.php");
+
+            String data = "{\"id\":" +id + ",\"editedUsername\":\""+ editedUsername + "\"}";
+            HTTPSDataSender sender = new HTTPSDataSender(url, data);
+            FutureTask<String[]> senderTask = new FutureTask<>(sender);
+            ExecutorService executor = Executors.newFixedThreadPool(1);
+            executor.execute(senderTask);
+            String[] responseLines = senderTask.get();
+
+            if (responseLines.length < 1 || responseLines[0].equals("CONNECT_ERROR"))
+                throw new RuntimeException();
+            else {
+                    user_name = responseLines[0];
+            }
+        }
+        catch (Exception e){
+            throw new RuntimeException("Error communicating with server");
+        }
+    }
+
+    public void updateEmailInDB(String editedEmail) throws  RuntimeException {
+        try {
+            URL url = new URL("https://housemateapp1.000webhostapp.com/updateEmail.php");
+
+            String data = "{\"id\":" + id + ",\"editedEmail\":\"" + editedEmail + "\"}";
+            HTTPSDataSender sender = new HTTPSDataSender(url, data);
+            FutureTask<String[]> senderTask = new FutureTask<>(sender);
+            ExecutorService executor = Executors.newFixedThreadPool(1);
+            executor.execute(senderTask);
+            String[] responseLines = senderTask.get();
+            if (responseLines.length < 1 || responseLines[0].equals("CONNECT_ERROR"))
+                throw new RuntimeException();
+            else {
+                email = responseLines[0];
+            }
+        } catch (Exception e) {
             throw new RuntimeException("Error communicating with server");
         }
     }
@@ -151,13 +266,16 @@ public class User {
                     houseId.add(Integer.parseInt(responseLines[i + 1]));
                 }
                 return 1;
+
             }
-        }
-        catch (Exception e) {
+
+        } catch (Exception e) {
             return 0;
             //throw new RuntimeException("Error communicating with server");
+
         }
     }
+
 
 
     // Getter and Setter functions
