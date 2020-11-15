@@ -15,6 +15,13 @@
     <string name="join">Join</string>
     <string name="join_household_group">Join Household Group</string>
     <string name="household_key">Household Key</string>
+    <string name="username">username</string>
+    <string name="password">password</string>
+    <string name="register">Register</string>
+    <string name="remember_me">Remember Me</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="sign_in">Sign In</string>
+    <string name="login">Login</string>
 
     <string-array name="repeatTaskArr">
         <item>Never</item>
