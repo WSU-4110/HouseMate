@@ -43,6 +43,13 @@ public class IncompleteTask extends Task {
         setId(id);
     }
 
+    @Override
+    public String getDateAndTimeText() {
+        return String.format("<p>Due %s at %s</p>\n",
+                getDueDate().format(DateTimeFormatter.ofPattern("M-d-yyyy")),
+                getDueTime().format(DateTimeFormatter.ofPattern("h:mm a")));
+    }
+
     public ArrayList<String> getAssignedUsers() { return new ArrayList<>(assignedUsers); }
 
     public void setAssignedUsers(ArrayList<String> assignedUsers) { this.assignedUsers = new ArrayList<>(assignedUsers); }

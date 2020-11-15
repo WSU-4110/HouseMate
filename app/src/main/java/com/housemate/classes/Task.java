@@ -63,6 +63,8 @@ public abstract class Task {
  */
     }
 
+    public abstract String getDateAndTimeText();
+
     public String getName() { return name; }
 
     public void setName(String name) { this.name = name; }
