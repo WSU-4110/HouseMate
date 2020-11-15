@@ -103,7 +103,7 @@ public class User {
     }
 
 
-    public void joinHousehold(int householdId) throws RuntimeException {
+    public void joinHouseholdById(int householdId) throws RuntimeException {
         try {
             String script = "joinHousehold.php";
             String data = "{\"id\":" + id + ",\"houseId\":" + householdId + "}";
@@ -119,6 +119,26 @@ public class User {
             throw new RuntimeException("Error communicating with server");
         }
     }
+
+    public int joinHousehold(String key) throws RuntimeException {
+        try {
+            String script = "joinHouseholdByKey.php";
+            String data = "{\"id\":" + id + ",\"houseKey\":\"" + key + "\"}";
+            String[] responseLines = HTTPSDataSender.initiateTransaction(script, data);
+
+            if (responseLines.length < 1 || responseLines[0].equals("CONNECT_ERROR"))
+                throw new RuntimeException();
+            else {
+                int id = Integer.parseInt(responseLines[0]);
+                houseId.add(id);
+                return id;
+            }
+        }
+        catch (Exception e) {
+            return -1;
+        }
+    }
+
 
     public void leaveHousehold(int householdId) throws RuntimeException {
         try {
