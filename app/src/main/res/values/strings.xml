@@ -11,6 +11,7 @@
     <string name="submit">submit</string>
     <string name="password_reset_email_sent">A password reset link has been sent to your email</string>
     <string name="error">Something went wrong</string>
+    <string name="one_time_house_key">ONE-TIME HOUSE KEY</string>
 
     <string-array name="repeatTaskArr">
         <item>Never</item>

@@ -230,5 +230,25 @@ public class Household
         }
     }
 
+    public char[] getKey() throws RuntimeException {
+        try {
+            String script = "getHouseKey.php";
+            String data = Integer.toString(houseID);
+            String[] responseLines = HTTPSDataSender.initiateTransaction(script,data);
+
+            if (responseLines.length < 1 || responseLines[0].equals("CONNECT_ERROR"))
+                throw new RuntimeException();
+            else {
+                char[] key = new char[4];
+                for (int i = 0; i < 4; i++) {
+                    key[i] = responseLines[0].charAt(i);
+                }
+                return key;
+            }
+        }
+        catch (Exception e) {
+            throw new RuntimeException("Error communicating with server");
+        }
+    }
 
 }
