@@ -1,7 +1,6 @@
 package com.housemate.classes;
 
 import android.content.Context;
-import android.database.DataSetObserver;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,13 +8,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.core.text.HtmlCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.housemate.activities.MainActivity;
 import com.housemate.activities.R;
 
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.TaskListViewHolder> {
@@ -24,7 +23,10 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.TaskLi
     private final boolean completedTasks; //indicates type of task to be displayed, incomplete or completed
 
     public static class TaskListViewHolder extends RecyclerView.ViewHolder {
-        public TextView taskView;
+        public CardView taskCardView;
+        public TextView taskNameView;
+        public TextView taskDescriptionView;
+        public TextView taskDateAndTimeView;
         public TextView assignedUserView;
         public ImageView editTaskView;
         public ImageView deleteTaskView;
@@ -32,8 +34,11 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.TaskLi
 
         public TaskListViewHolder(@NonNull View view) {
             super(view);
-            taskView = view.findViewById(R.id.task_text);
-            assignedUserView = view.findViewById(R.id.assigned_user);
+            taskCardView = view.findViewById(R.id.task_card_view);
+            taskNameView = view.findViewById(R.id.task_name_view);
+            taskDescriptionView = view.findViewById(R.id.task_description_view);
+            taskDateAndTimeView = view.findViewById(R.id.task_date_and_time_view);
+            assignedUserView = view.findViewById(R.id.assigned_user_view);
             editTaskView = view.findViewById(R.id.edit_task_view);
             deleteTaskView = view.findViewById(R.id.delete_task_view);
             completeTaskView = view.findViewById(R.id.complete_task_view);
@@ -59,16 +64,18 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.TaskLi
     @Override
     public void onBindViewHolder(TaskListViewHolder holder, int position) {
         Task task = taskList.get(position);
-        holder.taskView.setText(HtmlCompat.fromHtml(task.toString(), 0));
+        String text = String.format("<b>%s</b>", task.getName());
+        holder.taskNameView.setText(HtmlCompat.fromHtml(text, 0));
+        text = String.format("<b><i>%s</i></b>", task.getDescription());
+        holder.taskDescriptionView.setText(HtmlCompat.fromHtml(text, 0));
+        holder.taskDateAndTimeView.setText(HtmlCompat.fromHtml(task.getDateAndTimeText(), 0));
+        holder.taskCardView.setBackgroundColor((position % 2 == 0) ? 0xFFDDDDDD : 0xFFEEEEEE);
 
-        if (task instanceof IncompleteTask) {
-            String assignedUsersText = String.format("<i>%s</i>",
-                    String.join(", ", ((IncompleteTask) task).getAssignedUsers()));
-            holder.assignedUserView.setText(HtmlCompat.fromHtml(assignedUsersText, 0));
-        }
-
-        holder.taskView.setBackgroundColor((position % 2 == 0) ? 0xFFDDDDDD : 0xFFEEEEEE);
         if (!completedTasks) {
+            text = String.format("<i>%s</i>",
+                    String.join(", ", ((IncompleteTask) task).getAssignedUsers()));
+            holder.assignedUserView.setText(HtmlCompat.fromHtml(text, 0));
+
                     /*
         holder.editTaskView.setOnClickListener(view -> edit the task);
         */

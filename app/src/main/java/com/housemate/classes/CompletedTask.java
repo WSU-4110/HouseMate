@@ -32,6 +32,13 @@ public class CompletedTask extends Task {
         this.timeCompleted = timeCompleted;
     }
 
+    @Override
+    public String getDateAndTimeText() {
+        return String.format("<p>Completed %s at %s</p>\n",
+                getDateCompleted().format(DateTimeFormatter.ofPattern("M-d-yyyy")),
+                getTimeCompleted().format(DateTimeFormatter.ofPattern("h:mm a")));
+    }
+
     public LocalDate getDateCompleted() { return dateCompleted; }
 
     public LocalTime getTimeCompleted() { return timeCompleted; }
