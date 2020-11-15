@@ -14,7 +14,7 @@
         android:layout_marginEnd="822dp"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintGuide_percent="0.50121653" />
+        app:layout_constraintGuide_begin="206dp" />
 
     <ImageView
         android:id="@+id/logo"
@@ -27,7 +27,59 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/usernameLayout"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:hint="username"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        app:startIconDrawable="@drawable/ic_baseline_person_outline_24"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:inputType="textEmailAddress"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.464"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Info" >
 
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/Username"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/passwordLayout"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:hint="password"
+        app:startIconDrawable="@drawable/ic_baseline_lock_24"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:inputType="textPassword"
+        app:layout_constraintEnd_toEndOf="@+id/usernameLayout"
+        app:layout_constraintStart_toStartOf="@+id/usernameLayout"
+        app:layout_constraintTop_toBottomOf="@+id/usernameLayout" >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/Password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!--
     <EditText
         android:id="@+id/Username"
         android:layout_width="wrap_content"
@@ -65,7 +117,7 @@
         app:layout_constraintStart_toStartOf="@+id/Username"
         app:layout_constraintTop_toBottomOf="@+id/Username" />
 
-
+-->
     <TextView
         android:id="@+id/Info"
         android:layout_width="wrap_content"
@@ -126,9 +178,8 @@
         android:text="Remember Me"
         android:textSize="10sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.529"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Password" />
+        app:layout_constraintTop_toBottomOf="@+id/passwordLayout" />
 
     <TextView
         android:id="@+id/textView"
@@ -136,9 +187,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
         android:text="Forgot Password? "
-        android:textSize="10sp"
+        android:textSize="13sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.522"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/checkBox2"
         android:onClick="gotoForgotPassword"/>
