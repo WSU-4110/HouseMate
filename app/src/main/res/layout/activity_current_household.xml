@@ -27,18 +27,21 @@
             android:id="@+id/houseHoldTitleTV"/>
 
     </RelativeLayout>
+
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Housemates: "
+        android:text="Household Name"
         android:textSize="30dp"
         android:layout_below="@id/topPanel"
         android:layout_marginTop="30dp"
-        android:id="@+id/housematesTitleTV"/>
+        android:id="@+id/householdNameTV"/>
+
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/housematesTitleTV"
+        android:layout_below="@+id/householdNameTV"
         android:id="@+id/housemateRecView"/>
 
 

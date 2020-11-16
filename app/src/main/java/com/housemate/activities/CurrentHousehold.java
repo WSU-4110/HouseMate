@@ -15,28 +15,31 @@ import android.widget.Toast;
 import com.housemate.adapters.CurrentHouseholdRVAdapter;
 import com.housemate.adapters.HousemateRecViewAdapter;
 import com.housemate.classes.Household;
+import com.housemate.classes.RemoveHousemateDialogue;
 
 import java.util.ArrayList;
 
 
-public class CurrentHousehold extends AppCompatActivity implements CurrentHouseholdRVAdapter.ItemClickListener {
-    TextView housematesTitleTV, householdTitleTV;
+public class CurrentHousehold extends AppCompatActivity implements CurrentHouseholdRVAdapter.ItemClickListener,
+        RemoveHousemateDialogue.RemoveHousemateDialogueListener {
+    TextView householdNameTV, householdTitleTV;
     Button backBtn, saveBtn;
     RecyclerView housemateRecView;
     CurrentHouseholdRVAdapter currentHouseHoldRVAdapter;
     ArrayList<String> housemateList,  userIdList;
+    int recyclerViewPosition;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_current_household);
 
-        housematesTitleTV = findViewById(R.id.housematesTitleTV);
+        householdNameTV = findViewById(R.id.householdNameTV);
         householdTitleTV = findViewById(R.id.houseHoldTitleTV);
         backBtn = findViewById(R.id.backBtn);
         saveBtn = findViewById(R.id.saveBtn);
         housemateRecView = findViewById(R.id.housemateRecView);
-        householdTitleTV.setText(MainActivity.currentHousehold.getHouseholdName());
+        householdNameTV.setText(MainActivity.currentHousehold.getHouseholdName());
         housemateList = MainActivity.currentHousehold.getUsers();
         userIdList = MainActivity.currentHousehold.getUserIdList();
 
@@ -62,11 +65,22 @@ public class CurrentHousehold extends AppCompatActivity implements CurrentHouseh
     // onItemClick method is called in CurrentHouseholdRVAdapter class when a remove button click event occurs
     @Override
     public void onItemClick(View view, int position) {
-        String userIdStr = userIdList.get(position);
-        int userId = Integer.parseInt(userIdStr);
-        MainActivity.currentHousehold.removeHousemateFromHousehold(userId);
-        housemateList.remove(position);
-        userIdList.remove(position);
-        currentHouseHoldRVAdapter.notifyItemRemoved(position);
+        recyclerViewPosition = position;
+        RemoveHousemateDialogue dialogue = new RemoveHousemateDialogue();
+        dialogue.show(getSupportFragmentManager(), "removeHousemateDialogue");
+    }
+
+
+    // remove housemate dialogue response
+    @Override
+    public void applyDialogueResponse(Boolean response) {
+            if(response){
+                String userIdStr = userIdList.get(recyclerViewPosition);
+                int userId = Integer.parseInt(userIdStr);
+                MainActivity.currentHousehold.removeHousemateFromHousehold(userId);
+                housemateList.remove(recyclerViewPosition);
+                userIdList.remove(recyclerViewPosition);
+                currentHouseHoldRVAdapter.notifyItemRemoved(recyclerViewPosition);
+            }
     }
 }
