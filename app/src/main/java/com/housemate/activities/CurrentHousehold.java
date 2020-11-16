@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -19,6 +20,7 @@ import java.util.ArrayList;
 
 public class CurrentHousehold extends AppCompatActivity {
     TextView housematesTitleTV, householdTitleTV;
+    TextView[] houseKey;
     Button backBtn, saveBtn;
     RecyclerView housemateRecView;
     CurrentHouseholdRVAdapter currentHouseHoldRVAdapter;
@@ -35,6 +37,11 @@ public class CurrentHousehold extends AppCompatActivity {
         housemateRecView = findViewById(R.id.housemateRecView);
         householdTitleTV.setText(MainActivity.currentHousehold.getHouseholdName());
 
+        houseKey = new TextView[4];
+        houseKey[0] = (TextView)findViewById(R.id.houseKeyTextView1);
+        houseKey[1] = (TextView)findViewById(R.id.houseKeyTextView2);
+        houseKey[2] = (TextView)findViewById(R.id.houseKeyTextView3);
+        houseKey[3] = (TextView)findViewById(R.id.houseKeyTextView4);
         showHousemates();
 
     }
@@ -51,10 +58,15 @@ public class CurrentHousehold extends AppCompatActivity {
     }
 
     public void onBackBtnClicked(View view) {
-        // go back to settings page
-
+        Intent intent = new Intent(this, HomePageActivity.class);
+        startActivity(intent);
     }
 
 
-
+    public void getHouseKey(View view) {
+        char[] key = MainActivity.currentHousehold.getKey();
+        for (int i = 0; i < 4; i++) {
+            houseKey[i].setText(String.valueOf(key[i]));
+        }
+    }
 }

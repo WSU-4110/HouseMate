@@ -6,17 +6,29 @@
     android:layout_height="match_parent"
     tools:context=".JoinHousehold">
 
-    <EditText
-        android:id="@+id/joinHouseholdId"
-        android:layout_width="wrap_content"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/outlinedTextField"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="32dp"
-        android:ems="10"
-        android:hint="Household Id"
-        android:inputType="textPersonName"
+        android:hint="@string/household_key"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        app:layout_constraintTop_toBottomOf="@id/guideline4"
         app:layout_constraintBottom_toTopOf="@+id/guideline3"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:startIconDrawable="@drawable/ic_baseline_vpn_key_24">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/joinHouseholdId"
+            android:ems="10"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:textAllCaps="true"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline3"
@@ -29,7 +41,7 @@
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Join Household Group"
+        android:text="@string/join_household_group"
         android:textColor="#3F51B5"
         android:textSize="30sp"
         app:layout_constraintBottom_toTopOf="@+id/guideline4"
@@ -44,12 +56,13 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.1" />
 
-    <Button
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
         android:id="@+id/joinHouseholdButton"
         android:layout_width="200dp"
         android:layout_height="64dp"
         android:layout_marginTop="32dp"
-        android:text="Join"
+        android:text="@string/join"
+        android:gravity="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline3"
