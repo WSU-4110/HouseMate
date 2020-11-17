@@ -4,17 +4,82 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
-    android:background="#EE141515"
-    android:backgroundTint="#99141515"
+    tools:context=".MainActivity"
+    android:background="#FFFFFF" >
 
-    <ImageView
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic__hmlogo"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="25dp"/>
+        android:layout_marginEnd="822dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintGuide_begin="206dp" />
 
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="164dp"
+        android:layout_height="161dp"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/ic_hmlogo"
+        app:layout_constraintBottom_toTopOf="@+id/Info"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/usernameLayout"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:hint="username"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        app:startIconDrawable="@drawable/ic_baseline_person_outline_24"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:inputType="textEmailAddress"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.464"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Info" >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/Username"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/passwordLayout"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:hint="password"
+        app:startIconDrawable="@drawable/ic_baseline_lock_24"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:inputType="textPassword"
+        app:layout_constraintEnd_toEndOf="@+id/usernameLayout"
+        app:layout_constraintStart_toStartOf="@+id/usernameLayout"
+        app:layout_constraintTop_toBottomOf="@+id/usernameLayout" >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/Password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!--
     <EditText
         android:id="@+id/Username"
         android:layout_width="wrap_content"
@@ -22,13 +87,14 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
         android:layout_centerInParent="true"
-        android:layout_marginTop="57dp"
+        android:layout_marginTop="16dp"
         android:background="#2D2F31"
         android:backgroundTint="#EDF0F3"
         android:ems="10"
         android:hint="Email/Username"
         android:inputType="textEmailAddress"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.464"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Info" />
 
@@ -39,7 +105,7 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="9dp"
+        android:layout_marginTop="16dp"
         android:background="#EDF0F3"
         android:backgroundTint="#EDF0F3"
         android:backgroundTintMode="src_over"
@@ -47,24 +113,24 @@
         android:hint="Password"
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="@+id/Username"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/Username"
         app:layout_constraintTop_toBottomOf="@+id/Username" />
 
+-->
     <TextView
         android:id="@+id/Info"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="116dp"
         android:text="Sign In"
-        android:textColor="#3F51B5"
+        android:textColor="@color/aero_blue"
         android:textSize="40sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.341"
+        app:layout_constraintHorizontal_bias="0.307"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/logo" />
 
     <Button
         android:id="@+id/Login"
@@ -73,15 +139,15 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="96dp"
-        android:background="#00000000"
         android:ems="10"
-        android:text="Login"
-        android:textColor="#3F51B5"
         android:onClick="onLogin"
+        android:text="Login"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Password" />
+        app:layout_constraintStart_toStartOf="@+id/guideline5"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintVertical_bias="0.75" />
 
     <Button
         android:id="@+id/Register"
@@ -90,49 +156,43 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginStart="100dp"
-        android:layout_marginTop="8dp"
-        android:background="#00000000"
         android:ems="10"
         android:onClick="onRegister"
-        android:text="Register "
-        android:textColor="#3F51B5"
+        android:text="Register"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.162"
+        app:layout_constraintEnd_toStartOf="@+id/guideline5"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Login"
-        app:layout_constraintVertical_bias="0.092" />
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintVertical_bias="0.75" />
 
     <CheckBox
         android:id="@+id/checkBox2"
-        android:layout_width="108dp"
-        android:layout_height="42dp"
-        android:layout_marginTop="16dp"
-        android:buttonTint="#3F51B5"
+        android:layout_width="86dp"
+        android:layout_height="15dp"
+        android:layout_marginTop="12dp"
         android:checked="true"
         android:clickable="true"
-        android:focusable="true"
         android:fadingEdge="none"
+        android:focusable="true"
         android:text="Remember Me"
         android:textSize="10sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/Password"
-        app:layout_constraintTop_toBottomOf="@+id/Password" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/passwordLayout" />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="4dp"
-        android:layout_marginBottom="52dp"
+        android:layout_marginTop="4dp"
         android:text="Forgot Password? "
-        android:textSize="10sp"
-        app:layout_constraintBottom_toTopOf="@+id/Login"
-        app:layout_constraintEnd_toEndOf="@+id/Password" />
+        android:textSize="13sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/checkBox2"
+        android:onClick="gotoForgotPassword"/>
 
+    <!-- android:backgroundTint="#99141515" -->
 </androidx.constraintlayout.widget.ConstraintLayout>
 
-
-<!-- android:backgroundTint="#99141515" -->

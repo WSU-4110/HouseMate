@@ -27,6 +27,7 @@ import android.widget.TimePicker;
 import com.housemate.classes.DatePickerFragment;
 import com.housemate.classes.DiscardTaskDialogue;
 import com.housemate.adapters.HousemateRecViewAdapter;
+import com.housemate.classes.IncompleteTask;
 import com.housemate.classes.Task;
 import com.housemate.classes.TimePickerFragment;
 
@@ -50,10 +51,10 @@ public class CreateTaskActivity extends AppCompatActivity implements DatePickerD
     ArrayList<Boolean> isAssigned;
     RecyclerView housemateRecView ;
     Spinner repeatTaskSpinner;
-    String taskName, dueDate, dueTime, repeatTask, priority, taskNotes; // save all var to Task Obj.
+    String taskName, repeatTask, priority, taskNotes; // save all var to Task Obj.
+    LocalDate dueDate;
+    LocalTime dueTime;
     HousemateRecViewAdapter housemateRecViewAdapter;
-
-    public static final String TASK_NAME_TAG = "taskName";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,9 +72,13 @@ public class CreateTaskActivity extends AppCompatActivity implements DatePickerD
         housemates = new ArrayList<>();
         notesET = findViewById(R.id.notesET);
         cancelBtn = findViewById(R.id.cancelBtn);
+        dueDate = null;
+        dueTime = null;
         taskName = "New Task";
-        dueDate = "";
-        dueTime = "";
+
+        dueDate = LocalDate.of(2020, 4, 12);
+        dueTime = LocalTime.of(10, 30);
+
         repeatTask = "Never";
         priority = "None";
         taskNotes = "";
@@ -83,7 +88,7 @@ public class CreateTaskActivity extends AppCompatActivity implements DatePickerD
         housemates.add("pam");
         housemates.add("oscar");
 
-//        assignedTo = housemates;
+        assignedTo = housemates;
 //
 //        housemateRecViewAdapter = new HousemateRecViewAdapter(this);
 //        housemateRecView.setAdapter(housemateRecViewAdapter);
@@ -116,16 +121,14 @@ public class CreateTaskActivity extends AppCompatActivity implements DatePickerD
                 Log.i("priority", priority);
                 Log.i("assigned to", printAssignTo);
                 Log.i("notes" , taskNotes);
-                */
-
                 LocalDate dueDate = LocalDate.of(2020, 4, 12);
                 LocalTime dueTime = LocalTime.of(10, 30);
-                ArrayList<String> users = new ArrayList<>(Arrays.asList("Bob", "Joe", "Phil"));
-                Task task = new Task("Laundry", "Sheets", users, dueDate, dueTime, "WEEKLY");
-                task.createTask(MainActivity.currentHousehold.getHouseID());
+                 */
+                IncompleteTask task = new IncompleteTask(taskName, taskNotes, assignedTo, dueDate, dueTime);
+                task.create(MainActivity.currentHousehold.getHouseID());
+
 
                 Intent intent = new Intent(CreateTaskActivity.this, HomePageActivity.class);
-                intent.putExtra(TASK_NAME_TAG, taskName);
                 startActivity(intent);
             }
         });
@@ -186,8 +189,7 @@ public class CreateTaskActivity extends AppCompatActivity implements DatePickerD
         c.set(Calendar.YEAR, year);
         c.set(Calendar.MONTH,month);
         c.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-        dueDate = DateFormat.getDateInstance(DateFormat.FULL).format(c.getTime());
-        Log.i("date" , dueDate);
+        dueDate = LocalDate.of(year,month,dayOfMonth);
         String printDate = "Date: " + dueDate;
         dateTV.setText(printDate);
     }
@@ -198,8 +200,7 @@ public class CreateTaskActivity extends AppCompatActivity implements DatePickerD
         Calendar c = Calendar.getInstance();
         c.set(Calendar.HOUR_OF_DAY, hourOfDay);
         c.set(Calendar.MINUTE, minute);
-        dueTime = DateFormat.getTimeInstance(DateFormat.SHORT).format(c.getTime());
-        Log.i("selected time", dueTime);
+        dueTime = LocalTime.of(hourOfDay,minute);
         String printTime = "Time: " + dueTime;
         timeTV.setText(printTime);
 

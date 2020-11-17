@@ -25,7 +25,7 @@ public class CreateHousehold extends AppCompatActivity {
         MainActivity.currentHousehold.setHouseholdName(name);
         MainActivity.currentHousehold.createHousehold();
         if (MainActivity.currentHousehold.getHouseID() != -1) {
-            MainActivity.currentUser.joinHousehold(MainActivity.currentHousehold.getHouseID());
+            MainActivity.currentUser.joinHouseholdById(MainActivity.currentHousehold.getHouseID());
             Intent intent = new Intent(this, HomePageActivity.class);
             startActivity(intent);
         }

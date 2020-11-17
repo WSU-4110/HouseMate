@@ -1,5 +1,21 @@
 <resources>
     <string name="app_name">HouseMate App</string>
+    <string name="edit_task_string">edit task</string>
+    <string name="complete_task_string">complete task</string>
+    <string name="delete_task_string">delete task</string>
+    <string name="completed_tasks">COMPLETED TASKS</string>
+    <string name="back_to_home">BACK TO HOME</string>
+    <string name="email">Email</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="forgot_password_description">Enter the email address that you used to register.\nYou will receive a link to reset your password.</string>
+    <string name="submit">submit</string>
+    <string name="password_reset_email_sent">A password reset link has been sent to your email</string>
+    <string name="error">Something went wrong</string>
+    <string name="one_time_house_key">ONE-TIME HOUSE KEY</string>
+    <string name="join">Join</string>
+    <string name="join_household_group">Join Household Group</string>
+    <string name="household_key">Household Key</string>
+
     <string-array name="repeatTaskArr">
         <item>Never</item>
         <item>Daily</item>

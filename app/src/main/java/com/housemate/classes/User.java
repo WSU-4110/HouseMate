@@ -1,5 +1,7 @@
 package com.housemate.classes;
 
+import android.util.Log;
+
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -101,7 +103,7 @@ public class User {
     }
 
 
-    public void joinHousehold(int householdId) throws RuntimeException {
+    public void joinHouseholdById(int householdId) throws RuntimeException {
         try {
             String script = "joinHousehold.php";
             String data = "{\"id\":" + id + ",\"houseId\":" + householdId + "}";
@@ -117,6 +119,26 @@ public class User {
             throw new RuntimeException("Error communicating with server");
         }
     }
+
+    public int joinHousehold(String key) throws RuntimeException {
+        try {
+            String script = "joinHouseholdByKey.php";
+            String data = "{\"id\":" + id + ",\"houseKey\":\"" + key + "\"}";
+            String[] responseLines = HTTPSDataSender.initiateTransaction(script, data);
+
+            if (responseLines.length < 1 || responseLines[0].equals("CONNECT_ERROR"))
+                throw new RuntimeException();
+            else {
+                int id = Integer.parseInt(responseLines[0]);
+                houseId.add(id);
+                return id;
+            }
+        }
+        catch (Exception e) {
+            return -1;
+        }
+    }
+
 
     public void leaveHousehold(int householdId) throws RuntimeException {
         try {
@@ -158,6 +180,96 @@ public class User {
         }
     }
 
+
+    public void updateFirstNameInDB(String editedFirstName) throws  RuntimeException{
+        try{
+            URL url = new URL("https://housemateapp1.000webhostapp.com/updateFirstName.php");
+
+            String data = "{\"id\":" +id + ",\"editedFirstName\":\""+editedFirstName + "\"}";
+            HTTPSDataSender sender = new HTTPSDataSender(url, data);
+            FutureTask<String[]> senderTask = new FutureTask<>(sender);
+            ExecutorService executor = Executors.newFixedThreadPool(1);
+            executor.execute(senderTask);
+            String[] responseLines = senderTask.get();
+
+
+            if (responseLines.length < 1 || responseLines[0].equals("CONNECT_ERROR"))
+                throw new RuntimeException();
+            else {
+                    firstName = responseLines[0];
+            }
+
+        }
+        catch (Exception e){
+            throw new RuntimeException("Error communicating with server");
+        }
+
+    }
+    public void updateLastNameInDB(String editedLastName) throws  RuntimeException{
+        try{
+            URL url = new URL("https://housemateapp1.000webhostapp.com/updateLastName.php");
+
+            String data = "{\"id\":" +id + ",\"editedLastName\":\""+editedLastName + "\"}";
+            HTTPSDataSender sender = new HTTPSDataSender(url, data);
+            FutureTask<String[]> senderTask = new FutureTask<>(sender);
+            ExecutorService executor = Executors.newFixedThreadPool(1);
+            executor.execute(senderTask);
+            String[] responseLines = senderTask.get();
+
+
+            if (responseLines.length < 1 || responseLines[0].equals("CONNECT_ERROR"))
+                throw new RuntimeException();
+            else {
+                    lastName = responseLines[0];
+            }
+        }
+        catch (Exception e){
+            throw new RuntimeException("Error communicating with server");
+        }
+    }
+
+    public void updateUsernameInDB(String editedUsername) throws  RuntimeException{
+        try{
+            URL url = new URL("https://housemateapp1.000webhostapp.com/updateUsername.php");
+
+            String data = "{\"id\":" +id + ",\"editedUsername\":\""+ editedUsername + "\"}";
+            HTTPSDataSender sender = new HTTPSDataSender(url, data);
+            FutureTask<String[]> senderTask = new FutureTask<>(sender);
+            ExecutorService executor = Executors.newFixedThreadPool(1);
+            executor.execute(senderTask);
+            String[] responseLines = senderTask.get();
+
+            if (responseLines.length < 1 || responseLines[0].equals("CONNECT_ERROR"))
+                throw new RuntimeException();
+            else {
+                    user_name = responseLines[0];
+            }
+        }
+        catch (Exception e){
+            throw new RuntimeException("Error communicating with server");
+        }
+    }
+
+    public void updateEmailInDB(String editedEmail) throws  RuntimeException {
+        try {
+            URL url = new URL("https://housemateapp1.000webhostapp.com/updateEmail.php");
+
+            String data = "{\"id\":" + id + ",\"editedEmail\":\"" + editedEmail + "\"}";
+            HTTPSDataSender sender = new HTTPSDataSender(url, data);
+            FutureTask<String[]> senderTask = new FutureTask<>(sender);
+            ExecutorService executor = Executors.newFixedThreadPool(1);
+            executor.execute(senderTask);
+            String[] responseLines = senderTask.get();
+            if (responseLines.length < 1 || responseLines[0].equals("CONNECT_ERROR"))
+                throw new RuntimeException();
+            else {
+                email = responseLines[0];
+            }
+        } catch (Exception e) {
+            throw new RuntimeException("Error communicating with server");
+        }
+    }
+
     public int refreshHouseholds() throws RuntimeException {
         try {
             String script = "refreshHouseholds.php";
@@ -174,12 +286,32 @@ public class User {
                     houseId.add(Integer.parseInt(responseLines[i + 1]));
                 }
                 return 1;
+
             }
+
+        } catch (Exception e) {
+            return 0;
+            //throw new RuntimeException("Error communicating with server");
+
+        }
+    }
+
+    //May be migrated to another class later
+    public static int requestPasswordReset(String email) {
+        try {
+            String script = "requestPasswordReset.php";
+            String[] responseLines = HTTPSDataSender.initiateTransaction(script,email);
+            if (responseLines.length < 1 || !responseLines[0].equals("Message has been sent"))
+                throw new RuntimeException();
+            else {return 1;}
+
         }
         catch (Exception e) {
             return 0;
             //throw new RuntimeException("Error communicating with server");
+
         }
+
     }
 
 
