@@ -18,7 +18,8 @@ public class Settings extends AppCompatActivity {
     private TextView headerSettings;
     private Button profileSettings;
     private TextView headerPushnotific;
-    private Switch onOffpush;
+    private Switch completedTaskpush;
+    private Switch createdTaskpush;
     private TextView headerColor;
     private RadioButton lightTheme;
     private RadioButton darkTheme;
@@ -36,7 +37,8 @@ public class Settings extends AppCompatActivity {
         headerSettings = (TextView) findViewById(R.id.headerSettings);
         profileSettings = (Button) findViewById(R.id.profileSettingsbutton);
         headerPushnotific = (TextView) findViewById(R.id.headerPushnotific);
-        onOffpush = (Switch) findViewById(R.id.onOffpush);
+        completedTaskpush = (Switch) findViewById(R.id.completedTaskpush);
+        createdTaskpush = (Switch) findViewById(R.id.createdTaskspush);
         headerColor = (TextView) findViewById(R.id.headerColor);
         lightTheme = (RadioButton) findViewById(R.id.lightTheme);
         darkTheme = (RadioButton) findViewById(R.id.darkTheme);

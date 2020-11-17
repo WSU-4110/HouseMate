@@ -18,7 +18,6 @@ import java.util.List;
 public class HomePageActivity extends AppCompatActivity {
     private ImageButton createTaskBtn;
     private TextView displayUser;
-
     private List<Task> taskList;
     private RecyclerView taskRecyclerView;
     private RecyclerView.Adapter taskAdapter;
@@ -49,6 +48,10 @@ public class HomePageActivity extends AppCompatActivity {
 
     public void onSwitchHousehold(View view) {
         Intent intent = new Intent(this, SelectHouse.class);
+        startActivity(intent);
+    }
+    public void onSettings(View view){
+        Intent intent = new Intent(this,Settings.class);
         startActivity(intent);
     }
 }
