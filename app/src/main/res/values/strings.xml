@@ -19,9 +19,9 @@
     <string name="password">password</string>
     <string name="register">Register</string>
     <string name="remember_me">Remember Me</string>
-    <string name="forgot_password">Forgot Password?</string>
     <string name="sign_in">Sign In</string>
     <string name="login">Login</string>
+    <string name="an_email_has_been_sent_to_your_inbox_verify_your_email_by_clicking_the_link_in_the_message_to_use_the_application">An email has been sent to your inbox. Verify your email by clicking the link in the message to use the application</string>
 
     <string-array name="repeatTaskArr">
         <item>Never</item>
