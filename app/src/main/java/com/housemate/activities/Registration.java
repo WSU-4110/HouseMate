@@ -93,7 +93,7 @@ public class Registration extends AppCompatActivity implements View.OnFocusChang
             MainActivity.currentUser.register();
 
 
-            Intent intent = new Intent(this, JoinCreateHousehold.class);
+            Intent intent = new Intent(this, UnverifiedUserActivity.class);
             startActivity(intent);
         }
     }

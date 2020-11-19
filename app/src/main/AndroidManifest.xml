@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.housemate.activities" >
+    package="com.housemate.activities">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -10,12 +10,12 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-
         android:theme="@style/Theme.MyApp"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ForgotPasswordActivity"></activity>
-        <activity android:name=".TaskMetricsActivity"></activity>
-        <activity android:name=".CurrentHousehold"></activity>
+        <activity android:name=".UnverifiedUserActivity"></activity>
+        <activity android:name=".ForgotPasswordActivity" />
+        <activity android:name=".TaskMetricsActivity" />
+        <activity android:name=".CurrentHousehold" />
         <activity android:name=".SelectHouse" />
         <activity android:name=".EditProfile" />
         <activity android:name=".ViewTaskById" />
@@ -23,7 +23,7 @@
         <activity android:name=".CreateHousehold" />
         <activity android:name=".JoinCreateHousehold" />
         <activity android:name=".Registration" />
-        <activity android:name=".MainActivity" >
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

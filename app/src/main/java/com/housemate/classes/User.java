@@ -89,9 +89,10 @@ public class User {
                 firstName = responseLines[1];
                 lastName = responseLines[2];
                 email = responseLines[3];
-                int numHouses = Integer.parseInt(responseLines[4]);
+                verified = Integer.parseInt(responseLines[4]);
+                int numHouses = Integer.parseInt(responseLines[5]);
                 for (int i = 0; i < numHouses; i++) {
-                    houseId.add(Integer.parseInt(responseLines[i + 5]));
+                    houseId.add(Integer.parseInt(responseLines[i + 6]));
                 }
                 return 1;
             }
@@ -378,13 +379,17 @@ public class User {
         this.lastName = lastName;
     }
 
+    public boolean isVerified() { return (verified == 1);}
+
     // Member variables
     private int id;
+    private int verified = -1;
     private ArrayList<Integer> houseId;
     private String user_name;
     private String user_pass;
     private String email;
     private String firstName;
     private String lastName;
+
 
 }
