@@ -1,11 +1,13 @@
 package com.housemate.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatImageButton;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.ActivityManager;
 import android.content.Intent;
+import android.database.DataSetObserver;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -25,10 +27,11 @@ import java.util.Iterator;
 import java.util.List;
 
 public class HomePageActivity extends AppCompatActivity {
+    private AppCompatImageButton editProfileBtn;
     private ImageButton createTaskBtn;
-    private TextView displayUser;
     private Button chatBtn;
-
+    private TextView displayUser;
+    private Button logPageButton;
     private List<Task> taskList;
     private RecyclerView taskRecyclerView;
     private RecyclerView.Adapter taskAdapter;
@@ -38,20 +41,32 @@ public class HomePageActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
 
-        displayUser = findViewById(R.id.display_user);
-        displayUser.setText(
-                "User: " + MainActivity.currentUser.getFirstName() + " " + MainActivity.currentUser.getLastName() + "\n" +
-                        "Household: " + MainActivity.currentHousehold.getHouseholdName()
-        );
 
         taskList = IncompleteTask.loadHouseholdTasks(MainActivity.currentHousehold.getHouseID());
         taskRecyclerView = (RecyclerView) findViewById(R.id.task_recycler_view);
         taskAdapter = new TaskListAdapter(this, taskList, false);
+        // Really janky way to update. REPLACE LATER
+        taskAdapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver()
+        {
+            @Override
+            public void onChanged() {
+                taskList = IncompleteTask.loadHouseholdTasks(MainActivity.currentHousehold.getHouseID());
+                startActivity(new Intent(HomePageActivity.this, HomePageActivity.class));
+            }
+        });
         taskLayoutManager = new LinearLayoutManager(this);
         taskRecyclerView.setLayoutManager(taskLayoutManager);
         taskRecyclerView.setAdapter(taskAdapter);
 
+        editProfileBtn = findViewById(R.id.edit_profile);
         createTaskBtn = findViewById(R.id.createTaskBtn);
+
+        editProfileBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(HomePageActivity.this, EditProfile.class));
+            }
+        });
 
         createTaskBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,13 +75,20 @@ public class HomePageActivity extends AppCompatActivity {
             }
         });
 
-
         boolean finish = getIntent().getBooleanExtra("finish", false);
         if (finish) {
             startActivity(new Intent(this, MainActivity.class));
             finish();
         }
 
+        logPageButton = findViewById(R.id.logPageBtn);
+        logPageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(HomePageActivity.this, ViewCompletedTasksActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     public void onSwitchHousehold(View view) {
@@ -74,13 +96,8 @@ public class HomePageActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void onChatBtnClicked(View view) {
-        Intent intent = new Intent(this, CurrentHousehold.class);
-        startActivity(intent);
-    }
-
-    public void onLogBtnClicked(View view) {
-        Intent intent = new Intent(this, EditProfile.class);
+    public void gotoMetrics(View view) {
+        Intent intent = new Intent(this, TaskMetricsActivity.class);
         startActivity(intent);
     }
 
@@ -88,6 +105,11 @@ public class HomePageActivity extends AppCompatActivity {
     public void onBackPressed() {
       //  super.onBackPressed();
         // do nothing
+    }
+
+    public void gotoCurrentHousehold(View view) {
+        Intent intent = new Intent(this, CurrentHousehold.class);
+        startActivity(intent);
     }
 }
 

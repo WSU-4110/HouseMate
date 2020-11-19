@@ -20,9 +20,10 @@ import com.housemate.classes.RemoveHousemateDialogue;
 import java.util.ArrayList;
 
 
-public class CurrentHousehold extends AppCompatActivity implements CurrentHouseholdRVAdapter.ItemClickListener,
-        RemoveHousemateDialogue.RemoveHousemateDialogueListener {
+
+public class CurrentHousehold extends AppCompatActivity implements CurrentHouseholdRVAdapter.ItemClickListener, RemoveHousemateDialogue.RemoveHousemateDialogueListener {
     TextView householdNameTV, householdTitleTV;
+    TextView[] houseKey;
     Button backBtn, saveBtn;
     RecyclerView housemateRecView;
     CurrentHouseholdRVAdapter currentHouseHoldRVAdapter;
@@ -40,10 +41,17 @@ public class CurrentHousehold extends AppCompatActivity implements CurrentHouseh
         saveBtn = findViewById(R.id.saveBtn);
         housemateRecView = findViewById(R.id.housemateRecView);
         householdNameTV.setText(MainActivity.currentHousehold.getHouseholdName());
+
         housemateList = MainActivity.currentHousehold.getUsers();
         userIdList = MainActivity.currentHousehold.getUserIdList();
 
         setUpRecyclerView();
+
+        houseKey = new TextView[4];
+        houseKey[0] = (TextView)findViewById(R.id.houseKeyTextView1);
+        houseKey[1] = (TextView)findViewById(R.id.houseKeyTextView2);
+        houseKey[2] = (TextView)findViewById(R.id.houseKeyTextView3);
+        houseKey[3] = (TextView)findViewById(R.id.houseKeyTextView4);
 
     }
     public void setUpRecyclerView(){
@@ -57,9 +65,10 @@ public class CurrentHousehold extends AppCompatActivity implements CurrentHouseh
     }
 
     public void onBackBtnClicked(View view) {
-        Intent intent = new Intent(CurrentHousehold.this, HomePageActivity.class);
+        Intent intent = new Intent(this, HomePageActivity.class);
         startActivity(intent);
     }
+
 
 
     // onItemClick method is called in CurrentHouseholdRVAdapter class when a remove button click event occurs
@@ -74,13 +83,20 @@ public class CurrentHousehold extends AppCompatActivity implements CurrentHouseh
     // remove housemate dialogue response
     @Override
     public void applyDialogueResponse(Boolean response) {
-            if(response){
-                String userIdStr = userIdList.get(recyclerViewPosition);
-                int userId = Integer.parseInt(userIdStr);
-                MainActivity.currentHousehold.removeHousemateFromHousehold(userId);
-                housemateList.remove(recyclerViewPosition);
-                userIdList.remove(recyclerViewPosition);
-                currentHouseHoldRVAdapter.notifyItemRemoved(recyclerViewPosition);
-            }
+        if (response) {
+            String userIdStr = userIdList.get(recyclerViewPosition);
+            int userId = Integer.parseInt(userIdStr);
+            MainActivity.currentHousehold.removeHousemateFromHousehold(userId);
+            housemateList.remove(recyclerViewPosition);
+            userIdList.remove(recyclerViewPosition);
+            currentHouseHoldRVAdapter.notifyItemRemoved(recyclerViewPosition);
+        }
+    }
+
+    public void getHouseKey(View view) {
+        char[] key = MainActivity.currentHousehold.getKey();
+        for (int i = 0; i < 4; i++) {
+            houseKey[i].setText(String.valueOf(key[i]));
+        }
     }
 }

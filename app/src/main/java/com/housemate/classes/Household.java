@@ -1,6 +1,7 @@
 package com.housemate.classes;
 
 import android.util.Log;
+import android.widget.ArrayAdapter;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -10,6 +11,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.FutureTask;
@@ -215,6 +217,51 @@ public class Household
                 throw new RuntimeException();
             else {
                 this.setHouseholdName(name);
+            }
+        }
+        catch (Exception e) {
+            throw new RuntimeException("Error communicating with server");
+        }
+    }
+
+
+
+    public ArrayList<ArrayList<String>> loadMetrics() throws RuntimeException {
+        try {
+            String script = "loadMetrics.php";
+            String data = "{\"houseID\":" + houseID + "}";
+            String[] responseLines = HTTPSDataSender.initiateTransaction(script,data);
+
+            if (responseLines.length < 1 || responseLines[0].equals("CONNECT_ERROR"))
+                throw new RuntimeException();
+            else {
+                ArrayList<ArrayList<String>> result = new ArrayList<ArrayList<String>>();
+                for (int i = 0; i < responseLines.length; i+=2) {
+                    result.add(new ArrayList<String>(List.of(responseLines[i],responseLines[i+1])));
+                }
+                return result;
+            }
+        }
+        catch (Exception e) {
+            throw new RuntimeException("Error communicating with server");
+        }
+    }
+
+
+    public char[] getKey() throws RuntimeException {
+        try {
+            String script = "getHouseKey.php";
+            String data = Integer.toString(houseID);
+            String[] responseLines = HTTPSDataSender.initiateTransaction(script,data);
+
+            if (responseLines.length < 1 || responseLines[0].equals("CONNECT_ERROR"))
+                throw new RuntimeException();
+            else {
+                char[] key = new char[4];
+                for (int i = 0; i < 4; i++) {
+                    key[i] = responseLines[0].charAt(i);
+                }
+                return key;
             }
         }
         catch (Exception e) {
