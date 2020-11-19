@@ -47,20 +47,23 @@ public class MainActivity extends AppCompatActivity {
         currentUser.setUser_name(username);
         currentUser.setUser_pass(password);
         if (currentUser.login() == 1) {
-            Intent intent;
-            ArrayList<Integer> houseId = currentUser.getHouseId();
-            if (houseId.size() == 0) {
-                intent = new Intent(this, JoinCreateHousehold.class);
+            if (currentUser.isVerified()) {
+                Intent intent;
+                ArrayList<Integer> houseId = currentUser.getHouseId();
+                if (houseId.size() == 0) {
+                    intent = new Intent(this, JoinCreateHousehold.class);
+                } else if (houseId.size() == 1) {
+                    currentHousehold.setHousehold(houseId.get(0));
+                    intent = new Intent(this, HomePageActivity.class);
+                } else {
+                    intent = new Intent(this, SelectHouse.class);
+                }
+                startActivity(intent);
+                finish();
+            }else {
+                startActivity(new Intent(this, UnverifiedUserActivity.class));
             }
-            else if (houseId.size() == 1) {
-                currentHousehold.setHousehold(houseId.get(0));
-                intent = new Intent(this, HomePageActivity.class);
-            }
-            else {
-                intent = new Intent(this, SelectHouse.class);
-            }
-            startActivity(intent);
-            finish();
+
 
         }
         else {
