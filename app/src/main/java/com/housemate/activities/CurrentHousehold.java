@@ -21,7 +21,8 @@ import java.util.ArrayList;
 
 
 
-public class CurrentHousehold extends AppCompatActivity implements CurrentHouseholdRVAdapter.ItemClickListener, RemoveHousemateDialogue.RemoveHousemateDialogueListener {
+public class CurrentHousehold extends AppCompatActivity implements CurrentHouseholdRVAdapter.ItemClickListener,
+        RemoveHousemateDialogue.RemoveHousemateDialogueListener, RenameHouseFragment.RenameHouseFragmentListener {
     TextView householdNameTV, householdTitleTV;
     TextView[] houseKey;
     Button backBtn, saveBtn;
@@ -29,6 +30,7 @@ public class CurrentHousehold extends AppCompatActivity implements CurrentHouseh
     CurrentHouseholdRVAdapter currentHouseHoldRVAdapter;
     ArrayList<String> housemateList,  userIdList;
     int recyclerViewPosition;
+    private RenameHouseFragment renameHouseFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +55,8 @@ public class CurrentHousehold extends AppCompatActivity implements CurrentHouseh
         houseKey[2] = (TextView)findViewById(R.id.houseKeyTextView3);
         houseKey[3] = (TextView)findViewById(R.id.houseKeyTextView4);
 
+        renameHouseFragment = new RenameHouseFragment();
+        renameHouseFragment.setHouseName(MainActivity.currentHousehold.getHouseholdName());
     }
     public void setUpRecyclerView(){
 
@@ -98,5 +102,22 @@ public class CurrentHousehold extends AppCompatActivity implements CurrentHouseh
         for (int i = 0; i < 4; i++) {
             houseKey[i].setText(String.valueOf(key[i]));
         }
+    }
+
+
+
+    public void onChangeHouseholdName(View view) {
+
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fragmentContainer, renameHouseFragment)
+                .commit();
+    }
+
+
+    // household name received from renameHouseFragment
+    @Override
+    public void onHouseNameSent(CharSequence houseName) {
+        MainActivity.currentHousehold.renameHousehold(houseName.toString());
+        householdNameTV.setText(houseName);
     }
 }
