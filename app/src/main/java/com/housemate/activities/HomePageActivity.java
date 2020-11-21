@@ -29,13 +29,14 @@ import java.util.List;
 public class HomePageActivity extends AppCompatActivity {
     private AppCompatImageButton editProfileBtn;
     private ImageButton createTaskBtn;
-    private Button chatBtn;
+    private Button settingsPageButton;
     private TextView displayUser;
     private Button logPageButton;
     private List<Task> taskList;
     private RecyclerView taskRecyclerView;
     private RecyclerView.Adapter taskAdapter;
     private RecyclerView.LayoutManager taskLayoutManager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,8 +47,7 @@ public class HomePageActivity extends AppCompatActivity {
         taskRecyclerView = (RecyclerView) findViewById(R.id.task_recycler_view);
         taskAdapter = new TaskListAdapter(this, taskList, false);
         // Really janky way to update. REPLACE LATER
-        taskAdapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver()
-        {
+        taskAdapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
             @Override
             public void onChanged() {
                 taskList = IncompleteTask.loadHouseholdTasks(MainActivity.currentHousehold.getHouseID());
@@ -89,27 +89,38 @@ public class HomePageActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        settingsPageButton = findViewById(R.id.settingsPageBtn);
+        settingsPageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(HomePageActivity.this, Settings.class);
+                startActivity(intent);
+            }
+        });
     }
 
-    public void onSwitchHousehold(View view) {
-        Intent intent = new Intent(this, SelectHouse.class);
-        startActivity(intent);
+        public void onSwitchHousehold (View view){
+            Intent intent = new Intent(this, SelectHouse.class);
+            startActivity(intent);
+        }
+
+        public void gotoMetrics (View view){
+            Intent intent = new Intent(this, TaskMetricsActivity.class);
+            startActivity(intent);
+        }
+
+
+        @Override
+        public void onBackPressed () {
+            //  super.onBackPressed();
+            // do nothing
+        }
+
+        public void gotoCurrentHousehold (View view){
+            Intent intent = new Intent(this, CurrentHousehold.class);
+            startActivity(intent);
+        }
     }
 
-    public void gotoMetrics(View view) {
-        Intent intent = new Intent(this, TaskMetricsActivity.class);
-        startActivity(intent);
-    }
-
-    @Override
-    public void onBackPressed() {
-      //  super.onBackPressed();
-        // do nothing
-    }
-
-    public void gotoCurrentHousehold(View view) {
-        Intent intent = new Intent(this, CurrentHousehold.class);
-        startActivity(intent);
-    }
-}
 
