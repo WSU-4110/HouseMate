@@ -84,7 +84,7 @@ public class Household
         }
     }
 
-    // Create a new household group
+    // Set household group
     public void setHousehold(int id) throws RuntimeException {
         try {
             URL url = new URL("https://housemateapp1.000webhostapp.com/setHousehold.php");
