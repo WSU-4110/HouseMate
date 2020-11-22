@@ -66,6 +66,19 @@
                 android:padding="6sp"
                 app:layout_constraintEnd_toEndOf="@id/task_name_view"
                 app:layout_constraintBottom_toBottomOf="parent" />
+
+            <ImageButton
+                style="@style/Theme.MyApp"
+                android:id="@+id/subtaskListBtn"
+                android:layout_width="42sp"
+                android:layout_height="42sp"
+                android:layout_margin="6sp"
+                android:gravity="start"
+                android:src="@drawable/ic_add_subtask_24"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/task_text"
+                app:layout_constraintTop_toTopOf="parent"
+                android:contentDescription="Add Subtask" />
             <ImageView
                 android:id="@+id/edit_task_view"
                 android:src="@drawable/edit_task"
