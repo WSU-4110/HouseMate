@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp"
+    android:id="@+id/subtaskParent"
+    style="@style/Theme.MyApp">
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp" >
+
+        <com.google.android.material.radiobutton.MaterialRadioButton
+            android:id="@+id/new_subtask_item"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:textSize="20sp"
+            android:text="@string/subtask_item" />
+
+    </RadioGroup>
+</RelativeLayout>
