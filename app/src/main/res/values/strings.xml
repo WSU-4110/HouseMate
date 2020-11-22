@@ -29,4 +29,10 @@
         <item>Weekly</item>
         <item>Monthly</item>
     </string-array>
+
+    <string name="subtask_message">Subtasks</string>
+    <string name="subtask_item">New Subtask</string>
+    <string name="subtask_complete">Complete</string>
+    <string name="subtask_close">Close</string>
+    <string name="subtask_edit">Edit</string>
 </resources>
