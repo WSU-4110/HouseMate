@@ -106,7 +106,7 @@ public class CreateTaskActivity extends AppCompatActivity implements DatePickerD
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.spinner_item, this.getResources().getStringArray(R.array.repeat_task_arr));
         // Create an ArrayAdapter using the string array and a default spinner layout
         //ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-          //      R.array.repeatTaskArr, android.R.layout.simple_spinner_item);
+        //      R.array.repeatTaskArr, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(R.layout.spinner_item);
         repeatTaskSpinner.setAdapter(adapter);
         repeatTaskSpinner.setOnItemSelectedListener(this);
@@ -212,7 +212,7 @@ public class CreateTaskActivity extends AppCompatActivity implements DatePickerD
     }
 
 
-// assign housemates to task via checklist
+    // assign housemates to task via checklist
     public void onCheckboxClicked(View view) {
         CheckBox housemateCheckBox = view.findViewById(R.id.housemateCheckBox);
         String selectedHousemate = housemateCheckBox.getText().toString();
@@ -253,20 +253,19 @@ public class CreateTaskActivity extends AppCompatActivity implements DatePickerD
             case R.id.lowRadioBtn:
                 if (checked)
                     priority = "Low";
-                    break;
+                break;
             case R.id.medRadioBtn:
                 if (checked)
                     priority = "Medium";
-                    break;
+                break;
             case R.id.highRadioBtn:
                 if (checked)
                     priority = "High";
-                    break;
+                break;
             default:
                 priority = "None";
         }
     }
 
 }
-
 
