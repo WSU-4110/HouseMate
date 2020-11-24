@@ -7,7 +7,6 @@
     tools:context=".MainActivity"
     android:background="#FFFFFF" >
 
-<<<<<<< HEAD
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline5"
         android:layout_width="wrap_content"
@@ -16,8 +15,6 @@
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintGuide_begin="206dp" />
-=======
->>>>>>> d964bdf... Re-aligning code with master's files to avoid unneccessary conflicts.
 
     <ImageView
         android:id="@+id/logo"
@@ -150,19 +147,10 @@
         android:text="@string/login"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-<<<<<<< HEAD
         app:layout_constraintStart_toStartOf="@+id/guideline5"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintTop_toBottomOf="@+id/textView"
         app:layout_constraintVertical_bias="0.25" />
-=======
-        app:layout_constraintHorizontal_bias="0.862"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        app:layout_constraintTop_toBottomOf="@+id/Password"  />
-
-
->>>>>>> d964bdf... Re-aligning code with master's files to avoid unneccessary conflicts.
 
     <Button
         android:id="@+id/Register"
@@ -211,9 +199,3 @@
 
     <!-- android:backgroundTint="#99141515" -->
 </androidx.constraintlayout.widget.ConstraintLayout>
-
-<<<<<<< HEAD
-=======
-    <!-- android:backgroundTint="#99141515" -->
-</androidx.constraintlayout.widget.ConstraintLayout>
->>>>>>> d964bdf... Re-aligning code with master's files to avoid unneccessary conflicts.

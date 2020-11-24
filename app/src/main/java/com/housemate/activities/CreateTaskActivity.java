@@ -73,15 +73,8 @@ public class CreateTaskActivity extends AppCompatActivity implements DatePickerD
         dueDate = null;
         dueTime = null;
         taskName = "New Task";
-<<<<<<< HEAD
-
-        dueDate = LocalDate.of(2020, 4, 12);
-        dueTime = LocalTime.of(10, 30);
-
-=======
         dueDate = "";
         dueTime = "";
->>>>>>> d964bdf... Re-aligning code with master's files to avoid unneccessary conflicts.
         repeatTask = "Never";
         priority = "None";
         taskNotes = "";
@@ -124,12 +117,11 @@ public class CreateTaskActivity extends AppCompatActivity implements DatePickerD
                 Log.i("priority", priority);
                 Log.i("assigned to", printAssignTo);
                 Log.i("notes" , taskNotes);
-<<<<<<< HEAD
                 LocalDate dueDate = LocalDate.of(2020, 4, 12);
                 LocalTime dueTime = LocalTime.of(10, 30);
-                 */
+
                 IncompleteTask task = new IncompleteTask(taskName, taskNotes, assignedTo, dueDate, dueTime);
-=======
+                LocalDate dueDate = LocalDate.of(2020, 4, 12);
                 */
 
                 LocalDate dueDate = LocalDate.of(2020, 4, 12);
@@ -138,7 +130,6 @@ public class CreateTaskActivity extends AppCompatActivity implements DatePickerD
                 String name = "Wash dishes";
                 String description = "Clean counter-tops when done";
                 IncompleteTask task = new IncompleteTask(name, description, users, dueDate, dueTime);
->>>>>>> d964bdf... Re-aligning code with master's files to avoid unneccessary conflicts.
                 task.create(MainActivity.currentHousehold.getHouseID());
 
 
