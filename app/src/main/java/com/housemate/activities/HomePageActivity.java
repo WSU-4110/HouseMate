@@ -5,30 +5,27 @@ import androidx.appcompat.widget.AppCompatImageButton;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.app.ActivityManager;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
-import android.database.DataSetObserver;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
-import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.housemate.classes.IncompleteTask;
 import com.housemate.classes.Task;
 import com.housemate.classes.TaskListAdapter;
 
 
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 public class HomePageActivity extends AppCompatActivity {
     private AppCompatImageButton editProfileBtn;
-    private ImageButton createTaskBtn;
+    private ImageButton createTaskBtn, subtaskListBtn;
     private Button chatBtn;
     private TextView displayUser;
     private Button logPageButton;
@@ -36,13 +33,16 @@ public class HomePageActivity extends AppCompatActivity {
     private RecyclerView taskRecyclerView;
     private RecyclerView.Adapter taskAdapter;
     private RecyclerView.LayoutManager taskLayoutManager;
+    private AlertDialog subtaskPopupList;
+    private MaterialAlertDialogBuilder subtaskBuilder;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
 
 
-        taskList = IncompleteTask.loadHouseholdTasks(MainActivity.currentHousehold.getHouseID());
+        /*taskList = IncompleteTask.loadHouseholdTasks(MainActivity.currentHousehold.getHouseID());
         taskRecyclerView = (RecyclerView) findViewById(R.id.task_recycler_view);
         taskAdapter = new TaskListAdapter(this, taskList, false);
         // Really janky way to update. REPLACE LATER
@@ -56,10 +56,11 @@ public class HomePageActivity extends AppCompatActivity {
         });
         taskLayoutManager = new LinearLayoutManager(this);
         taskRecyclerView.setLayoutManager(taskLayoutManager);
-        taskRecyclerView.setAdapter(taskAdapter);
+        taskRecyclerView.setAdapter(taskAdapter);*/
 
         editProfileBtn = findViewById(R.id.edit_profile);
         createTaskBtn = findViewById(R.id.createTaskBtn);
+        subtaskListBtn = findViewById(R.id.subtaskListBtn);
 
         editProfileBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,6 +73,13 @@ public class HomePageActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(HomePageActivity.this, CreateTaskActivity.class));
+            }
+        });
+
+        subtaskListBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(HomePageActivity.this, SubtaskDialog.class));
             }
         });
 
