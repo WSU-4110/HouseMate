@@ -47,11 +47,11 @@ public class CreateTaskActivity extends AppCompatActivity implements DatePickerD
     ImageButton pickDateImgBtn, pickTimeImgBtn;
     TextView dateTV, timeTV;
     static ArrayList<String> housemates;
-        ArrayList<String> assignedTo;
+    ArrayList<String> assignedTo;
     ArrayList<Boolean> isAssigned;
     RecyclerView housemateRecView ;
     Spinner repeatTaskSpinner;
-    String taskName, repeatTask, priority, taskNotes; // save all var to Task Obj.
+    String taskName, repeatType, priority, taskNotes; // save all var to Task Obj.
     LocalDate dueDate;
     LocalTime dueTime;
     HousemateRecViewAdapter housemateRecViewAdapter;
@@ -79,7 +79,7 @@ public class CreateTaskActivity extends AppCompatActivity implements DatePickerD
         dueDate = LocalDate.of(2020, 4, 12);
         dueTime = LocalTime.of(10, 30);
 
-        repeatTask = "Never";
+        repeatType = "Never";
         priority = "None";
         taskNotes = "";
 
@@ -98,7 +98,12 @@ public class CreateTaskActivity extends AppCompatActivity implements DatePickerD
 
 
         repeatTaskSpinner = findViewById(R.id.repeatTaskSpinner);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.spinner_item, this.getResources().getStringArray(R.array.repeatTaskArr) );
+        ArrayAdapter<CharSequence> repeatTaskAdapter = ArrayAdapter.createFromResource(
+                this, R.array.repeat_task_arr, android.R.layout.simple_spinner_item);
+        repeatTaskAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        repeatTaskSpinner.setAdapter(repeatTaskAdapter);
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.spinner_item, this.getResources().getStringArray(R.array.repeat_task_arr));
         // Create an ArrayAdapter using the string array and a default spinner layout
         //ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
           //      R.array.repeatTaskArr, android.R.layout.simple_spinner_item);
@@ -124,7 +129,7 @@ public class CreateTaskActivity extends AppCompatActivity implements DatePickerD
                 LocalDate dueDate = LocalDate.of(2020, 4, 12);
                 LocalTime dueTime = LocalTime.of(10, 30);
                  */
-                IncompleteTask task = new IncompleteTask(taskName, taskNotes, assignedTo, dueDate, dueTime);
+                IncompleteTask task = new IncompleteTask(taskName, taskNotes, assignedTo, dueDate, dueTime, repeatType);
                 task.create(MainActivity.currentHousehold.getHouseID());
 
 
@@ -227,15 +232,11 @@ public class CreateTaskActivity extends AppCompatActivity implements DatePickerD
         }
     }
 
-
-
-
-
     // for the item (task frequency) selected in spinner (drop down menu)
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        repeatTask = parent.getItemAtPosition(position).toString();
-        Log.i("selected spinner", repeatTask);
+        repeatType = parent.getItemAtPosition(position).toString().toUpperCase();
+        Log.i("selected spinner", repeatType);
     }
     // for no item selected in spinner
     @Override

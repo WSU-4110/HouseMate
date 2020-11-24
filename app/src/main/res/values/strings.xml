@@ -23,7 +23,7 @@
     <string name="login">Login</string>
     <string name="an_email_has_been_sent_to_your_inbox_verify_your_email_by_clicking_the_link_in_the_message_to_use_the_application">An email has been sent to your inbox. Verify your email by clicking the link in the message to use the application</string>
 
-    <string-array name="repeatTaskArr">
+    <string-array name="repeat_task_arr">
         <item>Never</item>
         <item>Daily</item>
         <item>Weekly</item>
