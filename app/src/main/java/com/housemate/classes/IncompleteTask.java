@@ -16,18 +16,33 @@ public class IncompleteTask extends Task {
     private ArrayList<String> assignedUsers;
     private LocalDate dueDate;
     private LocalTime dueTime;
+    private final String repeatType;
+    private static final String[] repeatTypes = { "NEVER", "DAILY", "WEEKLY", "MONTHLY" };
 
     public IncompleteTask(
             String name,
             String description,
             ArrayList<String> assignedUsers,
             LocalDate dueDate,
-            LocalTime dueTime
+            LocalTime dueTime,
+            String repeatType
     ) {
         super(name, description);
         this.assignedUsers = new ArrayList<>(assignedUsers);
         this.dueDate = dueDate;
         this.dueTime = dueTime;
+
+        boolean repeatTypeFound = false;
+        for (String type : repeatTypes) {
+            if (repeatType.equals(type)) {
+                repeatTypeFound = true;
+                break;
+            }
+        }
+        if (repeatTypeFound)
+            this.repeatType = repeatType;
+        else
+            throw new RuntimeException("Error creating task: invalid repeat type");
     }
 
     @JsonCreator
@@ -37,10 +52,18 @@ public class IncompleteTask extends Task {
             @JsonProperty("assignedUsers") ArrayList<String> assignedUsers,
             @JsonProperty("dueDate") LocalDate dueDate,
             @JsonProperty("dueTime") LocalTime dueTime,
+            @JsonProperty("repeatType") String repeatType,
             @JsonProperty("id") int id
     ) {
-        this(name, description, assignedUsers, dueDate, dueTime);
+        this(name, description, assignedUsers, dueDate, dueTime, repeatType);
         setId(id);
+    }
+
+    @Override
+    public String getDateAndTimeText() {
+        return String.format("<p>Due %s at %s</p>\n",
+                getDueDate().format(DateTimeFormatter.ofPattern("M-d-yyyy")),
+                getDueTime().format(DateTimeFormatter.ofPattern("h:mm a")));
     }
 
     public ArrayList<String> getAssignedUsers() { return new ArrayList<>(assignedUsers); }
@@ -54,6 +77,8 @@ public class IncompleteTask extends Task {
     public LocalTime getDueTime() { return dueTime; }
 
     public void setDueTime(LocalTime dueTime) { this.dueTime = dueTime; }
+
+    public String getRepeatType() { return repeatType; }
 
     @Override @NonNull
     public String toString() {
@@ -86,9 +111,36 @@ public class IncompleteTask extends Task {
     public static void complete(int taskId, int userId, int houseId) throws RuntimeException {
         try {
             if (userId == -1 || houseId == -1) {  throw new RuntimeException(); }
-            String script = "completeTask2.php";
-            String data = "{\"taskId\":" + taskId + ",\"userId\":" + userId + ",\"houseId\":" + houseId + "}";
-            HTTPSDataSender.initiateTransaction(script,data);
+
+            String script = "getTaskById.php";
+            String data = String.valueOf(taskId);
+            String[] responseLines = HTTPSDataSender.initiateTransaction(script, data);
+
+            if (responseLines.length < 1 || responseLines[0].equals("CONNECT_ERROR"))
+                throw new RuntimeException();
+            ObjectMapper objectMapper = new ObjectMapper();
+            objectMapper.findAndRegisterModules();
+            IncompleteTask task = objectMapper.readValue(responseLines[0], IncompleteTask.class);
+
+            String newDueDate;
+            switch (task.getRepeatType()) {
+                case ("DAILY"):
+                    newDueDate = task.getDueDate().plusDays(1).toString();
+                    break;
+                case ("WEEKLY"):
+                    newDueDate = task.getDueDate().plusWeeks(1).toString();
+                    break;
+                case ("MONTHLY"):
+                    newDueDate = task.getDueDate().plusMonths(1).toString();
+                    break;
+                default:
+                    newDueDate = "NONE";
+            }
+
+            script = "completeTask2.php";
+            data = "{\"taskId\":" + taskId + ",\"userId\":" + userId + ",\"houseId\":" + houseId + ",\"newDueDate\":\"" + newDueDate + "\"}";
+            HTTPSDataSender.initiateTransaction(script, data);
+
         } catch (Exception e) {
             throw new RuntimeException("Error communicating with server");
         }
