@@ -226,6 +226,7 @@ public class Household
 
 
 
+
     public ArrayList<ArrayList<String>> loadMetrics() throws RuntimeException {
         try {
             String script = "loadMetrics.php";

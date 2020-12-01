@@ -12,6 +12,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import java.lang.reflect.Array;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.FutureTask;
@@ -145,11 +146,17 @@ public class User {
             String script = "leaveHousehold.php";
             String data = "{\"id\":" + id + ",\"houseId\":" + householdId + "}";
             String[] responseLines = HTTPSDataSender.initiateTransaction(script, data);
-
+            Log.i("response", Arrays.toString(responseLines));
             if (responseLines.length < 1 || responseLines[0].equals("CONNECT_ERROR"))
                 throw new RuntimeException();
             else {
-                houseId.remove(householdId);
+                int deleteHouseIndex = -1;
+                for(int i =0; i<houseId.size(); i++){
+                    if(householdId == houseId.get(i) ){
+                        deleteHouseIndex = i;
+                    }
+                }
+                houseId.remove(deleteHouseIndex);
             }
         }
         catch (Exception e) {

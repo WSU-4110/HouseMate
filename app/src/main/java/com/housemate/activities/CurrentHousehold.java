@@ -1,9 +1,12 @@
 package com.housemate.activities;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -24,24 +27,28 @@ import java.util.ArrayList;
 public class CurrentHousehold extends AppCompatActivity implements CurrentHouseholdRVAdapter.ItemClickListener,
         RemoveHousemateDialogue.RemoveHousemateDialogueListener, RenameHouseFragment.RenameHouseFragmentListener {
     TextView householdNameTV, householdTitleTV;
-    TextView[] houseKey;
-    Button backBtn, saveBtn;
+    Button backBtn, saveBtn, leaveHouseBtn, getHouseKeyBtn;
     RecyclerView housemateRecView;
     CurrentHouseholdRVAdapter currentHouseHoldRVAdapter;
     ArrayList<String> housemateList,  userIdList;
     int recyclerViewPosition;
     private RenameHouseFragment renameHouseFragment;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_current_household);
 
         householdNameTV = findViewById(R.id.householdNameTV);
         householdTitleTV = findViewById(R.id.houseHoldTitleTV);
         backBtn = findViewById(R.id.backBtn);
         saveBtn = findViewById(R.id.saveBtn);
+        leaveHouseBtn = findViewById(R.id.leaveHouseBtn);
+        getHouseKeyBtn = findViewById(R.id.getHouseKeyBtn);
         housemateRecView = findViewById(R.id.housemateRecView);
+
         householdNameTV.setText(MainActivity.currentHousehold.getHouseholdName());
 
         housemateList = MainActivity.currentHousehold.getUsers();
@@ -49,15 +56,10 @@ public class CurrentHousehold extends AppCompatActivity implements CurrentHouseh
 
         setUpRecyclerView();
 
-        houseKey = new TextView[4];
-        houseKey[0] = (TextView)findViewById(R.id.houseKeyTextView1);
-        houseKey[1] = (TextView)findViewById(R.id.houseKeyTextView2);
-        houseKey[2] = (TextView)findViewById(R.id.houseKeyTextView3);
-        houseKey[3] = (TextView)findViewById(R.id.houseKeyTextView4);
-
         renameHouseFragment = new RenameHouseFragment();
         renameHouseFragment.setHouseName(MainActivity.currentHousehold.getHouseholdName());
     }
+
     public void setUpRecyclerView(){
 
         currentHouseHoldRVAdapter = new CurrentHouseholdRVAdapter(CurrentHousehold.this);
@@ -97,17 +99,10 @@ public class CurrentHousehold extends AppCompatActivity implements CurrentHouseh
         }
     }
 
-    public void getHouseKey(View view) {
-        char[] key = MainActivity.currentHousehold.getKey();
-        for (int i = 0; i < 4; i++) {
-            houseKey[i].setText(String.valueOf(key[i]));
-        }
-    }
 
 
 
     public void onChangeHouseholdName(View view) {
-
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fragmentContainer, renameHouseFragment)
                 .commit();
@@ -119,5 +114,20 @@ public class CurrentHousehold extends AppCompatActivity implements CurrentHouseh
     public void onHouseNameSent(CharSequence houseName) {
         MainActivity.currentHousehold.renameHousehold(houseName.toString());
         householdNameTV.setText(houseName);
+    }
+
+    public void onLeaveHouseBtnClicked(View view) {
+        MainActivity.currentUser.leaveHousehold(MainActivity.currentHousehold.getHouseID());
+
+        MainActivity.currentHousehold.setHouseID(-1);
+        MainActivity.currentHousehold.setHouseholdName("");
+
+        Intent intent = new Intent(this, SelectHouse.class);
+        startActivity(intent);
+    }
+
+    public void onGetHouseKeyBtnClicked(View view) {
+        Intent intent = new Intent(this, GetHouseKey.class);
+        startActivity(intent);
     }
 }
