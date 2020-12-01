@@ -42,8 +42,7 @@ public class HomePageActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home_page);
 
 
-        taskList = new ArrayList<>();
-                //IncompleteTask.loadHouseholdTasks(MainActivity.currentHousehold.getHouseID());
+        taskList = IncompleteTask.loadHouseholdTasks(MainActivity.currentHousehold.getHouseID());
         taskRecyclerView = (RecyclerView) findViewById(R.id.task_recycler_view);
         taskAdapter =new TaskListAdapter(this, taskList, false);
         // Really janky way to update. REPLACE LATER
