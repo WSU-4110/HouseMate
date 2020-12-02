@@ -10,16 +10,19 @@
 
     <TextView
         android:id="@+id/headerSettings"
-        android:layout_width="151dp"
-        android:layout_height="52dp"
-        android:text="Settings"
-        android:textSize="35sp"
+        android:layout_width="243dp"
+        android:layout_height="53dp"
+        android:padding="5sp"
+        android:text="SETTINGS"
+        android:textColor="@color/aero_blue"
+        android:textSize="40sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.023" />
 
     <Button
         android:id="@+id/profileSettingsbutton"
@@ -40,6 +43,7 @@
         android:layout_marginStart="44dp"
         android:layout_marginTop="24dp"
         android:text="Push Notifications "
+        android:textColor="@color/atomic_tangerine"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -53,6 +57,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginBottom="16dp"
         android:text="Color Theme"
+        android:textColor="@color/atomic_tangerine"
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/ThemesradioGroup"
         app:layout_constraintEnd_toEndOf="parent"
@@ -114,6 +119,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginBottom="13dp"
         android:text="Completed Tasks"
+        android:textColor="@color/atomic_tangerine"
         app:layout_constraintBottom_toTopOf="@+id/createdTaskspush"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -128,6 +134,7 @@
         android:layout_marginStart="44dp"
         android:layout_marginTop="56dp"
         android:text="Created Tasks"
+        android:textColor="@color/atomic_tangerine"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.008"
         app:layout_constraintStart_toStartOf="parent"
@@ -149,13 +156,15 @@
             android:id="@+id/lightTheme"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Light" />
+            android:text="Light"
+            android:textColor="@color/atomic_tangerine"/>
 
         <RadioButton
             android:id="@+id/darkTheme"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Dark" />
+            android:text="Dark"
+            android:textColor="@color/atomic_tangerine"/>
     </RadioGroup>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

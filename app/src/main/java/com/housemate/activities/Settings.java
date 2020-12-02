@@ -50,6 +50,7 @@ public class Settings extends AppCompatActivity {
             }
         });
 
+
         //completedTaskpush.setOnClickListener(new View.OnClickListener() {
           //  @Override
             //public void onClick(View v) {
@@ -74,13 +75,13 @@ public class Settings extends AppCompatActivity {
 //        });
 //
 //
-//        logoutButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(Settings.this, .class);
-//                startActivity(intent);
-//            }
-//        });
+        logoutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Settings.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
 //
 //        changePasswordbutton.setOnClickListener(new View.OnClickListener() {
 //            @Override

@@ -33,6 +33,7 @@
         <activity android:name=".CreateTaskActivity" />
         <activity android:name=".HomePageActivity" />
         <activity android:name=".ViewCompletedTasksActivity" />
+        <activity android:name=".Settings"/>
     </application>
 
 </manifest>

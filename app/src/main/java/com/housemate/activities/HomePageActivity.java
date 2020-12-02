@@ -29,7 +29,7 @@ import java.util.List;
 public class HomePageActivity extends AppCompatActivity {
     private AppCompatImageButton editProfileBtn;
     private ImageButton createTaskBtn;
-    private Button settingsPageButton;
+    private Button settingsPageBtn;
     private TextView displayUser;
     private Button logPageButton;
     private List<Task> taskList;
@@ -90,14 +90,15 @@ public class HomePageActivity extends AppCompatActivity {
             }
         });
 
-        settingsPageButton = findViewById(R.id.settingsPageBtn);
-        settingsPageButton.setOnClickListener(new View.OnClickListener() {
+        settingsPageBtn = findViewById(R.id.settingsPageBtn);
+        settingsPageBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(HomePageActivity.this, Settings.class);
+                Intent intent = new Intent(HomePageActivity.this,Settings.class);
                 startActivity(intent);
             }
         });
+
     }
 
         public void onSwitchHousehold (View view){
