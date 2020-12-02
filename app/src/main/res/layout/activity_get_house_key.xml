@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".GetHouseKey">
+
+    <TextView
+        android:id="@+id/inviteTitleTV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:background="@color/aero_blue"
+        android:padding="20dp"
+        android:text="Invite to Household"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:layout_alignParentTop="true"/>
+
+    <RelativeLayout
+        android:id="@+id/getKeyRelativeLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/inviteTitleTV"
+        android:layout_marginTop="3dp"
+        android:layout_marginBottom="30dp"
+        android:background="@color/white_50"
+        android:elevation="10dp">
+
+        <TextView
+            android:id="@+id/houseKeyTitleTV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="15dp"
+            android:gravity="center"
+            android:text="@string/one_time_house_key"
+            android:textSize="32sp" />
+
+        <LinearLayout
+            android:id="@+id/houseKeyLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/houseKeyTitleTV"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginBottom="64dp"
+            android:background="@drawable/text_view_outline"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/houseKeyTextView1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:background="@drawable/key_char_background"
+                android:textAlignment="center"
+                android:textAppearance="@style/TextAppearance.MyTheme.Overline"
+                android:textSize="64sp"
+                app:drawableBottomCompat="@color/black_800" />
+
+            <TextView
+                android:id="@+id/houseKeyTextView2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:background="@drawable/key_char_background"
+                android:textAlignment="center"
+                android:textAppearance="@style/TextAppearance.MyTheme.Overline"
+                android:textSize="64sp" />
+
+            <TextView
+                android:id="@+id/houseKeyTextView3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:background="@drawable/key_char_background"
+                android:textAlignment="center"
+                android:textAppearance="@style/TextAppearance.MyTheme.Overline"
+                android:textSize="64sp" />
+
+            <TextView
+                android:id="@+id/houseKeyTextView4"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:background="@drawable/key_char_background"
+                android:textAlignment="center"
+                android:textAppearance="@style/TextAppearance.MyTheme.Overline"
+                android:textSize="64sp" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/getKeyButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/houseKeyLayout"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="32dp"
+            android:onClick="getHouseKey"
+            android:text="Get Key" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_below="@id/getKeyRelativeLayout"
+        android:id="@+id/copyLinearLayout"
+        android:layout_toStartOf="@id/shareLinearLayout">
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="copy key"
+            android:id="@+id/copyKeyButton"
+            android:onClick="onCopyKey"
+            android:background="@color/aero_blue"
+            android:src="@drawable/ic_baseline_content_copy_24"
+            android:padding="20dp"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Copy\nKey"
+            android:textAlignment="center"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_below="@id/getKeyRelativeLayout"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:id="@+id/shareLinearLayout"
+        android:layout_centerHorizontal="true">
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/shareButton"
+            android:onClick="shareKey"
+            android:background="@color/aero_blue"
+            android:src="@drawable/ic_baseline_share_24"
+            android:padding="20dp"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Share \nKey"
+            android:textAlignment="center"/>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_below="@id/getKeyRelativeLayout"
+        android:layout_toEndOf="@id/shareLinearLayout">
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="onBackButtonClicked"
+            android:id="@+id/backButton"
+            android:background="@color/aero_blue"
+            android:src="@drawable/ic_baseline_house_24"
+            android:padding="20dp"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Back To\nHouse"
+            android:textAlignment="center"/>
+    </LinearLayout>
+
+</RelativeLayout>

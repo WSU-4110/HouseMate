@@ -6,7 +6,7 @@
         <item name="colorSecondary">@color/cyan_process</item>
         <item name="colorPrimaryDark">@color/morning_blue</item>
         <item name="colorAccent">@color/chinese_violet</item>
-
+<!--
         <item name="colorPrimaryVariant">@color/green_sheen</item>
         <item name="colorSecondaryVariant">@color/atomic_tangerine</item>
         <item name="colorSurface">@color/morning_blue</item>
@@ -15,7 +15,7 @@
         <item name="colorOnBackground">@color/morning_blue</item>
         <item name="colorOnError">@color/terra_cotta</item>
         <item name="colorOnSurface">@color/black_800</item>
-        <item name="scrimBackground">@color/aero_blue</item>
+        <item name="scrimBackground">@color/aero_blue</item> -->
 
         <item name="textAppearanceHeadline1">@style/TextAppearance.MaterialComponents.Headline1</item>
         <item name="textAppearanceHeadline2">@style/TextAppearance.MaterialComponents.Headline2</item>

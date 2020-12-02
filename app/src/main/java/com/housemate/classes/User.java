@@ -12,6 +12,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import java.lang.reflect.Array;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.FutureTask;
@@ -56,7 +57,6 @@ public class User {
         this.firstName = firstName;
         this.lastName = lastName;
     }
-
 
 
     public void register() throws RuntimeException {
@@ -146,11 +146,17 @@ public class User {
             String script = "leaveHousehold.php";
             String data = "{\"id\":" + id + ",\"houseId\":" + householdId + "}";
             String[] responseLines = HTTPSDataSender.initiateTransaction(script, data);
-
+            Log.i("response", Arrays.toString(responseLines));
             if (responseLines.length < 1 || responseLines[0].equals("CONNECT_ERROR"))
                 throw new RuntimeException();
             else {
-                houseId.remove(householdId);
+                int deleteHouseIndex = -1;
+                for(int i =0; i<houseId.size(); i++){
+                    if(householdId == houseId.get(i) ){
+                        deleteHouseIndex = i;
+                    }
+                }
+                houseId.remove(deleteHouseIndex);
             }
         }
         catch (Exception e) {
@@ -175,6 +181,22 @@ public class User {
         }
     }
 
+    public void updateUserData() throws RuntimeException{
+        try {
+            String script = "updateUserData.php";
+            String data = "{\"id\":" + id + ",\"firstName\": \"" + firstName + "\",\"lastName\":\"" + lastName + "\",\"email\":\"" + email +"\",\"user_name\":\"" + user_name + "\"}";
+            String[] responseLines = HTTPSDataSender.initiateTransaction(script,data);
+
+            if (responseLines.length < 1 || responseLines[0].equals("CONNECT_ERROR"))
+                throw new RuntimeException();
+            else{
+                Log.i("DB success", responseLines[0]);
+            }
+        }
+        catch (Exception e) {
+            throw new RuntimeException("Error communicating with server");
+        }
+    }
 
     public void updateFirstNameInDB(String editedFirstName) throws  RuntimeException{
         try{

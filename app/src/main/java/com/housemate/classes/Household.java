@@ -199,6 +199,24 @@ public class Household
             throw new RuntimeException("Error communicating with server");
         }
     }
+    public void renameHousehold(String name) throws RuntimeException {
+        try {
+            String script = "renameHousehold.php";
+            String data = "{\"houseID\":" + houseID + ",\"householdName\": \"" + name + "\"}";
+            String[] responseLines = HTTPSDataSender.initiateTransaction(script, data);
+
+            if (responseLines.length < 1 || responseLines[0].equals("CONNECT_ERROR"))
+                throw new RuntimeException();
+            else {
+                this.setHouseholdName(name);
+            }
+        }
+        catch (Exception e) {
+            throw new RuntimeException("Error communicating with server");
+        }
+    }
+
+
 
 
     public ArrayList<ArrayList<String>> loadMetrics() throws RuntimeException {
@@ -222,6 +240,7 @@ public class Household
         }
     }
 
+
     public char[] getKey() throws RuntimeException {
         try {
             String script = "getHouseKey.php";
@@ -242,5 +261,4 @@ public class Household
             throw new RuntimeException("Error communicating with server");
         }
     }
-
 }
