@@ -14,7 +14,7 @@ import java.time.chrono.MinguoChronology;
 
 public class EditProfile extends AppCompatActivity {
 
-    Button backBtn, saveBtn;
+    Button backBtn, saveBtn, selectHouseholdBtn;
     EditText fnameET, lnameET, usernameET, emailET;
 
     @Override
@@ -28,6 +28,7 @@ public class EditProfile extends AppCompatActivity {
         lnameET = findViewById(R.id.lnameET);
         usernameET = findViewById(R.id.usernameET);
         emailET = findViewById(R.id.emailET);
+        selectHouseholdBtn = findViewById(R.id.selectHouseholdBtn);
 
         fillUserData();
     }
@@ -40,7 +41,6 @@ public class EditProfile extends AppCompatActivity {
     }
 
     public void backToSettings(View view) {
-        // go to to settings page
         Intent intent = new Intent(this, HomePageActivity.class);
         startActivity(intent);
     }
@@ -66,5 +66,10 @@ public class EditProfile extends AppCompatActivity {
 
     boolean isEmailValid(CharSequence email) {
         return  android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches();
+    }
+
+    public void selectHousehold(View view) {
+        Intent intent = new Intent(this, SelectHouse.class);
+        startActivity(intent);
     }
 }

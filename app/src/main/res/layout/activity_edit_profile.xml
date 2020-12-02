@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".EditProfile"
     android:padding="15dp">
    <RelativeLayout
@@ -60,5 +59,13 @@
         android:hint="Email"
         android:id="@+id/emailET"
         android:layout_below="@+id/usernameET"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Select or create Household"
+        android:id="@+id/selectHouseholdBtn"
+        android:layout_below="@id/emailET"
+        android:layout_marginTop="30dp"
+        android:onClick="selectHousehold"/>
 
 </RelativeLayout>
