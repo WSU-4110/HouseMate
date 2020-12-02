@@ -20,17 +20,14 @@ import androidx.fragment.app.DialogFragment;
 
 public class Settings extends AppCompatActivity {
 
-    private Button logoutButton;
-    private Button changePasswordbutton;
-    private Button deleteAcct;
-    private Button pushNotification;
-    private Button colorTheme;
+    private Button logoutButton, changePasswordbutton, deleteAcct, pushNotification, colorTheme, backBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.settings);
         colorTheme = (Button) findViewById(R.id.headerColor);
+        backBtn =  (Button) findViewById(R.id.back_to_home_page);
         pushNotification = (Button) findViewById(R.id.headerPushnotific);
         logoutButton = (Button) findViewById(R.id.logoutButton);
         deleteAcct = (Button) findViewById(R.id.deleteAcct);
@@ -42,6 +39,22 @@ public class Settings extends AppCompatActivity {
                   Intent intent = new Intent(Settings.this, ColorThemeActivity.class);
                   startActivity(intent);
               }
+        });
+
+        backBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Settings.this, HomePageActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        pushNotification.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Settings.this, PushNotificationSettingsActivity.class);
+                startActivity(intent);
+            }
         });
 
         //completedTaskpush.setOnClickListener(new View.OnClickListener() {

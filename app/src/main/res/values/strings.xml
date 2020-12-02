@@ -27,6 +27,9 @@
     <string name="log_out">Log Out</string>
     <string name="change_password">Change Password</string>
     <string name="delete_account">Delete Account</string>
+    <string name="created_tasks">Created Tasks:</string>
+    <string name="completed_tasks_lower">Completed Tasks:</string>
+    <string name="settings">SETTINGS</string>
 
     <string-array name="repeat_task_arr">
         <item>Never</item>

@@ -12,7 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApp"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ColorThemeActivity"></activity>
+        <activity android:name=".PushNotificationSettingsActivity"></activity>
+        <activity android:name=".ColorThemeActivity" />
         <activity android:name=".UnverifiedUserActivity" />
         <activity android:name=".ForgotPasswordActivity" />
         <activity android:name=".TaskMetricsActivity" />
