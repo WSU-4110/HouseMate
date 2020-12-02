@@ -22,6 +22,11 @@
     <string name="sign_in">Sign In</string>
     <string name="login">Login</string>
     <string name="an_email_has_been_sent_to_your_inbox_verify_your_email_by_clicking_the_link_in_the_message_to_use_the_application">An email has been sent to your inbox. Verify your email by clicking the link in the message to use the application</string>
+    <string name="push_notifications">Push Notifications</string>
+    <string name="color_theme">Color Theme</string>
+    <string name="log_out">Log Out</string>
+    <string name="change_password">Change Password</string>
+    <string name="delete_account">Delete Account</string>
 
     <string-array name="repeat_task_arr">
         <item>Never</item>
