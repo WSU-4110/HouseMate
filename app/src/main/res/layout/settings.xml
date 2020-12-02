@@ -24,18 +24,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.023" />
 
-    <Button
-        android:id="@+id/profileSettingsbutton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="44dp"
-        android:layout_marginTop="16dp"
-        android:text="Profile Settings"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ThemesradioGroup" />
-
     <TextView
         android:id="@+id/headerPushnotific"
         android:layout_width="197dp"
@@ -67,49 +55,39 @@
         app:layout_constraintVertical_bias="1.0" />
 
     <Button
-        android:id="@+id/leaveHouseholdbutton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Leave Household"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.169"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/changePasswordbutton" />
-
-    <Button
         android:id="@+id/logoutButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
         android:layout_marginEnd="44dp"
         android:text="Log Out "
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/leaveHouseholdbutton" />
+        app:layout_constraintTop_toBottomOf="@+id/changePasswordbutton" />
 
     <Button
         android:id="@+id/changePasswordbutton"
         android:layout_width="171dp"
         android:layout_height="53dp"
         android:layout_marginStart="44dp"
-        android:layout_marginTop="16dp"
+        android:onClick="onRequestPasswordReset"
         android:text="Change Password"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/profileSettingsbutton" />
+        app:layout_constraintTop_toBottomOf="@+id/ThemesradioGroup" />
 
     <Button
         android:id="@+id/deleteAcct"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="44dp"
-        android:layout_marginTop="100dp"
         android:layout_marginEnd="80dp"
         android:text="Delete Account"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/logoutButton"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/leaveHouseholdbutton" />
+        app:layout_constraintTop_toBottomOf="@+id/changePasswordbutton" />
 
     <Switch
         android:id="@+id/completedTaskpush"
@@ -145,8 +123,6 @@
         android:layout_width="71dp"
         android:layout_height="76dp"
         android:layout_marginTop="16dp"
-        android:layout_marginBottom="16dp"
-        app:layout_constraintBottom_toTopOf="@+id/profileSettingsbutton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.131"
         app:layout_constraintStart_toStartOf="parent"
@@ -157,14 +133,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Light"
-            android:textColor="@color/atomic_tangerine"/>
+            android:textColor="@color/atomic_tangerine" />
 
         <RadioButton
             android:id="@+id/darkTheme"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Dark"
-            android:textColor="@color/atomic_tangerine"/>
+            android:textColor="@color/atomic_tangerine" />
     </RadioGroup>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
