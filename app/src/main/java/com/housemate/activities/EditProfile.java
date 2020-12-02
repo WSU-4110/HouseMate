@@ -10,9 +10,11 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.time.chrono.MinguoChronology;
+
 public class EditProfile extends AppCompatActivity {
 
-    Button backBtn, saveBtn;
+    Button backBtn, saveBtn, selectHouseholdBtn;
     EditText fnameET, lnameET, usernameET, emailET;
 
     @Override
@@ -26,6 +28,7 @@ public class EditProfile extends AppCompatActivity {
         lnameET = findViewById(R.id.lnameET);
         usernameET = findViewById(R.id.usernameET);
         emailET = findViewById(R.id.emailET);
+        selectHouseholdBtn = findViewById(R.id.selectHouseholdBtn);
 
         fillUserData();
     }
@@ -38,7 +41,6 @@ public class EditProfile extends AppCompatActivity {
     }
 
     public void backToSettings(View view) {
-        // go to to settings page
         Intent intent = new Intent(this, HomePageActivity.class);
         startActivity(intent);
     }
@@ -54,19 +56,11 @@ public class EditProfile extends AppCompatActivity {
             Toast.makeText(EditProfile.this, "Please fill out all the fields & enter valid email.", Toast.LENGTH_SHORT).show();
         }
         else{
-            // update user data in database only if data was modified in edit text view
-            if(!editedFirstName.equals(MainActivity.currentUser.getFirstName())){
-                MainActivity.currentUser.updateFirstNameInDB(editedFirstName);
-            }
-            if(!editedLastName.equals(MainActivity.currentUser.getLastName())){
-                MainActivity.currentUser.updateLastNameInDB(editedLastName);
-            }
-            if(!editedUserName.equals(MainActivity.currentUser.getUser_name())){
-                MainActivity.currentUser.updateUsernameInDB(editedUserName);
-            }
-            if(!editedEmail.equals(MainActivity.currentUser.getEmail())) {
-                MainActivity.currentUser.updateEmailInDB(editedEmail);
-            }
+            MainActivity.currentUser.setFirstName(editedFirstName);
+            MainActivity.currentUser.setLastName(editedLastName);
+            MainActivity.currentUser.setUser_name(editedUserName);
+            MainActivity.currentUser.setEmail(editedEmail);
+            MainActivity.currentUser.updateUserData();
         }
     }
 
@@ -74,7 +68,8 @@ public class EditProfile extends AppCompatActivity {
         return  android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches();
     }
 
-
-
-
+    public void selectHousehold(View view) {
+        Intent intent = new Intent(this, SelectHouse.class);
+        startActivity(intent);
+    }
 }

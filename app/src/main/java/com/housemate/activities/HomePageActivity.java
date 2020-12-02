@@ -44,7 +44,7 @@ public class HomePageActivity extends AppCompatActivity {
 
         taskList = IncompleteTask.loadHouseholdTasks(MainActivity.currentHousehold.getHouseID());
         taskRecyclerView = (RecyclerView) findViewById(R.id.task_recycler_view);
-        taskAdapter = new TaskListAdapter(this, taskList, false);
+        taskAdapter =new TaskListAdapter(this, taskList, false);
         // Really janky way to update. REPLACE LATER
         taskAdapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver()
         {

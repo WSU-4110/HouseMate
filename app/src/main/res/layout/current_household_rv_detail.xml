@@ -14,5 +14,6 @@
         android:layout_height="wrap_content"
         android:text="Remove"
         android:id="@+id/removeHousemateBtn"
-        android:layout_alignParentEnd="true"/>
+        android:layout_alignParentEnd="true"
+        android:onClick="onRemoveHousemate"/>
 </RelativeLayout>
