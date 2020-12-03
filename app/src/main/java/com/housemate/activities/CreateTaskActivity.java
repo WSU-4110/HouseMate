@@ -1,12 +1,16 @@
 package com.housemate.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
 import androidx.fragment.app.DialogFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.DatePickerDialog;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.app.TimePickerDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -68,7 +72,7 @@ public class CreateTaskActivity extends AppCompatActivity implements DatePickerD
         timeTV = findViewById(R.id.timeTV);
         housemateRecView = findViewById(R.id.housemateRecView);
         assignedTo = new ArrayList<>();
-        isAssigned  = new ArrayList<>();
+        isAssigned = new ArrayList<>();
         housemates = new ArrayList<>();
         notesET = findViewById(R.id.notesET);
         cancelBtn = findViewById(R.id.cancelBtn);
@@ -96,7 +100,6 @@ public class CreateTaskActivity extends AppCompatActivity implements DatePickerD
 //        housemateRecView.setLayoutManager(new LinearLayoutManager(this));
 
 
-
         repeatTaskSpinner = findViewById(R.id.repeatTaskSpinner);
         ArrayAdapter<CharSequence> repeatTaskAdapter = ArrayAdapter.createFromResource(
                 this, R.array.repeat_task_arr, android.R.layout.simple_spinner_item);
@@ -106,7 +109,7 @@ public class CreateTaskActivity extends AppCompatActivity implements DatePickerD
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.spinner_item, this.getResources().getStringArray(R.array.repeat_task_arr));
         // Create an ArrayAdapter using the string array and a default spinner layout
         //ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-          //      R.array.repeatTaskArr, android.R.layout.simple_spinner_item);
+        //      R.array.repeatTaskArr, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(R.layout.spinner_item);
         repeatTaskSpinner.setAdapter(adapter);
         repeatTaskSpinner.setOnItemSelectedListener(this);
@@ -114,7 +117,7 @@ public class CreateTaskActivity extends AppCompatActivity implements DatePickerD
         createTaskBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                taskName= taskNameET.getText().toString();
+                taskName = taskNameET.getText().toString();
                 taskNotes = notesET.getText().toString();
                 //String printAssignTo = assignedTo.toString();
 
@@ -135,7 +138,34 @@ public class CreateTaskActivity extends AppCompatActivity implements DatePickerD
 
                 Intent intent = new Intent(CreateTaskActivity.this, HomePageActivity.class);
                 startActivity(intent);
-            }
+
+
+
+                    String message = " A task has been Created!";
+                    NotificationCompat.Builder builder = new NotificationCompat.Builder(
+                            CreateTaskActivity.this
+                    )
+                            .setSmallIcon(R.drawable.ic_baseline)
+                            .setContentTitle("New Notification")
+                            .setContentText(message)
+                            .setAutoCancel(true);
+
+                    Intent intent2 = new Intent(CreateTaskActivity.this,
+                            NotificationActivity.class);
+
+                    intent2.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    intent2.putExtra("message", message);
+
+                    PendingIntent pendingIntent = PendingIntent.getActivity(CreateTaskActivity.this, 0, intent2, PendingIntent.FLAG_UPDATE_CURRENT);
+                    builder.setContentIntent(pendingIntent);
+
+                    NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+
+                    notificationManager.notify(0, builder.build());
+                }
+
+
+
         });
         cancelBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -160,12 +190,10 @@ public class CreateTaskActivity extends AppCompatActivity implements DatePickerD
             }
         });
 
-        CheckBox assignCheckBox = ( CheckBox ) findViewById( R.id.assignCheckBox );
-        assignCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener()
-        {
+        CheckBox assignCheckBox = (CheckBox) findViewById(R.id.assignCheckBox);
+        assignCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked)
-            {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 housemateRecViewAdapter = new HousemateRecViewAdapter(CreateTaskActivity.this);
                 housemateRecView.setAdapter(housemateRecViewAdapter);
                 housemateRecViewAdapter.setHousemateList(housemates);
@@ -173,11 +201,9 @@ public class CreateTaskActivity extends AppCompatActivity implements DatePickerD
                 assignedTo = housemates;
                 Log.i("housemates", housemates.toString());
                 Log.i("isAssigned", isAssigned.toString());
-                if ( isChecked )
-                {
+                if (isChecked) {
                     housemateRecView.setVisibility(View.VISIBLE);
-                }
-                else{
+                } else {
                     housemateRecView.setVisibility(View.GONE);
                     assignedTo = housemates;
                 }
@@ -185,7 +211,9 @@ public class CreateTaskActivity extends AppCompatActivity implements DatePickerD
             }
         });
 
+
     }
+
 
     @Override
     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
