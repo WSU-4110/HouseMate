@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <item name="custom_calendar" type="id" />
+    <item name="previous_month" type="id" />
 </resources>

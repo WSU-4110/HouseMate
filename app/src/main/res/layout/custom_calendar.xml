@@ -28,7 +28,7 @@
             android:background="@android:color/holo_blue_light"
             android:rotationY="-182"
             android:src="@drawable/ic_right"
-            android:contentDescription="@string/todo" />
+            android:contentDescription="todo" />
 
         <TextView
             android:id="@+id/current_Date"
@@ -37,7 +37,7 @@
             android:layout_marginTop="4dp"
             android:layout_weight="3"
             android:gravity="center"
-            android:text="@string/currentdate"
+            android:text="Current Date"
             android:textColor="@android:color/white"
             android:textSize="18sp"
             android:textStyle="bold" />
@@ -49,7 +49,7 @@
             android:layout_margin="10dp"
             android:background="@android:color/holo_blue_light"
             android:src="@drawable/ic_right"
-            android:contentDescription="@string/todo" />
+            android:contentDescription="todo" />
     </LinearLayout>
 
     <LinearLayout
@@ -64,7 +64,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="@string/sun"
+            android:text="Sun"
             android:background="@android:color/white"
             android:layout_marginTop="4dp"
             android:layout_weight="1"
@@ -74,7 +74,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="@string/mon"
+            android:text="Mon"
             android:background="@android:color/white"
             android:layout_marginTop="4dp"
             android:layout_weight="1"
@@ -84,7 +84,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="@string/tue"
+            android:text="Tue"
             android:background="@android:color/white"
             android:layout_marginTop="4dp"
             android:layout_weight="1"
@@ -94,7 +94,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="@string/wed"
+            android:text="Wed"
             android:background="@android:color/white"
             android:layout_marginTop="4dp"
             android:layout_weight="1"
@@ -104,7 +104,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="@string/thu"
+            android:text="Thu"
             android:background="@android:color/white"
             android:layout_marginTop="4dp"
             android:layout_weight="1"
@@ -114,7 +114,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="@string/fri"
+            android:text="Fri"
             android:background="@android:color/white"
             android:layout_marginTop="4dp"
             android:layout_weight="1"
@@ -124,7 +124,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="@string/sat"
+            android:text="Sat"
             android:background="@android:color/white"
             android:layout_marginTop="4dp"
             android:layout_weight="1"
