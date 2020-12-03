@@ -18,6 +18,7 @@ public class IncompleteTask extends Task {
     private LocalTime dueTime;
     private final String repeatType;
     private static final String[] repeatTypes = { "NEVER", "DAILY", "WEEKLY", "MONTHLY" };
+    private ArrayList<Subtask> subtaskArrayList;
 
     public IncompleteTask(
             String name,

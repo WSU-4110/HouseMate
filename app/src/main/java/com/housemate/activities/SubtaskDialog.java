@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatDialogFragment;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.housemate.activities.HomePageActivity;
@@ -29,36 +30,36 @@ public class SubtaskDialog extends AppCompatDialogFragment {
     private TextView subtaskName;
     private ImageView subtaskStatusImage;
 
-    @Override
+    @Override @NonNull
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         LayoutInflater subtaskInflater = getActivity().getLayoutInflater();
         View view = subtaskInflater.inflate(R.layout.subtask_dialog_list, null);
 
         AlertDialog.Builder subtaskBuilder = new AlertDialog.Builder(getActivity());
-                subtaskBuilder.setView(view);
-                subtaskBuilder.setTitle(parentTask.getName()); //Set title based on respective listView Task object button pressed
-                subtaskBuilder.setMessage(R.string.subtask_message);
+        subtaskBuilder.setView(view);
+        subtaskBuilder.setTitle(parentTask.getName()); //Set title based on respective listView Task object button pressed
+        subtaskBuilder.setMessage(R.string.subtask_message);
 
-                subtaskBuilder.setPositiveButton(R.string.subtask_complete, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        //Selected subtask's picture changes to 'check', task is now non-editable
-                    }
-                });
-                subtaskBuilder.setNegativeButton(R.string.subtask_close, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        //Window will close
-                    }
-                });
-                subtaskBuilder.setNeutralButton(R.string.subtask_edit, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        //Change the description of the subtask, or delete it
-                            //subtaskName = view.findViewById(R.id.subtask_name_edit_text)
-                    }
-                });
+        subtaskBuilder.setPositiveButton(R.string.subtask_complete, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                //Selected subtask's picture changes to 'check', task is now non-editable
+            }
+        });
+        subtaskBuilder.setNegativeButton(R.string.subtask_close, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                //Window will close
+            }
+        });
+        subtaskBuilder.setNeutralButton(R.string.subtask_edit, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                //Change the description of the subtask, or delete it
+                //subtaskName = view.findViewById(R.id.subtask_name_edit_text)
+            }
+        });
 
         return subtaskBuilder.create();
-        }
     }
+}

@@ -23,7 +23,7 @@ import com.housemate.classes.TaskListAdapter;
 
 import java.util.List;
 
-public class HomePageActivity extends AppCompatActivity {
+public class HomePageActivity extends AppCompatActivity implements TaskListAdapter.itemClickListener {
     private AppCompatImageButton editProfileBtn;
     private ImageButton createTaskBtn;
     private Button chatBtn;
@@ -33,7 +33,7 @@ public class HomePageActivity extends AppCompatActivity {
     private RecyclerView taskRecyclerView;
     private RecyclerView.Adapter taskAdapter;
     private RecyclerView.LayoutManager taskLayoutManager;
-    private AlertDialog.Builder subtaskBuilder;
+    private SubtaskDialog subtaskDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +44,7 @@ public class HomePageActivity extends AppCompatActivity {
         taskList = IncompleteTask.loadHouseholdTasks(MainActivity.currentHousehold.getHouseID());
         taskRecyclerView = (RecyclerView) findViewById(R.id.task_recycler_view);
         taskAdapter = new TaskListAdapter(this, taskList, false);
+        ((TaskListAdapter) taskAdapter).setClickListener(this);
         // Really janky way to update. REPLACE LATER
         taskAdapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver()
         {
@@ -90,11 +91,6 @@ public class HomePageActivity extends AppCompatActivity {
         });
     }
 
-    private void openDialog() {
-        SubtaskDialog subtaskDialog = new SubtaskDialog();
-        subtaskDialog.show(getSupportFragmentManager(), "Subtasks");
-    }
-
     public void onSwitchHousehold(View view) {
         Intent intent = new Intent(this, SelectHouse.class);
         startActivity(intent);
@@ -114,6 +110,12 @@ public class HomePageActivity extends AppCompatActivity {
     public void gotoCurrentHousehold(View view) {
         Intent intent = new Intent(this, CurrentHousehold.class);
         startActivity(intent);
+    }
+
+    @Override
+    public void onItemClick(View view, int position) {
+        subtaskDialog = new SubtaskDialog();
+        subtaskDialog.show(getSupportFragmentManager(), "Subtasks");
     }
 }
 

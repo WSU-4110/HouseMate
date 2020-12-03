@@ -23,8 +23,9 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.TaskLi
     private final Context context;
     private final List<Task> taskList;
     private final boolean completedTasks; //indicates type of task to be displayed, incomplete or completed
+    private itemClickListener listener;
 
-    public static class TaskListViewHolder extends RecyclerView.ViewHolder {
+    public class TaskListViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{        //static
         public CardView taskCardView;
         public TextView taskNameView;
         public TextView taskDescriptionView;
@@ -46,6 +47,14 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.TaskLi
             deleteTaskView = view.findViewById(R.id.delete_task_view);
             completeTaskView = view.findViewById(R.id.complete_task_view);
             subtaskListBtn = view.findViewById(R.id.subtask_dialog_button);
+            subtaskListBtn.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View v) {
+            if(listener != null) {
+                listener.onItemClick(v, getAdapterPosition());
+            }
         }
     }
 
@@ -97,12 +106,6 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.TaskLi
                     notifyDataSetChanged();
                 }
             });
-            holder.subtaskListBtn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-
-                }
-            });
         }
 
     }
@@ -110,5 +113,13 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.TaskLi
     @Override
     public int getItemCount() {
         return taskList.size();
+    }
+
+    public interface itemClickListener {
+        void onItemClick(View view, int position);
+    }
+
+    public void setClickListener(itemClickListener listenerItem) {
+        this.listener = listenerItem;
     }
 }
