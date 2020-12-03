@@ -28,14 +28,11 @@ import com.housemate.classes.DatePickerFragment;
 import com.housemate.classes.DiscardTaskDialogue;
 import com.housemate.adapters.HousemateRecViewAdapter;
 import com.housemate.classes.IncompleteTask;
-import com.housemate.classes.Task;
 import com.housemate.classes.TimePickerFragment;
 
-import java.text.DateFormat;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Calendar;
 
 //extends FragmentActivity
@@ -194,7 +191,7 @@ public class CreateTaskActivity extends AppCompatActivity implements DatePickerD
         c.set(Calendar.YEAR, year);
         c.set(Calendar.MONTH,month);
         c.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-        dueDate = LocalDate.of(year,month,dayOfMonth);
+        dueDate = LocalDate.of(year, month + 1, dayOfMonth);
         String printDate = "Date: " + dueDate;
         dateTV.setText(printDate);
     }
