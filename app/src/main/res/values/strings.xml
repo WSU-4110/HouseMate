@@ -32,6 +32,8 @@
 
     <string name="subtask_message">Subtasks</string>
     <string name="subtask_item">New Subtask</string>
+    <string name="subtask_create">Create</string>
+    <string name="subtask_cancel">Cancel</string>
     <string name="subtask_complete">Complete</string>
     <string name="subtask_close">Close</string>
     <string name="subtask_edit">Edit</string>

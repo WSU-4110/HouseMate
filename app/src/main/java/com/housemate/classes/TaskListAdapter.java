@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -14,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.housemate.activities.MainActivity;
 import com.housemate.activities.R;
+import com.housemate.activities.SubtaskDialog;
 
 import java.util.List;
 
@@ -31,6 +33,7 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.TaskLi
         public ImageView editTaskView;
         public ImageView deleteTaskView;
         public ImageView completeTaskView;
+        public ImageButton subtaskListBtn;
 
         public TaskListViewHolder(@NonNull View view) {
             super(view);
@@ -42,6 +45,7 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.TaskLi
             editTaskView = view.findViewById(R.id.edit_task_view);
             deleteTaskView = view.findViewById(R.id.delete_task_view);
             completeTaskView = view.findViewById(R.id.complete_task_view);
+            subtaskListBtn = view.findViewById(R.id.subtask_dialog_button);
         }
     }
 
@@ -93,6 +97,12 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.TaskLi
                     notifyDataSetChanged();
                 }
             });
+            holder.subtaskListBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                }
+            });
         }
 
     }
@@ -101,5 +111,4 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.TaskLi
     public int getItemCount() {
         return taskList.size();
     }
-
 }

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp"
+    android:id="@+id/subtaskParent"
+    style="@style/Theme.MyApp">
+
+    <TextView
+        android:id="@+id/subtask_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginStart="8dp"
+        android:layout_marginRight="258dp"
+        android:layout_toEndOf="@+id/subtask_image_view"
+        android:text="@string/subtask_complete"
+        android:textColor="@color/green_sheen"
+        android:textSize="18sp" />
+
+    <ImageView
+        android:id="@+id/subtask_image_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_baseline_check_24" />
+
+</RelativeLayout>

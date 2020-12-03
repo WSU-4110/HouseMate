@@ -25,7 +25,7 @@ import java.util.List;
 
 public class HomePageActivity extends AppCompatActivity {
     private AppCompatImageButton editProfileBtn;
-    private ImageButton createTaskBtn, subtaskListBtn;
+    private ImageButton createTaskBtn;
     private Button chatBtn;
     private TextView displayUser;
     private Button logPageButton;
@@ -33,8 +33,7 @@ public class HomePageActivity extends AppCompatActivity {
     private RecyclerView taskRecyclerView;
     private RecyclerView.Adapter taskAdapter;
     private RecyclerView.LayoutManager taskLayoutManager;
-    private AlertDialog subtaskPopupList;
-    private MaterialAlertDialogBuilder subtaskBuilder;
+    private AlertDialog.Builder subtaskBuilder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +41,7 @@ public class HomePageActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home_page);
 
 
-        /*taskList = IncompleteTask.loadHouseholdTasks(MainActivity.currentHousehold.getHouseID());
+        taskList = IncompleteTask.loadHouseholdTasks(MainActivity.currentHousehold.getHouseID());
         taskRecyclerView = (RecyclerView) findViewById(R.id.task_recycler_view);
         taskAdapter = new TaskListAdapter(this, taskList, false);
         // Really janky way to update. REPLACE LATER
@@ -56,11 +55,10 @@ public class HomePageActivity extends AppCompatActivity {
         });
         taskLayoutManager = new LinearLayoutManager(this);
         taskRecyclerView.setLayoutManager(taskLayoutManager);
-        taskRecyclerView.setAdapter(taskAdapter);*/
+        taskRecyclerView.setAdapter(taskAdapter);
 
         editProfileBtn = findViewById(R.id.edit_profile);
         createTaskBtn = findViewById(R.id.createTaskBtn);
-        subtaskListBtn = findViewById(R.id.subtaskListBtn);
 
         editProfileBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -73,13 +71,6 @@ public class HomePageActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(HomePageActivity.this, CreateTaskActivity.class));
-            }
-        });
-
-        subtaskListBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(HomePageActivity.this, SubtaskDialog.class));
             }
         });
 
@@ -97,6 +88,11 @@ public class HomePageActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    private void openDialog() {
+        SubtaskDialog subtaskDialog = new SubtaskDialog();
+        subtaskDialog.show(getSupportFragmentManager(), "Subtasks");
     }
 
     public void onSwitchHousehold(View view) {
