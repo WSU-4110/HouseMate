@@ -5,15 +5,11 @@ import androidx.appcompat.widget.AppCompatImageButton;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.app.ActivityManager;
 import android.content.Intent;
-import android.database.DataSetObserver;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
-import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -21,9 +17,6 @@ import com.housemate.classes.IncompleteTask;
 import com.housemate.classes.Task;
 import com.housemate.classes.TaskListAdapter;
 
-
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 public class HomePageActivity extends AppCompatActivity {
@@ -36,15 +29,14 @@ public class HomePageActivity extends AppCompatActivity {
     private RecyclerView taskRecyclerView;
     private RecyclerView.Adapter taskAdapter;
     private RecyclerView.LayoutManager taskLayoutManager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
-
-
         taskList = IncompleteTask.loadHouseholdTasks(MainActivity.currentHousehold.getHouseID());
         taskRecyclerView = (RecyclerView) findViewById(R.id.task_recycler_view);
-        taskAdapter =new TaskListAdapter(this, taskList, false);
+        taskAdapter =new TaskListAdapter(this, taskList, false, getSupportFragmentManager());
         // Really janky way to update. REPLACE LATER
         taskAdapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver()
         {
@@ -60,7 +52,6 @@ public class HomePageActivity extends AppCompatActivity {
 
         editProfileBtn = findViewById(R.id.edit_profile);
         createTaskBtn = findViewById(R.id.createTaskBtn);
-
         editProfileBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
