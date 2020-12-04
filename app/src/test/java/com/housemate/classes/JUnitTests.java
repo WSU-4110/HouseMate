@@ -73,7 +73,7 @@ class JUnitTests {
 
     @Test
     void loadMetrics2() {
-        assertNotEquals(testHouse3.loadMetrics() == testHouse4.loadMetrics(), "FAILURE: Household objects loading the same metrics object")
+        assertNotEquals(testHouse3.loadMetrics() == testHouse4.loadMetrics(), "FAILURE: Household objects loading the same metrics object");
     }
 
     @Test
