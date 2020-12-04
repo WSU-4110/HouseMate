@@ -116,7 +116,7 @@ public class CurrentHousehold extends AppCompatActivity implements CurrentHouseh
         householdNameTV.setText(houseName);
     }
 
-    public void onLeaveHouseBtnClicked(View view) {
+    public  void onLeaveHouseBtnClicked(View view) {
         MainActivity.currentUser.leaveHousehold(MainActivity.currentHousehold.getHouseID());
 
         MainActivity.currentHousehold.setHouseID(-1);
