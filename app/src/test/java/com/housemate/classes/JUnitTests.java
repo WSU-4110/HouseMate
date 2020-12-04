@@ -72,6 +72,11 @@ class JUnitTests {
     }
 
     @Test
+    void loadMetrics2() {
+        assertNotEquals(testHouse3.loadMetrics() == testHouse4.loadMetrics(), "FAILURE: Household objects loading the same metrics object")
+    }
+
+    @Test
     void HTTPSDataReceiver1() {
         if (testHouse3.getKey() == null)
         {
