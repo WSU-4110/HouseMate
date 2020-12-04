@@ -146,13 +146,13 @@ public class User {
             String script = "leaveHousehold.php";
             String data = "{\"id\":" + id + ",\"houseId\":" + householdId + "}";
             String[] responseLines = HTTPSDataSender.initiateTransaction(script, data);
-            Log.i("response", Arrays.toString(responseLines));
-            if (responseLines.length < 1 || responseLines[0].equals("CONNECT_ERROR"))
+            if (responseLines.length < 1 || responseLines[0].equals("CONNECT_ERROR")){
                 throw new RuntimeException();
+            }
             else {
                 int deleteHouseIndex = -1;
                 for(int i =0; i<houseId.size(); i++){
-                    if(householdId == houseId.get(i) ){
+                    if(householdId == houseId.get(i)){
                         deleteHouseIndex = i;
                     }
                 }
