@@ -43,6 +43,7 @@ dependencies {
     implementation 'org.testng:testng:6.9.6'
     testImplementation 'junit:junit:4.12'
     testImplementation 'org.junit.jupiter:junit-jupiter'
+    testImplementation 'org.junit.jupiter:junit-jupiter'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
     compileOnly 'com.google.android.wearable:wearable:2.6.0'
