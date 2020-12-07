@@ -8,6 +8,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
+import java.io.ObjectInputStream;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -21,6 +23,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.FutureTask;
 
 public abstract class Task {
+    public ObjectInputStream.GetField getDescription;
     private String name;
     private String description;
     private int id;
