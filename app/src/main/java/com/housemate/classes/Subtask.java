@@ -64,12 +64,16 @@ public class Subtask {
             else {
                 subtaskName = responseLines[0];
                 subtaskId = Integer.parseInt(responseLines[1]);
-                parentTaskId = Integer.parseInt(responseLines[2]);
+                parentTaskId = Integer.parseInt(responseLines[2]);      // I believe this needs to be something different
             }
         }
         catch (Exception e) {
             throw new RuntimeException("Error communicating with server");
         }
+    }
+
+    public void deleteSubtask() throws RuntimeException {
+        // Need SubtasksDialog and EditSubtaskDialog to be funcitonal first
     }
 
     // Task Loader

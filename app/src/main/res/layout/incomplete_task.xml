@@ -24,8 +24,7 @@
                 android:id="@+id/subtask_dialog_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_add_subtask_24"
-                app:layout_constraintEnd_toEndOf="parent"
+                android:src="@drawable/ic_subtask_list_24"
                 app:layout_constraintStart_toStartOf="@+id/complete_task_view"
                 app:layout_constraintTop_toBottomOf="@+id/complete_task_view" />
 
