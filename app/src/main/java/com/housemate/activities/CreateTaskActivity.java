@@ -32,14 +32,11 @@ import com.housemate.classes.DatePickerFragment;
 import com.housemate.classes.DiscardTaskDialogue;
 import com.housemate.adapters.HousemateRecViewAdapter;
 import com.housemate.classes.IncompleteTask;
-import com.housemate.classes.Task;
 import com.housemate.classes.TimePickerFragment;
 
-import java.text.DateFormat;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Calendar;
 
 //extends FragmentActivity
@@ -145,7 +142,7 @@ public class CreateTaskActivity extends AppCompatActivity implements DatePickerD
                     NotificationCompat.Builder builder = new NotificationCompat.Builder(
                             CreateTaskActivity.this
                     )
-                            .setSmallIcon(R.drawable.ic_baseline)
+                            .setSmallIcon(R.drawable.ic_baseline_event)
                             .setContentTitle("New Notification")
                             .setContentText(message)
                             .setAutoCancel(true);
