@@ -37,4 +37,7 @@
     <!--Color on secondary (light), color on background (light),-->
     <!--color on surface (light)-->
     <color name="black_900">#000000</color>
+    <color name="og">#F4EFF0</color>
+    <color name="light_gray">#F8F4F5</color>
+
 </resources>

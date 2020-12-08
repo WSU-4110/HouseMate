@@ -1,15 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/housemateRecView">
+    android:id="@+id/housemateRecView"
+    android:background="@color/white_50">
 
     <CheckBox android:id="@+id/housemateCheckBox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="onCheckboxClicked"
-        android:checked="true"/>
+        android:checked="true"
+        android:layout_marginStart="15dp"
+        android:textColor="@android:color/tab_indicator_text"/>
 
 </RelativeLayout>
 
