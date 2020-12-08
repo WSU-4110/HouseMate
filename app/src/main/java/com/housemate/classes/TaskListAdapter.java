@@ -10,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.core.text.HtmlCompat;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.housemate.activities.MainActivity;
@@ -21,6 +22,8 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.TaskLi
     private final Context context;
     private final List<Task> taskList;
     private final boolean completedTasks; //indicates type of task to be displayed, incomplete or completed
+    private final FragmentManager fragmentManager; //can be passed into show() method of DialogFragment subclasses
+    private TaskListAdapter self; //can be used to reference the adapter within OnClickListeners
 
     public static class TaskListViewHolder extends RecyclerView.ViewHolder {
         public CardView taskCardView;
@@ -45,10 +48,12 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.TaskLi
         }
     }
 
-    public TaskListAdapter(Context context, List<Task> taskList, boolean completedTasks) {
+    public TaskListAdapter(Context context, List<Task> taskList, boolean completedTasks, FragmentManager fragmentManager) {
         this.context = context;
         this.taskList = taskList;
         this.completedTasks = completedTasks;
+        this.fragmentManager = fragmentManager;
+        self = this;
     }
 
     @Override
@@ -76,9 +81,10 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.TaskLi
                     String.join(", ", ((IncompleteTask) task).getAssignedUsers()));
             holder.assignedUserView.setText(HtmlCompat.fromHtml(text, 0));
 
-                    /*
-        holder.editTaskView.setOnClickListener(view -> edit the task);
-        */
+            /*
+                holder.editTaskView.setOnClickListener(view -> edit the task);
+            */
+
             holder.completeTaskView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -86,20 +92,19 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.TaskLi
                     notifyDataSetChanged();
                 }
             });
+
             holder.deleteTaskView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    IncompleteTask.delete(task.getId());
-                    notifyDataSetChanged();
+                    DeleteTaskDialogue deleteTaskDialogue = new DeleteTaskDialogue((IncompleteTask) task, self);
+                    deleteTaskDialogue.show(fragmentManager, "deleteTaskDialogue");
                 }
             });
         }
-
     }
 
     @Override
     public int getItemCount() {
         return taskList.size();
     }
-
 }

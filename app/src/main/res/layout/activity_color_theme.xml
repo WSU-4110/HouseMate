@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/relativeLayout2"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginHorizontal="10dp"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/back_to_settings"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:iconSize="38dp"
+            app:icon="@drawable/ic_baseline_chevron_left_24"
+            app:iconGravity="textStart"/>
+
+        <TextView
+            android:layout_width="243dp"
+            android:layout_height="53dp"
+            android:text="SETTINGS"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:textColor="@color/aero_blue"
+            android:textSize="40sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+
+<!--        <Switch-->
+<!--            android:id="@+id/completedTaskpush"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginStart="44dp"-->
+<!--            android:layout_marginTop="16dp"-->
+<!--            android:layout_marginBottom="13dp"-->
+<!--            android:text="Completed Tasks"-->
+<!--            android:textColor="@color/atomic_tangerine"-->
+<!--            app:layout_constraintBottom_toTopOf="@+id/createdTaskspush"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintHorizontal_bias="0.0"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/headerPushnotific"-->
+<!--            app:layout_constraintVertical_bias="0.016" />-->
+
+<!--        <Switch-->
+<!--            android:id="@+id/createdTaskspush"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginStart="44dp"-->
+<!--            android:layout_marginTop="56dp"-->
+<!--            android:text="Created Tasks"-->
+<!--            android:textColor="@color/atomic_tangerine"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintHorizontal_bias="0.008"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/headerPushnotific" />-->
+
+        <RadioGroup
+            android:id="@+id/themesRadioGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="35dp">
+
+            <RadioButton
+                android:id="@+id/lightTheme"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Light"
+                android:textSize="20sp"
+                android:textColor="@color/atomic_tangerine" />
+
+            <RadioButton
+                android:id="@+id/darkTheme"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Dark"
+                android:textSize="20sp"
+                android:textColor="@color/atomic_tangerine" />
+        </RadioGroup>
+
+</LinearLayout>

@@ -30,9 +30,7 @@ import com.housemate.classes.DatePickerFragment;
 import com.housemate.classes.DiscardTaskDialogue;
 import com.housemate.adapters.HousemateRecViewAdapter;
 import com.housemate.classes.IncompleteTask;
-import com.housemate.classes.Task;
 import com.housemate.classes.TimePickerFragment;
-
 import java.lang.reflect.Array;
 import java.text.DateFormat;
 import java.time.LocalDate;
@@ -190,7 +188,7 @@ HousemateRecViewAdapter.CheckBoxListener{
         c.set(Calendar.YEAR, year);
         c.set(Calendar.MONTH,month);
         c.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-        dueDate = LocalDate.of(year,month,dayOfMonth);
+        dueDate = LocalDate.of(year, month + 1, dayOfMonth);
         String printDate = "Date: " + dueDate;
         dateTV.setText(printDate);
     }

@@ -1,155 +1,145 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/relativeLayout2"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginHorizontal="10dp"
     android:orientation="vertical">
 
 
-    <TextView
-        android:id="@+id/headerSettings"
-        android:layout_width="151dp"
-        android:layout_height="52dp"
-        android:text="Settings"
-        android:textSize="35sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <Button
-        android:id="@+id/profileSettingsbutton"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="44dp"
-        android:layout_marginTop="16dp"
-        android:text="Profile Settings"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/darkTheme" />
+        android:orientation="horizontal">
 
-    <TextView
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/back_to_home_page"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:iconSize="38dp"
+            app:icon="@drawable/ic_baseline_chevron_left_24"
+            app:iconGravity="textStart"/>
+
+        <TextView
+            android:id="@+id/headerSettings"
+            android:layout_width="243dp"
+            android:layout_height="53dp"
+            android:text="SETTINGS"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:textColor="@color/aero_blue"
+            android:textSize="40sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/headerPushnotific"
-        android:layout_width="197dp"
-        android:layout_height="33dp"
-        android:layout_marginTop="24dp"
-        android:text="Push Notifications "
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.205"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/headerSettings" />
-
-    <Switch
-        android:id="@+id/onOffpush"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Notifications On"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.167"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/headerPushnotific" />
+        android:layout_marginTop="35dp"
+        android:layout_marginBottom="10dp"
+        android:text="@string/push_notifications"
+        android:textSize="20sp"
+        android:textColor="@color/atomic_tangerine"
+        android:gravity="center"
+        android:backgroundTint="@color/white_50"
+        app:icon="@drawable/ic_baseline_chevron_right_24"
+        app:iconGravity="end"/>
 
-    <TextView
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/headerColor"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="44dp"
-        android:layout_marginTop="24dp"
-        android:text="Color Theme"
+        android:layout_marginVertical="10dp"
+        android:text="@string/color_theme"
         android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/onOffpush" />
-
-    <RadioGroup
-        android:layout_width="65dp"
-        android:layout_height="79dp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintBottom_toTopOf="@+id/darkTheme"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.127"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/lightTheme"
-        app:layout_constraintVertical_bias="0.34" />
-
-    <RadioButton
-        android:id="@+id/lightTheme"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="44dp"
-        android:layout_marginTop="16dp"
-        android:text="Light"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/headerColor" />
-
-    <RadioButton
-        android:id="@+id/darkTheme"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="44dp"
-        android:layout_marginTop="16dp"
-        android:text="Dark"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lightTheme" />
-
-    <Button
-        android:id="@+id/leaveHouseholdbutton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="44dp"
-        android:layout_marginTop="48dp"
-        android:text="Leave Household"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/changePasswordbutton" />
+        android:textColor="@color/atomic_tangerine"
+        android:gravity="center"
+        android:backgroundTint="@color/white_50"
+        app:icon="@drawable/ic_baseline_chevron_right_24"
+        app:iconGravity="end"/>
 
     <Button
         android:id="@+id/logoutButton"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="84dp"
-        android:layout_marginEnd="44dp"
-        android:text="Log Out "
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/leaveHouseholdbutton"
-        app:layout_constraintVertical_bias="0.0" />
+        android:layout_marginVertical="10dp"
+        android:textAllCaps="false"
+        android:text="@string/log_out"/>
 
     <Button
         android:id="@+id/changePasswordbutton"
-        android:layout_width="171dp"
-        android:layout_height="53dp"
-        android:layout_marginStart="44dp"
-        android:layout_marginTop="20dp"
-        android:text="Change Password"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/profileSettingsbutton" />
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="10dp"
+        android:onClick="onRequestPasswordReset"
+        android:textAllCaps="false"
+        android:text="@string/change_password" />
 
     <Button
         android:id="@+id/deleteAcct"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="44dp"
-        android:layout_marginTop="84dp"
-        android:text="Delete Account"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/logoutButton"
-        app:layout_constraintHorizontal_bias="0.12"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/leaveHouseholdbutton"
-        app:layout_constraintVertical_bias="0.0" />
+        android:layout_marginVertical="10dp"
+        android:textAllCaps="false"
+        android:text="@string/delete_account" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+<!--    <Switch-->
+<!--        android:id="@+id/completedTaskpush"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginStart="44dp"-->
+<!--        android:layout_marginTop="16dp"-->
+<!--        android:layout_marginBottom="13dp"-->
+<!--        android:text="Completed Tasks"-->
+<!--        android:textColor="@color/atomic_tangerine"-->
+<!--        app:layout_constraintBottom_toTopOf="@+id/createdTaskspush"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.0"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/headerPushnotific"-->
+<!--        app:layout_constraintVertical_bias="0.016" />-->
+
+<!--    <Switch-->
+<!--        android:id="@+id/createdTaskspush"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginStart="44dp"-->
+<!--        android:layout_marginTop="56dp"-->
+<!--        android:text="Created Tasks"-->
+<!--        android:textColor="@color/atomic_tangerine"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.008"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/headerPushnotific" />-->
+
+<!--    <RadioGroup-->
+<!--        android:id="@+id/ThemesradioGroup"-->
+<!--        android:layout_width="71dp"-->
+<!--        android:layout_height="76dp"-->
+<!--        android:layout_marginTop="16dp"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.131"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/headerColor">-->
+
+<!--        <RadioButton-->
+<!--            android:id="@+id/lightTheme"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Light"-->
+<!--            android:textColor="@color/atomic_tangerine" />-->
+
+<!--        <RadioButton-->
+<!--            android:id="@+id/darkTheme"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Dark"-->
+<!--            android:textColor="@color/atomic_tangerine" />-->
+<!--    </RadioGroup>-->
+
+</LinearLayout>
