@@ -13,13 +13,13 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toLeftOf="@+id/newTaskTitleTV"
+            android:layout_toLeftOf="@+id/newTaskTitleTVEdit"
             android:layout_alignParentLeft="true"
             android:text="cancel"
             android:id="@+id/cancelBtn"/>
 
         <TextView
-            android:id="@+id/newTaskTitleTV"
+            android:id="@+id/newTaskTitleTVEdit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="NEW TASK"
@@ -30,14 +30,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="CREATE"
-            android:layout_toRightOf="@+id/newTaskTitleTV"
+            android:layout_toRightOf="@+id/newTaskTitleTVEdit"
             android:layout_alignParentRight="true"
-            android:id="@+id/createTaskBtn"/>
+            android:id="@+id/UpdateTaskBtn"/>
 
 
 
         <EditText
-            android:id="@+id/taskNameET"
+            android:id="@+id/taskNameETEdit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPersonName"
@@ -50,13 +50,13 @@
             android:layout_height="wrap_content"
             android:text="Due Date: "
             android:textSize="30sp"
-            android:layout_below="@+id/taskNameET"
+            android:layout_below="@+id/taskNameETEdit"
             android:id="@+id/dateTV"
             android:layout_marginTop="30dp"/>
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/taskNameET"
+            android:layout_below="@+id/taskNameETEdit"
             app:srcCompat = "@mipmap/ic_calendar"
             android:id="@+id/pickDateImgBtn"
             android:layout_toRightOf="@+id/dateTV"

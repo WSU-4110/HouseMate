@@ -5,15 +5,11 @@ import androidx.appcompat.widget.AppCompatImageButton;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.app.ActivityManager;
 import android.content.Intent;
-import android.database.DataSetObserver;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
-import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -22,8 +18,6 @@ import com.housemate.classes.Task;
 import com.housemate.classes.TaskListAdapter;
 
 
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 public class HomePageActivity extends AppCompatActivity {
@@ -59,7 +53,7 @@ public class HomePageActivity extends AppCompatActivity {
         taskRecyclerView.setAdapter(taskAdapter);
 
         editProfileBtn = findViewById(R.id.edit_profile);
-        createTaskBtn = findViewById(R.id.createTaskBtn);
+        createTaskBtn = findViewById(R.id.UpdateTaskBtn);
 
         editProfileBtn.setOnClickListener(new View.OnClickListener() {
             @Override
