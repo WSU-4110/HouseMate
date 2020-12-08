@@ -26,15 +26,14 @@ public class DeleteAccountDialogue extends AppCompatDialogFragment {
         builder .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-
             }
         });
 
         builder.setPositiveButton("Delete Account", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                Intent myIntent = new Intent(  getContext(), MainActivity.class);
-                startActivity(myIntent);
+                MainActivity.currentUser.deleteUser();
+                startActivity(new Intent(getContext(), MainActivity.class));
             }
         });
         return  builder.create();

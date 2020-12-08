@@ -61,9 +61,14 @@ public class IncompleteTask extends Task {
 
     @Override
     public String getDateAndTimeText() {
-        return String.format("<p>Due %s at %s</p>\n",
+        String repeatText = "";
+        if (!repeatType.equals("NEVER"))
+            repeatText = String.format(" (%s)", repeatType);
+
+        return String.format("<p>Due %s at %s%s</p>\n",
                 getDueDate().format(DateTimeFormatter.ofPattern("M-d-yyyy")),
-                getDueTime().format(DateTimeFormatter.ofPattern("h:mm a")));
+                getDueTime().format(DateTimeFormatter.ofPattern("h:mm a")),
+                repeatText);
     }
 
     public ArrayList<String> getAssignedUsers() { return new ArrayList<>(assignedUsers); }

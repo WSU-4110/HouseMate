@@ -17,7 +17,9 @@
         android:theme="@style/Theme.MyApp"
         android:usesCleartextTraffic="true">
         <activity android:name=".ViewProfileActivity"></activity>
-        <activity android:name=".GetHouseKey" />
+        <activity android:name=".PushNotificationSettingsActivity"></activity>
+        <activity android:name=".ColorThemeActivity" />
+        <activity android:name=".GetHouseKey"/>
         <activity android:name=".UnverifiedUserActivity" />
         <activity android:name=".ForgotPasswordActivity" />
         <activity android:name=".TaskMetricsActivity" />
@@ -39,6 +41,7 @@
         <activity android:name=".CreateTaskActivity" />
         <activity android:name=".HomePageActivity" />
         <activity android:name=".ViewCompletedTasksActivity" />
+        <activity android:name=".Settings" />
     </application>
 
 </manifest>
