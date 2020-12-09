@@ -16,7 +16,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApp"
         android:usesCleartextTraffic="true">
-        <activity android:name=".NotificaionActivity"></activity>
+        <activity android:name=".NotificationActivity"></activity>
         <activity android:name=".PushNotificationSettingsActivity" />
         <activity android:name=".ColorThemeActivity" />
         <activity android:name=".GetHouseKey" />
