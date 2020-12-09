@@ -10,92 +10,73 @@
         android:layout_height="match_parent"
         android:id="@+id/parent"
         android:padding="15dp">
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/newTaskTitleTV"
+            android:layout_alignParentLeft="true"
+            android:text="@string/cancel_button_text"
+            android:id="@+id/cancelBtn"/>
 
         <TextView
             android:id="@+id/newTaskTitleTV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/new_task_header_text"
-            android:textSize="36sp"
+            android:textSize="20sp"
             android:layout_centerHorizontal="true"
             android:paddingHorizontal="30dp"/>
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/cancel_button"
+        <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/notesTitleTV"
-            android:layout_alignParentStart="true"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="150dp"
-            android:layout_marginBottom="16dp"
-            android:contentDescription="@string/cancel_floating_action_button_text"
-            android:src="@drawable/ic_baseline_close_24" />
+            android:text="@string/add_task_button_text"
+            android:layout_toRightOf="@+id/newTaskTitleTV"
+            android:layout_alignParentRight="true"
+            android:id="@+id/createTaskBtn"/>
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/create_task_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/notesTitleTV"
-            android:layout_alignEnd="@+id/notesET"
-            android:layout_marginTop="150dp"
-            android:layout_marginEnd="30dp"
-            android:layout_marginBottom="16dp"
-            android:contentDescription="@string/create_new_task"
-            android:src="@drawable/ic_baseline_check_24" />
+
 
         <EditText
             android:id="@+id/taskNameET"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/cancelBtn"
-            android:layout_alignParentStart="true"
-            android:layout_marginStart="1dp"
-            android:layout_marginTop="50sp"
-            android:hint="Title"
             android:inputType="textPersonName"
-            android:textSize="30dp" />
-
+            android:layout_below="@+id/cancelBtn"
+            android:layout_marginTop="30sp"
+            android:textSize="30dp"
+            android:hint="Title"/>
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="325dp"
             android:layout_height="wrap_content"
             android:text="Due Date: "
             android:textSize="30sp"
             android:layout_below="@+id/taskNameET"
             android:id="@+id/dateTV"
             android:layout_marginTop="30dp"/>
-
         <ImageButton
-            android:id="@+id/pickDateImgBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/taskNameET"
-            android:layout_marginLeft="171dp"
-            android:layout_marginTop="30dp"
+            app:srcCompat = "@mipmap/ic_calendar"
+            android:id="@+id/pickDateImgBtn"
             android:layout_toRightOf="@+id/dateTV"
-            app:srcCompat="@mipmap/ic_calendar" />
+            android:layout_marginTop="30dp"/>
 
         <TextView
-            android:id="@+id/timeTV"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/dateTV"
-            android:layout_marginStart="-380dp"
-            android:layout_marginTop="33dp"
-            android:layout_toEndOf="@+id/pickDateImgBtn"
-            android:text="Time: "
-            android:textSize="30sp" />
-
-        <ImageButton
-            android:id="@+id/pickTimeImgBtn"
-            android:layout_width="wrap_content"
+            android:layout_width="325dp"
             android:layout_height="wrap_content"
             android:layout_below="@+id/pickDateImgBtn"
-            android:layout_marginLeft="227dp"
-            android:layout_marginTop="12dp"
+            android:id="@+id/timeTV"
+            android:textSize="30sp"
+            android:text="Time: "/>
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_toRightOf="@id/timeTV"
-            app:srcCompat="@mipmap/ic_time" />
-
+            android:layout_below="@+id/pickDateImgBtn"
+            android:id="@+id/pickTimeImgBtn"
+            android:layout_toEndOf="@id/timeTV"
+            app:srcCompat = "@mipmap/ic_time"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -172,20 +153,18 @@
             android:text="Notes: "
             android:layout_below="@+id/housemateRecView"
             android:layout_marginTop="30sp"/>
-
         <EditText
-            android:id="@+id/notesET"
-            android:layout_width="387dp"
-            android:layout_height="142dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_below="@+id/notesTitleTV"
-            android:layout_marginTop="0dp"
-            android:gravity="top|left"
-            android:lines="8"
             android:maxLines="10"
+            android:id="@+id/notesET"
+            android:lines="8"
+            android:gravity="top|left"
             android:scrollbars="vertical"
             tools:ignore="RtlHardcoded" />
 
 
+
     </RelativeLayout>
 </ScrollView>
-

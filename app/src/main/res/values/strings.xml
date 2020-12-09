@@ -57,6 +57,7 @@
 
     <!-- (activity_create_task.xml) -->
     <string name="cancel_floating_action_button_text">CANCEL</string>
+    <string name="add_task_button_text">ADD</string>
     <string name="new_task_header_text">NEW TASK</string>
 
     <!-- (activity_color_theme.xml) -->
