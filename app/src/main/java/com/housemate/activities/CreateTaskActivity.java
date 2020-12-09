@@ -114,6 +114,27 @@ public class CreateTaskActivity extends AppCompatActivity implements DatePickerD
         createTaskBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                NotificationChannel ch = new NotificationChannel("Created Task", "New Notification", NotificationManager.IMPORTANCE_DEFAULT);
+
+
+                NotificationManager notificationManager = getSystemService(NotificationManager.class);
+
+                notificationManager.createNotificationChannel(ch);
+
+                NotificationCompat.Builder builder = new NotificationCompat.Builder(CreateTaskActivity.this, "Created Task");
+                builder.setSmallIcon(R.drawable.ic_baseline_calendar_today_24);
+                builder.setContentTitle("New Notification");
+                builder.setContentText("A New Task Has Been Created!");
+                builder.setAutoCancel(true);
+
+                NotificationManagerCompat managerCompat = NotificationManagerCompat.from(CreateTaskActivity.this);
+                managerCompat.notify(1, builder.build());
+
+
+
+
+
                 taskName = taskNameET.getText().toString();
                 taskNotes = notesET.getText().toString();
                 assignHousemates();
@@ -255,19 +276,8 @@ public class CreateTaskActivity extends AppCompatActivity implements DatePickerD
         }
     }
 
-    private void createNotificationChannel() {
-        // Create the NotificationChannel, but only on API 26+ because
-        // the NotificationChannel class is new and not in the support library
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            CharSequence name = getString(R.string.channel_name);
-            String description = getString(R.string.channel_description);
-            int importance = NotificationManager.IMPORTANCE_DEFAULT;
-            NotificationChannel channel = new NotificationChannel("jk", name, importance);
-            channel.setDescription(description);
-            // Register the channel with the system; you can't change the importance
-            // or other notification behaviors after this
-            NotificationManager notificationManager = getSystemService(NotificationManager.class);
-            notificationManager.createNotificationChannel(channel);
-        }
+
+
+
+
     }
-}
