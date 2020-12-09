@@ -26,6 +26,7 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.housemate.classes.DatePickerFragment;
 import com.housemate.classes.DiscardTaskDialogue;
 import com.housemate.adapters.HousemateRecViewAdapter;
@@ -72,7 +73,7 @@ HousemateRecViewAdapter.CheckBoxListener{
         assignedTo = new ArrayList<>();
         housemates = new ArrayList<>();
         notesET = findViewById(R.id.notesET);
-        cancelBtn = findViewById(R.id.cancelBtn);
+        cancelBtn = findViewById(R.id.cancel_button);
         dueDate = null;
         dueTime = null;
         taskName = "New Task";

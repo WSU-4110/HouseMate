@@ -15,7 +15,7 @@
         android:textColor="@color/aero_blue"
         android:textSize="35sp"
         android:textStyle="bold"
-        android:text="HOUSEHOLD"
+        android:text="@string/household_header_text"
         android:textAlignment="center"
         android:id="@+id/houseHoldTitleTV"/>
 
@@ -23,7 +23,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:text="Back to Home"
+        android:text="@string/back_to_home"
         android:id="@+id/backBtn"
         android:onClick="onBackBtnClicked"
         android:layout_below="@id/houseHoldTitleTV"/>
@@ -42,7 +42,7 @@
             android:layout_width="0dp"
             android:layout_weight=".9"
             android:layout_height="wrap_content"
-            android:text="Household Name"
+            android:text="@string/household_name"
             android:textSize="30sp"
             android:id="@+id/householdNameTV"
             android:layout_marginStart="15dp"/>
@@ -81,7 +81,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="leave household"
+        android:text="@string/leave_household_button_text"
         android:id="@+id/leaveHouseBtn"
         android:layout_centerHorizontal="true"
         android:layout_below="@id/housemateRecView"
@@ -89,7 +89,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="get house key"
+        android:text="@string/get_house_key_button_text"
         android:id="@+id/getHouseKeyBtn"
         android:layout_centerHorizontal="true"
         android:layout_below="@id/leaveHouseBtn"

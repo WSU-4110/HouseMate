@@ -37,7 +37,6 @@
                 android:background="@android:color/transparent"/>
         </RelativeLayout>
 
-
         <TextView
             android:id="@+id/newTaskTitleTV"
             android:layout_width="wrap_content"
@@ -250,4 +249,3 @@
 
     </RelativeLayout>
 </ScrollView>
-

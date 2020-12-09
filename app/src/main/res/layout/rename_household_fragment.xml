@@ -17,7 +17,7 @@
             android:layout_width="match_parent"
             android:padding="15dp"
             android:layout_height="wrap_content"
-            android:text="Rename Household"
+            android:text="@string/rename_household_header_text"
             android:textSize="30dp"
             android:textAlignment="center"
             android:background="@color/aero_blue"
@@ -34,13 +34,13 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Household Name"
+                android:text="@string/household_name"
                 android:textSize="30sp"
                 android:id="@+id/renameHouseET"/>
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Cancel"
+                android:text="@string/cancel_button_text"
                 android:id="@+id/cancelBtn"
                 android:layout_below="@id/renameHouseET"
                 android:layout_alignParentStart="true"
@@ -49,7 +49,7 @@
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Save"
+                android:text="@string/save_button_text"
                 android:id="@+id/saveBtn"
                 android:layout_below="@id/renameHouseET"
                 android:layout_alignParentEnd="true"
