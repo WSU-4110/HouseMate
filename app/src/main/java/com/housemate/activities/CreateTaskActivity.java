@@ -70,7 +70,9 @@ public class CreateTaskActivity extends AppCompatActivity implements DatePickerD
         timeTV = findViewById(R.id.timeTV);
         housemateRecView = findViewById(R.id.housemateRecView);
         assignedTo = new ArrayList<>();
-        housemates = new ArrayList<>();
+        housemates = MainActivity.currentHousehold.getUsers();
+        isAssigned = new Boolean [housemates.size()];
+        Arrays.fill(isAssigned, Boolean.FALSE);
         notesET = findViewById(R.id.notesET);
         cancelBtn = findViewById(R.id.cancelBtn);
         dueDate = null;
@@ -83,10 +85,6 @@ public class CreateTaskActivity extends AppCompatActivity implements DatePickerD
         repeatType = "Never";
         priority = "None";
         taskNotes = "";
-
-        housemates = MainActivity.currentHousehold.getUsers();
-
-
 
         repeatTaskSpinner = findViewById(R.id.repeatTaskSpinner);
         ArrayAdapter<CharSequence> repeatTaskAdapter = ArrayAdapter.createFromResource(
