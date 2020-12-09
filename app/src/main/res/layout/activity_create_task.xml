@@ -220,18 +220,6 @@
             android:visibility="gone"
             android:background="@drawable/textview_border"/>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/notesTitleTV"
-            android:textSize="20dp"
-            android:paddingStart="15dp"
-            android:padding="10dp"
-            android:text="Notes: "
-            android:layout_below="@+id/housemateRecView"
-            android:layout_marginTop="40dp"
-            tools:ignore="RtlSymmetry"
-            android:background="@drawable/textview_border"/>
 
             <EditText
                 android:layout_width="match_parent"
@@ -240,12 +228,14 @@
                 android:id="@+id/notesET"
                 android:lines="8"
                 android:gravity="top|left"
+                android:hint="Notes:"
                 android:scrollbars="vertical"
                 tools:ignore="RtlHardcoded,RtlSymmetry"
                 android:padding="15dp"
                 android:paddingStart="15dp"
-                android:layout_below="@id/notesTitleTV"
-                android:background="@color/white_50"/>
+                android:layout_below="@+id/housemateRecView"
+                android:layout_marginTop="40dp"
+                android:background="@drawable/textview_border"/>
 
     </RelativeLayout>
 </ScrollView>
