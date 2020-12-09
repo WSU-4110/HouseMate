@@ -13,7 +13,7 @@
         android:id="@+id/reg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Registration"
+        android:text="@string/registration"
         android:textColor="#5C5D60"
         android:textSize="35sp"
         app:layout_constraintBottom_toTopOf="@+id/firstName"
@@ -27,7 +27,7 @@
         android:id="@+id/enterFname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="First Name"
+        android:text="@string/first_name"
         android:textColor="#3F51B5"
         app:layout_constraintBottom_toTopOf="@+id/firstName"
         app:layout_constraintHorizontal_bias="0.0"
@@ -53,7 +53,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="Last Name"
+        android:text="@string/last_name"
         android:textColor="#3F51B5"
         app:layout_constraintStart_toStartOf="@id/lastName"
         app:layout_constraintTop_toBottomOf="@+id/firstName" />
@@ -76,7 +76,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="User Name"
+        android:text="@string/username"
         android:textColor="#3F51B5"
         app:layout_constraintStart_toStartOf="@+id/edUserName"
         app:layout_constraintTop_toBottomOf="@+id/emailErrorTV" />
@@ -98,7 +98,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="Password"
+        android:text="@string/password"
         android:textColor="#3F51B5"
         app:layout_constraintStart_toStartOf="@id/enterPass"
         app:layout_constraintTop_toBottomOf="@+id/edUserName" />
@@ -121,7 +121,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="Re-Enter Password"
+        android:text="@string/password_confirmation"
         android:textColor="#3F51B5"
         app:layout_constraintStart_toStartOf="@id/Confirm"
         app:layout_constraintTop_toBottomOf="@+id/enterPass" />
@@ -143,7 +143,7 @@
         android:id="@+id/passwordErrorTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Those passwords didn't match. Try again."
+        android:text="@string/password_match_error_text"
         android:textColor="@color/red_600"
         android:visibility="gone"
         app:layout_constraintBottom_toTopOf="@+id/createAccLayout"
@@ -158,7 +158,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="Email"
+        android:text="@string/email"
         android:textColor="#3F51B5"
         app:layout_constraintStart_toStartOf="@id/Email"
         app:layout_constraintTop_toBottomOf="@+id/lastName" />
@@ -181,7 +181,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
-        android:text="Invalid email. Try again."
+        android:text="@string/invalid_email_error_text"
         android:textColor="@color/red_600"
         app:layout_constraintStart_toStartOf="@id/Email"
         app:layout_constraintTop_toBottomOf="@+id/Email"
@@ -199,7 +199,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/rounded_corners"
             android:onClick="register"
-            android:text="Create Account"
+            android:text="@string/create_account"
             android:textColor="#3F51B5"
             android:layout_margin="10dp"/>
 
@@ -209,7 +209,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/rounded_corners"
             android:onClick="onBack"
-            android:text="Back"
+            android:text="@string/back_button_text"
             android:textColor="#3F51B5"
             android:layout_margin="10dp"/>
     </LinearLayout>

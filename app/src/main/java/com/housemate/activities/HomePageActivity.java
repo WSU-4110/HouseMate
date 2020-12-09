@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.housemate.classes.Household;
 import com.housemate.classes.IncompleteTask;
 import com.housemate.classes.Task;
 import com.housemate.classes.TaskListAdapter;
@@ -23,7 +24,7 @@ public class HomePageActivity extends AppCompatActivity {
     private AppCompatImageButton editProfileBtn;
     private ImageButton createTaskBtn;
     private Button settingsPageBtn;
-    private TextView displayUser;
+    private TextView displayUser, householdName;
     private Button logPageButton;
     private List<Task> taskList;
     private RecyclerView taskRecyclerView;
@@ -48,6 +49,9 @@ public class HomePageActivity extends AppCompatActivity {
         taskLayoutManager = new LinearLayoutManager(this);
         taskRecyclerView.setLayoutManager(taskLayoutManager);
         taskRecyclerView.setAdapter(taskAdapter);
+
+        householdName = findViewById(R.id.householdNameTV);
+        householdName.setText(MainActivity.currentHousehold.getHouseholdName());
 
         editProfileBtn = findViewById(R.id.edit_profile);
         createTaskBtn = findViewById(R.id.createTaskBtn);

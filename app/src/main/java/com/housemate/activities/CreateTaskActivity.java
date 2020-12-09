@@ -24,6 +24,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.housemate.classes.DatePickerFragment;
 import com.housemate.classes.DiscardTaskDialogue;
 import com.housemate.adapters.HousemateRecViewAdapter;
@@ -40,8 +41,8 @@ import java.util.Calendar;
 
 public class CreateTaskActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListener, AdapterView.OnItemSelectedListener {
     EditText taskNameET, notesET;
-    Button createTaskBtn, cancelBtn;
-    ImageButton pickDateImgBtn, pickTimeImgBtn;
+
+    ImageButton pickDateImgBtn, pickTimeImgBtn, createTaskBtn, cancelBtn;
     TextView dateTV, timeTV;
     static ArrayList<String> housemates;
     ArrayList<String> assignedTo;
@@ -58,7 +59,7 @@ public class CreateTaskActivity extends AppCompatActivity implements DatePickerD
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_task);
         taskNameET = findViewById(R.id.taskNameET);
-        createTaskBtn = findViewById(R.id.createTaskBtn);
+        createTaskBtn = findViewById(R.id.create_task_button);
         pickDateImgBtn = findViewById(R.id.pickDateImgBtn);
         dateTV = findViewById(R.id.dateTV);
         pickTimeImgBtn = findViewById(R.id.pickTimeImgBtn);
@@ -68,7 +69,7 @@ public class CreateTaskActivity extends AppCompatActivity implements DatePickerD
         isAssigned  = new ArrayList<>();
         housemates = new ArrayList<>();
         notesET = findViewById(R.id.notesET);
-        cancelBtn = findViewById(R.id.cancelBtn);
+        cancelBtn = findViewById(R.id.cancel_button);
         dueDate = null;
         dueTime = null;
         taskName = "New Task";

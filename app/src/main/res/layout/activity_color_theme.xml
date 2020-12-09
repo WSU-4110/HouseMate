@@ -24,7 +24,7 @@
         <TextView
             android:layout_width="243dp"
             android:layout_height="53dp"
-            android:text="SETTINGS"
+            android:text="@string/settings"
             android:gravity="center"
             android:layout_gravity="center"
             android:textColor="@color/aero_blue"
@@ -74,7 +74,7 @@
                 android:id="@+id/lightTheme"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Light"
+                android:text="@string/light_theme_slider_set"
                 android:textSize="20sp"
                 android:textColor="@color/atomic_tangerine" />
 
@@ -82,7 +82,7 @@
                 android:id="@+id/darkTheme"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Dark"
+                android:text="@string/dark_theme_slider_set"
                 android:textSize="20sp"
                 android:textColor="@color/atomic_tangerine" />
         </RadioGroup>
