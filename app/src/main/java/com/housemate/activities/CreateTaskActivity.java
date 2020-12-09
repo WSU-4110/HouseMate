@@ -26,7 +26,6 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.housemate.classes.DatePickerFragment;
 import com.housemate.classes.DiscardTaskDialogue;
 import com.housemate.adapters.HousemateRecViewAdapter;
@@ -44,7 +43,7 @@ import java.util.Calendar;
 //                          implements NoticeDialogFragment.NoticeDialogListener
 
 public class CreateTaskActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListener, AdapterView.OnItemSelectedListener,
-HousemateRecViewAdapter.CheckBoxListener{
+        HousemateRecViewAdapter.CheckBoxListener{
     EditText taskNameET, notesET;
     Button createTaskBtn;
     private AppCompatImageButton pickDateImgBtn, pickTimeImgBtn, cancelBtn;
@@ -73,7 +72,7 @@ HousemateRecViewAdapter.CheckBoxListener{
         assignedTo = new ArrayList<>();
         housemates = new ArrayList<>();
         notesET = findViewById(R.id.notesET);
-        cancelBtn = findViewById(R.id.cancel_button);
+        cancelBtn = findViewById(R.id.cancelBtn);
         dueDate = null;
         dueTime = null;
         taskName = "New Task";
@@ -225,15 +224,15 @@ HousemateRecViewAdapter.CheckBoxListener{
             case R.id.lowRadioBtn:
                 if (checked)
                     priority = "Low";
-                    break;
+                break;
             case R.id.medRadioBtn:
                 if (checked)
                     priority = "Medium";
-                    break;
+                break;
             case R.id.highRadioBtn:
                 if (checked)
                     priority = "High";
-                    break;
+                break;
             default:
                 priority = "None";
         }
@@ -241,5 +240,3 @@ HousemateRecViewAdapter.CheckBoxListener{
 
 
 }
-
-
