@@ -54,7 +54,7 @@ public class HomePageActivity extends AppCompatActivity {
         editProfileBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(HomePageActivity.this, EditProfile.class));
+                startActivity(new Intent(HomePageActivity.this, ViewProfileActivity.class));
             }
         });
 

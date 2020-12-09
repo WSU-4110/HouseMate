@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ViewProfileActivity"
+    android:padding="15dp">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/topPanel">
+        <com.google.android.material.button.MaterialButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            app:icon="@drawable/ic_baseline_chevron_left_24"
+            android:id="@+id/backBtn"
+            app:iconSize="50dp"
+            android:backgroundTint="@color/white_50"
+            android:onClick="backToSettings" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@string/view_profile"
+            android:textSize="30sp"
+            android:textAlignment="center"
+            android:id="@+id/titleTV"/>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_baseline_edit_24"
+            android:layout_centerVertical="true"
+            android:id="@+id/editProfileBtn"
+            android:onClick="gotoEditProfile"
+            android:layout_alignParentEnd="true"
+            />
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:id="@+id/fnameTV"
+        android:layout_below="@+id/topPanel"
+        android:layout_marginTop="30dp" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:id="@+id/lnameTV"
+        android:layout_below="@+id/fnameTV"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:layout_below="@+id/lnameTV"
+        android:id="@+id/usernameTV"
+        android:layout_marginTop="30dp"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:id="@+id/emailTV"
+        android:layout_below="@+id/usernameTV"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/select_or_create_household"
+        android:id="@+id/selectHouseholdBtn"
+        android:layout_below="@id/emailTV"
+        android:layout_marginTop="30dp"
+        android:onClick="selectHousehold"/>
+
+</RelativeLayout>
