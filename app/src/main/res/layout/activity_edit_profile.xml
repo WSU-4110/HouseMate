@@ -55,20 +55,20 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="First Name"
+            android:hint="@string/first_name"
             android:id="@+id/fnameET"
 
             android:layout_marginTop="30dp" />
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Last Name"
+            android:hint="@string/last_name"
             android:id="@+id/lnameET"
             android:layout_below="@+id/fnameET"/>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Username"
+            android:hint="@string/username"
             android:textSize="20sp"
             android:layout_below="@+id/lnameET"
             android:id="@+id/usernameET"
@@ -76,7 +76,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Email"
+            android:hint="@string/email"
             android:textSize="20sp"
             android:id="@+id/emailET"
             android:layout_below="@+id/usernameET"/>

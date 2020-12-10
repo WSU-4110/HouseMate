@@ -86,10 +86,8 @@
     <string name="invite_to_household_header_text">Invite to Household</string>
     <string name="get_key_button_text">Get Key</string>
     <string name="copy_key_hint_text">copy key</string>
-    <string name="copy_key_button_text_view">Copy
-        Key</string>
-    <string name="share_key_button_text_view">Share
-        Key</string>
+    <string name="copy_key_button_text_view">Copy Key</string>
+    <string name="share_key_button_text_view">Share Key</string>
     <string name="back_to_house_button_text_view_with_return">Back To
         House</string>
 
@@ -99,7 +97,7 @@
 
     <!-- (activity_view_task_by_id.xml) -->
     <string name="enter_task_id_edit_text_view">Enter Task id</string>
-    <string name="fetch_task_button_text">FetcFh Task</string>
+    <string name="fetch_task_button_text">Fetch Task</string>
 
     <!-- (current_household_rv_detail.xml) -->
     <string name="remove_button_text">Remove</string>
