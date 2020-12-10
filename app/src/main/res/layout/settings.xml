@@ -49,18 +49,6 @@
         app:icon="@drawable/ic_baseline_chevron_right_24"
         app:iconGravity="end"/>
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/headerColor"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginVertical="10dp"
-        android:text="@string/color_theme"
-        android:textSize="20sp"
-        android:gravity="center"
-        android:backgroundTint="@color/white_50"
-        app:icon="@drawable/ic_baseline_chevron_right_24"
-        app:iconGravity="end"/>
-
         <Button
             android:id="@+id/logoutButton"
             android:layout_width="match_parent"

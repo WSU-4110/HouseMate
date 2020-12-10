@@ -29,7 +29,7 @@
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="add"
+                android:text="@string/add_button_text"
                 android:textSize="20sp"
                 android:layout_alignParentEnd="true"
                 android:id="@+id/createTaskBtn"
@@ -41,7 +41,7 @@
             android:id="@+id/newTaskTitleTV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="New Task"
+            android:text="@string/new_task_header_text_2"
             android:layout_centerHorizontal="true"
             android:paddingHorizontal="30dp"
             android:textColor="@color/white_50"
@@ -57,7 +57,7 @@
             android:layout_below="@+id/topPanel"
             android:layout_marginTop="40sp"
             android:textSize="20dp"
-            android:hint="Title"
+            android:hint="@string/title_text_view_hint"
             android:background="@drawable/textview_border"
             android:paddingStart="15dp"
             android:padding="10dp"
@@ -75,7 +75,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Due Date: "
+                android:text="@string/due_date_text_view_hint"
                 android:textSize="20dp"
                 android:paddingStart="15dp"
                 android:padding="10dp"
@@ -107,7 +107,7 @@
                 android:textSize="20dp"
                 android:paddingStart="15dp"
                 android:padding="10dp"
-                android:text="Time: "
+                android:text="@string/time_hint_text"
                 tools:ignore="RtlSymmetry"/>
             <androidx.appcompat.widget.AppCompatImageButton
                 android:id="@+id/pickTimeImgBtn"
@@ -138,7 +138,7 @@
                 android:textSize="20dp"
                 android:paddingStart="15dp"
                 android:padding="10dp"
-                android:text="Repeat: "
+                android:text="@string/repeat_hint_text"
                 android:id="@+id/repeatTitleTV"
                 tools:ignore="RtlSymmetry"/>
             <Spinner
@@ -203,7 +203,7 @@
             <CheckBox
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Assign"
+                android:text="@string/assign_hint_text"
                 android:textSize="20dp"
                 android:id="@+id/assignCheckBox"
                 android:layout_marginStart="12dp"
@@ -228,7 +228,7 @@
                 android:id="@+id/notesET"
                 android:lines="8"
                 android:gravity="top|left"
-                android:hint="Notes:"
+                android:hint="@string/notes_hint_text"
                 android:scrollbars="vertical"
                 tools:ignore="RtlHardcoded,RtlSymmetry"
                 android:padding="15dp"

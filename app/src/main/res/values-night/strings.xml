@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="new_task_header_text_2">New Task</string>
+    <string name="add_button_text">add</string>
+    <string name="title_text_view_hint">Title</string>
+    <string name="time_hint_text">Time:</string>
+    <string name="repeat_hint_text">Repeat:</string>
+    <string name="notes_hint_text">Notes:</string>
+</resources>

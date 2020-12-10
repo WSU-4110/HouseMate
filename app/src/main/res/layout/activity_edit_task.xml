@@ -7,42 +7,57 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/parent"
-        android:padding="15dp">
+        android:id="@+id/parent" >
 
-        <Button
-            android:layout_width="wrap_content"
+        <RelativeLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_toStartOf="@+id/editTaskTitleTV"
-            android:layout_alignParentStart="true"
-            android:text="@string/editTaskCancel"
-            android:id="@+id/cancelBtn"/>
+            android:id="@+id/topPanel"
+            android:background="@color/atomic_tangerine"
+            android:paddingStart="15dp"
+            tools:ignore="RtlSymmetry"
+            android:padding="5dp">
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/cancelBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:padding="10dp"
+                android:src="@drawable/ic_baseline_arrow_back_ios_24"
+                android:layout_alignParentStart="true" />
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_baseline_check_24"
+                android:textSize="20sp"
+                android:layout_alignParentEnd="true"
+                android:id="@+id/updateTaskBtn"
+                android:textColor="@color/white_50"
+                android:background="@android:color/transparent"/>
+        </RelativeLayout>
 
         <TextView
             android:id="@+id/editTaskTitleTV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/editTaskTitle"
-            android:textSize="20sp"
             android:layout_centerHorizontal="true"
-            android:paddingHorizontal="30dp"/>
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/editTaskUpdate"
-            android:layout_toEndOf="@+id/editTaskTitleTV"
-            android:layout_alignParentEnd="true"
-            android:id="@+id/updateTaskBtn"/>
+            android:paddingHorizontal="30dp"
+            android:textColor="@color/white_50"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            android:layout_marginTop="10dp"/>
 
         <EditText
             android:id="@+id/taskNameET"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/topPanel"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="8dp"
+            android:hint="@string/editTaskNameTitle"
             android:inputType="textPersonName"
-            android:layout_below="@+id/cancelBtn"
-            android:layout_marginTop="30sp"
-            android:textSize="30sp"
-            android:hint="@string/editTaskNameTitle"/>
+            android:textSize="30sp" />
 
         <CheckBox
             android:layout_width="match_parent"

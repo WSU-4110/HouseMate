@@ -22,25 +22,16 @@ import androidx.fragment.app.DialogFragment;
 
 public class Settings extends AppCompatActivity {
 
-    private Button logoutButton, deleteAcct, colorTheme;
+    private Button logoutButton, deleteAcct;
     ImageButton backBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.settings);
-        colorTheme = (Button) findViewById(R.id.headerColor);
         backBtn =  (ImageButton) findViewById(R.id.back_to_home_page);
         logoutButton = (Button) findViewById(R.id.logoutButton);
         deleteAcct = (Button) findViewById(R.id.deleteAcct);
-
-        colorTheme.setOnClickListener(new View.OnClickListener() {
-              @Override
-              public void onClick(View v) {
-                  Intent intent = new Intent(Settings.this, ColorThemeActivity.class);
-                  startActivity(intent);
-              }
-        });
 
         //completedTaskpush.setOnClickListener(new View.OnClickListener() {
           //  @Override

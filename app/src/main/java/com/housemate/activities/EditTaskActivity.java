@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.ImageButton;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.housemate.classes.DiscardTaskDialogue;
@@ -23,7 +24,7 @@ import java.util.Arrays;
 
 public class EditTaskActivity extends AppCompatActivity implements HousemateRecViewAdapter.CheckBoxListener {
     EditText taskNameET, notesET;
-    Button updateTaskBtn, cancelBtn;
+    ImageButton updateTaskBtn, cancelBtn;
     static ArrayList<String> housemates;
     ArrayList<String> assignedTo;
     Boolean[] isAssigned;
