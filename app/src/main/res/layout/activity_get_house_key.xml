@@ -95,7 +95,7 @@
                 android:textSize="64sp" />
         </LinearLayout>
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/getKeyButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

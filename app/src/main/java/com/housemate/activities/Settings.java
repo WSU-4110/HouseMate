@@ -22,7 +22,7 @@ import androidx.fragment.app.DialogFragment;
 
 public class Settings extends AppCompatActivity {
 
-    private Button logoutButton, changePasswordbutton, deleteAcct, pushNotification, colorTheme;
+    private Button logoutButton, deleteAcct, colorTheme;
     ImageButton backBtn;
 
     @Override
@@ -31,10 +31,8 @@ public class Settings extends AppCompatActivity {
         setContentView(R.layout.settings);
         colorTheme = (Button) findViewById(R.id.headerColor);
         backBtn =  (ImageButton) findViewById(R.id.back_to_home_page);
-        pushNotification = (Button) findViewById(R.id.headerPushnotific);
         logoutButton = (Button) findViewById(R.id.logoutButton);
         deleteAcct = (Button) findViewById(R.id.deleteAcct);
-        changePasswordbutton = (Button) findViewById(R.id.changePasswordbutton);
 
         colorTheme.setOnClickListener(new View.OnClickListener() {
               @Override
@@ -42,15 +40,6 @@ public class Settings extends AppCompatActivity {
                   Intent intent = new Intent(Settings.this, ColorThemeActivity.class);
                   startActivity(intent);
               }
-        });
-
-
-        pushNotification.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Settings.this, PushNotificationSettingsActivity.class);
-                startActivity(intent);
-            }
         });
 
         //completedTaskpush.setOnClickListener(new View.OnClickListener() {
