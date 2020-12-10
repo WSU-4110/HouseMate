@@ -5,28 +5,57 @@
     android:layout_height="match_parent"
     tools:context=".CurrentHousehold"
     android:id="@+id/relativeLayout">
-
-    <TextView
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="15dp"
-        android:layout_centerInParent="true"
-        android:layout_alignParentTop="true"
-        android:textColor="@color/aero_blue"
-        android:textSize="35sp"
-        android:textStyle="bold"
-        android:text="@string/household_header_text"
-        android:textAlignment="center"
-        android:id="@+id/houseHoldTitleTV"/>
+        android:id="@+id/topBar"
+        android:background="@color/atomic_tangerine"
+        android:paddingStart="15dp"
+        tools:ignore="RtlSymmetry"
+        android:padding="5dp">
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/backBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:padding="10dp"
+            android:src="@drawable/ic_baseline_arrow_back_ios_24"
+            android:layout_alignParentStart="true"
+            android:onClick="onBackBtnClicked"/>
+    </RelativeLayout>
 
-    <Button
+    <TextView
+        android:id="@+id/householdTitleTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="@string/household_header_text"
         android:layout_centerHorizontal="true"
-        android:text="@string/back_to_home"
-        android:id="@+id/backBtn"
-        android:onClick="onBackBtnClicked"
-        android:layout_below="@id/houseHoldTitleTV"/>
+        android:paddingHorizontal="30dp"
+        android:textColor="@color/white_50"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:layout_marginTop="10dp"/>
+<!--    <TextView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:paddingTop="15dp"-->
+<!--        android:layout_centerInParent="true"-->
+<!--        android:layout_alignParentTop="true"-->
+<!--        android:textColor="@color/aero_blue"-->
+<!--        android:textSize="35sp"-->
+<!--        android:textStyle="bold"-->
+<!--        android:text="@string/household_header_text"-->
+<!--        android:textAlignment="center"-->
+<!--        android:id="@+id/houseHoldTitleTV"/>-->
+
+<!--    <Button-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_centerHorizontal="true"-->
+<!--        android:text="@string/back_to_home"-->
+<!--        android:id="@+id/backBtn"-->
+<!--        android:onClick="onBackBtnClicked"-->
+<!--        android:layout_below="@id/topBar"/>-->
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -34,7 +63,7 @@
         android:orientation="horizontal"
         android:gravity="center"
         android:id="@+id/householdNameLL"
-        android:layout_below="@id/backBtn"
+        android:layout_below="@id/topBar"
         android:layout_marginTop="15dp"
         android:onClick="onChangeHouseholdName"
         android:background="@color/aero_blue">
@@ -46,15 +75,15 @@
             android:textSize="30sp"
             android:id="@+id/householdNameTV"
             android:layout_marginStart="15dp"/>
-         <androidx.appcompat.widget.AppCompatImageButton
+        <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/edit_profile"
             android:layout_width="0dp"
-             android:layout_weight=".1"
+            android:layout_weight=".1"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/aero_blue"
-            android:src="@drawable/ic_baseline_chevron_right_24"
-             android:layout_marginEnd="15dp"
-             android:onClick="onChangeHouseholdName"/>
+            android:src="@drawable/ic_baseline_edit_50"
+            android:layout_marginEnd="15dp"
+            android:onClick="onChangeHouseholdName"/>
     </LinearLayout>
 
 
