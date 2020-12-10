@@ -2,13 +2,18 @@ package com.housemate.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatImageButton;
+import androidx.core.app.NotificationManagerCompat;
 import androidx.fragment.app.DialogFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.DatePickerDialog;
+import android.app.NotificationChannel;
+import android.app.PendingIntent;
 import android.app.TimePickerDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -38,6 +43,8 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
+import androidx.core.app.NotificationCompat;
+import android.app.NotificationManager;
 
 //extends FragmentActivity
 //                          implements NoticeDialogFragment.NoticeDialogListener
@@ -57,6 +64,9 @@ public class CreateTaskActivity extends AppCompatActivity implements DatePickerD
     LocalDate dueDate;
     LocalTime dueTime;
     HousemateRecViewAdapter housemateRecViewAdapter;
+
+    NotificationChannel PushNotificationChannel;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,6 +96,7 @@ public class CreateTaskActivity extends AppCompatActivity implements DatePickerD
         priority = "None";
         taskNotes = "";
 
+        housemates = MainActivity.currentHousehold.getUsers();
         repeatTaskSpinner = findViewById(R.id.repeatTaskSpinner);
         ArrayAdapter<CharSequence> repeatTaskAdapter = ArrayAdapter.createFromResource(
                 this, R.array.repeat_task_arr, android.R.layout.simple_spinner_item);
@@ -100,6 +111,27 @@ public class CreateTaskActivity extends AppCompatActivity implements DatePickerD
         createTaskBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                NotificationChannel ch = new NotificationChannel("Created Task", "New Notification", NotificationManager.IMPORTANCE_DEFAULT);
+
+
+                NotificationManager notificationManager = getSystemService(NotificationManager.class);
+
+                notificationManager.createNotificationChannel(ch);
+
+                NotificationCompat.Builder builder = new NotificationCompat.Builder(CreateTaskActivity.this, "Created Task");
+                builder.setSmallIcon(R.drawable.ic_baseline_calendar_today_24);
+                builder.setContentTitle("New Notification");
+                builder.setContentText("A New Task Has Been Created!");
+                builder.setAutoCancel(true);
+
+                NotificationManagerCompat managerCompat = NotificationManagerCompat.from(CreateTaskActivity.this);
+                managerCompat.notify(1, builder.build());
+
+
+
+
+
                 taskName = taskNameET.getText().toString();
                 taskNotes = notesET.getText().toString();
                 assignHousemates();
@@ -108,9 +140,14 @@ public class CreateTaskActivity extends AppCompatActivity implements DatePickerD
                 task.create(MainActivity.currentHousehold.getHouseID());
 
 
+
                 Intent intent = new Intent(CreateTaskActivity.this, HomePageActivity.class);
                 startActivity(intent);
+
+
+
             }
+
         });
         cancelBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -237,4 +274,7 @@ public class CreateTaskActivity extends AppCompatActivity implements DatePickerD
     }
 
 
-}
+
+
+
+    }

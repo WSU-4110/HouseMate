@@ -121,4 +121,9 @@
     <string name="hello_world">Hello Square World!</string>
     <string name="view_profile">View Profile</string>
     <string name="select_or_create_household">Select or create Household</string>
+
+    <!-- (task_notification.xml) -->
+    <string name="CHANNEL_ID">jklol</string>
+    <string name="channel_name">New Task Created</string>
+    <string name="channel_description">Notifications for created task</string>
 </resources>
