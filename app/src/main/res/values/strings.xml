@@ -3,7 +3,7 @@
     <string name="edit_task_string">edit task</string>
     <string name="complete_task_string">complete task</string>
     <string name="delete_task_string">delete task</string>
-    <string name="completed_tasks">COMPLETED TASKS</string>
+    <string name="completed_tasks">Completed Tasks</string>
     <string name="back_to_home">BACK TO HOME</string>
     <string name="email">Email</string>
     <string name="forgot_password">Forgot Password?</string>
@@ -30,7 +30,7 @@
     <string name="delete_account">Delete Account</string>
     <string name="created_tasks">Created Tasks:</string>
     <string name="completed_tasks_lower">Completed Tasks:</string>
-    <string name="settings">SETTINGS</string>
+    <string name="settings">Settings</string>
 
     <!-- (activity_registration.xml) -->
     <string name="registration">Registration</string>
@@ -65,7 +65,7 @@
     <string name="dark_theme_slider_set">Dark</string>
 
     <!-- (activity_current_household) -->
-    <string name="household_header_text">HOUSEHOLD</string>
+    <string name="household_header_text">Household</string>
     <string name="leave_household_button_text">Leave Household</string>
     <string name="get_house_key_button_text">Get House Key</string>
 
