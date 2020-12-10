@@ -44,6 +44,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".CreateTaskActivity" />
+        <activity android:name=".EditTaskActivity" />
         <activity android:name=".HomePageActivity" />
         <activity android:name=".ViewCompletedTasksActivity" />
         <activity android:name=".Settings" />

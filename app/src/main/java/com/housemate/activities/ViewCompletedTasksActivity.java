@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 import com.housemate.classes.CompletedTask;
 import com.housemate.classes.Task;
@@ -15,7 +16,7 @@ import com.housemate.classes.TaskListAdapter;
 import java.util.List;
 
 public class ViewCompletedTasksActivity extends AppCompatActivity {
-    private Button backToHomeButton;
+    private ImageButton backToHomeButton;
 
     private List<Task> taskList;
     private RecyclerView taskRecyclerView;

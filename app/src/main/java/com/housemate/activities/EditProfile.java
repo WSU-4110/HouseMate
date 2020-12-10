@@ -17,8 +17,7 @@ import java.time.chrono.MinguoChronology;
 
 public class EditProfile extends AppCompatActivity {
 
-    Button backBtn, selectHouseholdBtn;
-    FloatingActionButton saveBtn;
+    Button selectHouseholdBtn;
     EditText fnameET, lnameET;
     TextView usernameET, emailET;
 
@@ -27,8 +26,6 @@ public class EditProfile extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_profile);
 
-        backBtn = findViewById(R.id.backBtn);
-        saveBtn = (FloatingActionButton) findViewById(R.id.saveBtn);
         fnameET = (EditText) findViewById(R.id.fnameET);
         lnameET = (EditText) findViewById(R.id.lnameET);
         usernameET = findViewById(R.id.usernameET);

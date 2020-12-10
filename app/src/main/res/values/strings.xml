@@ -1,9 +1,9 @@
 <resources>
     <string name="app_name">HouseMate App</string>
-    <string name="edit_task_string">edit task</string>
+    <string name="edit_task_string">Edit task</string>
     <string name="complete_task_string">complete task</string>
     <string name="delete_task_string">delete task</string>
-    <string name="completed_tasks">COMPLETED TASKS</string>
+    <string name="completed_tasks">Completed Tasks</string>
     <string name="back_to_home">BACK TO HOME</string>
     <string name="email">Email</string>
     <string name="forgot_password">Forgot Password?</string>
@@ -30,7 +30,7 @@
     <string name="delete_account">Delete Account</string>
     <string name="created_tasks">Created Tasks:</string>
     <string name="completed_tasks_lower">Completed Tasks:</string>
-    <string name="settings">SETTINGS</string>
+    <string name="settings">Settings</string>
 
     <!-- (activity_registration.xml) -->
     <string name="registration">Registration</string>
@@ -60,12 +60,20 @@
     <string name="add_task_button_text">ADD</string>
     <string name="new_task_header_text">NEW TASK</string>
 
+    <!-- (activity_edit_task.xml) -->
+    <string name="editTaskCancel">CANCEL</string>
+    <string name="editTaskTitle">Edit Task</string>
+    <string name="editTaskUpdate">UPDATE</string>
+    <string name="editTaskNameTitle">Title</string>
+    <string name="editTaskAssignText">Assign</string>
+    <string name="editTaskNotesText">Notes:</string>
+
     <!-- (activity_color_theme.xml) -->
     <string name="light_theme_slider_set">Light</string>
     <string name="dark_theme_slider_set">Dark</string>
 
     <!-- (activity_current_household) -->
-    <string name="household_header_text">HOUSEHOLD</string>
+    <string name="household_header_text">Household</string>
     <string name="leave_household_button_text">Leave Household</string>
     <string name="get_house_key_button_text">Get House Key</string>
 
@@ -104,8 +112,6 @@
     <string name="task_name_here_hint_text">task name here</string>
     <string name="by_due_date_hint_text">by due date</string>
 
-    <!-- (task_metrics.xml) -->
-    <string name="number_of_tasks_completed_hint_text">Number of Tasks Completed</string>
 
     <string-array name="repeat_task_arr">
         <item>Never</item>
@@ -126,4 +132,12 @@
     <string name="CHANNEL_ID">jklol</string>
     <string name="channel_name">New Task Created</string>
     <string name="channel_description">Notifications for created task</string>
+    <string name="new_task_header_text_2">New Task</string>
+    <string name="add_button_text">add</string>
+    <string name="title_text_view_hint">Title</string>
+    <string name="due_date_text_view_hint">Due Date:</string>
+    <string name="time_hint_text">Time:</string>
+    <string name="repeat_hint_text">Repeat:</string>
+    <string name="assign_hint_text">Assign</string>
+    <string name="notes_hint_text">Notes:</string>
 </resources>
