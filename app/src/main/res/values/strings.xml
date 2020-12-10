@@ -47,6 +47,7 @@
     <string name="log">LOG</string>
     <string name="metrics">METRICS</string>
     <string name="create_new_task">Create New Task</string>
+    <string name="calendar_view_button_text">Calendar</string>
 
     <!-- (activity_join_create_household.xml) -->
     <string name="create_household_group_button_text">Create Household Group</string>
