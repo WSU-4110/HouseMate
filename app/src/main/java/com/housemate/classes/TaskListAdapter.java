@@ -1,6 +1,8 @@
 package com.housemate.classes;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +15,9 @@ import androidx.core.text.HtmlCompat;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.housemate.activities.EditTaskActivity;
+import com.housemate.activities.HomePageActivity;
 import com.housemate.activities.MainActivity;
 import com.housemate.activities.R;
 
@@ -81,24 +86,26 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.TaskLi
                     String.join(", ", ((IncompleteTask) task).getAssignedUsers()));
             holder.assignedUserView.setText(HtmlCompat.fromHtml(text, 0));
 
-            /*
-                holder.editTaskView.setOnClickListener(view -> edit the task);
-            */
-
-            holder.completeTaskView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    IncompleteTask.complete(task.getId(),MainActivity.currentUser.getId(), MainActivity.currentHousehold.getHouseID());
-                    notifyDataSetChanged();
+            holder.editTaskView.setOnClickListener(v -> {
+                try {
+                    String taskJson = HTTPSDataSender.mapToJson(task);
+                    Intent intent = new Intent(context, EditTaskActivity.class);
+                    intent.putExtra("taskJson", taskJson);
+                    context.startActivity(intent);
+                }
+                catch (Exception e) {
+                    throw new RuntimeException("Error processing task");
                 }
             });
 
-            holder.deleteTaskView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    DeleteTaskDialogue deleteTaskDialogue = new DeleteTaskDialogue((IncompleteTask) task, self);
-                    deleteTaskDialogue.show(fragmentManager, "deleteTaskDialogue");
-                }
+            holder.completeTaskView.setOnClickListener(v -> {
+                IncompleteTask.complete(task.getId(),MainActivity.currentUser.getId(), MainActivity.currentHousehold.getHouseID());
+                notifyDataSetChanged();
+            });
+
+            holder.deleteTaskView.setOnClickListener(v -> {
+                DeleteTaskDialogue deleteTaskDialogue = new DeleteTaskDialogue((IncompleteTask) task, self);
+                deleteTaskDialogue.show(fragmentManager, "deleteTaskDialogue");
             });
         }
     }
