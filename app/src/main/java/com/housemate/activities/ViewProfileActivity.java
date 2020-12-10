@@ -16,8 +16,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class ViewProfileActivity extends AppCompatActivity {
     Button selectHouseholdBtn;
-    ImageButton backBtn;
-    FloatingActionButton editProfileBtn;
+    ImageButton backBtn, editProfileBtn;
     TextView fnameTV, lnameTV, usernameTV, emailTV;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
