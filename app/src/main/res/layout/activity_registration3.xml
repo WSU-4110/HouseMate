@@ -5,7 +5,6 @@
     android:id="@+id/relativeLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF"
     tools:layout_editor_absoluteX="2dp"
     tools:layout_editor_absoluteY="-13dp">
 
@@ -14,7 +13,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Registration"
-        android:textColor="#5C5D60"
         android:textSize="35sp"
         app:layout_constraintBottom_toTopOf="@+id/firstName"
         app:layout_constraintEnd_toEndOf="parent"
@@ -29,7 +27,6 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:text="First Name"
-        android:textColor="#3F51B5"
         app:layout_constraintBottom_toTopOf="@+id/firstName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -58,7 +55,6 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="8dp"
         android:text="Last Name"
-        android:textColor="#3F51B5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/firstName" />
 
@@ -83,7 +79,6 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="8dp"
         android:text="User Name"
-        android:textColor="#3F51B5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/emailErrorTV" />
 
@@ -108,7 +103,6 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="8dp"
         android:text="Password"
-        android:textColor="#3F51B5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edUserName" />
 
@@ -131,7 +125,6 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="8dp"
         android:text="Re-Enter Password"
-        android:textColor="#3F51B5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/enterPass" />
 
@@ -154,7 +147,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Those passwords didn't match. Try again."
-        android:textColor="@color/red_600"
         android:visibility="gone"
         app:layout_constraintBottom_toTopOf="@+id/creAcct"
         app:layout_constraintEnd_toEndOf="parent"
@@ -170,7 +162,6 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="8dp"
         android:text="Email"
-        android:textColor="#3F51B5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/lastName" />
 
@@ -195,7 +186,6 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="4dp"
         android:text="Invalid email. Try again."
-        android:textColor="@color/red_600"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Email"
         android:visibility="gone"/>
@@ -207,9 +197,7 @@
         android:layout_marginStart="68dp"
         android:layout_marginTop="28dp"
         android:layout_marginEnd="68dp"
-        android:background="@drawable/rounded_corners"
         android:text="Create Account"
-        android:textColor="#3F51B5"
         android:onClick="register"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/goBack"
@@ -224,10 +212,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="72dp"
-        android:background="@drawable/rounded_corners"
         android:onClick="onBack"
         android:text="Back"
-        android:textColor="#3F51B5"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Confirm"

@@ -27,7 +27,6 @@
             android:text="@string/settings"
             android:gravity="center"
             android:layout_gravity="center"
-            android:textColor="@color/aero_blue"
             android:textSize="40sp"
             android:textStyle="bold" />
 
@@ -39,16 +38,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/completed_tasks_lower"
-        android:textSize="20sp"
-        android:textColor="@color/atomic_tangerine"/>
+        android:textSize="20sp" />
 
     <com.google.android.material.switchmaterial.SwitchMaterial
         android:id="@+id/createdTaskspush"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/created_tasks"
-        android:textSize="20sp"
-        android:textColor="@color/atomic_tangerine"/>
+        android:textSize="20sp"/>
+
 
 
 

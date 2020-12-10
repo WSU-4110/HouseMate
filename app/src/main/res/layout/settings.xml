@@ -29,7 +29,6 @@
             android:text="SETTINGS"
             android:gravity="center"
             android:layout_gravity="center"
-            android:textColor="@color/aero_blue"
             android:textSize="40sp"
             android:textStyle="bold" />
 
@@ -44,7 +43,6 @@
         android:layout_marginBottom="10dp"
         android:text="@string/push_notifications"
         android:textSize="20sp"
-        android:textColor="@color/atomic_tangerine"
         android:gravity="center"
         android:backgroundTint="@color/white_50"
         app:icon="@drawable/ic_baseline_chevron_right_24"
@@ -57,7 +55,6 @@
         android:layout_marginVertical="10dp"
         android:text="@string/color_theme"
         android:textSize="20sp"
-        android:textColor="@color/atomic_tangerine"
         android:gravity="center"
         android:backgroundTint="@color/white_50"
         app:icon="@drawable/ic_baseline_chevron_right_24"
