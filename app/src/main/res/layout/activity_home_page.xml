@@ -77,12 +77,14 @@
         android:orientation="horizontal"
         android:layout_alignParentBottom="true"
         android:id="@+id/linearLayout">
+
         <Button
+            android:id="@+id/logPageBtn"
             android:layout_width="0dp"
-            android:layout_weight=".25"
             android:layout_height="wrap_content"
-            android:text="@string/log"
-            android:id="@+id/logPageBtn"/>
+            android:layout_weight=".25"
+            android:text="@string/log" />
+
         <Button
             android:layout_width="0dp"
             android:layout_weight=".25"
@@ -97,8 +99,13 @@
             android:text="@string/settings"
             android:id="@+id/settingsPageBtn"/>
 
-    </LinearLayout>
+        <Button
+            android:id="@+id/calbutton"
+            android:layout_width="90dp"
+            android:layout_height="wrap_content"
+            android:text="Calendar" />
 
+    </LinearLayout>
 
 
 </RelativeLayout>

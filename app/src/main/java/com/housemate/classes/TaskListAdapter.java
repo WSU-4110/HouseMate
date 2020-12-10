@@ -1,5 +1,7 @@
 package com.housemate.classes;
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -11,10 +13,13 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 import androidx.core.text.HtmlCompat;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.housemate.activities.CreateTaskActivity;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.housemate.activities.EditTaskActivity;
 import com.housemate.activities.HomePageActivity;
@@ -85,7 +90,6 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.TaskLi
             text = String.format("<i>%s</i>",
                     String.join(", ", ((IncompleteTask) task).getAssignedUsers()));
             holder.assignedUserView.setText(HtmlCompat.fromHtml(text, 0));
-
             holder.editTaskView.setOnClickListener(v -> {
                 try {
                     String taskJson = HTTPSDataSender.mapToJson(task);
@@ -107,6 +111,8 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.TaskLi
                 DeleteTaskDialogue deleteTaskDialogue = new DeleteTaskDialogue((IncompleteTask) task, self);
                 deleteTaskDialogue.show(fragmentManager, "deleteTaskDialogue");
             });
+
+
         }
     }
 
