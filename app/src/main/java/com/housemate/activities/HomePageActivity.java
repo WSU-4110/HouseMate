@@ -5,32 +5,26 @@ import androidx.appcompat.widget.AppCompatImageButton;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.app.ActivityManager;
 import android.content.Intent;
-import android.database.DataSetObserver;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
-import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.housemate.classes.Household;
 import com.housemate.classes.IncompleteTask;
 import com.housemate.classes.Task;
 import com.housemate.classes.TaskListAdapter;
 
-
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 public class HomePageActivity extends AppCompatActivity {
     private AppCompatImageButton editProfileBtn;
     private ImageButton createTaskBtn;
     private Button settingsPageBtn;
-    private TextView displayUser;
+    private TextView displayUser, householdName;
     private Button logPageButton;
     private List<Task> taskList;
     private RecyclerView taskRecyclerView;
@@ -41,11 +35,9 @@ public class HomePageActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
-
-
         taskList = IncompleteTask.loadHouseholdTasks(MainActivity.currentHousehold.getHouseID());
         taskRecyclerView = (RecyclerView) findViewById(R.id.task_recycler_view);
-        taskAdapter =new TaskListAdapter(this, taskList, false);
+        taskAdapter =new TaskListAdapter(this, taskList, false, getSupportFragmentManager());
         // Really janky way to update. REPLACE LATER
         taskAdapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
             @Override
@@ -58,13 +50,15 @@ public class HomePageActivity extends AppCompatActivity {
         taskRecyclerView.setLayoutManager(taskLayoutManager);
         taskRecyclerView.setAdapter(taskAdapter);
 
+        householdName = findViewById(R.id.householdNameTV);
+        householdName.setText(MainActivity.currentHousehold.getHouseholdName());
+
         editProfileBtn = findViewById(R.id.edit_profile);
         createTaskBtn = findViewById(R.id.createTaskBtn);
-
         editProfileBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(HomePageActivity.this, EditProfile.class));
+                startActivity(new Intent(HomePageActivity.this, ViewProfileActivity.class));
             }
         });
 

@@ -16,6 +16,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApp"
         android:usesCleartextTraffic="true">
+        <activity android:name=".ViewProfileActivity"></activity>
         <activity android:name=".PushNotificationSettingsActivity"></activity>
         <activity android:name=".ColorThemeActivity" />
         <activity android:name=".GetHouseKey"/>
@@ -38,6 +39,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".CreateTaskActivity" />
+        <activity android:name=".EditTaskActivity" />
         <activity android:name=".HomePageActivity" />
         <activity android:name=".ViewCompletedTasksActivity" />
         <activity android:name=".Settings" />

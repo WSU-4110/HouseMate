@@ -1,9 +1,9 @@
 <resources>
     <string name="app_name">HouseMate App</string>
-    <string name="edit_task_string">edit task</string>
+    <string name="edit_task_string">Edit task</string>
     <string name="complete_task_string">complete task</string>
     <string name="delete_task_string">delete task</string>
-    <string name="completed_tasks">COMPLETED TASKS</string>
+    <string name="completed_tasks">Completed Tasks</string>
     <string name="back_to_home">BACK TO HOME</string>
     <string name="email">Email</string>
     <string name="forgot_password">Forgot Password?</string>
@@ -13,10 +13,10 @@
     <string name="error">Something went wrong</string>
     <string name="one_time_house_key">ONE-TIME HOUSE KEY</string>
     <string name="join">Join</string>
-    <string name="join_household_group">Join Household Group</string>
+    <string name="join_household_group_button_text">Join Household Group</string>
     <string name="household_key">Household Key</string>
-    <string name="username">username</string>
-    <string name="password">password</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
     <string name="register">Register</string>
     <string name="remember_me">Remember Me</string>
     <string name="sign_in">Sign In</string>
@@ -26,10 +26,92 @@
     <string name="color_theme">Color Theme</string>
     <string name="log_out">Log Out</string>
     <string name="change_password">Change Password</string>
+    <string name="create_account">Create Account</string>
     <string name="delete_account">Delete Account</string>
     <string name="created_tasks">Created Tasks:</string>
     <string name="completed_tasks_lower">Completed Tasks:</string>
-    <string name="settings">SETTINGS</string>
+    <string name="settings">Settings</string>
+
+    <!-- (activity_registration.xml) -->
+    <string name="registration">Registration</string>
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="password_confirmation">Re-Enter Password</string>
+    <string name="password_match_error_text">Passwords dont match</string>
+    <string name="invalid_email_error_text">Invalid email, try again</string>
+    <string name="back_button_text">Back</string>
+
+    <!-- (activity_home_page.xml) -->
+    <string name="household_name">Household Name</string>
+    <string name="incomplete_tasks">TASKS</string>
+    <string name="log">LOG</string>
+    <string name="metrics">METRICS</string>
+    <string name="create_new_task">Create New Task</string>
+
+    <!-- (activity_join_create_household.xml) -->
+    <string name="create_household_group_button_text">Create Household Group</string>
+
+    <!-- (activity_create_household.xml) -->
+    <string name="create_new_household_group_header_text">Create New Household Group</string>
+    <string name="new_household_create_button_text">Create</string>
+
+    <!-- (activity_create_task.xml) -->
+    <string name="cancel_floating_action_button_text">CANCEL</string>
+    <string name="add_task_button_text">ADD</string>
+    <string name="new_task_header_text">NEW TASK</string>
+
+    <!-- (activity_edit_task.xml) -->
+    <string name="editTaskCancel">CANCEL</string>
+    <string name="editTaskTitle">Edit Task</string>
+    <string name="editTaskUpdate">UPDATE</string>
+    <string name="editTaskNameTitle">Title</string>
+    <string name="editTaskAssignText">Assign</string>
+    <string name="editTaskNotesText">Notes:</string>
+
+    <!-- (activity_color_theme.xml) -->
+    <string name="light_theme_slider_set">Light</string>
+    <string name="dark_theme_slider_set">Dark</string>
+
+    <!-- (activity_current_household) -->
+    <string name="household_header_text">Household</string>
+    <string name="leave_household_button_text">Leave Household</string>
+    <string name="get_house_key_button_text">Get House Key</string>
+
+    <!-- (activity_edit_profile) -->
+    <string name="edit_profile_text_view">Edit Profile</string>
+    <string name="save_button_text">Save</string>
+    <string name="select_or_create_household_button_text">Select or create Household</string>
+
+    <!-- (activity_get_house_key.xml) -->
+    <string name="invite_to_household_header_text">Invite to Household</string>
+    <string name="get_key_button_text">Get Key</string>
+    <string name="copy_key_hint_text">copy key</string>
+    <string name="copy_key_button_text_view">Copy
+        Key</string>
+    <string name="share_key_button_text_view">Share
+        Key</string>
+    <string name="back_to_house_button_text_view_with_return">Back To
+        House</string>
+
+    <!-- (activity_task_metrics.xml) -->
+    <string name="task_statistics_header_text">Task Statistics</string>
+    <string name="user_text_view">User</string>
+
+    <!-- (activity_view_task_by_id.xml) -->
+    <string name="enter_task_id_edit_text_view">Enter Task id</string>
+    <string name="fetch_task_button_text">FetcFh Task</string>
+
+    <!-- (current_household_rv_detail.xml) -->
+    <string name="remove_button_text">Remove</string>
+
+    <!-- (rename_household_fragment.xml) -->
+    <string name="rename_household_header_text">Rename Household</string>
+    <string name="cancel_button_text">Cancel</string>
+
+    <!-- (task_listview_detail.xml) -->
+    <string name="task_name_here_hint_text">task name here</string>
+    <string name="by_due_date_hint_text">by due date</string>
+
 
     <string-array name="repeat_task_arr">
         <item>Never</item>
@@ -43,4 +125,11 @@
     values-round/strings.xml for round devices.
     -->
     <string name="hello_world">Hello Square World!</string>
+    <string name="view_profile">View Profile</string>
+    <string name="select_or_create_household">Select or create Household</string>
+
+    <!-- (task_notification.xml) -->
+    <string name="CHANNEL_ID">jklol</string>
+    <string name="channel_name">New Task Created</string>
+    <string name="channel_description">Notifications for created task</string>
 </resources>

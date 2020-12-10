@@ -2,9 +2,11 @@ package com.housemate.activities;
 
 import android.content.Context;
 import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.RadioButton;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -20,14 +22,15 @@ import androidx.fragment.app.DialogFragment;
 
 public class Settings extends AppCompatActivity {
 
-    private Button logoutButton, changePasswordbutton, deleteAcct, pushNotification, colorTheme, backBtn;
+    private Button logoutButton, changePasswordbutton, deleteAcct, pushNotification, colorTheme;
+    ImageButton backBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.settings);
         colorTheme = (Button) findViewById(R.id.headerColor);
-        backBtn =  (Button) findViewById(R.id.back_to_home_page);
+        backBtn =  (ImageButton) findViewById(R.id.back_to_home_page);
         pushNotification = (Button) findViewById(R.id.headerPushnotific);
         logoutButton = (Button) findViewById(R.id.logoutButton);
         deleteAcct = (Button) findViewById(R.id.deleteAcct);
@@ -41,13 +44,6 @@ public class Settings extends AppCompatActivity {
               }
         });
 
-        backBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Settings.this, HomePageActivity.class);
-                startActivity(intent);
-            }
-        });
 
         pushNotification.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -122,6 +118,11 @@ public class Settings extends AppCompatActivity {
             Toast toast = Toast.makeText(context, text, duration);
             toast.show();
         }
+    }
+
+    public void backToHome(View view) {
+        Intent intent = new Intent(this, HomePageActivity.class);
+        startActivity(intent);
     }
 }
 

@@ -12,11 +12,12 @@
         android:id="@+id/reg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Registration"
+        android:text="@string/registration"
+        android:textColor="#5C5D60"
         android:textSize="35sp"
         app:layout_constraintBottom_toTopOf="@+id/firstName"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.372" />
@@ -25,26 +26,24 @@
         android:id="@+id/enterFname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:text="First Name"
+        android:text="@string/first_name"
+        android:textColor="#3F51B5"
         app:layout_constraintBottom_toTopOf="@+id/firstName"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@id/firstName"
         app:layout_constraintTop_toBottomOf="@+id/reg" />
 
     <EditText
-        android:labelFor="@id/enterFname"
         android:id="@+id/firstName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
         android:layout_marginTop="8dp"
         android:ems="10"
         android:inputType="textPersonName"
+        android:labelFor="@id/enterFname"
         app:layout_constraintBottom_toTopOf="@+id/enterLname"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/enterFname" />
 
@@ -52,10 +51,10 @@
         android:id="@+id/enterLname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
         android:layout_marginTop="8dp"
-        android:text="Last Name"
-        app:layout_constraintStart_toStartOf="parent"
+        android:text="@string/last_name"
+        android:textColor="#3F51B5"
+        app:layout_constraintStart_toStartOf="@id/lastName"
         app:layout_constraintTop_toBottomOf="@+id/firstName" />
 
     <EditText
@@ -63,12 +62,11 @@
         android:id="@+id/lastName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
         android:layout_marginTop="8dp"
         android:ems="10"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/enterLname" />
 
@@ -76,23 +74,21 @@
         android:id="@+id/uName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
         android:layout_marginTop="8dp"
-        android:text="User Name"
-        app:layout_constraintStart_toStartOf="parent"
+        android:text="@string/username"
+        android:textColor="#3F51B5"
+        app:layout_constraintStart_toStartOf="@+id/edUserName"
         app:layout_constraintTop_toBottomOf="@+id/emailErrorTV" />
 
     <EditText
-        android:labelFor="@id/uName"
         android:id="@+id/edUserName"
         android:layout_width="217dp"
         android:layout_height="0dp"
-        android:layout_marginStart="32dp"
         android:layout_marginTop="8dp"
         android:ems="10"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/uName" />
 
@@ -100,21 +96,22 @@
         android:id="@+id/pass"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
         android:layout_marginTop="8dp"
-        android:text="Password"
-        app:layout_constraintStart_toStartOf="parent"
+        android:text="@string/password"
+        android:textColor="#3F51B5"
+        app:layout_constraintStart_toStartOf="@id/enterPass"
         app:layout_constraintTop_toBottomOf="@+id/edUserName" />
 
     <EditText
-        android:labelFor="@id/pass"
         android:id="@+id/enterPass"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
         android:layout_marginTop="8dp"
         android:ems="10"
         android:inputType="textPassword"
+        android:labelFor="@id/pass"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/pass" />
 
@@ -122,23 +119,22 @@
         android:id="@+id/ReEnter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
         android:layout_marginTop="8dp"
-        android:text="Re-Enter Password"
-        app:layout_constraintStart_toStartOf="parent"
+        android:text="@string/password_confirmation"
+        android:textColor="#3F51B5"
+        app:layout_constraintStart_toStartOf="@id/Confirm"
         app:layout_constraintTop_toBottomOf="@+id/enterPass" />
 
     <EditText
         android:id="@+id/Confirm"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
         android:layout_marginTop="8dp"
         android:ems="10"
         android:inputType="textPassword"
         android:labelFor="@id/ReEnter"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ReEnter" />
 
@@ -146,9 +142,10 @@
         android:id="@+id/passwordErrorTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Those passwords didn't match. Try again."
+        android:text="@string/password_match_error_text"
+        android:textColor="@color/red_600"
         android:visibility="gone"
-        app:layout_constraintBottom_toTopOf="@+id/creAcct"
+        app:layout_constraintBottom_toTopOf="@+id/createAccLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/Confirm"
@@ -159,10 +156,10 @@
         android:id="@+id/EmailView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
         android:layout_marginTop="8dp"
-        android:text="Email"
-        app:layout_constraintStart_toStartOf="parent"
+        android:text="@string/email"
+        android:textColor="#3F51B5"
+        app:layout_constraintStart_toStartOf="@id/Email"
         app:layout_constraintTop_toBottomOf="@+id/lastName" />
 
     <EditText
@@ -170,12 +167,11 @@
         android:id="@+id/Email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
         android:layout_marginTop="8dp"
         android:ems="10"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/EmailView" />
 
@@ -183,41 +179,39 @@
         android:id="@+id/emailErrorTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
         android:layout_marginTop="4dp"
-        android:text="Invalid email. Try again."
-        app:layout_constraintStart_toStartOf="parent"
+        android:text="@string/invalid_email_error_text"
+        android:textColor="@color/red_600"
+        app:layout_constraintStart_toStartOf="@id/Email"
         app:layout_constraintTop_toBottomOf="@+id/Email"
         android:visibility="gone"/>
-
-    <Button
-        android:id="@+id/creAcct"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/createAccLayout"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="68dp"
-        android:layout_marginTop="28dp"
-        android:layout_marginEnd="68dp"
-        android:text="Create Account"
-        android:onClick="register"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/goBack"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
+        android:orientation="horizontal"
         app:layout_constraintTop_toBottomOf="@+id/Confirm"
-        app:layout_constraintVertical_bias="0.437" />
+        android:gravity="center">
+        <Button
+            android:id="@+id/creAcct"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rounded_corners"
+            android:onClick="register"
+            android:text="@string/create_account"
+            android:textColor="#3F51B5"
+            android:layout_margin="10dp"/>
 
-    <Button
-        android:id="@+id/goBack"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="72dp"
-        android:onClick="onBack"
-        android:text="Back"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Confirm"
-        app:layout_constraintVertical_bias="0.454" />
+        <Button
+            android:id="@+id/goBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rounded_corners"
+            android:onClick="onBack"
+            android:text="@string/back_button_text"
+            android:textColor="#3F51B5"
+            android:layout_margin="10dp"/>
+    </LinearLayout>
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"

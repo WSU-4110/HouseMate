@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:padding="10dp"
         android:src="@drawable/ic_baseline_person_24"
-        android:layout_alignTop="@+id/taskTitleTV" />
+        android:layout_alignTop="@+id/householdNameTV" />
 
     <androidx.appcompat.widget.AppCompatImageButton
         android:layout_width="wrap_content"
@@ -21,18 +21,33 @@
         android:padding="10dp"
         android:src="@drawable/ic_baseline_house_24"
         android:layout_alignParentRight="true"
-        android:layout_alignTop="@+id/taskTitleTV"
+        android:layout_alignTop="@+id/householdNameTV"
         android:onClick="gotoCurrentHousehold"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/taskTitleTV"
+        android:id="@+id/householdNameTV"
         android:layout_centerHorizontal="true"
-        android:textSize="40sp"
+        android:textColor="@color/aero_blue"
+        android:textSize="32sp"
         android:textStyle="bold"
-        android:text="TASKS"
+        android:text="@string/household_name"
         android:padding="5sp"/>
+
+    <TextView
+        android:id="@+id/taskTitleTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="68dp"
+        android:padding="5sp"
+        android:text="@string/incomplete_tasks"
+        android:textColor="@color/atomic_tangerine"
+        android:textSize="24sp"
+        android:textStyle="bold" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:layout_width="wrap_content"
@@ -42,16 +57,17 @@
         android:layout_above="@id/linearLayout"
         android:src="@drawable/ic_baseline_add_24"
         android:id="@+id/createTaskBtn"
-        />
+        android:contentDescription="@string/create_new_task" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/task_recycler_view"
-        android:layout_width="match_parent"
+        android:layout_width="386dp"
         android:layout_height="wrap_content"
-        android:scrollbars="vertical"
-        android:layout_below="@id/taskTitleTV"
         android:layout_above="@+id/createTaskBtn"
-        android:layout_centerHorizontal="true"/>
+        android:layout_below="@+id/taskTitleTV"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="0dp"
+        android:scrollbars="vertical" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -63,20 +79,20 @@
             android:layout_width="0dp"
             android:layout_weight=".25"
             android:layout_height="wrap_content"
-            android:text="Log"
+            android:text="@string/log"
             android:id="@+id/logPageBtn"/>
         <Button
             android:layout_width="0dp"
             android:layout_weight=".25"
             android:layout_height="wrap_content"
-            android:text="Metrics"
+            android:text="@string/metrics"
             android:id="@+id/chatPageBtn"
             android:onClick="gotoMetrics"/>
         <Button
             android:layout_width="0dp"
             android:layout_weight=".25"
             android:layout_height="wrap_content"
-            android:text="Settings"
+            android:text="@string/settings"
             android:id="@+id/settingsPageBtn"/>
 
     </LinearLayout>

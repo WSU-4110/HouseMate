@@ -3,169 +3,239 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:background="@color/light_gray">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/parent"
-        android:padding="15dp">
-        <Button
-            android:layout_width="wrap_content"
+        android:id="@+id/parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_toLeftOf="@+id/newTaskTitleTV"
-            android:layout_alignParentLeft="true"
-            android:text="cancel"
-            android:id="@+id/cancelBtn"/>
+            android:id="@+id/topPanel"
+            android:background="@color/atomic_tangerine"
+            android:paddingStart="15dp"
+            tools:ignore="RtlSymmetry"
+            android:padding="5dp">
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/cancelBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:padding="10dp"
+                android:src="@drawable/ic_baseline_arrow_back_ios_24"
+                android:layout_alignParentStart="true" />
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="add"
+                android:textSize="20sp"
+                android:layout_alignParentEnd="true"
+                android:id="@+id/createTaskBtn"
+                android:textColor="@color/white_50"
+                android:background="@android:color/transparent"/>
+        </RelativeLayout>
 
         <TextView
             android:id="@+id/newTaskTitleTV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="NEW TASK"
-            android:textSize="20sp"
+            android:text="New Task"
             android:layout_centerHorizontal="true"
-            android:paddingHorizontal="30dp"/>
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="CREATE"
-            android:layout_toRightOf="@+id/newTaskTitleTV"
-            android:layout_alignParentRight="true"
-            android:id="@+id/createTaskBtn"/>
-
-
+            android:paddingHorizontal="30dp"
+            android:textColor="@color/white_50"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            android:layout_marginTop="10dp"/>
 
         <EditText
             android:id="@+id/taskNameET"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPersonName"
-            android:layout_below="@+id/cancelBtn"
-            android:layout_marginTop="30sp"
-            android:textSize="30dp"
-            android:hint="Title"/>
-        <TextView
-            android:layout_width="325dp"
-            android:layout_height="wrap_content"
-            android:text="Due Date: "
-            android:textSize="30sp"
-            android:layout_below="@+id/taskNameET"
-            android:id="@+id/dateTV"
-            android:layout_marginTop="30dp"/>
-        <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/taskNameET"
-            app:srcCompat = "@mipmap/ic_calendar"
-            android:id="@+id/pickDateImgBtn"
-            android:layout_toRightOf="@+id/dateTV"
-            android:layout_marginTop="30dp"/>
+            android:layout_below="@+id/topPanel"
+            android:layout_marginTop="40sp"
+            android:textSize="20dp"
+            android:hint="Title"
+            android:background="@drawable/textview_border"
+            android:paddingStart="15dp"
+            android:padding="10dp"
+            tools:ignore="RtlSymmetry" />
 
-        <TextView
-            android:layout_width="325dp"
+
+        <RelativeLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/pickDateImgBtn"
-            android:id="@+id/timeTV"
-            android:textSize="30sp"
-            android:text="Time: "/>
-        <ImageButton
+            android:id="@+id/dateRelLayout"
+            android:layout_below="@+id/taskNameET"
+            android:layout_marginTop="40dp"
+            android:background="@drawable/textview_border">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Due Date: "
+                android:textSize="20dp"
+                android:paddingStart="15dp"
+                android:padding="10dp"
+                android:id="@+id/dateTV"
+                android:background="@color/white_50"
+                tools:ignore="RtlSymmetry"/>
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/pickDateImgBtn"
+                android:layout_width="75dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button_border"
+                android:padding="10dp"
+                android:src="@drawable/ic_baseline_calendar_today_24"
+                android:layout_alignParentEnd="true" />
+        </RelativeLayout>
+
+
+        <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/timeTV"
-            android:layout_below="@+id/pickDateImgBtn"
-            android:id="@+id/pickTimeImgBtn"
-            android:layout_toEndOf="@id/timeTV"
-            app:srcCompat = "@mipmap/ic_time"/>
+            android:id="@+id/timeRelLayout"
+            android:layout_below="@+id/dateRelLayout"
+            android:background="@drawable/textview_border">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/timeTV"
+                android:textSize="20dp"
+                android:paddingStart="15dp"
+                android:padding="10dp"
+                android:text="Time: "
+                tools:ignore="RtlSymmetry"/>
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/pickTimeImgBtn"
+                android:layout_width="75dp"
+                android:layout_height="50dp"
+                android:background="@drawable/button_border"
+                android:padding="5dp"
+                android:src="@drawable/ic_baseline_access_time_24"
+                android:layout_alignParentEnd="true"/>
+        </RelativeLayout>
+
+
+
+
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/repeatTaskLinearLayout"
-            android:layout_below="@+id/pickTimeImgBtn"
-            android:layout_marginTop="30dp"
-            android:orientation="horizontal">
+            android:layout_below="@+id/timeRelLayout"
+            android:layout_marginTop="40dp"
+            android:orientation="horizontal"
+            android:background="@drawable/textview_border"
+            android:padding="5dp">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="30sp"
+                android:textSize="20dp"
+                android:paddingStart="15dp"
+                android:padding="10dp"
                 android:text="Repeat: "
-                android:id="@+id/repeatTitleTV"/>
+                android:id="@+id/repeatTitleTV"
+                tools:ignore="RtlSymmetry"/>
             <Spinner
                 android:id="@+id/repeatTaskSpinner"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
         </LinearLayout>
 
-        <TextView
-            android:layout_width="wrap_content"
+        <RelativeLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/repeatTaskLinearLayout"
-            android:text = "Priority: "
-            android:textSize="30dp"
-            android:layout_marginTop="30dp"
-            android:id="@+id/priorityTitleTV"/>
-        <RadioGroup
+            android:padding="5dp"
+            android:id="@+id/priority"
+            android:background="@drawable/textview_border">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text = "Priority: "
+                android:textSize="20dp"
+                android:paddingStart="15dp"
+                android:padding="10dp"
+                android:id="@+id/priorityTitleTV"
+                android:background="@color/white_50"
+                tools:ignore="RtlSymmetry"/>
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@+id/priorityTitleTV"
+                android:orientation="horizontal"
+                android:background="@color/white_50">
+                <RadioButton android:id="@+id/lowRadioBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Low"
+                    android:onClick="onRadioButtonClicked"
+                    android:textSize = "20sp"
+                    android:textColor="@android:color/tab_indicator_text"/>
+                <RadioButton android:id="@+id/medRadioBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Medium"
+                    android:onClick="onRadioButtonClicked"
+                    android:textSize = "20sp"
+                    android:textColor="@android:color/tab_indicator_text"/>
+                <RadioButton android:id="@+id/highRadioBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="High"
+                    android:onClick="onRadioButtonClicked"
+                    android:textSize = "20sp"
+                    android:textColor="@android:color/tab_indicator_text"/>
+            </RadioGroup>
+        </RelativeLayout>
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_toEndOf="@+id/priorityTitleTV"
-            android:layout_below="@id/repeatTaskLinearLayout"
-            android:layout_marginTop="40dp"
-            android:orientation="horizontal">
-            <RadioButton android:id="@+id/lowRadioBtn"
-                android:layout_width="wrap_content"
+            android:id="@+id/checkbox"
+            android:layout_below="@+id/priority"
+            android:background="@drawable/textview_border"
+            android:padding="5dp">
+            <CheckBox
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Low"
-                android:onClick="onRadioButtonClicked"
-                android:textSize = "20sp"/>
-            <RadioButton android:id="@+id/medRadioBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Medium"
-                android:onClick="onRadioButtonClicked"
-                android:textSize = "20sp"/>
-            <RadioButton android:id="@+id/highRadioBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="High"
-                android:onClick="onRadioButtonClicked"
-                android:textSize = "20sp"/>
-        </RadioGroup>
-        <CheckBox
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Assign"
-            android:textSize="30sp"
-            android:layout_below="@+id/priorityTitleTV"
-            android:id="@+id/assignCheckBox"
-            android:layout_marginTop="30sp"/>
+                android:text="Assign"
+                android:textSize="20dp"
+                android:id="@+id/assignCheckBox"
+                android:layout_marginStart="12dp"
+                android:background="@color/white_50"
+                tools:ignore="RtlSymmetry"
+                android:textColor="@android:color/tab_indicator_text"/>
+        </RelativeLayout>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/housemateRecView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@+id/assignCheckBox"
-            android:visibility="gone" />
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/notesTitleTV"
-            android:textSize="30sp"
-            android:text="Notes: "
-            android:layout_below="@+id/housemateRecView"
-            android:layout_marginTop="30sp"/>
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/notesTitleTV"
-            android:maxLines="10"
-            android:id="@+id/notesET"
-            android:lines="8"
-            android:gravity="top|left"
-            android:scrollbars="vertical"
-            tools:ignore="RtlHardcoded" />
+            android:layout_below="@+id/checkbox"
+            android:visibility="gone"
+            android:background="@drawable/textview_border"/>
 
 
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxLines="10"
+                android:id="@+id/notesET"
+                android:lines="8"
+                android:gravity="top|left"
+                android:hint="Notes:"
+                android:scrollbars="vertical"
+                tools:ignore="RtlHardcoded,RtlSymmetry"
+                android:padding="15dp"
+                android:paddingStart="15dp"
+                android:layout_below="@+id/housemateRecView"
+                android:layout_marginTop="40dp"
+                android:background="@drawable/textview_border"/>
 
     </RelativeLayout>
 </ScrollView>
-

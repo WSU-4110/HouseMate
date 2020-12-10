@@ -5,27 +5,36 @@
     android:layout_height="match_parent"
     tools:context=".CurrentHousehold"
     android:id="@+id/relativeLayout">
-
-    <TextView
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="15dp"
-        android:layout_centerInParent="true"
-        android:layout_alignParentTop="true"
-        android:textSize="35sp"
-        android:textStyle="bold"
-        android:text="HOUSEHOLD"
-        android:textAlignment="center"
-        android:id="@+id/houseHoldTitleTV"/>
-
-    <Button
+        android:id="@+id/topBar"
+        android:background="@color/atomic_tangerine"
+        android:paddingStart="15dp"
+        tools:ignore="RtlSymmetry"
+        android:padding="5dp">
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/backBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:padding="10dp"
+            android:src="@drawable/ic_baseline_arrow_back_ios_24"
+            android:layout_alignParentStart="true"
+            android:onClick="onBackBtnClicked"/>
+        <TextView
+        android:id="@+id/householdTitleTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="@string/household_header_text"
         android:layout_centerHorizontal="true"
-        android:text="Back to Home"
-        android:id="@+id/backBtn"
-        android:onClick="onBackBtnClicked"
-        android:layout_below="@id/houseHoldTitleTV"/>
+        android:layout_centerVertical="true"
+        android:paddingHorizontal="30dp"
+        android:textColor="@color/white_50"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:layout_marginTop="10dp"/>
+    </RelativeLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -33,25 +42,26 @@
         android:orientation="horizontal"
         android:gravity="center"
         android:id="@+id/householdNameLL"
-        android:layout_below="@id/backBtn"
+        android:layout_below="@id/topBar"
         android:layout_marginTop="15dp"
         android:onClick="onChangeHouseholdName">
         <TextView
             android:layout_width="0dp"
             android:layout_weight=".9"
             android:layout_height="wrap_content"
-            android:text="Household Name"
+            android:text="@string/household_name"
             android:textSize="30sp"
             android:id="@+id/householdNameTV"
             android:layout_marginStart="15dp"/>
-         <androidx.appcompat.widget.AppCompatImageButton
+        <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/edit_profile"
             android:layout_width="0dp"
-             android:layout_weight=".1"
+            android:layout_weight=".1"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_baseline_chevron_right_24"
-             android:layout_marginEnd="15dp"
-             android:onClick="onChangeHouseholdName"/>
+            android:backgroundTint="@color/aero_blue"
+            android:src="@drawable/ic_baseline_edit_50"
+            android:layout_marginEnd="15dp"
+            android:onClick="onChangeHouseholdName"/>
     </LinearLayout>
 
 
@@ -78,7 +88,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="leave household"
+        android:text="@string/leave_household_button_text"
         android:id="@+id/leaveHouseBtn"
         android:layout_centerHorizontal="true"
         android:layout_below="@id/housemateRecView"
@@ -86,7 +96,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="get house key"
+        android:text="@string/get_house_key_button_text"
         android:id="@+id/getHouseKeyBtn"
         android:layout_centerHorizontal="true"
         android:layout_below="@id/leaveHouseBtn"

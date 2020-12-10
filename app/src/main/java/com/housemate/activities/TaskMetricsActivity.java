@@ -2,7 +2,9 @@ package com.housemate.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 
 import java.lang.reflect.Array;
@@ -30,5 +32,10 @@ public class TaskMetricsActivity extends AppCompatActivity {
         }
         metricNumsTV.setText(text);
 
+    }
+
+    public void backToHome(View view) {
+        Intent intent = new Intent(this, HomePageActivity.class);
+        startActivity(intent);
     }
 }

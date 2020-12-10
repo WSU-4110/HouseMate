@@ -3,6 +3,7 @@ package com.housemate.classes;
 import androidx.annotation.NonNull;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -12,6 +13,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Comparator;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class IncompleteTask extends Task {
     private ArrayList<String> assignedUsers;
     private LocalDate dueDate;
@@ -61,9 +63,14 @@ public class IncompleteTask extends Task {
 
     @Override
     public String getDateAndTimeText() {
-        return String.format("<p>Due %s at %s</p>\n",
+        String repeatText = "";
+        if (!repeatType.equals("NEVER"))
+            repeatText = String.format(" (%s)", repeatType);
+
+        return String.format("<p>Due %s at %s%s</p>\n",
                 getDueDate().format(DateTimeFormatter.ofPattern("M-d-yyyy")),
-                getDueTime().format(DateTimeFormatter.ofPattern("h:mm a")));
+                getDueTime().format(DateTimeFormatter.ofPattern("h:mm a")),
+                repeatText);
     }
 
     public ArrayList<String> getAssignedUsers() { return new ArrayList<>(assignedUsers); }

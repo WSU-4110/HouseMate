@@ -1,23 +1,17 @@
 package com.housemate.activities;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.housemate.adapters.CurrentHouseholdRVAdapter;
-import com.housemate.adapters.HousemateRecViewAdapter;
-import com.housemate.classes.Household;
 import com.housemate.classes.RemoveHousemateDialogue;
 
 import java.util.ArrayList;
@@ -27,7 +21,7 @@ import java.util.ArrayList;
 public class CurrentHousehold extends AppCompatActivity implements CurrentHouseholdRVAdapter.ItemClickListener,
         RemoveHousemateDialogue.RemoveHousemateDialogueListener, RenameHouseFragment.RenameHouseFragmentListener {
     TextView householdNameTV, householdTitleTV;
-    Button backBtn, saveBtn, leaveHouseBtn, getHouseKeyBtn;
+    Button saveBtn, leaveHouseBtn, getHouseKeyBtn;
     RecyclerView housemateRecView;
     CurrentHouseholdRVAdapter currentHouseHoldRVAdapter;
     ArrayList<String> housemateList,  userIdList;
@@ -42,8 +36,7 @@ public class CurrentHousehold extends AppCompatActivity implements CurrentHouseh
         setContentView(R.layout.activity_current_household);
 
         householdNameTV = findViewById(R.id.householdNameTV);
-        householdTitleTV = findViewById(R.id.houseHoldTitleTV);
-        backBtn = findViewById(R.id.backBtn);
+        householdTitleTV = findViewById(R.id.householdTitleTV);
         saveBtn = findViewById(R.id.saveBtn);
         leaveHouseBtn = findViewById(R.id.leaveHouseBtn);
         getHouseKeyBtn = findViewById(R.id.getHouseKeyBtn);

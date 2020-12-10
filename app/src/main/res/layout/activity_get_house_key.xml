@@ -12,8 +12,8 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:padding="20dp"
-        android:text="Invite to Household"
-        android:textSize="20dp"
+        android:text="@string/invite_to_household_header_text"
+        android:textSize="20sp"
         android:textStyle="bold"
         android:layout_alignParentTop="true"/>
 
@@ -103,7 +103,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="32dp"
             android:onClick="getHouseKey"
-            android:text="Get Key" />
+            android:text="@string/get_key_button_text" />
 
     </RelativeLayout>
 
@@ -117,7 +117,7 @@
         <androidx.appcompat.widget.AppCompatImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="copy key"
+            android:text="@string/copy_key_hint_text"
             android:id="@+id/copyKeyButton"
             android:onClick="onCopyKey"
             android:background="@color/aero_blue"
@@ -126,7 +126,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Copy\nKey"
+            android:text="@string/copy_key_button_text_view"
             android:textAlignment="center"/>
     </LinearLayout>
 
@@ -150,7 +150,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Share \nKey"
+            android:text="@string/share_key_button_text_view"
             android:textAlignment="center"/>
 
     </LinearLayout>
@@ -171,7 +171,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Back To\nHouse"
+            android:text="@string/back_to_house_button_text_view_with_return"
             android:textAlignment="center"/>
     </LinearLayout>
 

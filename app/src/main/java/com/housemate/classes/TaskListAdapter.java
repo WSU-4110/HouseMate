@@ -1,6 +1,8 @@
 package com.housemate.classes;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,8 +12,12 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.core.text.HtmlCompat;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.housemate.activities.EditTaskActivity;
+import com.housemate.activities.HomePageActivity;
 import com.housemate.activities.MainActivity;
 import com.housemate.activities.R;
 
@@ -21,6 +27,8 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.TaskLi
     private final Context context;
     private final List<Task> taskList;
     private final boolean completedTasks; //indicates type of task to be displayed, incomplete or completed
+    private final FragmentManager fragmentManager; //can be passed into show() method of DialogFragment subclasses
+    private TaskListAdapter self; //can be used to reference the adapter within OnClickListeners
 
     public static class TaskListViewHolder extends RecyclerView.ViewHolder {
         public CardView taskCardView;
@@ -45,10 +53,12 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.TaskLi
         }
     }
 
-    public TaskListAdapter(Context context, List<Task> taskList, boolean completedTasks) {
+    public TaskListAdapter(Context context, List<Task> taskList, boolean completedTasks, FragmentManager fragmentManager) {
         this.context = context;
         this.taskList = taskList;
         this.completedTasks = completedTasks;
+        this.fragmentManager = fragmentManager;
+        self = this;
     }
 
     @Override
@@ -76,30 +86,32 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.TaskLi
                     String.join(", ", ((IncompleteTask) task).getAssignedUsers()));
             holder.assignedUserView.setText(HtmlCompat.fromHtml(text, 0));
 
-                    /*
-        holder.editTaskView.setOnClickListener(view -> edit the task);
-        */
-            holder.completeTaskView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    IncompleteTask.complete(task.getId(),MainActivity.currentUser.getId(), MainActivity.currentHousehold.getHouseID());
-                    notifyDataSetChanged();
+            holder.editTaskView.setOnClickListener(v -> {
+                try {
+                    String taskJson = HTTPSDataSender.mapToJson(task);
+                    Intent intent = new Intent(context, EditTaskActivity.class);
+                    intent.putExtra("taskJson", taskJson);
+                    context.startActivity(intent);
+                }
+                catch (Exception e) {
+                    throw new RuntimeException("Error processing task");
                 }
             });
-            holder.deleteTaskView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    IncompleteTask.delete(task.getId());
-                    notifyDataSetChanged();
-                }
+
+            holder.completeTaskView.setOnClickListener(v -> {
+                IncompleteTask.complete(task.getId(),MainActivity.currentUser.getId(), MainActivity.currentHousehold.getHouseID());
+                notifyDataSetChanged();
+            });
+
+            holder.deleteTaskView.setOnClickListener(v -> {
+                DeleteTaskDialogue deleteTaskDialogue = new DeleteTaskDialogue((IncompleteTask) task, self);
+                deleteTaskDialogue.show(fragmentManager, "deleteTaskDialogue");
             });
         }
-
     }
 
     @Override
     public int getItemCount() {
         return taskList.size();
     }
-
 }

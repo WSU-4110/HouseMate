@@ -3,69 +3,82 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".EditProfile"
-    android:padding="15dp">
-   <RelativeLayout
-       android:layout_width="match_parent"
-       android:layout_height="wrap_content"
-       android:id="@+id/topPanel">
-       <Button
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:layout_alignParentStart="true"
-           android:text="Back"
-           android:id="@+id/backBtn"
-           android:onClick="backToSettings"/>
-       <TextView
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:layout_centerInParent="true"
-           android:text="Edit Profile"
-           android:textSize="30sp"
-           android:textAlignment="center"
-           android:id="@+id/titleTV"/>
-       <Button
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:layout_alignParentEnd="true"
-           android:id="@+id/saveBtn"
-           android:text="Save"
-           android:onClick="onSave"/>
-   </RelativeLayout>
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".EditProfile">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/topPanel"
+        android:background="@color/atomic_tangerine"
+        android:paddingStart="15dp"
+        tools:ignore="RtlSymmetry"
+        android:padding="5dp">
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/cancelBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:padding="10dp"
+            android:src="@drawable/ic_baseline_arrow_back_ios_24"
+            android:layout_alignParentStart="true"
+            android:onClick="backToViewProfile"/>
+        <TextView
+            android:id="@+id/newTaskTitleTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Edit Profile"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:paddingHorizontal="30dp"
+            android:textColor="@color/white_50"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            android:layout_marginTop="10dp"/>
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_baseline_check_circle_outline_24"
+            android:backgroundTint="@color/green_sheen"
+            app:maxImageSize="67dp"
+            android:layout_centerVertical="true"
+            android:id="@+id/saveBtn"
+            android:onClick="onSave"
+            android:layout_alignParentEnd="true" />
+    </RelativeLayout>
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="First Name"
-        android:id="@+id/fnameET"
-        android:layout_below="@+id/topPanel"
-        android:layout_marginTop="30dp" />
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Last Name"
-        android:id="@+id/lnameET"
-        android:layout_below="@+id/fnameET"/>
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Username"
-        android:layout_below="@+id/lnameET"
-        android:id="@+id/usernameET"
-        android:layout_marginTop="30dp"/>
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Email"
-        android:id="@+id/emailET"
-        android:layout_below="@+id/usernameET"/>
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Select or create Household"
-        android:id="@+id/selectHouseholdBtn"
-        android:layout_below="@id/emailET"
-        android:layout_marginTop="30dp"
-        android:onClick="selectHousehold"/>
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="15dp"
+        android:layout_below="@+id/topPanel">
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="First Name"
+            android:id="@+id/fnameET"
+
+            android:layout_marginTop="30dp" />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Last Name"
+            android:id="@+id/lnameET"
+            android:layout_below="@+id/fnameET"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Username"
+            android:textSize="20sp"
+            android:layout_below="@+id/lnameET"
+            android:id="@+id/usernameET"
+            android:layout_marginTop="30dp"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Email"
+            android:textSize="20sp"
+            android:id="@+id/emailET"
+            android:layout_below="@+id/usernameET"/>
+    </RelativeLayout>
 </RelativeLayout>
