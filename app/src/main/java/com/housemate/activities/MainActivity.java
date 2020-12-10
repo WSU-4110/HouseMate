@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
                     currentHousehold.setHousehold(houseId.get(0));
                     intent = new Intent(this, HomePageActivity.class);
                 } else {
-                    intent = new Intent(this, SelectHouse.class);
+                    intent = new Intent(this, SelectHouseActivity.class);
                 }
                 startActivity(intent);
                 finish();

@@ -50,7 +50,7 @@ public class ViewProfileActivity extends AppCompatActivity {
     }
 
     public void selectHousehold(View view) {
-        Intent intent = new Intent(this, SelectHouse.class);
+        Intent intent = new Intent(this, SelectHouseActivity.class);
         startActivity(intent);
     }
 
