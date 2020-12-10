@@ -104,8 +104,6 @@
     <string name="task_name_here_hint_text">task name here</string>
     <string name="by_due_date_hint_text">by due date</string>
 
-    <!-- (task_metrics.xml) -->
-    <string name="number_of_tasks_completed_hint_text">Number of Tasks Completed</string>
 
     <string-array name="repeat_task_arr">
         <item>Never</item>
