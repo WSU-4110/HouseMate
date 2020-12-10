@@ -1,5 +1,7 @@
 package com.housemate.classes;
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,10 +11,13 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 import androidx.core.text.HtmlCompat;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.housemate.activities.CreateTaskActivity;
 import com.housemate.activities.MainActivity;
 import com.housemate.activities.R;
 
@@ -88,10 +93,17 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.TaskLi
             holder.completeTaskView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+
+
                     IncompleteTask.complete(task.getId(),MainActivity.currentUser.getId(), MainActivity.currentHousehold.getHouseID());
                     notifyDataSetChanged();
+
+
+
                 }
             });
+
+
 
             holder.deleteTaskView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -100,6 +112,8 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.TaskLi
                     deleteTaskDialogue.show(fragmentManager, "deleteTaskDialogue");
                 }
             });
+
+
         }
     }
 

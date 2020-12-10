@@ -13,7 +13,6 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import com.housemate.classes.Household;
 import com.housemate.classes.IncompleteTask;
 import com.housemate.classes.Task;
 import com.housemate.classes.TaskListAdapter;
@@ -30,6 +29,9 @@ public class HomePageActivity extends AppCompatActivity {
     private RecyclerView taskRecyclerView;
     private RecyclerView.Adapter taskAdapter;
     private RecyclerView.LayoutManager taskLayoutManager;
+    private Button calbutton;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,6 +91,15 @@ public class HomePageActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(HomePageActivity.this,Settings.class);
+                startActivity(intent);
+            }
+        });
+
+        calbutton = findViewById(R.id.calbutton);
+        calbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(HomePageActivity.this,SimpleCalendarViewActivity.class);
                 startActivity(intent);
             }
         });

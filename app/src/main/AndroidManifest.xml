@@ -31,7 +31,12 @@
         <activity android:name=".CreateHousehold" />
         <activity android:name=".JoinCreateHousehold" />
         <activity android:name=".Registration" />
+        <activity android:name=".SimpleCalendarViewActivity"/>
         <activity android:name=".MainActivity">
+
+
+
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
