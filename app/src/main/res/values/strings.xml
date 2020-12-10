@@ -60,6 +60,14 @@
     <string name="add_task_button_text">ADD</string>
     <string name="new_task_header_text">NEW TASK</string>
 
+    <!-- (activity_edit_task.xml) -->
+    <string name="editTaskCancel">CANCEL</string>
+    <string name="editTaskTitle">EDIT TASK</string>
+    <string name="editTaskUpdate">UPDATE</string>
+    <string name="editTaskNameTitle">Title</string>
+    <string name="editTaskAssignText">Assign</string>
+    <string name="editTaskNotesText">Notes:</string>
+
     <!-- (activity_color_theme.xml) -->
     <string name="light_theme_slider_set">Light</string>
     <string name="dark_theme_slider_set">Dark</string>
