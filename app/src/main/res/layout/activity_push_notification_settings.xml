@@ -15,13 +15,14 @@
         tools:ignore="RtlSymmetry"
         android:padding="5dp">
         <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/back_to_home_page"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@android:color/transparent"
             android:padding="10dp"
             android:src="@drawable/ic_baseline_arrow_back_ios_24"
             android:layout_alignParentStart="true"
-            android:onClick="backToSettings"/>
+            android:onClick="backToHome"/>
         <TextView
             android:id="@+id/newTaskTitleTV"
             android:layout_width="wrap_content"
@@ -35,64 +36,53 @@
             android:textStyle="bold"
             android:layout_marginTop="10dp"/>
     </RelativeLayout>
-<!--    <LinearLayout-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:orientation="horizontal">-->
 
-<!--        <com.google.android.material.button.MaterialButton-->
-<!--            android:id="@+id/back_to_settings_2"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            app:iconSize="38dp"-->
-<!--            app:icon="@drawable/ic_baseline_chevron_left_24"-->
-<!--            app:iconGravity="textStart"/>-->
-
-    <com.google.android.material.switchmaterial.SwitchMaterial
-        android:id="@+id/completedTaskpush"
-        android:layout_marginTop="35dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/completed_tasks_lower"
-        android:textSize="20sp" />
-<!--        <TextView-->
-<!--            android:layout_width="243dp"-->
-<!--            android:layout_height="53dp"-->
-<!--            android:text="@string/settings"-->
-<!--            android:gravity="center"-->
-<!--            android:layout_gravity="center"-->
-<!--            android:textColor="@color/aero_blue"-->
-<!--            android:textSize="40sp"-->
-<!--            android:textStyle="bold" />-->
-
-<!--    </LinearLayout>-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/created_tasks"
-        android:textSize="20sp"/>
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:layout_marginHorizontal="10dp">
-        <com.google.android.material.switchmaterial.SwitchMaterial
-            android:id="@+id/completedTaskpush"
-            android:layout_marginTop="35dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/completed_tasks_lower"
-            android:textSize="20sp"
-            android:textColor="@color/atomic_tangerine"/>
+        android:layout_marginTop="35dp"
+        android:layout_marginBottom="10dp"
+        android:text="@string/push_notifications"
+        android:textSize="20sp"
+        android:gravity="center"
+        android:backgroundTint="@color/white_50"
+        app:icon="@drawable/ic_baseline_chevron_right_24"
+        app:iconGravity="end"/>
 
-        <com.google.android.material.switchmaterial.SwitchMaterial
-            android:id="@+id/createdTaskspush"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/created_tasks"
-            android:textSize="20sp"
-            android:textColor="@color/atomic_tangerine"/>
-    </LinearLayout>
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/headerColor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="10dp"
+        android:text="@string/color_theme"
+        android:textSize="20sp"
+        android:gravity="center"
+        android:backgroundTint="@color/white_50"
+        app:icon="@drawable/ic_baseline_chevron_right_24"
+        app:iconGravity="end"/>
 
+    <Button
+        android:id="@+id/logoutButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="10dp"
+        android:textAllCaps="false"
+        android:text="@string/log_out"/>
 
+    <Button
+        android:id="@+id/changePasswordbutton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="10dp"
+        android:onClick="onRequestPasswordReset"
+        android:textAllCaps="false"
+        android:text="@string/change_password" />
 
-
+    <Button
+        android:id="@+id/deleteAcct"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="10dp"
+        android:textAllCaps="false"
+        android:text="@string/delete_account" />
 </LinearLayout>
