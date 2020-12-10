@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -15,7 +16,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class ViewProfileActivity extends AppCompatActivity {
     Button selectHouseholdBtn;
-    MaterialButton backBtn;
+    ImageButton backBtn;
     FloatingActionButton editProfileBtn;
     TextView fnameTV, lnameTV, usernameTV, emailTV;
     @Override
