@@ -58,6 +58,7 @@
                 android:background="@drawable/key_char_background"
                 android:textAlignment="center"
                 android:textAppearance="@style/TextAppearance.MyTheme.Overline"
+                android:textColor="@color/black_800"
                 android:textSize="64sp"
                 app:drawableBottomCompat="@color/black_800" />
 
@@ -70,6 +71,7 @@
                 android:background="@drawable/key_char_background"
                 android:textAlignment="center"
                 android:textAppearance="@style/TextAppearance.MyTheme.Overline"
+                android:textColor="@color/black_800"
                 android:textSize="64sp" />
 
             <TextView
@@ -81,6 +83,7 @@
                 android:background="@drawable/key_char_background"
                 android:textAlignment="center"
                 android:textAppearance="@style/TextAppearance.MyTheme.Overline"
+                android:textColor="@color/black_800"
                 android:textSize="64sp" />
 
             <TextView
@@ -92,6 +95,7 @@
                 android:background="@drawable/key_char_background"
                 android:textAlignment="center"
                 android:textAppearance="@style/TextAppearance.MyTheme.Overline"
+                android:textColor="@color/black_800"
                 android:textSize="64sp" />
         </LinearLayout>
 
