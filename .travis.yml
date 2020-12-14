@@ -1,7 +1,11 @@
 language: android
-
+jdk: oraclejdk11
 dist: trusty
 android:
   components:
     - build-tools-26.0.2
     - android-26
+before_script:
+  - chmod +x ./gradlew
+script:
+  - ./gradlew build
