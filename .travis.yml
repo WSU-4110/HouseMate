@@ -9,3 +9,6 @@ before_script:
   - chmod +x ./gradlew
 script:
   - ./gradlew build
+before_install:
+  - android update sdk --filter extra-android-support --no-ui --force > /dev/null
+  - android update sdk --filter extra-android-m2repository --no-ui --force > /dev/null
