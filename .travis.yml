@@ -1,4 +1,7 @@
-language: java
+language: android
 
-jdk:
-  - oraclejdk11
+dist: trusty
+android:
+  components:
+    - build-tools-26.0.2
+    - android-26
